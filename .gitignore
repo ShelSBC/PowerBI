@@ -1,0 +1,37 @@
+# ==========================================
+# Power BI Project (.pbip) - GitIgnore Maestro
+# ==========================================
+
+# --- Artefactos Binarios y Temporales ---
+# Ignoramos PBIX y PBIT porque ahora usamos carpetas .pbip
+**/*.pbi
+**/*.pbix
+**/*.pbit
+
+# --- Configuración Personal y Seguridad ---
+# Este archivo contiene tu identidad de usuario y no debe compartirse
+**/.USER.S_C.local
+
+# --- Carpetas de Cache y Logs de Power BI ---
+# Power BI genera estas carpetas automáticamente en cada PC
+**/[Cc]ache/
+**/[Tt]emp/
+**/[Ll]og/
+
+# --- Archivos de Datos Locales (Sensibles) ---
+# Evita que alguien suba por error bases de datos en Excel o CSV
+**/*.xlsx
+**/*.xls
+**/*.csv
+**/*.zip
+
+# --- Carpetas de Control Interno de Power BI ---
+# Estas carpetas dentro del .Dataset no deben subirse ya que 
+# contienen copias locales de los datos importados
+**/*.pbi/localSettings.json
+**/DataLayout.json
+
+# --- Archivos del Sistema ---
+.DS_Store
+Thumbs.db
+desktop.ini
