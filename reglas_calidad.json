@@ -1,0 +1,18 @@
+{
+  "rules": [
+    { "name": "DAX: Usar DIVIDE en lugar de /", "severity": "warning", "objectType": "measure", "condition": "expression.includes('/')" },
+    { "name": "DAX: Evitar IFERROR", "severity": "warning", "objectType": "measure", "condition": "expression.includes('IFERROR')" },
+    { "name": "DAX: No usar columnas calculadas", "severity": "warning", "objectType": "column", "condition": "type == 'calculated'" },
+    { "name": "DAX: Medidas sin formato", "severity": "error", "objectType": "measure", "condition": "formatString == null || formatString == ''" },
+    { "name": "DAX: Evitar la función VALUES", "severity": "error", "objectType": "measure", "condition": "expression.includes('VALUES(')" },
+    { "name": "Modelo: Ocultar columnas ID/Key", "severity": "warning", "objectType": "column", "condition": "(name.endsWith('ID') || name.endsWith('Key')) && isHidden == false" },
+    { "name": "Modelo: Relaciones Many-to-Many", "severity": "error", "objectType": "relationship", "condition": "fromCardinality == 'many' && toCardinality == 'many'" },
+    { "name": "Modelo: Direccionalidad Bi-direccional", "severity": "error", "objectType": "relationship", "condition": "crossFilteringBehavior == 'bothDirections'" },
+    { "name": "Modelo: Tablas sin descripción", "severity": "error", "objectType": "table", "condition": "description == null || description == ''" },
+    { "name": "Modelo: Medidas sin descripción", "severity": "error", "objectType": "measure", "condition": "description == null || description == ''" },
+    { "name": "Nomenclatura: Tablas en plural", "severity": "error", "objectType": "table", "condition": "!name.endsWith('s') && !name.endsWith('es')" },
+    { "name": "DAX: Uso de CALCULATE innecesario", "severity": "error", "objectType": "measure", "condition": "expression.includes('CALCULATE(SUM(')" },
+    { "name": "Modelo: Llaves primarias no ocultas", "severity": "warning", "objectType": "column", "condition": "isKey == true && isHidden == false" },
+    { "name": "Metadatos: Formato de Fecha Estándar", "severity": "error", "objectType": "column", "condition": "dataType == 'dateTime' && formatString != 'dd/MM/yyyy'" }
+  ]
+}
