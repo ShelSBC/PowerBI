@@ -1,0 +1,25 @@
+model Model
+	culture: es-ES
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: es-MX
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["VDIM_CALENDARIO","VDIM_TIPO_TARJETA","FAC_NEGFIN_FORECAST","Medidas"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table DateTableTemplate_d7139f22-e2c4-4e03-996c-37521135a349
+ref table VDIM_CALENDARIO
+ref table LocalDateTable_c9e77179-1518-4d88-a188-76e73df9762c
+ref table LocalDateTable_31134063-0863-4b89-b407-e2de8c7793ac
+ref table VDIM_TIPO_TARJETA
+ref table FAC_NEGFIN_FORECAST
+ref table LocalDateTable_431b2f77-7dc3-4230-a78d-90aeeaad4eb4
+ref table Medidas
+
+ref cultureInfo es-ES
+

@@ -1,0 +1,150 @@
+table FAC_NEGFIN_FORECAST
+	lineageTag: ff71067c-5c3f-495e-9bdd-312c356b68a5
+
+	column FECHA_CARGA
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: febc8088-2b34-472d-a4ac-d4f99eccec8f
+		summarizeBy: none
+		sourceColumn: FECHA_CARGA
+
+		variation Variation
+			isDefault
+			relationship: 2d57eada-c40e-4077-b9f2-467e14decd55
+			defaultHierarchy: LocalDateTable_431b2f77-7dc3-4230-a78d-90aeeaad4eb4.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ANIO
+		dataType: double
+		formatString: 0
+		lineageTag: 701a5a85-5cdd-4478-8254-c17f47e0ac76
+		summarizeBy: sum
+		sourceColumn: ANIO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	column MES
+		dataType: double
+		formatString: 0
+		lineageTag: 19cea63f-c1f2-4141-8685-ac7f1f7d018a
+		summarizeBy: sum
+		sourceColumn: MES
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	column TIP_INF
+		dataType: double
+		lineageTag: 42d5b087-5b0f-4339-9259-a1820a447208
+		summarizeBy: none
+		sourceColumn: TIP_INF
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TIP_PPTO
+		dataType: string
+		lineageTag: d3325533-57fc-4030-85af-dab9fd76f0e1
+		summarizeBy: none
+		sourceColumn: TIP_PPTO
+
+		annotation SummarizationSetBy = Automatic
+
+	column IND_DES
+		dataType: string
+		lineageTag: 28bbd70f-f79f-4197-b73b-0885ca8b4e8f
+		summarizeBy: none
+		sourceColumn: IND_DES
+
+		annotation SummarizationSetBy = Automatic
+
+	column TIP_IND
+		dataType: double
+		lineageTag: c3fd5b37-bfd5-4f6e-b354-bffd243e5395
+		summarizeBy: sum
+		sourceColumn: TIP_IND
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column IMP
+		dataType: double
+		lineageTag: 04648c7a-70e3-4937-b673-0b03bce5a127
+		summarizeBy: sum
+		sourceColumn: IMP
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column IMP_ANT
+		dataType: double
+		lineageTag: a143297f-aeb9-4403-a0ec-1f9409764ed3
+		summarizeBy: sum
+		sourceColumn: IMP_ANT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CTAS
+		dataType: double
+		lineageTag: cd15169b-9d8b-4dcb-bfb4-f4fba56b31d7
+		summarizeBy: sum
+		sourceColumn: CTAS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CTAS_ANT
+		dataType: int64
+		formatString: 0
+		lineageTag: 06d15fe5-6a25-46fd-ab64-6d5d78a2c677
+		summarizeBy: sum
+		sourceColumn: CTAS_ANT
+
+		annotation SummarizationSetBy = Automatic
+
+	column ANIOMES
+		dataType: double
+		formatString: 0
+		lineageTag: 4658ea41-f814-4cb1-8327-ffd4e5c7ffb1
+		summarizeBy: none
+		sourceColumn: ANIOMES
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	column IND_DES_REAL
+		dataType: string
+		lineageTag: 1a6838cf-c61b-411a-9563-8e3633e80b8f
+		summarizeBy: none
+		sourceColumn: IND_DES_REAL
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FAC_NEGFIN_FORECAST = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([BillingProject="crp-pro-cx-analitica"]),
+				    #"crp-pro-cx-analitica" = Source{[Name="crp-pro-cx-analitica"]}[Data],
+				    mus_pro_negfin_tablas_finales_Schema = #"crp-pro-cx-analitica"{[Name="mus_pro_negfin_tablas_finales",Kind="Schema"]}[Data],
+				    FAC_NEGFIN_FORECAST_Table = mus_pro_negfin_tablas_finales_Schema{[Name="FAC_NEGFIN_FORECAST",Kind="Table"]}[Data]
+				in
+				    FAC_NEGFIN_FORECAST_Table
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
