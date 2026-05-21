@@ -1,0 +1,106 @@
+table VFAC_NEGFIN_CTE
+	lineageTag: 75000bcf-ef58-4cd4-bac1-4bbe38b10ab7
+
+	column NUM_PRODUCTOS
+		dataType: int64
+		formatString: 0
+		lineageTag: bf1ec6ec-c301-423d-a43a-75daac016d70
+		summarizeBy: sum
+		sourceColumn: NUM_PRODUCTOS
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRODUCTOS
+		dataType: string
+		lineageTag: 0d303c33-3f30-4d36-a22e-c1021a321bb5
+		summarizeBy: none
+		sourceColumn: PRODUCTOS
+
+		annotation SummarizationSetBy = Automatic
+
+	column ANIOMES
+		dataType: int64
+		formatString: 0
+		lineageTag: cfc722cf-684b-4644-87ff-dd65cc81e1d6
+		summarizeBy: none
+		sourceColumn: ANIOMES
+
+		annotation SummarizationSetBy = Automatic
+
+	column RANG_EDAD
+		dataType: string
+		lineageTag: db00fff3-25e5-4822-8e7d-41ab1736c10f
+		summarizeBy: none
+		sourceColumn: RANG_EDAD
+
+		annotation SummarizationSetBy = Automatic
+
+	column CC_FLAG
+		dataType: int64
+		formatString: 0
+		lineageTag: 90a2673c-404a-4d10-ac8d-83ea602488a8
+		summarizeBy: sum
+		sourceColumn: CC_FLAG
+
+		annotation SummarizationSetBy = Automatic
+
+	column VAL_MAX_NIV_MOR
+		dataType: int64
+		formatString: 0
+		lineageTag: a3668353-d75e-422e-91b0-bf00868eeeed
+		summarizeBy: sum
+		sourceColumn: VAL_MAX_NIV_MOR
+
+		annotation SummarizationSetBy = Automatic
+
+	column CLIENTE
+		dataType: int64
+		formatString: 0
+		lineageTag: 104ad520-9745-4b12-96b0-3abadb8bf90a
+		summarizeBy: sum
+		sourceColumn: CLIENTE
+
+		annotation SummarizationSetBy = Automatic
+
+	column TOTAL_TRJ
+		dataType: string
+		lineageTag: 854efcfc-133e-43c2-b654-d60391a0b203
+		summarizeBy: none
+		sourceColumn: TOTAL_TRJ
+
+		annotation SummarizationSetBy = Automatic
+
+	column CTE_MIL
+		dataType: double
+		formatString: #,0
+		lineageTag: 0a8f5011-a408-4bee-a5ee-1f3692459ad8
+		summarizeBy: sum
+		sourceColumn: CTE_MIL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	column PRODUCT_GROUP
+		dataType: string
+		lineageTag: fc1fa0ae-efe7-433c-b8c0-5741e6575da3
+		summarizeBy: none
+		sourceColumn: PRODUCT_GROUP
+
+		annotation SummarizationSetBy = Automatic
+
+	partition VFAC_NEGFIN_CTE = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([BillingProject="crp-pro-cx-semantica"]),
+				    #"crp-pro-cx-semantica" = Source{[Name="crp-pro-cx-semantica"]}[Data],
+				    mus_pro_negfin_shared_views_Schema = #"crp-pro-cx-semantica"{[Name="mus_pro_negfin_shared_views",Kind="Schema"]}[Data],
+				    VFAC_NEGFIN_CTE_View = mus_pro_negfin_shared_views_Schema{[Name="VFAC_NEGFIN_CTE",Kind="View"]}[Data]
+				in
+				    VFAC_NEGFIN_CTE_View
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

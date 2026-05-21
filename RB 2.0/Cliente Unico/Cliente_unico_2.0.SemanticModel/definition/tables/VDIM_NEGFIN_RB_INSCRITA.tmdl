@@ -1,0 +1,48 @@
+table VDIM_NEGFIN_RB_INSCRITA
+	lineageTag: 1e7a1b47-d7a2-4b07-9d48-1a9c13e5bbcb
+
+	column ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 533a8a13-bbd1-470c-b30e-e0f9436dd2cb
+		summarizeBy: count
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column INSCRITA
+		dataType: string
+		lineageTag: b7b9f9cc-1f9f-4f6f-93b6-214000d6ce91
+		summarizeBy: none
+		sourceColumn: INSCRITA
+
+		annotation SummarizationSetBy = Automatic
+
+	column FCH_CARGA
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 4f1fdddf-a2c4-44ee-bafe-2f9083267d78
+		summarizeBy: none
+		sourceColumn: FCH_CARGA
+
+		variation Variación
+			isDefault
+			relationship: 4f3783f0-f9bb-416b-a69d-da948cd9b578
+			defaultHierarchy: LocalDateTable_7fed778c-72e5-4d87-a5bf-33b9c1526b6e.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition VDIM_NEGFIN_RB_INSCRITA = m
+		mode: import
+		source =
+				let
+				    Origen = Value.NativeQuery(GoogleBigQuery.Database([UseStorageApi=false, BillingProject="crp-pro-dwh-semanticagold", ConnectionTimeout=#duration(0, 12, 0, 0)]){[Name="crp-pro-dwh-semanticagold"]}[Data], "Select * from `crp-pro-dwh-semanticagold.MUS_PRO_DWH_VIEWS_ODS.VDIM_NEGFIN_RB_INSCRITA`", null, [EnableFolding=true])
+				in
+				    Origen
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

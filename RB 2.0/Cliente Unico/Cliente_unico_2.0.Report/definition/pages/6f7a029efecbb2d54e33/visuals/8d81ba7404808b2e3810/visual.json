@@ -1,0 +1,248 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
+  "name": "8d81ba7404808b2e3810",
+  "position": {
+    "x": 796.66666666666663,
+    "y": 381.11111111111109,
+    "z": 14000,
+    "height": 315.55555555555554,
+    "width": 458.88888888888886,
+    "tabOrder": 14000
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VDIM_CALENDARIO"
+                    }
+                  },
+                  "Property": "MES_ANIO_LETRA"
+                }
+              },
+              "queryRef": "VDIM_CALENDARIO.MES_ANIO_LETRA",
+              "nativeQueryRef": "MES_ANIO_LETRA",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VFAC_NEGFIN_CTA"
+                    }
+                  },
+                  "Property": "FLAG_1RNGEDAD"
+                }
+              },
+              "queryRef": "VFAC_NEGFIN_CTA.FLAG_1RNGEDAD",
+              "nativeQueryRef": "FLAG_1RNGEDAD"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VFAC_NEGFIN_CTA"
+                    }
+                  },
+                  "Property": "FLAG_2RNGEDAD"
+                }
+              },
+              "queryRef": "VFAC_NEGFIN_CTA.FLAG_2RNGEDAD",
+              "nativeQueryRef": "FLAG_2RNGEDAD"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VFAC_NEGFIN_CTA"
+                    }
+                  },
+                  "Property": "FLAG_3RNGEDAD"
+                }
+              },
+              "queryRef": "VFAC_NEGFIN_CTA.FLAG_3RNGEDAD",
+              "nativeQueryRef": "FLAG_3RNGEDAD"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VFAC_NEGFIN_CTA"
+                    }
+                  },
+                  "Property": "FLAG_4RNGEDAD"
+                }
+              },
+              "queryRef": "VFAC_NEGFIN_CTA.FLAG_4RNGEDAD",
+              "nativeQueryRef": "FLAG_4RNGEDAD"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VFAC_NEGFIN_CTA"
+                    }
+                  },
+                  "Property": "FLAG_5RNGEDAD"
+                }
+              },
+              "queryRef": "VFAC_NEGFIN_CTA.FLAG_5RNGEDAD",
+              "nativeQueryRef": "FLAG_5RNGEDAD"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VFAC_NEGFIN_CTA"
+                    }
+                  },
+                  "Property": "FLAG_TOT"
+                }
+              },
+              "queryRef": "VFAC_NEGFIN_CTA.FLAG_TOT",
+              "nativeQueryRef": "FLAG_TOT"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "lineStyles": [
+        {
+          "properties": {
+            "lineStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "'dashed'"
+                }
+              }
+            },
+            "strokeLineJoin": {
+              "expr": {
+                "Literal": {
+                  "Value": "'bevel'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "VFAC_NEGFIN_CTA.FLAG_TOT"
+          }
+        }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "VFAC_NEGFIN_CTA.FLAG_TOT"
+          }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "legend": [
+        {
+          "properties": {
+            "showTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'BottomCenter'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'#K Cuentas'"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "16D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

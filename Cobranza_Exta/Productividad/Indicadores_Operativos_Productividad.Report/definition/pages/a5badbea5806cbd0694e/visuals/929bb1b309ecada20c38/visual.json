@@ -1,0 +1,92 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
+  "name": "929bb1b309ecada20c38",
+  "position": {
+    "x": 516.822201452297,
+    "y": 156.79631893018916,
+    "z": 9000,
+    "height": 563.20368106981084,
+    "width": 761.98145085915587,
+    "tabOrder": 8000
+  },
+  "visual": {
+    "visualType": "azureMap",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VFAC_COB_ASIG_ABO_EDO"
+                    }
+                  },
+                  "Property": "ESTADO"
+                }
+              },
+              "queryRef": "VFAC_COB_ASIG_ABO_EDO.ESTADO",
+              "nativeQueryRef": "ESTADO1",
+              "active": true
+            }
+          ]
+        },
+        "Size": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "VFAC_COB_ASIG_ABO_EDO"
+                        }
+                      },
+                      "Property": "CTAS_ASIGND"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(VFAC_COB_ASIG_ABO_EDO.CTAS_ASIGND)",
+              "nativeQueryRef": "Sum of CTAS_ASIGND"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "bubbleLayer": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

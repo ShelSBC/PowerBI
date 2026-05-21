@@ -1,0 +1,146 @@
+table VDIM_FECHAS_TITULOS
+	lineageTag: 8763d11c-bb0a-45e5-848f-1e57df86e277
+
+	column MES_ANO_0
+		dataType: string
+		lineageTag: 9e134ebb-4da9-44b4-a8c1-ec71cdc56627
+		summarizeBy: none
+		sourceColumn: MES_ANO_0
+
+		annotation SummarizationSetBy = Automatic
+
+	column MES_ANO_1
+		dataType: string
+		lineageTag: a943c9a0-6d65-48ab-b70d-0febbd54fbf9
+		summarizeBy: none
+		sourceColumn: MES_ANO_1
+
+		annotation SummarizationSetBy = Automatic
+
+	column MES_ANO_2
+		dataType: string
+		lineageTag: 7009803d-d107-4628-a0c7-fc98a36cdccd
+		summarizeBy: none
+		sourceColumn: MES_ANO_2
+
+		annotation SummarizationSetBy = Automatic
+
+	column MES_ANO_3
+		dataType: string
+		lineageTag: ddc04e31-fc04-4300-ba72-012d9ed3e4f0
+		summarizeBy: none
+		sourceColumn: MES_ANO_3
+
+		annotation SummarizationSetBy = Automatic
+
+	column MES_ANO_4
+		dataType: string
+		lineageTag: e261820b-7a03-42cf-9c5e-e90f114a9f20
+		summarizeBy: none
+		sourceColumn: MES_ANO_4
+
+		annotation SummarizationSetBy = Automatic
+
+	column MES_ANO_5
+		dataType: string
+		lineageTag: 4b13d134-6ec7-439c-b31a-9e6818f91a21
+		summarizeBy: none
+		sourceColumn: MES_ANO_5
+
+		annotation SummarizationSetBy = Automatic
+
+	column MES_T1_0
+		dataType: string
+		lineageTag: fc5bf9c3-a2f6-42ba-b7af-006207b72140
+		summarizeBy: none
+		sourceColumn: MES_T1_0
+
+		annotation SummarizationSetBy = Automatic
+
+	column MES_T1_1
+		dataType: string
+		lineageTag: 47cdf94b-1bdf-4b98-8c9d-56c75bc911e1
+		summarizeBy: none
+		sourceColumn: MES_T1_1
+
+		annotation SummarizationSetBy = Automatic
+
+	column MES_T1_2
+		dataType: string
+		lineageTag: c1b025cf-000d-4717-b842-b051b559833b
+		summarizeBy: none
+		sourceColumn: MES_T1_2
+
+		annotation SummarizationSetBy = Automatic
+
+	column MES_T1_3
+		dataType: string
+		lineageTag: 1f0fc584-b763-4cf6-96e9-8d7df33411c1
+		summarizeBy: none
+		sourceColumn: MES_T1_3
+
+		annotation SummarizationSetBy = Automatic
+
+	column INICIO_0
+		dataType: string
+		lineageTag: 2c6831dd-1aa9-4981-99f2-6316fdc17284
+		summarizeBy: none
+		sourceColumn: INICIO_0
+
+		annotation SummarizationSetBy = Automatic
+
+	column INICIO_1
+		dataType: string
+		lineageTag: e6d7a2d4-1372-4e10-a262-0f74eae0e510
+		summarizeBy: none
+		sourceColumn: INICIO_1
+
+		annotation SummarizationSetBy = Automatic
+
+	column INICIO_2
+		dataType: string
+		lineageTag: f347ae78-325d-4c97-9e3a-11c34b3b0630
+		summarizeBy: none
+		sourceColumn: INICIO_2
+
+		annotation SummarizationSetBy = Automatic
+
+	column INICIO_3
+		dataType: string
+		lineageTag: 2fd91f82-158b-4480-aab2-570f23a05bf8
+		summarizeBy: none
+		sourceColumn: INICIO_3
+
+		annotation SummarizationSetBy = Automatic
+
+	column INICIO_4
+		dataType: string
+		lineageTag: c8cb5aa3-cc2b-4130-9584-9ae4cd41bdc3
+		summarizeBy: none
+		sourceColumn: INICIO_4
+
+		annotation SummarizationSetBy = Automatic
+
+	column MES_FIN
+		dataType: string
+		lineageTag: 40d33f4b-51e9-48c3-9fc8-866764c60da6
+		summarizeBy: none
+		sourceColumn: MES_FIN
+
+		annotation SummarizationSetBy = Automatic
+
+	partition VDIM_FECHAS_TITULOS = m
+		mode: import
+		source =
+				let
+				    Origen = GoogleBigQuery.Database([UseStorageApi=false, BillingProject="crp-pro-cx-semantica", ConnectionTimeout=#duration(0, 12, 0, 0)]),
+				    #"crp-pro-cx-semantica" = Origen{[Name="crp-pro-cx-semantica"]}[Data],
+				    mus_pro_negfin_shared_views_Schema = #"crp-pro-cx-semantica"{[Name="mus_pro_negfin_shared_views",Kind="Schema"]}[Data],
+				    VDIM_FECHAS_TITULOS_View = mus_pro_negfin_shared_views_Schema{[Name="VDIM_FECHAS_TITULOS",Kind="View"]}[Data]
+				in
+				    VDIM_FECHAS_TITULOS_View
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

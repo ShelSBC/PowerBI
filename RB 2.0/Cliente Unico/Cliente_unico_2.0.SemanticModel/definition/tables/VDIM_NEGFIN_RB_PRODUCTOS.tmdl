@@ -1,0 +1,35 @@
+table VDIM_NEGFIN_RB_PRODUCTOS
+	lineageTag: c19c10f5-d78f-4d9f-8d7a-bdc7961c013b
+
+	column ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 65d5f295-161b-45bf-ab57-2bdda81e90b7
+		summarizeBy: count
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRODUCTOS
+		dataType: string
+		lineageTag: f04f01b4-6fd6-4519-9b39-d6f980bec6fd
+		summarizeBy: none
+		sourceColumn: PRODUCTOS
+
+		annotation SummarizationSetBy = Automatic
+
+	partition VDIM_NEGFIN_RB_PRODUCTOS = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([BillingProject="crp-pro-dwh-semanticagold"]),
+				    #"crp-pro-cx-semantica" = Source{[Name="crp-pro-cx-semantica"]}[Data],
+				    mus_pro_negfin_shared_views_Schema = #"crp-pro-cx-semantica"{[Name="mus_pro_negfin_shared_views",Kind="Schema"]}[Data],
+				    VDIM_NEGFIN_RB_PRODUCTOS_View = mus_pro_negfin_shared_views_Schema{[Name="VDIM_NEGFIN_RB_PRODUCTOS",Kind="View"]}[Data]
+				in
+				    VDIM_NEGFIN_RB_PRODUCTOS_View
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

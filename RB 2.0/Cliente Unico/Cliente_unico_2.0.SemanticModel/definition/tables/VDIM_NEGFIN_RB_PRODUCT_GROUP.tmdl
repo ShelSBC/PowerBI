@@ -1,0 +1,50 @@
+table VDIM_NEGFIN_RB_PRODUCT_GROUP
+	lineageTag: 40f87e7b-6f55-4f65-ad43-ec76a2ca7c09
+
+	column ID
+		dataType: int64
+		formatString: 0
+		lineageTag: a03223bd-cea2-492b-8cea-597c1f4be4d9
+		summarizeBy: count
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRODUCT_GROUP
+		dataType: string
+		lineageTag: 92fbb5db-f060-4a92-9359-001afc5d9328
+		summarizeBy: none
+		sourceColumn: PRODUCT_GROUP
+
+		annotation SummarizationSetBy = Automatic
+
+	column COLORPG = ```
+			
+			SWITCH(
+			    'VDIM_NEGFIN_RB_PRODUCT_GROUP'[PRODUCT_GROUP],
+			    "Liv + SBB", "#ff6f20",
+			    "SBB", "#9900ff",
+			    "Otros", "#843575",
+			    "Liv", "#ff00ff", 
+			    "C499CA")
+			```
+		lineageTag: 249f590d-91cc-480d-9fc1-3bb759495d62
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition VDIM_NEGFIN_RB_PRODUCT_GROUP = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([BillingProject="crp-pro-dwh-semanticagold"]),
+				    #"crp-pro-cx-semantica" = Source{[Name="crp-pro-cx-semantica"]}[Data],
+				    mus_pro_negfin_shared_views_Schema = #"crp-pro-cx-semantica"{[Name="mus_pro_negfin_shared_views",Kind="Schema"]}[Data],
+				    VDIM_NEGFIN_RB_PRODUCT_GROUP_View = mus_pro_negfin_shared_views_Schema{[Name="VDIM_NEGFIN_RB_PRODUCT_GROUP",Kind="View"]}[Data]
+				in
+				    VDIM_NEGFIN_RB_PRODUCT_GROUP_View
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
