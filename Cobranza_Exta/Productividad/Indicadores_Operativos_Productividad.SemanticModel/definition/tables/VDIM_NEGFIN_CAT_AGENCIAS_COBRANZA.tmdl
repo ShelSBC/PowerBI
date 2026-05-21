@@ -1,0 +1,147 @@
+table VDIM_NEGFIN_CAT_AGENCIAS_COBRANZA
+	lineageTag: a589a74f-0171-4636-b476-d61c2bd8d6cc
+
+	column MES
+		dataType: int64
+		formatString: 0
+		lineageTag: 1cd36f76-6c01-49f4-b11b-3efca1481b21
+		summarizeBy: sum
+		sourceColumn: MES
+
+		annotation SummarizationSetBy = Automatic
+
+	column ANIO
+		dataType: int64
+		formatString: 0
+		lineageTag: a703a521-1b26-43f8-bd6b-65c69a2e7b19
+		summarizeBy: sum
+		sourceColumn: ANIO
+
+		annotation SummarizationSetBy = Automatic
+
+	column CARTERA
+		dataType: string
+		lineageTag: 6d7643d2-9b63-4681-b1af-d64d31c470e7
+		summarizeBy: none
+		sourceColumn: CARTERA
+
+		annotation SummarizationSetBy = Automatic
+
+	column ID
+		dataType: string
+		lineageTag: 8152cd27-f795-435c-a47b-4bde72e09b2e
+		summarizeBy: none
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column JEFE_LEGAL
+		dataType: string
+		lineageTag: 80aa985e-f2d9-4a8c-832e-37dce0ab6a55
+		summarizeBy: none
+		sourceColumn: JEFE_LEGAL
+
+		annotation SummarizationSetBy = Automatic
+
+	column INICIALES
+		dataType: string
+		lineageTag: 42436399-8159-4fd0-bac1-14f0e9959494
+		summarizeBy: none
+		sourceColumn: INICIALES
+
+		annotation SummarizationSetBy = Automatic
+
+	column AGENCIA
+		dataType: string
+		lineageTag: 286a6941-22b9-439f-a165-afaa5d8e5c19
+		summarizeBy: none
+		sourceColumn: AGENCIA
+
+		annotation SummarizationSetBy = Automatic
+
+	column ASIGNACION
+		dataType: string
+		lineageTag: ca6c6f1b-02c6-45b5-8e11-9cfcabb16447
+		summarizeBy: none
+		sourceColumn: ASIGNACION
+
+		annotation SummarizationSetBy = Automatic
+
+	column REC_AGENCIAS
+		dataType: int64
+		formatString: 0
+		lineageTag: ce3ecb7f-7396-4e13-967d-e452cd8fde2c
+		summarizeBy: sum
+		sourceColumn: REC_AGENCIAS
+
+		annotation SummarizationSetBy = Automatic
+
+	column SEGMENTO
+		dataType: string
+		lineageTag: 18d87903-7a49-436f-bb70-8974359b093e
+		summarizeBy: none
+		sourceColumn: SEGMENTO
+
+		annotation SummarizationSetBy = Automatic
+
+	column MORA
+		dataType: string
+		lineageTag: e62cef35-a735-40ad-8c00-914f3b886ed7
+		summarizeBy: none
+		sourceColumn: MORA
+
+		annotation SummarizationSetBy = Automatic
+
+	column TIPO
+		dataType: string
+		lineageTag: 350d1ae9-c7d7-47d2-91ae-90fff75d30b3
+		summarizeBy: none
+		sourceColumn: TIPO
+
+		annotation SummarizationSetBy = Automatic
+
+	column FCH_CARGA
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: a0d06bc3-954d-4ed7-8238-6c9a34d2faac
+		summarizeBy: none
+		sourceColumn: FCH_CARGA
+
+		variation Variation
+			isDefault
+			relationship: 55e23923-bdac-44f4-bfbe-305e0d4b9c5d
+			defaultHierarchy: LocalDateTable_aff82dc9-74c5-47b0-8d80-7ca7e0d649de.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column FCH_INFO
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 1c0a4e4d-6bf3-4261-abb9-bc530bbe89d9
+		summarizeBy: none
+		sourceColumn: FCH_INFO
+
+		variation Variation
+			isDefault
+			relationship: cacb448c-3112-4f6c-a226-7c28f30a9832
+			defaultHierarchy: LocalDateTable_6b9f8c2e-a822-47da-9706-1eb8b60b89ad.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition VDIM_NEGFIN_CAT_AGENCIAS_COBRANZA = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([BillingProject="crp-pro-cx-semantica"]),
+				    #"crp-pro-cx-semantica" = Source{[Name="crp-pro-cx-semantica"]}[Data],
+				    mus_pro_negfin_shared_views_Schema = #"crp-pro-cx-semantica"{[Name="mus_pro_negfin_shared_views",Kind="Schema"]}[Data],
+				    VDIM_NEGFIN_CAT_AGENCIAS_COBRANZA_View = mus_pro_negfin_shared_views_Schema{[Name="VDIM_NEGFIN_CAT_AGENCIAS_COBRANZA",Kind="View"]}[Data]
+				in
+				    VDIM_NEGFIN_CAT_AGENCIAS_COBRANZA_View
+
+	annotation PBI_ResultType = Table
+

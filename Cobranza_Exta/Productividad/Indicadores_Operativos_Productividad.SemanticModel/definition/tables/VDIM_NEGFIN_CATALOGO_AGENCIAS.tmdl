@@ -1,0 +1,154 @@
+table VDIM_NEGFIN_CATALOGO_AGENCIAS
+	lineageTag: 66b1dc28-0a14-482f-b7a2-375ec1ceff5f
+
+	column MES
+		dataType: int64
+		formatString: 0
+		lineageTag: 8ad6da1c-cf9a-45b2-87f8-51394988d2d3
+		summarizeBy: sum
+		sourceColumn: MES
+
+		annotation SummarizationSetBy = Automatic
+
+	column ANIO
+		dataType: int64
+		formatString: 0
+		lineageTag: 213441b8-c0b3-46a0-b150-f8b0c4aa41b2
+		summarizeBy: sum
+		sourceColumn: ANIO
+
+		annotation SummarizationSetBy = Automatic
+
+	column CARTERA
+		dataType: string
+		lineageTag: cc997606-6081-4b06-bb88-1e1fe645df9b
+		summarizeBy: none
+		sourceColumn: CARTERA
+
+		annotation SummarizationSetBy = Automatic
+
+	column ID
+		dataType: string
+		lineageTag: f1cab45c-75a1-444b-9798-2c124875cde4
+		summarizeBy: none
+		sourceColumn: ID
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column JEFE_LEGAL
+		dataType: string
+		lineageTag: 557ab7d9-cc4b-43dd-9580-3145fcfe81d0
+		summarizeBy: none
+		sourceColumn: JEFE_LEGAL
+
+		annotation SummarizationSetBy = Automatic
+
+	column INICIALES
+		dataType: string
+		lineageTag: c1ebec6b-383a-4594-b924-4575d795ea06
+		summarizeBy: none
+		sourceColumn: INICIALES
+
+		annotation SummarizationSetBy = Automatic
+
+	column AGENCIA
+		dataType: string
+		lineageTag: dad21512-4732-4157-b27a-64698f44d12f
+		summarizeBy: none
+		sourceColumn: AGENCIA
+
+		annotation SummarizationSetBy = Automatic
+
+	column ASIGNACION
+		dataType: string
+		lineageTag: 8d46e11b-72f2-4277-bcec-d514fd0c19a6
+		summarizeBy: none
+		sourceColumn: ASIGNACION
+
+		annotation SummarizationSetBy = Automatic
+
+	column REC_AGENCIAS
+		dataType: int64
+		formatString: 0
+		lineageTag: 778e9d7a-b481-4380-abac-46aa747fa2b8
+		summarizeBy: sum
+		sourceColumn: REC_AGENCIAS
+
+		annotation SummarizationSetBy = Automatic
+
+	column SEGMENTO
+		dataType: string
+		lineageTag: 85c61c47-f00b-4de1-a44a-a1e779d2829e
+		summarizeBy: none
+		sourceColumn: SEGMENTO
+
+		annotation SummarizationSetBy = Automatic
+
+	column MORA
+		dataType: string
+		lineageTag: 4514815b-621f-4391-8ae0-59cb08ef8587
+		summarizeBy: none
+		sourceColumn: MORA
+
+		annotation SummarizationSetBy = Automatic
+
+	column TIPO
+		dataType: string
+		lineageTag: 94865505-2850-4f1b-9cf5-faeb4a100fc9
+		summarizeBy: none
+		sourceColumn: TIPO
+
+		annotation SummarizationSetBy = Automatic
+
+	column FCH_CARGA
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 22bf1936-a7e8-46e7-bb8f-f70b5ee10c7f
+		summarizeBy: none
+		sourceColumn: FCH_CARGA
+
+		variation Variation
+			isDefault
+			relationship: f2359e1c-059e-4b3d-821f-e5ce4c61317d
+			defaultHierarchy: LocalDateTable_9a726f41-e469-4979-a6cc-9fac142dc191.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column FCH_INFO
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 552138f0-fdd9-4c52-9c68-a2a115ec310f
+		summarizeBy: none
+		sourceColumn: FCH_INFO
+
+		variation Variation
+			isDefault
+			relationship: 5204e0cc-6857-400a-a51e-7ae8331c9ef1
+			defaultHierarchy: LocalDateTable_6ffd4372-07d8-421a-80a1-0a51c4117b60.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Aniomes = VDIM_NEGFIN_CATALOGO_AGENCIAS[ANIO]*100+VDIM_NEGFIN_CATALOGO_AGENCIAS[MES]
+		formatString: 0
+		lineageTag: feeac1f0-b61d-4ba3-93e9-b67dec2886dc
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition VDIM_NEGFIN_CATALOGO_AGENCIAS = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([BillingProject="crp-pro-cx-semantica"]),
+				    #"crp-pro-dwh-semanticagold" = Source{[Name="crp-pro-dwh-semanticagold"]}[Data],
+				    MUS_PRO_DWH_VIEWS_ODS_Schema = #"crp-pro-dwh-semanticagold"{[Name="MUS_PRO_DWH_VIEWS_ODS",Kind="Schema"]}[Data],
+				    VDIM_NEGFIN_CATALOGO_AGENCIAS_View = MUS_PRO_DWH_VIEWS_ODS_Schema{[Name="VDIM_NEGFIN_CATALOGO_AGENCIAS",Kind="View"]}[Data]
+				in
+				    VDIM_NEGFIN_CATALOGO_AGENCIAS_View
+
