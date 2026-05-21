@@ -1,0 +1,86 @@
+table VDIM_NEGFIN_CALND_LAB
+	lineageTag: 6c07adb3-41bd-4064-b9e7-f796890832c5
+
+	column FCH
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 459b841c-ddd8-4ff4-93d5-2d8bda9b6a41
+		summarizeBy: none
+		sourceColumn: FCH
+
+		variation Variation
+			isDefault
+			relationship: a3b62ee8-21e4-4510-bb27-b117b4c4ea1c
+			defaultHierarchy: LocalDateTable_e8f50ba8-d678-4d00-a357-fed88ae1b826.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ANIO_MES
+		dataType: string
+		lineageTag: a4b78155-8f84-410e-a532-3b1e88be9249
+		summarizeBy: none
+		sourceColumn: ANIO_MES
+
+		annotation SummarizationSetBy = Automatic
+
+	column MES_ANIO_LETRA
+		dataType: string
+		lineageTag: 00179006-cf62-449a-9528-8b9cc387b9aa
+		summarizeBy: none
+		sourceColumn: MES_ANIO_LETRA
+		sortByColumn: ANIO_MES
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column SEMANA
+		dataType: int64
+		formatString: 0
+		lineageTag: f29678ab-5533-4779-92fb-f13640ee030a
+		summarizeBy: sum
+		sourceColumn: SEMANA
+
+		annotation SummarizationSetBy = Automatic
+
+	column DIA
+		dataType: string
+		lineageTag: 7fd67918-643c-4993-905d-90a011b364fc
+		summarizeBy: none
+		sourceColumn: DIA
+
+		annotation SummarizationSetBy = Automatic
+
+	column DIA_LAB
+		dataType: double
+		lineageTag: 40c98d5a-85fc-4427-900d-4f2628a47024
+		summarizeBy: sum
+		sourceColumn: DIA_LAB
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column INIC
+		dataType: string
+		lineageTag: ac51fb71-799d-4372-9648-8576f50e8f0b
+		summarizeBy: none
+		sourceColumn: INIC
+
+		annotation SummarizationSetBy = Automatic
+
+	partition VDIM_NEGFIN_CALND_LAB = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([BillingProject="crp-pro-cx-semantica"]),
+				    #"crp-pro-cx-semantica" = Source{[Name="crp-pro-cx-semantica"]}[Data],
+				    mus_pro_negfin_shared_views_Schema = #"crp-pro-cx-semantica"{[Name="mus_pro_negfin_shared_views",Kind="Schema"]}[Data],
+				    VDIM_NEGFIN_CALND_LAB_View = mus_pro_negfin_shared_views_Schema{[Name="VDIM_NEGFIN_CALND_LAB",Kind="View"]}[Data]
+				in
+				    VDIM_NEGFIN_CALND_LAB_View
+
+	annotation PBI_ResultType = Table
+
