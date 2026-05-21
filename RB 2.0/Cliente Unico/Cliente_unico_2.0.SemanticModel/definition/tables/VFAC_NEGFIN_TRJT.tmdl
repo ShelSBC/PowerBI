@@ -1,0 +1,140 @@
+table VFAC_NEGFIN_TRJT
+	lineageTag: f88dc7a0-b999-4cc8-8c1c-708fc52d8bd5
+
+	measure Liverpool_M = SUM(VFAC_NEGFIN_TRJT[Liverpool])/1000
+		lineageTag: 6e1d001e-6abb-4294-bbb8-8803c8310cca
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure SBB_M = SUM(VFAC_NEGFIN_TRJT[SBB])/1000
+		lineageTag: cfcb369a-a308-45ce-a6be-67ace3ffceb6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CTE_CVE_UNICO
+		dataType: int64
+		formatString: 0
+		lineageTag: 926693f0-0f72-4a45-a7d1-bb1342e92376
+		summarizeBy: sum
+		sourceColumn: CTE_CVE_UNICO
+
+		annotation SummarizationSetBy = Automatic
+
+	column ANIOMES
+		dataType: int64
+		formatString: 0
+		lineageTag: b67df346-99da-4b70-9a97-d03a0d319f42
+		summarizeBy: none
+		sourceColumn: ANIOMES
+
+		annotation SummarizationSetBy = Automatic
+
+	column ANIO
+		dataType: int64
+		formatString: 0
+		lineageTag: 8fb89acc-c570-4ad2-a1a6-e83657902943
+		summarizeBy: sum
+		sourceColumn: ANIO
+
+		annotation SummarizationSetBy = Automatic
+
+	column MES
+		dataType: int64
+		formatString: 0
+		lineageTag: a61ed447-7839-40a0-972e-2bf8fc16c01b
+		summarizeBy: sum
+		sourceColumn: MES
+
+		annotation SummarizationSetBy = Automatic
+
+	column LPC
+		dataType: int64
+		formatString: 0
+		lineageTag: 1db8537d-ed77-4cda-b347-27992d0395a5
+		summarizeBy: sum
+		sourceColumn: LPC
+
+		annotation SummarizationSetBy = Automatic
+
+	column DILISA
+		dataType: int64
+		formatString: 0
+		lineageTag: 3d086357-2d8f-4a94-a8b6-3d5575e74ff1
+		summarizeBy: sum
+		sourceColumn: DILISA
+
+		annotation SummarizationSetBy = Automatic
+
+	column VISA
+		dataType: int64
+		formatString: 0
+		lineageTag: 0035df0f-78ce-4a43-8860-294b83cf292a
+		summarizeBy: sum
+		sourceColumn: VISA
+
+		annotation SummarizationSetBy = Automatic
+
+	column SBB_TD
+		dataType: int64
+		formatString: 0
+		lineageTag: 42917dfe-50b1-48b3-9733-9032e708a4d9
+		summarizeBy: sum
+		sourceColumn: SBB_TD
+
+		annotation SummarizationSetBy = Automatic
+
+	column Liverpool
+		dataType: int64
+		formatString: 0
+		lineageTag: f2e74c01-74cf-4e61-9e7f-9043d2e77064
+		summarizeBy: sum
+		sourceColumn: Liverpool
+
+		annotation SummarizationSetBy = Automatic
+
+	column SBB
+		dataType: int64
+		formatString: 0
+		lineageTag: b42b5ef9-d7de-495f-b3af-d148bc94dce4
+		summarizeBy: sum
+		sourceColumn: SBB
+
+		annotation SummarizationSetBy = Automatic
+
+	column SBB_CC
+		dataType: int64
+		formatString: 0
+		lineageTag: b0afe2b3-d7e3-436a-bd6a-2bbb5030d23d
+		summarizeBy: sum
+		sourceColumn: SBB_CC
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRODUCTOS
+		dataType: int64
+		formatString: 0
+		lineageTag: 187fd722-5448-4a60-8b4a-91c6128a9679
+		summarizeBy: sum
+		sourceColumn: PRODUCTOS
+
+		annotation SummarizationSetBy = Automatic
+
+	column SBB_CC_M = VFAC_NEGFIN_TRJT[SBB_CC]/1000
+		lineageTag: 492a4e0d-ee63-4a00-afa4-ed4c07056673
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition VFAC_NEGFIN_TRJT = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([BillingProject="crp-pro-cx-semantica"]),
+				    #"crp-pro-cx-semantica" = Source{[Name="crp-pro-cx-semantica"]}[Data],
+				    mus_pro_negfin_shared_views_Schema = #"crp-pro-cx-semantica"{[Name="mus_pro_negfin_shared_views",Kind="Schema"]}[Data],
+				    VFAC_NEGFIN_TRJT_View = mus_pro_negfin_shared_views_Schema{[Name="VFAC_NEGFIN_TRJT",Kind="View"]}[Data]
+				in
+				    VFAC_NEGFIN_TRJT_View
+
