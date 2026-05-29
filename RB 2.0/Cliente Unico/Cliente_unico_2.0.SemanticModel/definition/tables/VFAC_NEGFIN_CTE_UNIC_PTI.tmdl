@@ -1,0 +1,88 @@
+table VFAC_NEGFIN_CTE_UNIC_PTI
+	lineageTag: f1e81dab-3b14-42ed-8f40-1f013b3e81c7
+
+	measure SUM_CTE_K = SUM(VFAC_NEGFIN_CTE_UNIC_PTI[CTE_K])
+		lineageTag: c3e712b0-7c3c-47a8-90e9-77a6624c58c9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CTE_UNICO
+		dataType: int64
+		formatString: 0
+		lineageTag: b993bb81-b583-45a8-ba15-4e81a930f34e
+		summarizeBy: sum
+		sourceColumn: CTE_UNICO
+
+		annotation SummarizationSetBy = Automatic
+
+	column ANIO
+		dataType: int64
+		formatString: 0
+		lineageTag: 597bc596-3da0-4af2-8149-1e2ce64e9701
+		summarizeBy: sum
+		sourceColumn: ANIO
+
+		annotation SummarizationSetBy = Automatic
+
+	column MES
+		dataType: int64
+		formatString: 0
+		lineageTag: aba790ca-b651-4fdf-bb3e-37a27fc8d8d5
+		summarizeBy: sum
+		sourceColumn: MES
+
+		annotation SummarizationSetBy = Automatic
+
+	column MES_NAME
+		dataType: string
+		lineageTag: 278fe59b-550d-4e1e-bb8a-202776b274a1
+		summarizeBy: none
+		sourceColumn: MES_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column ANIOMES
+		dataType: int64
+		formatString: 0
+		lineageTag: 9463393a-3e2e-4a3c-b1c8-db9e06980778
+		summarizeBy: sum
+		sourceColumn: ANIOMES
+
+		annotation SummarizationSetBy = Automatic
+
+	column RNG_PTI_TOT
+		dataType: string
+		lineageTag: f0db9f57-6cee-4b64-acc3-b24942c7db98
+		summarizeBy: none
+		sourceColumn: RNG_PTI_TOT
+
+		annotation SummarizationSetBy = Automatic
+
+	column ID_RNG_PTI
+		dataType: int64
+		formatString: 0
+		lineageTag: a142876a-e3ef-417c-a3ce-1bca9dbf66d8
+		summarizeBy: sum
+		sourceColumn: ID_RNG_PTI
+
+		annotation SummarizationSetBy = Automatic
+
+	column CTE_K = DIVIDE(VFAC_NEGFIN_CTE_UNIC_PTI[CTE_UNICO],1000,0)
+		lineageTag: 6d42c06d-edd1-4949-833f-510ee35b74d9
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition VFAC_NEGFIN_CTE_UNIC_PTI = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([BillingProject="crp-pro-cx-semantica"]),
+				    #"crp-pro-cx-semantica" = Source{[Name="crp-pro-cx-semantica"]}[Data],
+				    mus_pro_negfin_shared_views_Schema = #"crp-pro-cx-semantica"{[Name="mus_pro_negfin_shared_views",Kind="Schema"]}[Data],
+				    VFAC_NEGFIN_CTE_UNIC_PTI_View = mus_pro_negfin_shared_views_Schema{[Name="VFAC_NEGFIN_CTE_UNIC_PTI",Kind="View"]}[Data]
+				in
+				    VFAC_NEGFIN_CTE_UNIC_PTI_View
+

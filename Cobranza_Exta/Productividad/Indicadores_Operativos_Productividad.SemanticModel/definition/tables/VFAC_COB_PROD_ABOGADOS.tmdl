@@ -1,0 +1,174 @@
+table VFAC_COB_PROD_ABOGADOS
+	lineageTag: d69561e3-22de-4efb-80d5-aea79979e0d6
+
+	column ANIOMES
+		dataType: int64
+		formatString: 0
+		lineageTag: 4d165ffd-1a3e-42d2-a1bc-14bede5067d9
+		summarizeBy: sum
+		sourceColumn: ANIOMES
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACACTDTE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 3ec1b8a1-6dd5-4217-b773-9b85dd4140f6
+		summarizeBy: none
+		sourceColumn: ACACTDTE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column CLAGENCY
+		dataType: string
+		lineageTag: 585304b1-15ba-4129-a0e4-5b8496262c76
+		summarizeBy: none
+		sourceColumn: CLAGENCY
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACCIDNAM
+		dataType: string
+		lineageTag: 2a70cad7-50f5-48f5-99e9-46fe0982ccc5
+		summarizeBy: none
+		sourceColumn: ACCIDNAM
+
+		annotation SummarizationSetBy = Automatic
+
+	column MEDIO_CONTACT
+		dataType: string
+		lineageTag: 6d7867bc-5b3e-432f-9798-9a77773cfdf9
+		summarizeBy: none
+		sourceColumn: MEDIO_CONTACT
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sub_MEDIO_CONTACT
+		dataType: string
+		lineageTag: 5b42c91c-fa89-41f5-b6d8-0a11c06e62c4
+		summarizeBy: none
+		sourceColumn: Sub_MEDIO_CONTACT
+
+		annotation SummarizationSetBy = Automatic
+
+	column DIAS_ABANDN
+		dataType: int64
+		formatString: #,0
+		lineageTag: 4aa9cc40-429f-458a-a5a3-19f5e6b3e019
+		summarizeBy: sum
+		sourceColumn: DIAS_ABANDN
+
+		annotation SummarizationSetBy = Automatic
+
+	column TOTALES
+		dataType: int64
+		formatString: #,0
+		lineageTag: 0a8a7f60-743f-4a24-88f9-db87d0ba5a74
+		summarizeBy: sum
+		sourceColumn: TOTALES
+
+		annotation SummarizationSetBy = Automatic
+
+	column TELEF
+		dataType: int64
+		formatString: 0
+		lineageTag: 005d7458-428b-444a-90fe-b7ed40a20297
+		summarizeBy: sum
+		sourceColumn: TELEF
+
+		annotation SummarizationSetBy = Automatic
+
+	column NOPROD
+		dataType: int64
+		formatString: 0
+		lineageTag: 3a804165-259a-4053-9600-6436851e869c
+		summarizeBy: sum
+		sourceColumn: NOPROD
+
+		annotation SummarizationSetBy = Automatic
+
+	column PROD
+		dataType: int64
+		formatString: #,0
+		lineageTag: 1e8ebbdb-17f1-4b81-8861-68d61b074094
+		summarizeBy: sum
+		sourceColumn: PROD
+
+		annotation SummarizationSetBy = Automatic
+
+	column RECADOS
+		dataType: int64
+		formatString: 0
+		lineageTag: 8c96869d-8da6-4246-b3dd-3cbbcdbf0ffa
+		summarizeBy: sum
+		sourceColumn: RECADOS
+
+		annotation SummarizationSetBy = Automatic
+
+	column PP_Gene
+		dataType: int64
+		formatString: #,0
+		lineageTag: 46b41aed-8c7a-4009-94af-db87e18bda75
+		summarizeBy: sum
+		sourceColumn: PP_Gene
+
+		annotation SummarizationSetBy = Automatic
+
+	column PP_Cumplidas
+		dataType: int64
+		formatString: 0
+		lineageTag: 41d57b20-9b68-4315-b2dd-0727e1750974
+		summarizeBy: sum
+		sourceColumn: PP_Cumplidas
+
+		annotation SummarizationSetBy = Automatic
+
+	column PP_Rotas
+		dataType: int64
+		formatString: 0
+		lineageTag: e2f1313a-37ac-4b86-b60f-0162b2a5c2a6
+		summarizeBy: sum
+		sourceColumn: PP_Rotas
+
+		annotation SummarizationSetBy = Automatic
+
+	column CTAS_ABANDN
+		dataType: int64
+		formatString: #,0
+		lineageTag: 4c306ef5-37a2-43e4-8b2d-ce9fdbd51e6e
+		summarizeBy: sum
+		sourceColumn: CTAS_ABANDN
+
+		annotation SummarizationSetBy = Automatic
+
+	column FCH_CARGA
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 143c8730-c8da-4116-b95c-6cd038c90aef
+		summarizeBy: none
+		sourceColumn: FCH_CARGA
+
+		variation Variation
+			isDefault
+			relationship: 34933e64-beb7-46ee-9b1c-37fabcb62d0e
+			defaultHierarchy: LocalDateTable_9ea32fc5-b812-4930-9d97-ec5ac8a24c7f.'Date Hierarchy'
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition VFAC_COB_PROD_ABOGADOS = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([BillingProject="crp-pro-cx-semantica"]),
+				    #"crp-pro-cx-semantica" = Source{[Name="crp-pro-cx-semantica"]}[Data],
+				    mus_pro_negfin_shared_views_Schema = #"crp-pro-cx-semantica"{[Name="mus_pro_negfin_shared_views",Kind="Schema"]}[Data],
+				    VFAC_COB_PROD_ABOGADOS_View = mus_pro_negfin_shared_views_Schema{[Name="VFAC_COB_PROD_ABOGADOS",Kind="View"]}[Data]
+				in
+				    VFAC_COB_PROD_ABOGADOS_View
+

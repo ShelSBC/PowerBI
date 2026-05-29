@@ -1,0 +1,339 @@
+table VFAC_NEGFIN_CTA
+	lineageTag: 3b88b2c1-0811-40b6-bd22-b714cc30411d
+
+	measure SumLC = SUM(VFAC_NEGFIN_CTA[LC_ACT_M])
+		lineageTag: e838e07d-7b53-4685-813e-c6288ed2fe4a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure SumSDO = SUM(VFAC_NEGFIN_CTA[SDO_ACT_M])
+		lineageTag: 14510230-3129-4372-b4e9-94245da3c012
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure %Utilización = DIVIDE([SumSDO],[SumLC],0)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 49c4970a-c898-4ec0-ad5d-f8fcc4ed0e2c
+
+	measure FLAG_T1 = ```
+			
+			CALCULATE([%Utilización],
+			                    VFAC_NEGFIN_CTA[TOTAL_TRJ] = "1 Tarjeta" 
+			                        )
+			        
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 61ca3956-e297-4de0-86cf-02d1d30b27ba
+
+	measure FLAG_T2 = ```
+			
+			CALCULATE([%Utilización], 
+			                    VFAC_NEGFIN_CTA[TOTAL_TRJ] = "2 Tarjetas" 
+			                        )
+			        
+			```
+		lineageTag: d434df25-0b2e-4796-93d0-992e447adc38
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure FLAG_T3 = ```
+			
+			CALCULATE([%Utilización],
+			                    VFAC_NEGFIN_CTA[TOTAL_TRJ] = "3 Tarjetas" 
+			                        )
+			        
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 97caff17-c7fc-44d7-9bd8-691fba2b627d
+
+	measure FLAG_T4 = ```
+			
+			CALCULATE([%Utilización],
+			                    VFAC_NEGFIN_CTA[TOTAL_TRJ] = "4 Tarjetas" 
+			                        )
+			        
+			```
+		lineageTag: d06a4560-2d9e-4c94-9e38-574110f8ed0a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure FLAG_T5 = ```
+			
+			CALCULATE([%Utilización],
+			                    VFAC_NEGFIN_CTA[TOTAL_TRJ] = "5 Tarjetas" 
+			                        )
+			```
+		lineageTag: 010ad16d-b46a-4105-befd-ab1118172b4e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure FLAG_TOT = ```
+			
+			CALCULATE([%Utilización],
+			                    VFAC_NEGFIN_CTA[TOTAL_TRJ] <> "Otros" 
+			                        )
+			```
+		formatString: #,0.00%;-#,0.00%;#,0.00%
+		lineageTag: c3742f52-6e6c-4e00-8229-5f5a10af8c96
+
+	measure FLAG_1RNGEDAD = ```
+			
+			CALCULATE([%Utilización],
+			                    VFAC_NEGFIN_CTA[RANG_EDAD] = "< 30 años" 
+			                        )
+			        
+			```
+		lineageTag: ac87a60a-460f-463b-969b-2276042123c0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure FLAG_2RNGEDAD = ```
+			
+			CALCULATE([%Utilización],
+			                    VFAC_NEGFIN_CTA[RANG_EDAD] = "30 - 35" 
+			                        )
+			        
+			```
+		lineageTag: dc0a64fb-4f1a-4378-87a3-af0dce56d57a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure FLAG_3RNGEDAD = ```
+			
+			CALCULATE([%Utilización],
+			                    VFAC_NEGFIN_CTA[RANG_EDAD] = "36 - 45" 
+			                        )
+			```
+		lineageTag: 1892ce33-16c5-4021-8b2c-78468b049785
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure FLAG_4RNGEDAD = ```
+			
+			CALCULATE([%Utilización],
+			                    VFAC_NEGFIN_CTA[RANG_EDAD] = "46 - 50" 
+			                        )
+			```
+		lineageTag: 2f01606c-2a91-4e5d-9ebb-db3d2f14e5e9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure FLAG_5RNGEDAD = ```
+			
+			CALCULATE([%Utilización],
+			                    VFAC_NEGFIN_CTA[RANG_EDAD] = "50+" 
+			                        )
+			```
+		lineageTag: c0a84a60-a544-40e0-b766-633593e3096a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 30+ = ```
+			
+			VAR SDO_30 =
+			    CALCULATE(
+			        SUM(VFAC_NEGFIN_CTA[SDO_ACT_M]),
+			        VFAC_NEGFIN_CTA[FLG_30] = "30+"
+			    )
+			VAR SDO_TOTAL =
+			    SUM(VFAC_NEGFIN_CTA[SDO_ACT_M])
+			RETURN
+			    DIVIDE(SDO_30, SDO_TOTAL, 0)
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: b2b34d0e-5955-4ba5-aade-3bc73ff132cf
+
+	measure 90+ = ```
+			
+			VAR SDO_90 =
+			    CALCULATE(
+			        SUM(VFAC_NEGFIN_CTA[SDO_ACT_M]),
+			        VFAC_NEGFIN_CTA[FLG_90] = "90+"
+			    )
+			VAR SDO_TOTAL =
+			    SUM(VFAC_NEGFIN_CTA[SDO_ACT_M])
+			RETURN
+			    DIVIDE(SDO_90, SDO_TOTAL, 0)
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: a74b0489-9697-40e7-8ea4-5e7b2ea8f10d
+
+	column NUM_PRODUCTOS
+		dataType: int64
+		formatString: 0
+		lineageTag: 6edbba70-b723-4473-9a38-cd23b418c51b
+		summarizeBy: sum
+		sourceColumn: NUM_PRODUCTOS
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRODUCTOS
+		dataType: string
+		lineageTag: ecb30cdb-bea7-4c93-981a-af000aea9237
+		summarizeBy: none
+		sourceColumn: PRODUCTOS
+
+		annotation SummarizationSetBy = Automatic
+
+	column ANIO_ALTA
+		dataType: int64
+		formatString: 0
+		lineageTag: 98cba47e-8b70-404a-87ad-e4bc5725fda8
+		summarizeBy: sum
+		sourceColumn: ANIO_ALTA
+
+		annotation SummarizationSetBy = Automatic
+
+	column ANIOMES
+		dataType: int64
+		formatString: 0
+		lineageTag: d7aad6d3-87af-4114-8617-045019e8a8db
+		summarizeBy: none
+		sourceColumn: ANIOMES
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLG_30
+		dataType: string
+		lineageTag: 79fc8a36-c142-4c32-a80f-824ffd67e6d0
+		summarizeBy: none
+		sourceColumn: FLG_30
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLG_90
+		dataType: string
+		lineageTag: b2e5dffa-4ebd-42cc-977c-f74770211e81
+		summarizeBy: none
+		sourceColumn: FLG_90
+
+		annotation SummarizationSetBy = Automatic
+
+	column RANG_EDAD
+		dataType: string
+		lineageTag: b007e700-888e-41f2-9f59-d5e5c9236da2
+		summarizeBy: none
+		sourceColumn: RANG_EDAD
+
+		annotation SummarizationSetBy = Automatic
+
+	column SDO_ACT
+		dataType: double
+		lineageTag: 777e2ae3-7bcc-41a1-8ca2-bc4344a40b22
+		summarizeBy: sum
+		sourceColumn: SDO_ACT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LC_ACT
+		dataType: double
+		lineageTag: 4f98cbe6-47b6-4c34-8d41-87d86350a199
+		summarizeBy: sum
+		sourceColumn: LC_ACT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CC_FLAG
+		dataType: int64
+		formatString: 0
+		lineageTag: 65419d3e-d5f9-41d5-a3ca-7e6cdea277b7
+		summarizeBy: sum
+		sourceColumn: CC_FLAG
+
+		annotation SummarizationSetBy = Automatic
+
+	column CUENTA
+		dataType: double
+		lineageTag: c4833a63-72bf-4134-b357-639fce0008dc
+		summarizeBy: sum
+		sourceColumn: CUENTA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TOTAL_TRJ
+		dataType: string
+		lineageTag: 07000e2b-5a47-4ae4-a943-c6515e230b3c
+		summarizeBy: none
+		sourceColumn: TOTAL_TRJ
+
+		annotation SummarizationSetBy = Automatic
+
+	column SDO_ACT_M
+		dataType: double
+		formatString: #,0
+		lineageTag: b63cd8a1-600e-469b-85e4-366b6468240e
+		summarizeBy: sum
+		sourceColumn: SDO_ACT_M
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	column LC_ACT_M
+		dataType: double
+		formatString: #,0
+		lineageTag: 5b9c8a94-c547-4b8b-9cbe-eee94d4b8dfa
+		summarizeBy: sum
+		sourceColumn: LC_ACT_M
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	column CTA_MIL
+		dataType: double
+		formatString: #,0
+		lineageTag: 2a725007-4d62-4554-a3a0-bd23bac4646e
+		summarizeBy: sum
+		sourceColumn: CTA_MIL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	column PRODUCT_GROUP
+		dataType: string
+		lineageTag: 27926262-5163-48b9-8552-c479aa06f31e
+		summarizeBy: none
+		sourceColumn: PRODUCT_GROUP
+
+		annotation SummarizationSetBy = Automatic
+
+	column Estado_Mora = ```
+			
+			SWITCH(
+			    TRUE(),
+			    VFAC_NEGFIN_CTA[FLG_90] = "90+", "90+",
+			    VFAC_NEGFIN_CTA[FLG_30] = "30+", "30+",
+			    "Al corriente"
+			)
+			
+			```
+		lineageTag: 1f23bea1-f3ca-4aab-982c-d3e2027233c6
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition VFAC_NEGFIN_CTA = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([BillingProject="crp-pro-cx-semantica"]),
+				    #"crp-pro-cx-semantica" = Source{[Name="crp-pro-cx-semantica"]}[Data],
+				    mus_pro_negfin_shared_views_Schema = #"crp-pro-cx-semantica"{[Name="mus_pro_negfin_shared_views",Kind="Schema"]}[Data],
+				    VFAC_NEGFIN_CTA_View = mus_pro_negfin_shared_views_Schema{[Name="VFAC_NEGFIN_CTA",Kind="View"]}[Data]
+				in
+				    VFAC_NEGFIN_CTA_View
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

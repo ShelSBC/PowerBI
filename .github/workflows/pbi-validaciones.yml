@@ -1,23 +1,60 @@
-name: Power BI Quality Scan (Python)
+name: Power BI CI/CD Pipeline
 
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-  workflow_dispatch:
+  workflow_dispatch: # Permite la ejecución manual para escanear TODO el repositorio
 
 jobs:
+  # -----------------------------------------------------------------
+  # TRABAJO 1: REVISIÓN DE CALIDAD (CI)
+  # -----------------------------------------------------------------
   quality-check:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Trae todo el historial para poder comparar qué archivos cambiaron
+
+      - name: Get Changed Files
+        id: changed-files
+        uses: tj-actions/changed-files@v44
+        with:
+          separator: "," # Separa la lista de archivos modificados por comas
 
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.10'
 
-      - name: Run Rules Check
-        run: python check_rules.py
+      - name: Run Rules Check (Only Changed Models)
+        # Ejecuta el script de Python pasándole la lista de archivos modificados como argumento
+        run: python check_rules.py "${{ steps.changed-files.outputs.all_changed_files }}"
+
+      # --- NOTIFICACIÓN POR CORREO SI ALGO FALLA ---
+      - name: Enviar correo si falla la calidad
+        if: failure() # SÓLO se ejecuta si el script de Python encuentra una regla rota (sys.exit(1))
+        uses: dawidd6/action-send-mail@v3
+        with:
+          # Servidor SMTP de Google (Usa puerto 587 con TLS que es el más estable en GitHub)
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }} # Recuerda usar una Contraseña de Aplicación de Google
+          
+          subject: "🚨 ALERTA: Error de Calidad en Power BI (${{ github.repository }})"
+          body: |
+            Hola equipo,
+            
+            El pipeline de calidad de Power BI se ha BLOQUEADO debido a que se detectaron medidas, columnas o tablas que violan las reglas de gobernanza de datos. Los cambios NO han sido publicados en la nube.
+            
+            Por favor, revisen la consola de GitHub Actions para ver los nombres exactos de los objetos DAX o estructurales que causaron el fallo:
+            https://github.com/${{ github.repository }}/actions
+            
+          # 📌 AGREGA AQUÍ LOS CORREOS DE LAS PERSONAS A NOTIFICAR (Separados por comas)
+          to: eagarciasc@liverpoool.com.mx, syvaldezb@liverpool.com
+          
+          from: GitHub Actions Quality Bot

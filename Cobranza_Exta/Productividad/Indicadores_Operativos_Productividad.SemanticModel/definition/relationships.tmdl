@@ -1,0 +1,79 @@
+relationship 13843ee7-5091-470a-a19d-2864a29adf07
+	joinOnDateBehavior: datePartOnly
+	fromColumn: VDIM_CALENDARIO.FECHA_COMPLETA
+	toColumn: LocalDateTable_d6f0b6fd-ba8b-45e3-827b-cbb738873f62.Date
+
+relationship b3855a78-57f7-4587-85f9-d972301cb8ce
+	joinOnDateBehavior: datePartOnly
+	fromColumn: VDIM_CALENDARIO.FCH_SEM
+	toColumn: LocalDateTable_b761d036-6fcd-43ba-983c-5ce79f018998.Date
+
+relationship 55e23923-bdac-44f4-bfbe-305e0d4b9c5d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: VDIM_NEGFIN_CAT_AGENCIAS_COBRANZA.FCH_CARGA
+	toColumn: LocalDateTable_aff82dc9-74c5-47b0-8d80-7ca7e0d649de.Date
+
+relationship cacb448c-3112-4f6c-a226-7c28f30a9832
+	joinOnDateBehavior: datePartOnly
+	fromColumn: VDIM_NEGFIN_CAT_AGENCIAS_COBRANZA.FCH_INFO
+	toColumn: LocalDateTable_6b9f8c2e-a822-47da-9706-1eb8b60b89ad.Date
+
+relationship 4da7b7ef-b375-4af9-828a-71a885612d5a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: VFAC_COB_PROD_ABOGADOS_MOD_ESC.FCH_ACT
+	toColumn: LocalDateTable_19282b8c-f526-406c-afaa-5c695db2a9ce.Date
+
+relationship f2359e1c-059e-4b3d-821f-e5ce4c61317d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: VDIM_NEGFIN_CATALOGO_AGENCIAS.FCH_CARGA
+	toColumn: LocalDateTable_9a726f41-e469-4979-a6cc-9fac142dc191.Date
+
+relationship 5204e0cc-6857-400a-a51e-7ae8331c9ef1
+	joinOnDateBehavior: datePartOnly
+	fromColumn: VDIM_NEGFIN_CATALOGO_AGENCIAS.FCH_INFO
+	toColumn: LocalDateTable_6ffd4372-07d8-421a-80a1-0a51c4117b60.Date
+
+relationship 34933e64-beb7-46ee-9b1c-37fabcb62d0e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: VFAC_COB_PROD_ABOGADOS.FCH_CARGA
+	toColumn: LocalDateTable_9ea32fc5-b812-4930-9d97-ec5ac8a24c7f.Date
+
+relationship a3b62ee8-21e4-4510-bb27-b117b4c4ea1c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: VDIM_NEGFIN_CALND_LAB.FCH
+	toColumn: LocalDateTable_e8f50ba8-d678-4d00-a357-fed88ae1b826.Date
+
+relationship 1ce86273-3668-662c-348d-0f67af27c1a7
+	fromColumn: VFAC_NEGFIN_COB_VTM_1ER_ASIG_K.BEGINDT
+	toColumn: VDIM_NEGFIN_CALND_LAB.FCH
+
+relationship 0d5ae436-914c-476e-1a82-b66642c77ecb
+	fromColumn: VFAC_COB_PROD_ABOGADOS_MOD_ESC.BEGINDT
+	toColumn: VDIM_NEGFIN_CALND_LAB.FCH
+
+relationship d29afcf2-5daa-8ace-5e87-38ce3e673817
+	fromColumn: VFAC_COB_ASIG_ABO_EDO.BEGINDT
+	toColumn: VDIM_NEGFIN_CALND_LAB.FCH
+
+relationship 82af796c-f543-d5c2-2c7c-c7987dbc435f
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: VFAC_COB_PROD_ABOGADOS_MOD_ESC.B_DMAGENCY
+	toColumn: VFAC_NEGFIN_COB_VTM_1ER_ASIG_K.ID_AGENCIA
+
+relationship fbefb4b5-de0a-3638-fac5-e08d0348254a
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: VFAC_COB_ASIG_ABO_EDO.DMAGENCY
+	toColumn: VFAC_NEGFIN_COB_VTM_1ER_ASIG_K.ID_AGENCIA
+
+relationship 4a1da360-38f8-2f47-03e6-ac4619c93712
+	fromColumn: VFAC_COB_PROD_ABOGADOS.ACACTDTE
+	toColumn: VDIM_NEGFIN_CALND_LAB.FCH
+
+relationship 3e9f94fb-542c-e5d0-4b17-3b565382b1cb
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: VFAC_NEGFIN_COB_VTM_1ER_ASIG_K.ID_AGENCIA
+	toColumn: VFAC_COB_PROD_ABOGADOS.CLAGENCY
+

@@ -1,0 +1,195 @@
+table VFAC_NEGFIN_COB_VTM_1ER_ASIG_K
+	lineageTag: 8524f4ba-fe9b-4aee-ba16-a975f937bd17
+
+	column ASIG
+		dataType: string
+		lineageTag: e70dd83b-3f7c-4545-b361-1df7640582c2
+		summarizeBy: none
+		sourceColumn: ASIG
+
+		annotation SummarizationSetBy = Automatic
+
+	column BEGINDT
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c9500971-3c4d-49a8-9ed8-5da28de8af6d
+		summarizeBy: none
+		sourceColumn: BEGINDT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ANIOMES
+		dataType: int64
+		formatString: 0
+		lineageTag: 75a333fd-f31f-4422-9402-e126bbc38229
+		summarizeBy: sum
+		sourceColumn: ANIOMES
+
+		annotation SummarizationSetBy = Automatic
+
+	column ID_AGENCIA
+		dataType: string
+		lineageTag: b1366ae3-3b36-4556-a261-b4429035bc25
+		summarizeBy: none
+		sourceColumn: ID_AGENCIA
+
+		annotation SummarizationSetBy = Automatic
+
+	column B_U6ORG
+		dataType: double
+		lineageTag: 55865e1f-7c0c-4237-a672-6ec90c72bfd7
+		summarizeBy: sum
+		sourceColumn: B_U6ORG
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column JEFE_LEGAL
+		dataType: string
+		lineageTag: 6d1c0049-f019-4816-a211-5c98c695cb1d
+		summarizeBy: none
+		sourceColumn: JEFE_LEGAL
+
+		annotation SummarizationSetBy = Automatic
+
+	column AGENCIA
+		dataType: string
+		lineageTag: ec623fe4-1670-418b-8172-6f8d2bf748a8
+		summarizeBy: none
+		sourceColumn: AGENCIA
+
+		annotation SummarizationSetBy = Automatic
+
+	column ASIGNACION
+		dataType: string
+		lineageTag: def0193d-bfad-481d-98b0-46d21bfb104e
+		summarizeBy: none
+		sourceColumn: ASIGNACION
+
+		annotation SummarizationSetBy = Automatic
+
+	column CUENTAS_INI
+		dataType: int64
+		formatString: #,0
+		lineageTag: a9ceef78-e10e-482d-aef8-c5cab7663a06
+		summarizeBy: sum
+		sourceColumn: CUENTAS_INI
+
+		annotation SummarizationSetBy = Automatic
+
+	column SALDO_INI
+		dataType: double
+		formatString: #,0
+		lineageTag: 735e7ad2-0b32-4f8b-b046-07977fc8df3e
+		summarizeBy: sum
+		sourceColumn: SALDO_INI
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	column CD_INI
+		dataType: string
+		lineageTag: 66dfd862-2158-424f-93f3-0f326b623a34
+		summarizeBy: none
+		sourceColumn: CD_INI
+
+		annotation SummarizationSetBy = Automatic
+
+	column CUENTAS_CD_INI
+		dataType: int64
+		formatString: 0
+		lineageTag: 95558987-62c0-4119-969e-c5e786e73704
+		summarizeBy: sum
+		sourceColumn: CUENTAS_CD_INI
+
+		annotation SummarizationSetBy = Automatic
+
+	column SALDO_CD_INI
+		dataType: double
+		lineageTag: d3d65e66-f2e6-45f4-b152-29f4cc7f002d
+		summarizeBy: sum
+		sourceColumn: SALDO_CD_INI
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CD_FIN
+		dataType: string
+		lineageTag: 4c729306-f737-476c-8ec7-87b0ba6fce77
+		summarizeBy: none
+		sourceColumn: CD_FIN
+
+		annotation SummarizationSetBy = Automatic
+
+	column CTAS_CONTENCION
+		dataType: int64
+		formatString: 0
+		lineageTag: 5857cdac-0d15-45f6-9ff5-881f8116efcd
+		summarizeBy: sum
+		sourceColumn: CTAS_CONTENCION
+
+		annotation SummarizationSetBy = Automatic
+
+	column IMPORTE_CONTENCION
+		dataType: double
+		lineageTag: a2c74805-9b1f-4ce7-8e6d-9e52bf8326cd
+		summarizeBy: sum
+		sourceColumn: IMPORTE_CONTENCION
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column META
+		dataType: double
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 14d3d301-d0f2-4c14-bb5d-f8e749fbfccd
+		summarizeBy: sum
+		sourceColumn: META
+
+		annotation SummarizationSetBy = Automatic
+
+	column NUM_PAGOS
+		dataType: int64
+		formatString: 0
+		lineageTag: 7f436fc0-57ed-4368-b23c-03f841a1f4bd
+		summarizeBy: sum
+		sourceColumn: NUM_PAGOS
+
+		annotation SummarizationSetBy = Automatic
+
+	column PAGOS
+		dataType: double
+		lineageTag: f4ebc05a-4fa0-48f4-a761-b0a6f83d3f35
+		summarizeBy: sum
+		sourceColumn: PAGOS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column META_PESOS = VFAC_NEGFIN_COB_VTM_1ER_ASIG_K[META]*VFAC_NEGFIN_COB_VTM_1ER_ASIG_K[SALDO_INI]
+		formatString: #,0
+		lineageTag: cce5daec-048f-4b8d-9875-38482750a876
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	partition VFAC_NEGFIN_COB_VTM_1ER_ASIG_K = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([BillingProject="crp-pro-cx-semantica"]),
+				    #"crp-pro-cx-semantica" = Source{[Name="crp-pro-cx-semantica"]}[Data],
+				    mus_pro_negfin_shared_views_Schema = #"crp-pro-cx-semantica"{[Name="mus_pro_negfin_shared_views",Kind="Schema"]}[Data],
+				    VFAC_NEGFIN_COB_VTM_1ER_ASIG_K_View = mus_pro_negfin_shared_views_Schema{[Name="VFAC_NEGFIN_COB_VTM_1ER_ASIG_K",Kind="View"]}[Data]
+				in
+				    VFAC_NEGFIN_COB_VTM_1ER_ASIG_K_View
+

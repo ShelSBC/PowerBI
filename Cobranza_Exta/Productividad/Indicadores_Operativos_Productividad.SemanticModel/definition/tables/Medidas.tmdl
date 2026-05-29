@@ -1,0 +1,182 @@
+table Medidas
+	lineageTag: cc3201b8-7fd3-4029-9df8-79f0fa3f9b1d
+
+	measure Gest_Cta = sum(VFAC_COB_PROD_ABOGADOS[TOTALES])/sum(VFAC_COB_PROD_ABOGADOS_MOD_ESC[CTAS_ASIGND])
+		displayFolder: Sum
+		lineageTag: 6ca23e67-c54b-4da3-935f-7c3b368fcce8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure SUM_ACC_TOT = sum(VFAC_COB_PROD_ABOGADOS[TOTALES])
+		formatString: 0
+		displayFolder: Sum
+		lineageTag: ca123190-df7f-4e46-ade2-863db9a8f9f1
+
+	measure SUM_CTAS_ASIG = SUM(VFAC_COB_PROD_ABOGADOS_MOD_ESC[CTAS_ASIGND])
+		formatString: 0
+		displayFolder: Sum
+		lineageTag: d9938970-a083-46ba-9eb0-797ac86489f3
+
+	measure SUM_META = SUM(VFAC_COB_PROD_ABOGADOS_MOD_ESC[META_PESOS])
+		displayFolder: Sum
+		lineageTag: 0f2a41d0-2a8d-4ecd-aedf-aab785b527a1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure SUM_PAGOS = SUM(VFAC_COB_PROD_ABOGADOS_MOD_ESC[PAGOS])
+		displayFolder: Sum
+		lineageTag: 4c10ca2f-3658-489e-9d21-c3e3b748cb89
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure SUM_PP_CUMP = SUM(VFAC_COB_PROD_ABOGADOS[PP_Cumplidas])
+		formatString: 0
+		displayFolder: Sum
+		lineageTag: a8a85769-b313-44b5-9a49-34e12bde5345
+
+	measure SUM_PP_GEN = SUM(VFAC_COB_PROD_ABOGADOS[PP_Gene])
+		formatString: 0
+		displayFolder: Sum
+		lineageTag: 9ad66e93-b69a-4600-9804-b688a241f87a
+
+	measure SUM_PP_ROT = SUM(VFAC_COB_PROD_ABOGADOS[PP_Rotas])
+		formatString: 0
+		displayFolder: Sum
+		lineageTag: 9b461a91-6eaf-4bc0-81b7-cb716b6f2b3d
+
+	measure SUM_PROD = SUM(VFAC_COB_PROD_ABOGADOS[PROD])
+		formatString: 0
+		displayFolder: Sum
+		lineageTag: 2a17eeff-d624-4a5f-8501-db4c436a4204
+
+	measure SUM_SDO_ASIG = SUM(VFAC_COB_PROD_ABOGADOS_MOD_ESC[SDO_ASIGND])
+		displayFolder: Sum
+		lineageTag: 0491929b-ee79-44bb-9fe4-ae6a5565180c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Por_Acc_NoProd = sum(VFAC_COB_PROD_ABOGADOS[NOPROD])/sum(VFAC_COB_PROD_ABOGADOS[TOTALES])
+		displayFolder: Porcentajes
+		lineageTag: db3f88a9-85dd-4639-92e5-fb943f999f83
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Por_Acc_Prod = sum(VFAC_COB_PROD_ABOGADOS[PROD])/sum(VFAC_COB_PROD_ABOGADOS[TOTALES])
+		displayFolder: Porcentajes
+		lineageTag: b66e8525-48fe-46cb-b7d0-a9f3cd5cd198
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Por_PP = sum(VFAC_COB_PROD_ABOGADOS[PP_Gene])/sum(VFAC_COB_PROD_ABOGADOS[TOTALES])
+		displayFolder: Porcentajes
+		lineageTag: 424d82d5-693b-469b-84e7-d2048cf34b80
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Por_PP_Cum = sum(VFAC_COB_PROD_ABOGADOS[PP_Cumplidas])/sum(VFAC_COB_PROD_ABOGADOS[TOTALES])
+		displayFolder: Porcentajes
+		lineageTag: 86be4201-7f0b-451c-8af7-af406f907188
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Porc_day_Abndn = DIVIDE(sum(VFAC_COB_PROD_ABOGADOS[CTAS_ABANDN]),sum(VFAC_COB_PROD_ABOGADOS[TOTALES]),0)
+		displayFolder: Porcentajes
+		lineageTag: 7d646b47-09e4-42b8-a3c9-b43dd84b3e31
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Porc_LOGRO = IFERROR(sum(VFAC_NEGFIN_COB_VTM_1ER_ASIG_K[PAGOS])/sum(VFAC_NEGFIN_COB_VTM_1ER_ASIG_K[META]),0)
+		displayFolder: Porcentajes
+		lineageTag: 12ef00af-ccd6-4f13-a298-dfed64fc1310
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure porc_recu = sum(VFAC_NEGFIN_COB_VTM_1ER_ASIG_K[PAGOS])/sum(VFAC_NEGFIN_COB_VTM_1ER_ASIG_K[SALDO_INI])
+		displayFolder: Porcentajes
+		lineageTag: 64555f4e-969c-400a-a3bd-ce46ad0d0ff3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Prom_PP_Gestor = Sum(VFAC_COB_PROD_ABOGADOS[PP_Gene])/5
+		displayFolder: Porcentajes
+		lineageTag: 637ce154-6f74-4bd7-b854-805a8392193d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Var_porc_cta_ab =
+			FORMAT(
+			    DIVIDE(sum(VFAC_COB_PROD_ABOGADOS[CTAS_ABANDN]) - [cta_ABA_MA], [cta_ABA_MA], 0),
+			    "0.0%"
+			)
+		displayFolder: Porcentajes
+		lineageTag: 3d934af9-6504-44ac-b685-5896d8ee3883
+
+	measure POR_EDO_CTA =
+			
+			DIVIDE(
+			    [Tot_ctas_asig],
+			    CALCULATE([Tot_ctas_asig], ALL(VFAC_COB_ASIG_ABO_EDO[ESTADO],VFAC_COB_ASIG_ABO_EDO[AGENCIA]))
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Mes_ant
+		lineageTag: b113f0df-af14-4fc1-b558-8ce0a2bdd5a4
+
+	measure Tot_ctas_asig = Sum(VFAC_COB_ASIG_ABO_EDO[CTAS_ASIGND])
+		formatString: 0
+		displayFolder: Sum
+		lineageTag: e179b378-cd44-41e4-b5fd-29f881024141
+
+	measure Tot_sdo_asig = Sum(VFAC_COB_ASIG_ABO_EDO[Sdo_ASIGND])
+		displayFolder: Sum
+		lineageTag: 178d7e41-f9e2-4590-bf84-f323d619776c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Var_porc_day_ab =
+			FORMAT(
+			    DIVIDE(sum(VFAC_COB_PROD_ABOGADOS[DIAS_ABANDN]) - [DIAS_ABA_MA], [DIAS_ABA_MA], 0),
+			    "0.0%"
+			)
+		displayFolder: Sum
+		lineageTag: 5ba73e78-8db6-44e8-8c31-b48fe1386f0f
+
+	measure POR_EDO_SDO =
+			
+			DIVIDE(
+			    [Tot_sDO_asig],
+			    CALCULATE([Tot_sdo_asig], ALL(VFAC_COB_ASIG_ABO_EDO[ESTADO],VFAC_COB_ASIG_ABO_EDO[AGENCIA]))
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Mes_ant
+		lineageTag: cb22fdc8-34dc-4670-90ab-454a0e351389
+
+	measure POR_SDO_CONTENIDO =
+			
+			DIVIDE(
+			    SUM(VFAC_COB_PROD_ABOGADOS_MOD_ESC[SDO_CONTENCION]),
+			    CALCULATE(SUM(VFAC_NEGFIN_COB_VTM_1ER_ASIG_K[SALDO_INI]))
+			    ---, ALL(VDIM_NEGFIN_CATALOGO_AGENCIAS[ID]))
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Mes_ant
+		lineageTag: 47005999-86e0-4e19-bb88-92a11357eb58
+
+	column Column1
+		dataType: string
+		lineageTag: 512ddd54-0dd9-4666-8c39-55eddbe14223
+		summarizeBy: none
+		sourceColumn: Column1
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Medidas = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

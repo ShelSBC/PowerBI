@@ -1,0 +1,35 @@
+table VDIM_NEGFIN_RB_TOTAL_TRJ
+	lineageTag: 4160b9fb-3c67-4444-813c-fe3fa1da045c
+
+	column ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 3e2d3b17-0231-48b1-ac79-cc2fac094b1c
+		summarizeBy: count
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column TOTAL_TRJ
+		dataType: string
+		lineageTag: fc7689d0-45af-43e8-9237-b5a1b4a0c69e
+		summarizeBy: none
+		sourceColumn: TOTAL_TRJ
+
+		annotation SummarizationSetBy = Automatic
+
+	partition VDIM_NEGFIN_RB_TOTAL_TRJ = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([BillingProject="crp-pro-dwh-semanticagold"]),
+				    #"crp-pro-cx-semantica" = Source{[Name="crp-pro-cx-semantica"]}[Data],
+				    mus_pro_negfin_shared_views_Schema = #"crp-pro-cx-semantica"{[Name="mus_pro_negfin_shared_views",Kind="Schema"]}[Data],
+				    VDIM_NEGFIN_RB_TOTAL_TRJ_View = mus_pro_negfin_shared_views_Schema{[Name="VDIM_NEGFIN_RB_TOTAL_TRJ",Kind="View"]}[Data]
+				in
+				    VDIM_NEGFIN_RB_TOTAL_TRJ_View
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

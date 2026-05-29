@@ -1,0 +1,75 @@
+table VDIM_TIPO_TARJETA
+	lineageTag: a6495325-0b0d-4660-8e5a-67f19a6b88e6
+
+	column TIP_INF
+		dataType: int64
+		formatString: 0
+		lineageTag: 132746be-e961-4e47-87e4-619556456bbd
+		summarizeBy: sum
+		sourceColumn: TIP_INF
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRODUCTO
+		dataType: string
+		lineageTag: fc90856d-90ab-4a2d-a6f7-8c2cbe1934e9
+		summarizeBy: none
+		sourceColumn: PRODUCTO
+
+		annotation SummarizationSetBy = Automatic
+
+	column COLOR
+		dataType: string
+		lineageTag: af61da1e-6dc7-40a8-b484-7789d63c34c4
+		summarizeBy: none
+		sourceColumn: COLOR
+
+		annotation SummarizationSetBy = Automatic
+
+	column ORG
+		dataType: string
+		lineageTag: c8048544-c22e-4917-9324-cfcb2dc6876c
+		summarizeBy: none
+		sourceColumn: ORG
+
+		annotation SummarizationSetBy = Automatic
+
+	column COLOR_ORG
+		dataType: string
+		lineageTag: 1a82365b-45e8-410f-9c85-001db05f77b9
+		summarizeBy: none
+		sourceColumn: COLOR_ORG
+
+		annotation SummarizationSetBy = Automatic
+
+	column COLOR_TOTAL
+		dataType: string
+		lineageTag: f840838b-af09-4c1d-a05c-607b8846e761
+		summarizeBy: none
+		sourceColumn: COLOR_TOTAL
+
+		annotation SummarizationSetBy = Automatic
+
+	column NEG_FIN
+		dataType: string
+		lineageTag: 10dbe3b1-ac7d-473f-abb4-e7bf7d8ae7cb
+		summarizeBy: none
+		sourceColumn: NEG_FIN
+
+		annotation SummarizationSetBy = Automatic
+
+	partition VDIM_TIPO_TARJETA = m
+		mode: import
+		source =
+				let
+				    Origen = GoogleBigQuery.Database([UseStorageApi=false, BillingProject="crp-pro-cx-semantica", ConnectionTimeout=#duration(0, 12, 0, 0)]),
+				    #"crp-pro-cx-semantica" = Origen{[Name="crp-pro-cx-semantica"]}[Data],
+				    mus_pro_negfin_shared_views_Schema = #"crp-pro-cx-semantica"{[Name="mus_pro_negfin_shared_views",Kind="Schema"]}[Data],
+				    VDIM_TIPO_TARJETA_View = mus_pro_negfin_shared_views_Schema{[Name="VDIM_TIPO_TARJETA",Kind="View"]}[Data]
+				in
+				    VDIM_TIPO_TARJETA_View
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

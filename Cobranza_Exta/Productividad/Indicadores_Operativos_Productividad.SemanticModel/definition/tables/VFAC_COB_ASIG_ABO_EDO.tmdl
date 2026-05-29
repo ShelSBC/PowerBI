@@ -1,0 +1,112 @@
+table VFAC_COB_ASIG_ABO_EDO
+	lineageTag: 7836f3ea-e16e-45b7-9b01-916af8f4e0f7
+
+	column BEGINDT
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: bd934743-930e-4b12-b46b-b6a6a9db1805
+		summarizeBy: none
+		sourceColumn: BEGINDT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ANIOMES
+		dataType: int64
+		formatString: 0
+		lineageTag: ebf9e143-dd72-487e-babd-22ddddbfe536
+		summarizeBy: sum
+		sourceColumn: ANIOMES
+
+		annotation SummarizationSetBy = Automatic
+
+	column DMAGENCY
+		dataType: string
+		lineageTag: 4638a1ed-9b82-4898-bed5-d386c56e8006
+		summarizeBy: none
+		sourceColumn: DMAGENCY
+
+		annotation SummarizationSetBy = Automatic
+
+	column B_U6ORG
+		dataType: double
+		lineageTag: 9df2cc5c-6b3b-42a3-b8bb-59a3da2bceeb
+		summarizeBy: sum
+		sourceColumn: B_U6ORG
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column JEFE_LEGAL
+		dataType: string
+		lineageTag: 1cb800c9-3b28-46b6-81e8-4f88eacd66a1
+		summarizeBy: none
+		sourceColumn: JEFE_LEGAL
+
+		annotation SummarizationSetBy = Automatic
+
+	column AGENCIA
+		dataType: string
+		lineageTag: 2ca5faea-3e99-43f9-b901-719a562d3354
+		summarizeBy: none
+		sourceColumn: AGENCIA
+
+		annotation SummarizationSetBy = Automatic
+
+	column ASIGNACION
+		dataType: string
+		lineageTag: eb60f942-b1fe-4c0b-bda5-aed0fb5c4830
+		summarizeBy: none
+		sourceColumn: ASIGNACION
+
+		annotation SummarizationSetBy = Automatic
+
+	column B_DMLABEL6
+		dataType: string
+		lineageTag: d9f29d2a-3e3c-472a-aab1-e8233804ec46
+		summarizeBy: none
+		sourceColumn: B_DMLABEL6
+
+		annotation SummarizationSetBy = Automatic
+
+	column ESTADO
+		dataType: string
+		lineageTag: 0e95549c-3f8c-4ede-bfab-81ad5f111ecf
+		summarizeBy: none
+		sourceColumn: ESTADO
+
+		annotation SummarizationSetBy = Automatic
+
+	column CTAS_ASIGND
+		dataType: int64
+		formatString: #,0
+		lineageTag: b56f0781-dcce-4f24-8a4f-fe26c5642f9a
+		summarizeBy: sum
+		sourceColumn: CTAS_ASIGND
+
+		annotation SummarizationSetBy = Automatic
+
+	column SDO_ASIGND
+		dataType: double
+		formatString: #,0
+		lineageTag: bde31ef8-fcfc-440c-a87d-6ee9c08c5e1b
+		summarizeBy: sum
+		sourceColumn: SDO_ASIGND
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	partition VFAC_COB_ASIG_ABO_EDO = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([BillingProject="crp-pro-cx-semantica"]),
+				    #"crp-pro-cx-semantica" = Source{[Name="crp-pro-cx-semantica"]}[Data],
+				    mus_pro_negfin_shared_views_Schema = #"crp-pro-cx-semantica"{[Name="mus_pro_negfin_shared_views",Kind="Schema"]}[Data],
+				    VFAC_COB_ASIG_ABO_EDO_View = mus_pro_negfin_shared_views_Schema{[Name="VFAC_COB_ASIG_ABO_EDO",Kind="View"]}[Data]
+				in
+				    VFAC_COB_ASIG_ABO_EDO_View
+

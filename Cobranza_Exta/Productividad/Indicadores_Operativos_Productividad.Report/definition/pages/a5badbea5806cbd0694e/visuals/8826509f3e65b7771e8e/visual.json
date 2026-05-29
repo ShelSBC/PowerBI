@@ -1,0 +1,458 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
+  "name": "8826509f3e65b7771e8e",
+  "position": {
+    "x": 0,
+    "y": 135.26206053634337,
+    "z": 8000,
+    "height": 584.73793946365663,
+    "width": 528.41757135667547,
+    "tabOrder": 7000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VFAC_COB_ASIG_ABO_EDO"
+                    }
+                  },
+                  "Property": "ESTADO"
+                }
+              },
+              "queryRef": "VFAC_COB_ASIG_ABO_EDO.ESTADO",
+              "nativeQueryRef": "ESTADO",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VFAC_COB_ASIG_ABO_EDO"
+                    }
+                  },
+                  "Property": "DMAGENCY"
+                }
+              },
+              "queryRef": "VFAC_COB_ASIG_ABO_EDO.DMAGENCY",
+              "nativeQueryRef": "DMAGENCY",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "VFAC_COB_ASIG_ABO_EDO"
+                        }
+                      },
+                      "Property": "CTAS_ASIGND"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(VFAC_COB_ASIG_ABO_EDO.CTAS_ASIGND)",
+              "nativeQueryRef": "Cuentas Asignadas",
+              "displayName": "Cuentas Asignadas"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas"
+                    }
+                  },
+                  "Property": "POR_EDO_CTA"
+                }
+              },
+              "queryRef": "Medidas.POR_EDO_CTA",
+              "nativeQueryRef": "%Cuentas Asignadas",
+              "displayName": "%Cuentas Asignadas"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "VFAC_COB_ASIG_ABO_EDO"
+                        }
+                      },
+                      "Property": "SDO_ASIGND"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(VFAC_COB_ASIG_ABO_EDO.SDO_ASIGND)",
+              "nativeQueryRef": "Saldo Asignado",
+              "displayName": "Saldo Asignado"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas"
+                    }
+                  },
+                  "Property": "POR_EDO_SDO"
+                }
+              },
+              "queryRef": "Medidas.POR_EDO_SDO",
+              "nativeQueryRef": "%Saldo Asignado",
+              "displayName": "%Saldo Asignado"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas"
+                    }
+                  },
+                  "Property": "POR_SDO_CONTENIDO"
+                }
+              },
+              "queryRef": "Medidas.POR_SDO_CONTENIDO",
+              "nativeQueryRef": "%Saldo Contenido",
+              "displayName": "%Saldo Contenido"
+            }
+          ]
+        }
+      }
+    },
+    "expansionStates": [
+      {
+        "roles": [
+          "Rows"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "VFAC_COB_ASIG_ABO_EDO.ESTADO"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VFAC_COB_ASIG_ABO_EDO"
+                    }
+                  },
+                  "Property": "ESTADO"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "VFAC_COB_ASIG_ABO_EDO.DMAGENCY"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          }
+        ],
+        "root": {
+          "children": [
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "'Puebla'"
+                  }
+                }
+              ],
+              "isToggled": true
+            }
+          ]
+        }
+      }
+    ],
+    "objects": {
+      "subTotals": [
+        {
+          "properties": {
+            "columnSubtotals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "rowSubtotals": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "grid": [
+        {
+          "properties": {
+            "outlineColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#78256f'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "79.21665152250256D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(VFAC_COB_ASIG_ABO_EDO.CTAS_ASIGND)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "75.02315329386303D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Medidas.POR_EDO_CTA"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "70.76452305865698D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Medidas.POR_EDO_SDO"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "105.49700862988432D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(VFAC_COB_ASIG_ABO_EDO.SDO_ASIGND)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "72.79699948498146D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Medidas.POR_SDO_CONTENIDO"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "cfe0fa62ccd1910c9a77",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "VFAC_COB_ASIG_ABO_EDO"
+              }
+            },
+            "Property": "ESTADO"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "v",
+              "Entity": "VFAC_COB_ASIG_ABO_EDO",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "v"
+                              }
+                            },
+                            "Property": "ESTADO"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "''"
+                            }
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "e5af0bdfb48925885728",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "VFAC_COB_ASIG_ABO_EDO"
+              }
+            },
+            "Property": "DMAGENCY"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "v",
+              "Entity": "VFAC_COB_ASIG_ABO_EDO",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "v"
+                              }
+                            },
+                            "Property": "DMAGENCY"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "''"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'(null)'"
+                            }
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
