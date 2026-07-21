@@ -1,0 +1,659 @@
+table medidas
+	lineageTag: 812fc5ea-b19f-451a-b792-a3d9a8489ec2
+
+	measure AGGREGATE_ORG_FINAL_120 = ```
+			
+			VAR OrganizacionSeleccionada = SELECTEDVALUE(VDIM_TIPO_TARJETA[ORG])
+			VAR MedidaBase = [Aggregate_x_120_segun_portafolio] // Tu medida de agregado existente
+			
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			        
+			        // 1. Mostrar el Total General: Cuando no hay ORG seleccionada.
+			        NOT(HASONEVALUE(VDIM_TIPO_TARJETA[ORG])), 
+			            MedidaBase, 
+			            
+			        // 2. Caso LIVERPOOL (SIN CAMBIOS - LPC queda aquí):
+			        OrganizacionSeleccionada = "LIVERPOOL",
+			            CALCULATE(
+			                MedidaBase,
+			                KEEPFILTERS(VDIM_TIPO_TARJETA[PRODUCTO] IN {"LPC", "DILISA"})
+			            ),
+			        
+			        // 3. Caso SUBURBIA (INCLUYE CC y MP, PERO NO LPC):
+			        OrganizacionSeleccionada = "SUBURBIA",
+			            CALCULATE(
+			                MedidaBase,
+			                // Filtra por productos Suburbia (SBB VISA, SBB TD) Y los productos a agrupar (CC y MP)
+			                KEEPFILTERS(VDIM_TIPO_TARJETA[PRODUCTO] IN {"SBB VISA", "SBB TD", "CC", "Minipagos"}) // <--- Cambia "MP" por el nombre real.
+			            ),
+			        
+			        // Caso por defecto
+			        BLANK()
+			    )
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 8cb90124-b7f7-4c6d-a7de-9e373fa4aa26
+
+	measure AGGREGATE_ORG_FINAL_210 = ```
+			
+			VAR OrganizacionSeleccionada = SELECTEDVALUE('VDIM_TIPO_TARJETA'[ORG])
+			VAR MedidaBase = [Medida Multiplicacion] // Tu medida de agregado existente (ej: Agregado_210)
+			
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			        
+			        // Caso 1: Si es LIVERPOOL
+			        OrganizacionSeleccionada = "LIVERPOOL",
+			            CALCULATE(
+			                MedidaBase,
+			                KEEPFILTERS('VDIM_TIPO_TARJETA'[PRODUCTO] IN {"LPC", "DILISA"})
+			            ),
+			        
+			        // Caso 2: Si es SUBURBIA
+			        OrganizacionSeleccionada = "SUBURBIA",
+			            CALCULATE(
+			                MedidaBase,
+			                KEEPFILTERS('VDIM_TIPO_TARJETA'[PRODUCTO] IN {"SBB VISA", "SBB TD"})
+			            ),
+			        
+			        // Caso por defecto
+			        BLANK()
+			    )
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 4d6bff9e-6c2f-4d09-9a3a-a47b2d01eba4
+
+	measure 'Aggregate x-210' =
+			
+			VAR Rolado1 = CALCULATE(
+			    MAX('FAC_NEGFIN_ROLADO_TOT'[ROLADO_SDO]),
+			    FILTER('FAC_NEGFIN_ROLADO_TOT', 'FAC_NEGFIN_ROLADO_TOT'[NIV_MOR_FORECAST] = "2.-1-29")
+			)
+			VAR Rolado2 = CALCULATE(
+			    MAX('FAC_NEGFIN_ROLADO_TOT'[ROLADO_SDO]),
+			    FILTER('FAC_NEGFIN_ROLADO_TOT', 'FAC_NEGFIN_ROLADO_TOT'[NIV_MOR_FORECAST] = "3.-30")
+			)
+			VAR Rolado3 = CALCULATE(
+			    MAX('FAC_NEGFIN_ROLADO_TOT'[ROLADO_SDO]),
+			    FILTER('FAC_NEGFIN_ROLADO_TOT', 'FAC_NEGFIN_ROLADO_TOT'[NIV_MOR_FORECAST] = "4.-60")
+			)
+			VAR Rolado4 = CALCULATE(
+			    MAX('FAC_NEGFIN_ROLADO_TOT'[ROLADO_SDO]),
+			    FILTER('FAC_NEGFIN_ROLADO_TOT', 'FAC_NEGFIN_ROLADO_TOT'[NIV_MOR_FORECAST] = "5.-90")
+			)
+			VAR Rolado5 = CALCULATE(
+			    MAX('FAC_NEGFIN_ROLADO_TOT'[ROLADO_SDO]),
+			    FILTER('FAC_NEGFIN_ROLADO_TOT', 'FAC_NEGFIN_ROLADO_TOT'[NIV_MOR_FORECAST] = "6.-120")
+			)
+			VAR Rolado6 = CALCULATE(
+			    MAX('FAC_NEGFIN_ROLADO_TOT'[ROLADO_SDO]),
+			    FILTER('FAC_NEGFIN_ROLADO_TOT', 'FAC_NEGFIN_ROLADO_TOT'[NIV_MOR_FORECAST] = "7.-150")
+			)
+			VAR Rolado7 = CALCULATE(
+			    MAX('FAC_NEGFIN_ROLADO_TOT'[ROLADO_SDO]),
+			    FILTER('FAC_NEGFIN_ROLADO_TOT', 'FAC_NEGFIN_ROLADO_TOT'[NIV_MOR_FORECAST] = "8.-180")
+			)
+			VAR Rolado8 = CALCULATE(
+			    MAX('FAC_NEGFIN_ROLADO_TOT'[ROLADO_SDO]),
+			    FILTER('FAC_NEGFIN_ROLADO_TOT', 'FAC_NEGFIN_ROLADO_TOT'[NIV_MOR_FORECAST] = "9.-210")
+			)
+			RETURN
+			    Rolado1 *Rolado2 *Rolado3 *Rolado4 *Rolado5 *Rolado6 * Rolado7 * Rolado8
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 475f39f2-b4f3-4ade-98a4-5dea3324b07d
+
+	measure AGGREGATE_ORG_FINAL_x_210 = ```
+			
+			VAR OrganizacionSeleccionada = SELECTEDVALUE('VDIM_TIPO_TARJETA'[ORG])
+			VAR MedidaBase = [Aggregate x-210] // Tu medida de agregado existente (ej: Agregado_210)
+			
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			        
+			        // Caso 1: Si es LIVERPOOL
+			        OrganizacionSeleccionada = "LIVERPOOL",
+			            CALCULATE(
+			                MedidaBase,
+			                KEEPFILTERS('VDIM_TIPO_TARJETA'[PRODUCTO] IN {"LPC", "DILISA"})
+			            ),
+			        
+			        // Caso 2: Si es SUBURBIA
+			        OrganizacionSeleccionada = "SUBURBIA",
+			            CALCULATE(
+			                MedidaBase,
+			                KEEPFILTERS('VDIM_TIPO_TARJETA'[PRODUCTO] IN {"SBB VISA", "SBB TD"})
+			            ),
+			        
+			        // Caso por defecto
+			        BLANK()
+			    )
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: d0f69340-4a5c-47c1-81c1-7054b36301b0
+
+	measure Agregate_X_210_REAL_Final =
+			
+			VAR Rolado2 = CALCULATE(
+			    'PPTO'[IM_REAL%],
+			    'PPTO'[IND_DES_REAL] = "2.-1-29"
+			)
+			VAR Rolado3 = CALCULATE(
+			    'PPTO'[IM_REAL%],
+			    'PPTO'[IND_DES_REAL] = "3.-30"
+			)
+			VAR Rolado4 = CALCULATE(
+			    'PPTO'[IM_REAL%],
+			    'PPTO'[IND_DES_REAL] = "4.-60"
+			)
+			VAR Rolado5 = CALCULATE(
+			    'PPTO'[IM_REAL%],
+			    'PPTO'[IND_DES_REAL] = "5.-90"
+			)
+			VAR Rolado6 = CALCULATE(
+			    'PPTO'[IM_REAL%],
+			    'PPTO'[IND_DES_REAL] = "6.-120"
+			)
+			VAR Rolado7 = CALCULATE(
+			    'PPTO'[IM_REAL%],
+			    'PPTO'[IND_DES_REAL] = "7.-150"
+			)
+			VAR Rolado8 = CALCULATE(
+			    'PPTO'[IM_REAL%],
+			    'PPTO'[IND_DES_REAL] = "8.-180"
+			)
+			VAR Rolado9 = CALCULATE(
+			    'PPTO'[IM_REAL%],
+			    'PPTO'[IND_DES_REAL] = "9.-210"
+			)
+			RETURN
+			    ROLADO2*ROLADO3*ROLADO4*ROLADO5*Rolado6 * Rolado7 * Rolado8*ROLADO9
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 21253b0b-68d7-49e7-ac4e-6d3d2045152a
+
+	measure Aggregate_x_210_ppto =
+			
+			VAR _filtro_seleccionado = SELECTEDVALUE('PPTO'[IND_DES_REAL])
+			
+			VAR Suma_21 = CALCULATE(SUM(ppto[IMP]), REMOVEFILTERS('PPTO'[IND_DES_REAL]), ppto[TIP_IND] = 21)
+			VAR Suma_22 = CALCULATE(SUM(ppto[IMP]), REMOVEFILTERS('PPTO'[IND_DES_REAL]), ppto[TIP_IND] = 22)
+			VAR Suma_23 = CALCULATE(SUM(ppto[IMP]), REMOVEFILTERS('PPTO'[IND_DES_REAL]), ppto[TIP_IND] = 23)
+			VAR Suma_24 = CALCULATE(SUM(ppto[IMP]), REMOVEFILTERS('PPTO'[IND_DES_REAL]), ppto[TIP_IND] = 24)
+			VAR Suma_25 = CALCULATE(SUM(ppto[IMP]), REMOVEFILTERS('PPTO'[IND_DES_REAL]), ppto[TIP_IND] = 25)
+			VAR Suma_26 = CALCULATE(SUM(ppto[IMP]), REMOVEFILTERS('PPTO'[IND_DES_REAL]), ppto[TIP_IND] = 26)
+			VAR Suma_27 = CALCULATE(SUM(ppto[IMP]), REMOVEFILTERS('PPTO'[IND_DES_REAL]), ppto[TIP_IND] = 27)
+			VAR Suma_28 = CALCULATE(SUM(ppto[IMP]), REMOVEFILTERS('PPTO'[IND_DES_REAL]), ppto[TIP_IND] = 28)
+			
+			RETURN
+			    IF(
+			        NOT ISBLANK(_filtro_seleccionado),
+			        Suma_21 * Suma_22 * Suma_23*Suma_24 * Suma_25 * Suma_26 * Suma_27 * Suma_28)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: c5aec3b2-417f-4c60-b741-1d1050214a6a
+
+	measure Rolado_Multiplicacion_Default_150_210 =
+			
+			VAR Rolado6_D = COALESCE(
+			    CALCULATE(
+			        MAX('FAC_NEGFIN_ROLADO_TOT'[ROLADO_SDO]), -- Usar MAX, MIN o AVERAGE
+			        'FAC_NEGFIN_ROLADO_TOT'[NIV_MOR_FORECAST] = "7.-150"
+			    ), 0
+			)
+			VAR Rolado7_D = COALESCE(
+			    CALCULATE(
+			        MAX('FAC_NEGFIN_ROLADO_TOT'[ROLADO_SDO]), -- Usar MAX, MIN o AVERAGE
+			        'FAC_NEGFIN_ROLADO_TOT'[NIV_MOR_FORECAST] = "8.-180"
+			    ), 0
+			)
+			VAR Rolado8_D = COALESCE(
+			    CALCULATE(
+			        MAX('FAC_NEGFIN_ROLADO_TOT'[ROLADO_SDO]), -- Usar MAX, MIN o AVERAGE
+			        'FAC_NEGFIN_ROLADO_TOT'[NIV_MOR_FORECAST] = "9.-210_DIAS"
+			    ), 0
+			)
+			RETURN Rolado6_D * Rolado7_D * Rolado8_D
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 673371ab-72f1-4934-abbc-afbaa11c5310
+
+	measure Rolado_Multiplicacion_Default_X_210 =
+			
+			VAR Rolado2_D = COALESCE(
+			    CALCULATE(
+			        MAX('FAC_NEGFIN_ROLADO_TOT'[ROLADO_SDO]), -- Usar MAX, MIN o AVERAGE
+			        'FAC_NEGFIN_ROLADO_TOT'[NIV_MOR_FORECAST] = "2.-1-29"
+			    ), 0
+			)
+			VAR Rolado3_D = COALESCE(
+			    CALCULATE(
+			        MAX('FAC_NEGFIN_ROLADO_TOT'[ROLADO_SDO]), -- Usar MAX, MIN o AVERAGE
+			        'FAC_NEGFIN_ROLADO_TOT'[NIV_MOR_FORECAST] = "3.-30"
+			    ), 0
+			)
+			VAR Rolado4_D = COALESCE(
+			    CALCULATE(
+			        MAX('FAC_NEGFIN_ROLADO_TOT'[ROLADO_SDO]), -- Usar MAX, MIN o AVERAGE
+			        'FAC_NEGFIN_ROLADO_TOT'[NIV_MOR_FORECAST] = "4.-60"
+			    ), 0
+			)
+			VAR Rolado5_D = COALESCE(
+			    CALCULATE(
+			        MAX('FAC_NEGFIN_ROLADO_TOT'[ROLADO_SDO]), -- Usar MAX, MIN o AVERAGE
+			        'FAC_NEGFIN_ROLADO_TOT'[NIV_MOR_FORECAST] = "5.-90"
+			    ), 0
+			)
+			VAR Rolado6_D = COALESCE(
+			    CALCULATE(
+			        MAX('FAC_NEGFIN_ROLADO_TOT'[ROLADO_SDO]), -- Usar MAX, MIN o AVERAGE
+			        'FAC_NEGFIN_ROLADO_TOT'[NIV_MOR_FORECAST] = "6.-120"
+			    ), 0
+			)
+			VAR Rolado7_D = COALESCE(
+			    CALCULATE(
+			        MAX('FAC_NEGFIN_ROLADO_TOT'[ROLADO_SDO]), -- Usar MAX, MIN o AVERAGE
+			        'FAC_NEGFIN_ROLADO_TOT'[NIV_MOR_FORECAST] = "7.-150"
+			    ), 0
+			)
+			VAR Rolado8_D = COALESCE(
+			    CALCULATE(
+			        MAX('FAC_NEGFIN_ROLADO_TOT'[ROLADO_SDO]), -- Usar MAX, MIN o AVERAGE
+			        'FAC_NEGFIN_ROLADO_TOT'[NIV_MOR_FORECAST] = "8.-180"
+			    ), 0
+			)
+			VAR Rolado9_D = COALESCE(
+			    CALCULATE(
+			        MAX('FAC_NEGFIN_ROLADO_TOT'[ROLADO_SDO]), -- Usar MAX, MIN o AVERAGE
+			        'FAC_NEGFIN_ROLADO_TOT'[NIV_MOR_FORECAST] = "9.-210_DIAS"
+			    ), 0
+			)
+			RETURN Rolado2_D*Rolado3_D*Rolado4_D * Rolado5_D * Rolado6_D*Rolado7_D * Rolado8_D * Rolado9_D
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: d8979c71-54c7-4e6a-9e6e-cc81ebd59999
+
+	measure Rolado_Multiplicacion_Default_X_120 =
+			
+			VAR Rolado2_D = COALESCE(
+			    CALCULATE(
+			        MAX('FAC_NEGFIN_ROLADO_TOT'[ROLADO_SDO]), -- Usar MAX, MIN o AVERAGE
+			        'FAC_NEGFIN_ROLADO_TOT'[NIV_MOR_FORECAST] = "2.-1-29"
+			    ), 0
+			)
+			VAR Rolado3_D = COALESCE(
+			    CALCULATE(
+			        MAX('FAC_NEGFIN_ROLADO_TOT'[ROLADO_SDO]), -- Usar MAX, MIN o AVERAGE
+			        'FAC_NEGFIN_ROLADO_TOT'[NIV_MOR_FORECAST] = "3.-30"
+			    ), 0
+			)
+			VAR Rolado4_D = COALESCE(
+			    CALCULATE(
+			        MAX('FAC_NEGFIN_ROLADO_TOT'[ROLADO_SDO]), -- Usar MAX, MIN o AVERAGE
+			        'FAC_NEGFIN_ROLADO_TOT'[NIV_MOR_FORECAST] = "4.-60"
+			    ), 0
+			)
+			VAR Rolado5_D = COALESCE(
+			    CALCULATE(
+			        MAX('FAC_NEGFIN_ROLADO_TOT'[ROLADO_SDO]), -- Usar MAX, MIN o AVERAGE
+			        'FAC_NEGFIN_ROLADO_TOT'[NIV_MOR_FORECAST] = "5.-90"
+			    ), 0
+			)
+			VAR Rolado6_D = COALESCE(
+			    CALCULATE(
+			        MAX('FAC_NEGFIN_ROLADO_TOT'[ROLADO_SDO]), -- Usar MAX, MIN o AVERAGE
+			        'FAC_NEGFIN_ROLADO_TOT'[NIV_MOR_FORECAST] = "6.-120"
+			    ), 0
+			)
+			RETURN Rolado2_D*Rolado3_D*Rolado4_D * Rolado5_D * Rolado6_D
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 210a0f20-c498-479a-aab7-78ce443371e1
+
+	measure Aggregate_x_120_segun_portafolio = ```
+			
+			VAR EsPortafolioSeleccionado = ISFILTERED('FAC_NEGFIN_COB_ROLADOS'[PORTAFOLIO])
+			    
+			RETURN
+			    IF(
+			        EsPortafolioSeleccionado,
+			        [AGGREGATE_X_120_BEGIN],          
+			        [Rolado_Multiplicacion_Default_X_120]     
+			    )
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 2d850d49-8fd2-4ca2-95eb-e39dbc0bdc02
+
+	measure 'ROLADO 150 BEGINDT' = ```
+			
+			VAR _SaldoRodadoMesSiguiente =
+			    CALCULATE(
+			        SUM('FAC_NEGFIN_COB_ROLADOS'[SALDO]),
+			        'FAC_NEGFIN_COB_ROLADOS'[TIPO] = "Total",
+			        'FAC_NEGFIN_COB_ROLADOS'[CD_INI] = 7,
+			        DATEADD('VDIM_CALENDARIO'[FECHA_COMPLETA], 1, MONTH) 
+			    )
+			VAR _SaldoBaseMesActual =
+			    CALCULATE(
+			        SUM('FAC_NEGFIN_COB_ROLADOS'[SALDO]),
+			        'FAC_NEGFIN_COB_ROLADOS'[TIPO] = "Total",
+			        'FAC_NEGFIN_COB_ROLADOS'[CD_INI] = 6
+			    )
+			RETURN
+			    DIVIDE(_SaldoRodadoMesSiguiente, _SaldoBaseMesActual, BLANK())
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 6e5554b6-cac2-4fad-b9ac-26c07a3760ea
+
+	measure 'ROLADO 180 BEGINDT' = ```
+			
+			VAR _SaldoRodadoMesSiguiente =
+			    CALCULATE(
+			        SUM('FAC_NEGFIN_COB_ROLADOS'[SALDO]),
+			        'FAC_NEGFIN_COB_ROLADOS'[TIPO] = "Total",
+			        'FAC_NEGFIN_COB_ROLADOS'[CD_INI] = 8,
+			        DATEADD('VDIM_CALENDARIO'[FECHA_COMPLETA], 1, MONTH) 
+			    )
+			VAR _SaldoBaseMesActual =
+			    CALCULATE(
+			        SUM('FAC_NEGFIN_COB_ROLADOS'[SALDO]),
+			        'FAC_NEGFIN_COB_ROLADOS'[TIPO] = "Total",
+			        'FAC_NEGFIN_COB_ROLADOS'[CD_INI] = 7
+			    )
+			RETURN
+			    DIVIDE(_SaldoRodadoMesSiguiente, _SaldoBaseMesActual, BLANK())
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 45479e57-8a86-46b1-8a12-bf4f01058ed1
+
+	measure 'ROLADO 210 BEGINDT' = ```
+			
+			VAR _SaldoRodadoMesSiguiente =
+			    CALCULATE(
+			        SUM('FAC_NEGFIN_COB_ROLADOS'[SALDO]),
+			        'FAC_NEGFIN_COB_ROLADOS'[TIPO] = "Total",
+			        'FAC_NEGFIN_COB_ROLADOS'[CD_INI] = 9,
+			        DATEADD('VDIM_CALENDARIO'[FECHA_COMPLETA], 1, MONTH) 
+			    )
+			VAR _SaldoBaseMesActual =
+			    CALCULATE(
+			        SUM('FAC_NEGFIN_COB_ROLADOS'[SALDO]),
+			        'FAC_NEGFIN_COB_ROLADOS'[TIPO] = "Total",
+			        'FAC_NEGFIN_COB_ROLADOS'[CD_INI] = 8
+			    )
+			RETURN
+			    DIVIDE(_SaldoRodadoMesSiguiente, _SaldoBaseMesActual, BLANK())
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 8ff9e6b2-8243-44ec-b72d-c432b80404cb
+
+	measure 'AGGREGATE 150_210 BEGIN' =
+			
+			[ROLADO 150 BEGINDT]*[ROLADO 180 BEGINDT]*[ROLADO 210 BEGINDT]
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 0981460d-de10-45c8-affb-48daec98fc92
+
+	measure Aggregate_150_210_segun_portafolio = ```
+			
+			VAR EsPortafolioSeleccionado = ISFILTERED('FAC_NEGFIN_COB_ROLADOS'[PORTAFOLIO])
+			    
+			RETURN
+			    IF(
+			        EsPortafolioSeleccionado,
+			        [AGGREGATE 150_210 BEGIN],          
+			        [Rolado_Multiplicacion_Default_150_210]     
+			    )
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: b2379b88-5093-4c4e-a8a2-f9e146a0d5aa
+
+	measure 'ROLADO X-29' = ```
+			
+			    DIVIDE(CALCULATE( SUM('FAC_NEGFIN_COB_ROLADOS'[SALDO]),'FAC_NEGFIN_COB_ROLADOS'[TIPO] = "Rolada",'FAC_NEGFIN_COB_ROLADOS'[CD_INI] = 1,FAC_NEGFIN_COB_ROLADOS[FLAG] = 0),
+			    CALCULATE( SUM('FAC_NEGFIN_COB_ROLADOS'[SALDO]),'FAC_NEGFIN_COB_ROLADOS'[TIPO] = "Total",'FAC_NEGFIN_COB_ROLADOS'[CD_INI] IN { 0, 1 },FAC_NEGFIN_COB_ROLADOS[FLAG] = 0))
+			  
+			```
+		lineageTag: 7cd858bf-ee7b-4dbf-9b9e-214705d78b7a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'ROLADO 30' = ```
+			
+			    DIVIDE(CALCULATE( SUM('FAC_NEGFIN_COB_ROLADOS'[SALDO]),'FAC_NEGFIN_COB_ROLADOS'[TIPO] = "Rolada",'FAC_NEGFIN_COB_ROLADOS'[CD_INI] = 2,FAC_NEGFIN_COB_ROLADOS[FLAG] = 0),
+			    CALCULATE( SUM('FAC_NEGFIN_COB_ROLADOS'[SALDO]),'FAC_NEGFIN_COB_ROLADOS'[TIPO] = "Total",'FAC_NEGFIN_COB_ROLADOS'[CD_INI] = 2,FAC_NEGFIN_COB_ROLADOS[FLAG] = 0))
+			 
+			```
+		lineageTag: 01668e75-2eee-46f7-818f-e24bf22de6eb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'ROLADO 60' = DIVIDE(CALCULATE( SUM('FAC_NEGFIN_COB_ROLADOS'[SALDO]),'FAC_NEGFIN_COB_ROLADOS'[TIPO] = "Rolada",'FAC_NEGFIN_COB_ROLADOS'[CD_INI] = 3,FAC_NEGFIN_COB_ROLADOS[FLAG] = 0),CALCULATE( SUM('FAC_NEGFIN_COB_ROLADOS'[SALDO]),'FAC_NEGFIN_COB_ROLADOS'[TIPO] = "Total",'FAC_NEGFIN_COB_ROLADOS'[CD_INI] = 3,FAC_NEGFIN_COB_ROLADOS[FLAG] = 0))
+		lineageTag: 08367f7e-2778-4ad3-b960-28981c1b8789
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'ROLADO 90' = DIVIDE(CALCULATE( SUM('FAC_NEGFIN_COB_ROLADOS'[SALDO]),'FAC_NEGFIN_COB_ROLADOS'[TIPO] = "Rolada",'FAC_NEGFIN_COB_ROLADOS'[CD_INI] = 4,FAC_NEGFIN_COB_ROLADOS[FLAG] = 0),CALCULATE( SUM('FAC_NEGFIN_COB_ROLADOS'[SALDO]),'FAC_NEGFIN_COB_ROLADOS'[TIPO] = "Total",'FAC_NEGFIN_COB_ROLADOS'[CD_INI] = 4,FAC_NEGFIN_COB_ROLADOS[FLAG] = 0))
+		lineageTag: 545de66e-b17a-4176-a79a-fe0ef068ba34
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'ROLADO 120' = DIVIDE(CALCULATE( SUM('FAC_NEGFIN_COB_ROLADOS'[SALDO]),'FAC_NEGFIN_COB_ROLADOS'[TIPO] = "Rolada",'FAC_NEGFIN_COB_ROLADOS'[CD_INI] = 5,FAC_NEGFIN_COB_ROLADOS[FLAG] = 0),CALCULATE( SUM('FAC_NEGFIN_COB_ROLADOS'[SALDO]),'FAC_NEGFIN_COB_ROLADOS'[TIPO] = "Total",'FAC_NEGFIN_COB_ROLADOS'[CD_INI] = 5,FAC_NEGFIN_COB_ROLADOS[FLAG] = 0))
+		lineageTag: 3427c801-73a7-4c55-b7f3-41e131f024c2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure aggregate_x_210_begindt =
+			
+			[ROLADO X-29]*[ROLADO 30]*[ROLADO 60]*[ROLADO 90]*[ROLADO 120]*[ROLADO 150 BEGINDT]*[ROLADO 180 BEGINDT]*[ROLADO 210 BEGINDT]
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 3bf30c80-7464-43ab-adb8-9a9f8d5c7d23
+
+	measure Aggregate_X_210_segun_portafolio = ```
+			
+			VAR EsPortafolioSeleccionado = ISFILTERED('FAC_NEGFIN_COB_ROLADOS'[PORTAFOLIO])
+			    
+			RETURN
+			    IF(
+			        EsPortafolioSeleccionado,
+			        [aggregate_x_210_begindt],          
+			        [Rolado_Multiplicacion_Default_X_210]     
+			    )
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: fceee135-d49f-4753-b61b-71886b64ff8d
+
+	measure todos_rolados = ```
+			
+			SWITCH(
+			    TRUE(),
+			    SELECTEDVALUE(FAC_NEGFIN_ROLADO_TOT[CD_INI]) = 2, [ROLADO X-29],
+			    SELECTEDVALUE(FAC_NEGFIN_ROLADO_TOT[CD_INI]) = 3, [ROLADO 30], 
+			    SELECTEDVALUE(FAC_NEGFIN_ROLADO_TOT[CD_INI]) = 4, [ROLADO 60],
+			    SELECTEDVALUE(FAC_NEGFIN_ROLADO_TOT[CD_INI]) = 5, [ROLADO 90], 
+			    SELECTEDVALUE(FAC_NEGFIN_ROLADO_TOT[CD_INI]) = 6, [ROLADO 120], 
+			    SELECTEDVALUE(FAC_NEGFIN_ROLADO_TOT[CD_INI]) = 7, [ROLADO 150 BEGINDT],
+			    SELECTEDVALUE(FAC_NEGFIN_ROLADO_TOT[CD_INI]) = 8, [ROLADO 180 BEGINDT],
+			    SELECTEDVALUE(FAC_NEGFIN_ROLADO_TOT[CD_INI]) = 9, [ROLADO 210 BEGINDT],
+			    BLANK()
+			)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 06f475ba-154f-4556-b21e-b5499a06e73b
+
+	measure AGGREGATE_X_120_BEGIN = ```
+			
+			[ROLADO X-29] *
+			[ROLADO 30] *
+			[ROLADO 60] *
+			[ROLADO 90] *
+			[ROLADO 120]
+			
+			```
+		lineageTag: 9899a647-870f-4b0f-ad2d-7445841af1f4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure rolado%x_210_segun_portafolio = ```
+			
+			VAR EsPortafolioSeleccionado = ISFILTERED('FAC_NEGFIN_COB_ROLADOS'[PORTAFOLIO])
+			    
+			RETURN
+			    IF(
+			        EsPortafolioSeleccionado,
+			        [todos_rolados],          
+			        MAX('FAC_NEGFIN_ROLADO_TOT'[ROLADO_SDO])     
+			    )
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 64cc0310-8d58-44a1-a674-9b6ac707d523
+
+	measure rolado$x_210_segun_portafolio_FINAL_V15 = ```
+			
+			VAR EsPortafolioSeleccionado = ISFILTERED('FAC_NEGFIN_COB_ROLADOS'[PORTAFOLIO])
+			VAR MoraEje = SELECTEDVALUE(FAC_NEGFIN_ROLADO_TOT[CD_INI]) 
+			
+			RETURN
+			    IF(
+			        NOT EsPortafolioSeleccionado,
+			        SUM('FAC_NEGFIN_ROLADO_TOT'[SUM_SDO_ACT]), 
+			        
+			        -- IF principal: Mora 1 a 5 (Mora Baja: TIPO=Rolada, FLAG=0)
+			        IF(
+			            MoraEje <= 5, 
+			            
+			            -- Rama A: MORA BAJA (1 a 5)
+			            CALCULATE(
+			                SUM('FAC_NEGFIN_COB_ROLADOS'[SALDO]),
+			                TREATAS(
+			                    VALUES(FAC_NEGFIN_ROLADO_TOT[CD_INI]), 
+			                    'FAC_NEGFIN_COB_ROLADOS'[CD_INI]
+			                ), 
+			                'FAC_NEGFIN_COB_ROLADOS'[TIPO] = "Rolada",
+			                'FAC_NEGFIN_COB_ROLADOS'[FLAG] = 0
+			            ),
+			            
+			            -- ELSE IF anidado: Mora 6 O Mora 7, 8, 9 (TIPO=Total, Sin FLAG)
+			            CALCULATE(
+			                SUM('FAC_NEGFIN_COB_ROLADOS'[SALDO]),
+			                TREATAS(
+			                    VALUES(FAC_NEGFIN_ROLADO_TOT[CD_INI]), 
+			                    'FAC_NEGFIN_COB_ROLADOS'[CD_INI]
+			                ), 
+			                'FAC_NEGFIN_COB_ROLADOS'[TIPO] = "Total", -- ¡CAMBIO CLAVE: Usar TIPO="Total" para Mora 6!
+			                REMOVEFILTERS('FAC_NEGFIN_COB_ROLADOS'[FLAG]) 
+			            )
+			        )
+			    )
+			```
+		lineageTag: 036280b9-b243-401f-8170-632f3ca4915e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Color_Condicional_Portafolio = ```
+			
+			VAR PortafolioSeleccionado =
+			    -- Devuelve el nombre del portafolio, SOLO si se selecciona UNO.
+			    IF(
+			        HASONEFILTER('FAC_NEGFIN_COB_ROLADOS'[Portafolio]),
+			        VALUES('FAC_NEGFIN_COB_ROLADOS'[Portafolio]),
+			        BLANK()
+			    )
+			    
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			        
+			        -- Condición 1: Se ha seleccionado el portafolio 'Extrajudicial'
+			        PortafolioSeleccionado = "Extrajudicial",
+			        "#78256F", -- ¡TU COLOR! Morado Oscuro
+			
+			        -- Condición 2: Se ha seleccionado el portafolio 'Administrativa'
+			        PortafolioSeleccionado = "Administrativa",
+			        "#b71066", -- ¡TU COLOR! Fucsia/Magenta
+			
+			        -- Condición 3: No se ha seleccionado ningún portafolio (se ve el Total Global)
+			        ISFILTERED('FAC_NEGFIN_COB_ROLADOS'[Portafolio]) = FALSE(),
+			        "#C499CA", -- ¡TU COLOR! Lila/Malva
+			
+			        -- Condición 4 (DEFAULT): Se seleccionaron Múltiples portafolios 
+			        -- (o cualquier otra combinación que no caiga en las anteriores)
+			        "#f39c12" -- Naranja (Color de seguridad/multiselección)
+			    )
+			```
+		lineageTag: 0e9d032d-3555-492e-a4a5-dff784632eba
+
+	measure UltimaFecha = MAX('VDIM_CALENDARIO'[MES])
+		lineageTag: 868ff4a0-5f1c-4d97-9bf7-3f205f360450
+
+	measure EsMesMasReciente =
+			
+			VAR MaxDate = [UltimaFecha]
+			VAR MaxMonthYear = EOMONTH( MaxDate, 0 ) -- Fin de mes de la fecha más reciente
+			VAR CurrentMonthYear = EOMONTH( MAX('VDIM_CALENDARIO'[FECHA_COMPLETA]), 0 ) -- Fin de mes de la fila actual
+			RETURN
+			    IF ( CurrentMonthYear = MaxMonthYear, 1, 0 )
+		formatString: 0
+		lineageTag: 34104c42-fe68-4fce-bf7a-12d7c2a551b9
+
+	measure rolado$x_210_segun_portafolio_V19 = ```
+			
+			VAR EsPortafolioSeleccionado = ISFILTERED('FAC_NEGFIN_COB_ROLADOS'[PORTAFOLIO])
+			
+			-- 1. Obtenemos los valores de la tabla TOT y los convertimos a número para asegurar el match
+			VAR ValoresMoraTOT = 
+			    SELECTCOLUMNS(
+			        DISTINCT(FAC_NEGFIN_ROLADO_TOT[CD_INI]),
+			        "Mora", VALUE([CD_INI])
+			    )
+			
+			-- 2. Obtenemos la mora máxima seleccionada en el contexto actual
+			VAR MoraEje = VALUE(MAX(FAC_NEGFIN_ROLADO_TOT[CD_INI]))
+			
+			RETURN
+			    IF(
+			        NOT EsPortafolioSeleccionado,
+			        SUM('FAC_NEGFIN_ROLADO_TOT'[SUM_SDO_ACT]), 
+			        
+			        IF(
+			            MoraEje <= 5,
+			            
+			            -- Rama A: Mora Baja
+			            CALCULATE(
+			                SUM('FAC_NEGFIN_COB_ROLADOS'[SALDO]),
+			                -- TREATAS mapea nuestra lista virtual de números a la columna física
+			                TREATAS(ValoresMoraTOT, 'FAC_NEGFIN_COB_ROLADOS'[CD_INI]),
+			                'FAC_NEGFIN_COB_ROLADOS'[TIPO] = "ROLADA",
+			                'FAC_NEGFIN_COB_ROLADOS'[FLAG] = 0
+			            ),
+			            
+			            -- Rama B: Mora Alta
+			            CALCULATE(
+			                SUM('FAC_NEGFIN_COB_ROLADOS'[SALDO]),
+			                TREATAS(ValoresMoraTOT, 'FAC_NEGFIN_COB_ROLADOS'[CD_INI]),
+			                'FAC_NEGFIN_COB_ROLADOS'[TIPO] = "TOTAL",
+			                REMOVEFILTERS('FAC_NEGFIN_COB_ROLADOS'[FLAG])
+			            )
+			        )
+			    )
+			```
+		lineageTag: f946eee6-c827-4a81-a3f6-818ce6a66e5f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Column1
+		dataType: string
+		lineageTag: c38c4a85-4deb-44e4-b32d-a19ed1225473
+		summarizeBy: none
+		sourceColumn: Column1
+
+		annotation SummarizationSetBy = Automatic
+
+	partition medidas = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

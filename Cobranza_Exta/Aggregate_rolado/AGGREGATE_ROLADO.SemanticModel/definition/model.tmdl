@@ -1,0 +1,29 @@
+model Model
+	culture: es-ES
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: es-MX
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["PPTO","VDIM_TIPO_TARJETA","FAC_NEGFIN_COB_ROLADOS","VDIM_CALENDARIO","FAC_NEGFIN_ROLADO_TOT","FAC_NEGFIN_COB_PLANES","medidas"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table PPTO
+ref table VDIM_TIPO_TARJETA
+ref table FAC_NEGFIN_COB_ROLADOS
+ref table DateTableTemplate_d7139f22-e2c4-4e03-996c-37521135a349
+ref table LocalDateTable_6828d1cb-2ddb-4aaf-a5ca-6a5dce32c0fa
+ref table VDIM_CALENDARIO
+ref table LocalDateTable_c9e77179-1518-4d88-a188-76e73df9762c
+ref table LocalDateTable_31134063-0863-4b89-b407-e2de8c7793ac
+ref table FAC_NEGFIN_ROLADO_TOT
+ref table FAC_NEGFIN_COB_PLANES
+ref table medidas
+ref table LocalDateTable_1cb51354-e6e8-42eb-ad96-ca38aa4645fd
+
+ref cultureInfo es-ES
+

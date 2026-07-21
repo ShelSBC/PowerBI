@@ -1,0 +1,150 @@
+table FAC_NEGFIN_COB_ROLADOS
+	lineageTag: fd4b5a18-a94c-4ff4-907a-3f155ac94fdc
+
+	column BEGINDT
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 30a3a9a3-da83-41f6-a6b0-d6d04f016203
+		summarizeBy: none
+		sourceColumn: BEGINDT
+
+		variation Variation
+			isDefault
+			relationship: dba0da3e-4011-4d7c-b1f3-509d4f935339
+			defaultHierarchy: LocalDateTable_1cb51354-e6e8-42eb-ad96-ca38aa4645fd.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column DMAGENCY
+		dataType: string
+		lineageTag: 8740650f-18f9-4d33-bd92-bb37d55c811d
+		summarizeBy: none
+		sourceColumn: DMAGENCY
+
+		annotation SummarizationSetBy = Automatic
+
+	column U6ORG
+		dataType: double
+		lineageTag: dc78df29-a726-4ec8-8b53-0434a85ed3d7
+		summarizeBy: none
+		sourceColumn: U6ORG
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CD_INI
+		dataType: double
+		formatString: 0
+		lineageTag: 5e205004-18ec-4033-a567-5a7f354a4fb0
+		summarizeBy: sum
+		sourceColumn: CD_INI
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	column CD_FIN
+		dataType: double
+		lineageTag: 65eb478f-b661-478e-a4bc-5b5a147e216b
+		summarizeBy: sum
+		sourceColumn: CD_FIN
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column BLOCKDATE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 4b7b0358-ec4a-4cbe-b579-634969ecb064
+		summarizeBy: none
+		sourceColumn: BLOCKDATE
+
+		variation Variation
+			isDefault
+			relationship: 706848c1-737b-4ca0-a0a6-fb72722bbcbe
+			defaultHierarchy: LocalDateTable_6828d1cb-2ddb-4aaf-a5ca-6a5dce32c0fa.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column CUENTAS
+		dataType: int64
+		formatString: 0
+		lineageTag: f1b9b7ba-a9a0-4cfb-8f46-0bdd528d38dc
+		summarizeBy: sum
+		sourceColumn: CUENTAS
+
+		annotation SummarizationSetBy = Automatic
+
+	column SALDO
+		dataType: double
+		lineageTag: 59847b47-0833-4954-9421-32919e5041d4
+		summarizeBy: sum
+		sourceColumn: SALDO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TIPO
+		dataType: string
+		lineageTag: a920ded0-f588-4b8b-94c1-9ae57f77c1e1
+		summarizeBy: none
+		sourceColumn: TIPO
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLAG
+		dataType: int64
+		formatString: 0
+		lineageTag: 0e0b2403-84f4-4d4a-aa98-30c120534dde
+		summarizeBy: sum
+		sourceColumn: FLAG
+
+		annotation SummarizationSetBy = Automatic
+
+	column U6BLOCKCODE1
+		dataType: string
+		lineageTag: 06f964f6-6196-4e1b-a626-12553cffde8b
+		summarizeBy: none
+		sourceColumn: U6BLOCKCODE1
+
+		annotation SummarizationSetBy = Automatic
+
+	column PORTAFOLIO
+		dataType: string
+		lineageTag: 5b85c07c-b5b0-4b46-b2b2-464c3b7247b9
+		summarizeBy: none
+		sourceColumn: PORTAFOLIO
+
+		annotation SummarizationSetBy = Automatic
+
+	column ANIOMES
+		dataType: int64
+		formatString: 0
+		lineageTag: 9e1aa731-999d-45e4-92b5-4b507a2271fe
+		summarizeBy: none
+		sourceColumn: ANIOMES
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FAC_NEGFIN_COB_ROLADOS = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([BillingProject="crp-pro-cx-analitica"]),
+				    #"crp-pro-cx-analitica" = Source{[Name="crp-pro-cx-analitica"]}[Data],
+				    mus_pro_negfin_tablas_finales_Schema = #"crp-pro-cx-analitica"{[Name="mus_pro_negfin_tablas_finales",Kind="Schema"]}[Data],
+				    FAC_NEGFIN_COB_ROLADOS_Table = mus_pro_negfin_tablas_finales_Schema{[Name="FAC_NEGFIN_COB_ROLADOS",Kind="Table"]}[Data]
+				in
+				    FAC_NEGFIN_COB_ROLADOS_Table
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

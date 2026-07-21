@@ -1,0 +1,92 @@
+/// Tipo de tarjeta
+table VDIM_TIPO_TARJETA
+	lineageTag: 81152100-be37-4cf7-a6fc-f6eb6362844d
+
+	/// Organización
+	column TIP_INF
+		dataType: int64
+		formatString: 0
+		lineageTag: 342e8b8a-e4a1-4884-83ec-017a7662ca8e
+		summarizeBy: none
+		sourceColumn: TIP_INF
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Descripción de la organización
+	column PRODUCTO
+		dataType: string
+		lineageTag: e7d753b4-37c3-4a25-923e-479991322e23
+		summarizeBy: none
+		sourceColumn: PRODUCTO
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Color de acuerdo a la organización
+	column COLOR
+		dataType: string
+		lineageTag: 5ab15c55-8d56-45ef-848c-8490a0f3bccf
+		summarizeBy: none
+		sourceColumn: COLOR
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Organización
+	column ORG
+		dataType: string
+		lineageTag: f8cdacf3-a470-47ec-ac85-fb46178e3e3d
+		summarizeBy: none
+		sourceColumn: ORG
+
+		annotation SummarizationSetBy = Automatic
+
+	column COLOR_ORG
+		dataType: string
+		lineageTag: 4f56e1a6-5895-480a-8502-5fcbf5bae44b
+		summarizeBy: none
+		sourceColumn: COLOR_ORG
+
+		annotation SummarizationSetBy = Automatic
+
+	column COLOR_TOTAL
+		dataType: string
+		lineageTag: 52f5f956-fa32-4b5b-a30f-6efde8801c83
+		summarizeBy: none
+		sourceColumn: COLOR_TOTAL
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRODUCTO_GRAFICO =
+			
+			IF(
+			    VDIM_TIPO_TARJETA[PRODUCTO] IN {"CC", "Minipagos"}, // <--- Cambia "MP" por el nombre real si no es ese.
+			    "Minipagos",
+			    VDIM_TIPO_TARJETA[PRODUCTO]
+			)
+		lineageTag: 0884c446-59af-4f6b-a20b-6ec78fcce94f
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column NEG_FIN
+		dataType: string
+		lineageTag: 9f3126e0-ddd0-484d-9a0f-c32b6a1da703
+		summarizeBy: none
+		sourceColumn: NEG_FIN
+
+		annotation SummarizationSetBy = Automatic
+
+	partition VDIM_TIPO_TARJETA = m
+		mode: import
+		source =
+				let
+				    Origen = GoogleBigQuery.Database([BillingProject="crp-pro-cx-semantica"]),
+				    #"crp-pro-cx-semantica" = Origen{[Name="crp-pro-cx-semantica"]}[Data],
+				    mus_pro_negfin_shared_views_Schema = #"crp-pro-cx-semantica"{[Name="mus_pro_negfin_shared_views",Kind="Schema"]}[Data],
+				    VDIM_TIPO_TARJETA_View = mus_pro_negfin_shared_views_Schema{[Name="VDIM_TIPO_TARJETA",Kind="View"]}[Data]
+				in
+				    VDIM_TIPO_TARJETA_View
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

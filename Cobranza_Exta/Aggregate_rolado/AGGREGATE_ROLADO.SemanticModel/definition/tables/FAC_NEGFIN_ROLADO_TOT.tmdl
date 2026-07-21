@@ -1,0 +1,150 @@
+table FAC_NEGFIN_ROLADO_TOT
+	lineageTag: e0d02440-1663-4d0f-9b70-b4f4635be952
+
+	measure 'Medida Multiplicacion' =
+			
+			VAR Rolado6 = CALCULATE(
+			    'FAC_NEGFIN_ROLADO_TOT'[ROLADO_REAL],
+			    FILTER('FAC_NEGFIN_ROLADO_TOT', 'FAC_NEGFIN_ROLADO_TOT'[NIV_MOR_FORECAST] = "7.-150")
+			)
+			VAR Rolado7 = CALCULATE(
+			    'FAC_NEGFIN_ROLADO_TOT'[ROLADO_REAL],
+			    FILTER('FAC_NEGFIN_ROLADO_TOT', 'FAC_NEGFIN_ROLADO_TOT'[NIV_MOR_FORECAST] = "8.-180")
+			)
+			VAR Rolado8 = CALCULATE(
+			    'FAC_NEGFIN_ROLADO_TOT'[ROLADO_REAL],
+			    FILTER('FAC_NEGFIN_ROLADO_TOT', 'FAC_NEGFIN_ROLADO_TOT'[NIV_MOR_FORECAST] = "9.-210")
+			)
+			RETURN
+			    Rolado6 * Rolado7 * Rolado8
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 4c281989-fe76-43c0-b2b2-410610e8ca4f
+
+	measure ROLADO_REAL = DIVIDE(SUM('FAC_NEGFIN_ROLADO_TOT'[SUM_SDO_ACT]),SUM('FAC_NEGFIN_ROLADO_TOT'[SDO_ANT]))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 281661f2-7f66-4f44-bc31-e858640acc14
+
+	column TIP_INF
+		dataType: int64
+		formatString: 0
+		lineageTag: 8cbc702a-8fd6-43aa-9a68-21566d26e39b
+		summarizeBy: none
+		sourceColumn: TIP_INF
+
+		annotation SummarizationSetBy = Automatic
+
+	column ANIO
+		dataType: int64
+		formatString: 0
+		lineageTag: 1c801a0d-ece5-409c-8cac-0dd7f3f5e555
+		summarizeBy: sum
+		sourceColumn: ANIO
+
+		annotation SummarizationSetBy = Automatic
+
+	column MES
+		dataType: int64
+		formatString: 0
+		lineageTag: ec619832-b2f5-47e3-92d8-85fd56211f53
+		summarizeBy: sum
+		sourceColumn: MES
+
+		annotation SummarizationSetBy = Automatic
+
+	column ANIOMES
+		dataType: int64
+		formatString: 0
+		lineageTag: 5ba69786-6d92-4304-9bea-5ad0ac6fb88b
+		summarizeBy: none
+		sourceColumn: ANIOMES
+
+		annotation SummarizationSetBy = Automatic
+
+	column NIV_MOR
+		dataType: string
+		lineageTag: afee93d8-478d-414f-ab67-b4161306b358
+		summarizeBy: none
+		sourceColumn: NIV_MOR
+
+		annotation SummarizationSetBy = Automatic
+
+	column SUM_SDO_ACT
+		dataType: double
+		lineageTag: e484f83b-23c6-4f1e-8a56-c5d906de51a7
+		summarizeBy: sum
+		sourceColumn: SUM_SDO_ACT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SDO_ANT
+		dataType: double
+		lineageTag: ba580553-cd54-4b57-8838-afde063e0e4a
+		summarizeBy: sum
+		sourceColumn: SDO_ANT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ROLADO_SDO
+		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 6e77eea1-28fe-4528-9ac4-c77c41eb98a9
+		summarizeBy: none
+		sourceColumn: ROLADO_SDO
+
+		annotation SummarizationSetBy = User
+
+	column CTAS
+		dataType: int64
+		formatString: 0
+		lineageTag: 5573e402-2974-41b2-9848-fff947cc5360
+		summarizeBy: sum
+		sourceColumn: CTAS
+
+		annotation SummarizationSetBy = Automatic
+
+	column ROLADO_CTAS
+		dataType: double
+		lineageTag: 910416dd-2f31-4624-9442-74ecf884eb53
+		summarizeBy: sum
+		sourceColumn: ROLADO_CTAS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column NIV_MOR_FORECAST
+		dataType: string
+		lineageTag: 3483e2f0-e9b5-4706-993c-0b6b6db8f1f9
+		summarizeBy: none
+		sourceColumn: NIV_MOR_FORECAST
+
+		annotation SummarizationSetBy = Automatic
+
+	column CD_INI
+		dataType: int64
+		formatString: 0
+		lineageTag: 879a40ff-281f-48b7-be52-399fbf6f32c6
+		summarizeBy: sum
+		sourceColumn: CD_INI
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FAC_NEGFIN_ROLADO_TOT = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([BillingProject="crp-pro-cx-analitica"]),
+				    #"crp-pro-cx-analitica" = Source{[Name="crp-pro-cx-analitica"]}[Data],
+				    mus_pro_negfin_tablas_finales_Schema = #"crp-pro-cx-analitica"{[Name="mus_pro_negfin_tablas_finales",Kind="Schema"]}[Data],
+				    FAC_NEGFIN_ROLADO_TOT_Table = mus_pro_negfin_tablas_finales_Schema{[Name="FAC_NEGFIN_ROLADO_TOT",Kind="Table"]}[Data]
+				in
+				    FAC_NEGFIN_ROLADO_TOT_Table
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

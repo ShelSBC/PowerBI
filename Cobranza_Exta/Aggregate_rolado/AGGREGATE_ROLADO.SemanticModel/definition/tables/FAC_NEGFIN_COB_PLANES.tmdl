@@ -1,0 +1,123 @@
+table FAC_NEGFIN_COB_PLANES
+	lineageTag: 17944660-0a52-4192-a43f-bdd6d48c2963
+
+	measure '% Participación Saldo por Mora CORREGIDO' = ```
+			
+			VAR SaldoPlanActual =
+			    [Saldo Total Activo] // Saldo filtrado por Categoria y/o Indicador_Cobranza
+			    
+			VAR SaldoTotalDeMora =
+			    CALCULATE(
+			        [Saldo Total Activo],
+			        ALL('FAC_NEGFIN_COB_PLANES'[CATEGORIA], 'FAC_NEGFIN_COB_PLANES'[indicador_cobranza])
+			    )
+			
+			RETURN
+			    DIVIDE(
+			        SaldoPlanActual,
+			        SaldoTotalDeMora,
+			        0
+			    )
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 062305a5-0613-4895-a27a-31cf42874262
+
+	measure 'Saldo Total Activo' =
+			
+			-- Mide la suma del saldo de cuenta (SDO_CTA) en el contexto de filtro actual.
+			SUM('FAC_NEGFIN_COB_PLANES'[SDO_CTA])
+		lineageTag: 51de3716-9d09-44ec-a5b2-770b2f4faa93
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column tip_inf
+		dataType: int64
+		formatString: 0
+		lineageTag: 2ae44204-d1a6-4830-aabf-e56f187c3aec
+		summarizeBy: none
+		sourceColumn: tip_inf
+
+		annotation SummarizationSetBy = Automatic
+
+	column FECHA
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: ae5abe7c-2fde-417f-a3aa-f0d852071fe2
+		summarizeBy: none
+		sourceColumn: FECHA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column CTA_NIV_MOR
+		dataType: int64
+		formatString: 0
+		lineageTag: 7c1d78b4-eaf9-4039-8153-2568af70a68e
+		summarizeBy: sum
+		sourceColumn: CTA_NIV_MOR
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLG_PROGRAMA_APOYO
+		dataType: string
+		lineageTag: 35e1eab9-af3e-4633-9c9e-daadaabca825
+		summarizeBy: none
+		sourceColumn: FLG_PROGRAMA_APOYO
+
+		annotation SummarizationSetBy = Automatic
+
+	column CATEGORIA
+		dataType: string
+		lineageTag: bd551800-9dc8-492f-a717-7b68851c3f02
+		summarizeBy: none
+		sourceColumn: CATEGORIA
+
+		annotation SummarizationSetBy = Automatic
+
+	column Indicador_cobranza
+		dataType: string
+		lineageTag: 5468c0d7-68e8-45d8-8b0b-ceb5766fee27
+		summarizeBy: none
+		sourceColumn: Indicador_cobranza
+
+		annotation SummarizationSetBy = Automatic
+
+	column CUENTAS
+		dataType: int64
+		formatString: 0
+		lineageTag: 02948f12-9202-4e08-b607-dd2e6c0dc4a5
+		summarizeBy: sum
+		sourceColumn: CUENTAS
+
+		annotation SummarizationSetBy = Automatic
+
+	column SDO_CTA
+		dataType: double
+		lineageTag: 8942b51f-1280-42b3-8c83-799173ffdae8
+		summarizeBy: sum
+		sourceColumn: SDO_CTA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column NIV_MOR_FORECAST
+		dataType: string
+		lineageTag: 60ee4704-ae15-496d-a81c-053232126f56
+		summarizeBy: none
+		sourceColumn: NIV_MOR_FORECAST
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FAC_NEGFIN_COB_PLANES = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([BillingProject="crp-pro-cx-analitica"]),
+				    #"crp-pro-cx-analitica" = Source{[Name="crp-pro-cx-analitica"]}[Data],
+				    mus_pro_negfin_tablas_finales_Schema = #"crp-pro-cx-analitica"{[Name="mus_pro_negfin_tablas_finales",Kind="Schema"]}[Data],
+				    FAC_NEGFIN_COB_PLANES_Table = mus_pro_negfin_tablas_finales_Schema{[Name="FAC_NEGFIN_COB_PLANES",Kind="Table"]}[Data]
+				in
+				    FAC_NEGFIN_COB_PLANES_Table
+
