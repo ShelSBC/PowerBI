@@ -1,0 +1,83 @@
+table VDIM_TIPO_TARJETA
+	lineageTag: d833f2be-1531-4098-998a-18daccf0f9cc
+
+	column TIP_INF
+		dataType: int64
+		formatString: 0
+		lineageTag: f134ca79-5e55-486d-a2c6-e52c056fd929
+		summarizeBy: none
+		sourceColumn: TIP_INF
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRODUCTO
+		dataType: string
+		lineageTag: 948b4d7f-f2f1-412e-8dd0-e878f8f39e13
+		summarizeBy: none
+		sourceColumn: PRODUCTO
+
+		annotation SummarizationSetBy = Automatic
+
+	column ORG
+		dataType: string
+		lineageTag: 8e1553ef-8e10-4dec-b8e3-69081b1910c2
+		summarizeBy: none
+		sourceColumn: ORG
+
+		annotation SummarizationSetBy = Automatic
+
+	column NEG_FIN
+		dataType: string
+		lineageTag: 9f604444-89db-4db3-a783-e7dafa1f2160
+		summarizeBy: none
+		sourceColumn: NEG_FIN
+
+		annotation SummarizationSetBy = Automatic
+
+	column COLOR
+		dataType: string
+		lineageTag: b8702bd8-737c-4858-99d1-792903c62561
+		summarizeBy: none
+		sourceColumn: COLOR
+
+		annotation SummarizationSetBy = Automatic
+
+	column COLOR_ORG
+		dataType: string
+		lineageTag: c71f0209-5884-464b-bd56-27f5dad3b6c2
+		summarizeBy: none
+		sourceColumn: COLOR_ORG
+
+		annotation SummarizationSetBy = Automatic
+
+	column COLOR_TOTAL
+		dataType: string
+		lineageTag: 7d53a5fe-dc57-4e39-a40f-1d48fb8b9fa3
+		summarizeBy: none
+		sourceColumn: COLOR_TOTAL
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRODUCTO_NOMBRE =
+			
+			SWITCH( 'VDIM_TIPO_TARJETA'[TIP_INF],
+			    111, "LPC-Justme-BYD",
+			    225, "CC + Minipagos",
+			    'VDIM_TIPO_TARJETA'[PRODUCTO]
+			)
+		lineageTag: c51025fd-f739-4093-b428-5b23fe490cfd
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition VDIM_TIPO_TARJETA = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([BillingProject="crp-pro-cx-semantica"]),
+				    #"crp-pro-cx-semantica" = Source{[Name="crp-pro-cx-semantica"]}[Data],
+				    mus_pro_negfin_shared_views_Schema = #"crp-pro-cx-semantica"{[Name="mus_pro_negfin_shared_views",Kind="Schema"]}[Data],
+				    VDIM_TIPO_TARJETA_View = mus_pro_negfin_shared_views_Schema{[Name="VDIM_TIPO_TARJETA",Kind="View"]}[Data]
+				in
+				    VDIM_TIPO_TARJETA_View
+

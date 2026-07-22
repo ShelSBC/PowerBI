@@ -1,0 +1,450 @@
+table Medidas
+	lineageTag: c45fb85d-648d-485d-be79-231445b6dc09
+
+	measure CV = ```
+			
+			VAR ResultadoCV = 
+			    CALCULATE(
+			        SUM(FAC_NEGFIN_FORECAST[IMP]),
+			        FAC_NEGFIN_FORECAST[TIP_PPTO] = "REAL",
+			        FAC_NEGFIN_FORECAST[IND_DES] IN {
+			            "5.-90",
+			            "6.-120",
+			            "7.-150",
+			            "8.-180",
+			            "9.-210_DIAS"
+			        }
+			    )
+			RETURN 
+			COALESCE(ResultadoCV, 0)
+			```
+		lineageTag: eb27b866-71d6-448d-9754-50c7ab9bb1fe
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ICV = ```
+			
+			VAR NUMERADOR = [CV]
+			VAR DENOMINADOR = 
+			    CALCULATE(
+			        SUM(FAC_NEGFIN_FORECAST[IMP]),
+			        'FAC_NEGFIN_FORECAST'[TIP_PPTO] = "REAL",
+			        'FAC_NEGFIN_FORECAST'[IND_DES] IN {
+			            "1.-CTAS_VIG",
+			            "2.-1-29",
+			            "3.-30",
+			            "4.-60",
+			            "5.-90",
+			            "6.-120",
+			            "7.-150",
+			            "8.-180",
+			            "9.-210_DIAS"
+			        }
+			    )
+			VAR Resultado = DIVIDE(NUMERADOR, DENOMINADOR)
+			
+			RETURN
+			    IF(ISBLANK(Resultado), " ", Resultado)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 360d8c93-a3e1-4ce5-836b-4b3a355cf5c1
+
+	measure PERDIDA_NETA = ```
+			
+			VAR QUITAS =
+			    CALCULATE(
+			        SUM(FAC_NEGFIN_FORECAST[IMP]),
+			        'FAC_NEGFIN_FORECAST'[TIP_PPTO] = "REAL",
+			        'FAC_NEGFIN_FORECAST'[IND_DES] = "QUITAS"
+			    ) * 1000 
+			
+			VAR CASTIGOS =
+			    CALCULATE(
+			        SUM(FAC_NEGFIN_FORECAST[IMP]),
+			        'FAC_NEGFIN_FORECAST'[TIP_PPTO] = "REAL",
+			        'FAC_NEGFIN_FORECAST'[IND_DES] = "CAST"
+			    )
+			
+			VAR RECU = 
+			    CALCULATE(
+			        SUM(FAC_NEGFIN_FORECAST[IMP]),
+			        'FAC_NEGFIN_FORECAST'[TIP_PPTO] = "REAL",
+			        'FAC_NEGFIN_FORECAST'[IND_DES] = "RECUPERACIONES"
+			    )
+			
+			RETURN
+			    RECU - QUITAS - CASTIGOS
+			```
+		lineageTag: 2296794d-75a0-4615-acd2-f9322bf14c2e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ANTERIOR_IMP =
+			
+			VAR FECHASELECCIONADA = MAX('FAC_NEGFIN_FORECAST'[FECHA_CARGA])
+			VAR FECHAPREVIA =
+			        MAXX(
+			            FILTER(
+			                ALL('FAC_NEGFIN_FORECAST'[FECHA_CARGA]),
+			                'FAC_NEGFIN_FORECAST'[FECHA_CARGA]<FECHASELECCIONADA
+			            ),
+			            'FAC_NEGFIN_FORECAST'[FECHA_CARGA]
+			        )
+			RETURN
+			CALCULATE(
+			    SUM(FAC_NEGFIN_FORECAST[IMP]),
+			    'FAC_NEGFIN_FORECAST'[FECHA_CARGA] = FECHAPREVIA
+			)
+		lineageTag: b49038b2-7eb7-4d9f-8988-c6e51ed2130e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ANTERIOR_CTAS =
+			
+			VAR FECHASELECCIONADA = MAX('FAC_NEGFIN_FORECAST'[FECHA_CARGA])
+			VAR FECHAPREVIA =
+			        MAXX(
+			            FILTER(
+			                ALL('FAC_NEGFIN_FORECAST'[FECHA_CARGA]),
+			                'FAC_NEGFIN_FORECAST'[FECHA_CARGA]<FECHASELECCIONADA
+			            ),
+			            'FAC_NEGFIN_FORECAST'[FECHA_CARGA]
+			        )
+			RETURN
+			CALCULATE(
+			    SUM(FAC_NEGFIN_FORECAST[CTAS]),
+			    'FAC_NEGFIN_FORECAST'[FECHA_CARGA] = FECHAPREVIA
+			)
+		lineageTag: dbbb4141-63bc-48b4-85c9-496492f2e61a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure %DIF_DIA = ```
+			
+			VAR FechaFila = MAX('FAC_NEGFIN_FORECAST'[FECHA_CARGA])
+			VAR Actual = SUM('FAC_NEGFIN_FORECAST'[IMP])
+			
+			VAR Anterior = 
+			    CALCULATE(
+			        SUM('FAC_NEGFIN_FORECAST'[IMP]),
+			        ALL('FAC_NEGFIN_FORECAST'[FECHA_CARGA]), -- Quitamos el filtro solo de la fecha
+			        'FAC_NEGFIN_FORECAST'[FECHA_CARGA] = FechaFila - 1
+			    )
+			
+			RETURN 
+			    DIVIDE(Actual - Anterior, Anterior, 0)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 1efca07f-6957-4e9d-a3c9-0b8bc56d927d
+
+	measure SEMAFORO_DIF_DIA =
+			
+			SWITCH(
+			    TRUE(),
+			    [%DIF_DIA] > 0, "POSITIVO",
+			    [%DIF_DIA] < 0, "NEGATIVO"
+			)
+		lineageTag: 4ca30acc-af42-4819-abaf-d58ea2c7714b
+
+	measure %DIF_PPTO =
+			
+			
+			VAR ACTUAL =
+			
+			    CALCULATE(
+			
+			        SUM(FAC_NEGFIN_FORECAST[IMP]),
+			
+			        FAC_NEGFIN_FORECAST[TIP_PPTO] = "REAL"
+			
+			    )
+			
+			
+			
+			VAR PPTO_ORIGINAL =
+			
+			    CALCULATE(
+			
+			        SUM(FAC_NEGFIN_FORECAST[IMP]),
+			
+			        FAC_NEGFIN_FORECAST[TIP_PPTO] <> "REAL",
+			
+			        ALL(FAC_NEGFIN_FORECAST[TIP_PPTO])
+			
+			    )
+			
+			
+			
+			-- Normalizamos el PPTO multiplicando por 100 para igualar la escala del REAL
+			
+			VAR PPTO_AJUSTADO = PPTO_ORIGINAL * 1000
+			
+			
+			
+			RETURN
+			
+			   IF(
+			
+			        ISBLANK(ACTUAL) || ISBLANK(PPTO_ORIGINAL),
+			
+			        0,
+			
+			        DIVIDE(ACTUAL - PPTO_AJUSTADO, PPTO_AJUSTADO, 0)
+			
+			    )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 6e25e4bd-7fa4-4c50-9d8c-f563b15203fb
+
+	measure MONTO_PPTO_QUITAS = ```
+			
+			VAR PPTO_ORIGINAL = 
+			    CALCULATE(
+			        SUM(FAC_NEGFIN_FORECAST[IMP]), 
+			        FAC_NEGFIN_FORECAST[TIP_PPTO] <> "REAL",
+			        FAC_NEGFIN_FORECAST[TIP_IND] = 9,
+			        ALL(FAC_NEGFIN_FORECAST[TIP_PPTO])
+			    )
+			RETURN PPTO_ORIGINAL * 1000
+			```
+		lineageTag: f1371350-8355-4775-ae19-175f43772174
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure %DIF_PPTO_QUITAS = ```
+			
+			VAR ACTUAL_M = [REAL_QUITAS_REINFLADO]
+			
+			VAR PPTO_M = 
+			    CALCULATE(
+			        SUM(FAC_NEGFIN_FORECAST[IMP]) * 1000, 
+			        FAC_NEGFIN_FORECAST[TIP_PPTO] <> "REAL",
+			        FAC_NEGFIN_FORECAST[TIP_IND] = 9,
+			        ALL(FAC_NEGFIN_FORECAST[TIP_PPTO])
+			    )
+			
+			RETURN 
+			    DIVIDE(ACTUAL_M - PPTO_M, PPTO_M, 0)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 59542540-33ed-44af-b344-cd198a46d984
+
+	measure %DIF_PPTO_RECU_FINAL = ```
+			
+			VAR ACTUAL = [RECUPERACION_REAL] -- Asegúrate que esta medida ya tenga REMOVEFILTERS
+			VAR PPTO = [PPTO_VALOR_TARGET]
+			RETURN 
+			    DIVIDE(ACTUAL - PPTO, PPTO, 0)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: bef09416-cfce-4a46-b59b-f8f64ee3044c
+
+	measure %DIF_PPTO_CAST = ```
+			
+			VAR ACTUAL = 
+			    CALCULATE(
+			        SUM(FAC_NEGFIN_FORECAST[IMP]), 
+			        FAC_NEGFIN_FORECAST[TIP_PPTO] = "REAL",
+			        FAC_NEGFIN_FORECAST[IND_DES] = "CAST"
+			    )
+			
+			VAR PPTO_AJUSTADO = 
+			    CALCULATE(
+			        SUM(FAC_NEGFIN_FORECAST[IMP])*1000, 
+			        FAC_NEGFIN_FORECAST[TIP_PPTO] <> "REAL",
+			         FAC_NEGFIN_FORECAST[IND_DES] = "CAST"
+			    )
+			
+			-- Normalizamos el PPTO multiplicando por 100 para igualar la escala del REAL
+			
+			
+			RETURN 
+			   IF(
+			        ISBLANK(ACTUAL) || ISBLANK(PPTO_AJUSTADO), 
+			        0, 
+			        DIVIDE(ACTUAL-PPTO_AJUSTADO, PPTO_AJUSTADO, 0)
+			    )
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: fce29149-9255-47e7-b43d-86a962b8d445
+
+	measure REAL_QUITAS_REINFLADO = ```
+			
+			VAR VALOR_ORIGINAL = 
+			    CALCULATE(
+			        SUM(FAC_NEGFIN_FORECAST[IMP]), 
+			        FAC_NEGFIN_FORECAST[TIP_PPTO] = "REAL",
+			        FAC_NEGFIN_FORECAST[IND_DES] = "QUITAS"
+			    )
+			RETURN 
+			    VALOR_ORIGINAL * 1000 
+			```
+		lineageTag: 418ce91a-6a40-473a-b896-897126ac5109
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure %DIF_PPTO_PER_NET = ```
+			
+			VAR ACTUAL_M = [PERDIDA_NETA]
+			
+			VAR PPTO_M = 
+			    CALCULATE(
+			        SUM(FAC_NEGFIN_FORECAST[IMP])*1000, 
+			        FAC_NEGFIN_FORECAST[TIP_PPTO] <> "REAL",
+			        FAC_NEGFIN_FORECAST[IND_DES] = "PERDIDA NETA",
+			        ALL(FAC_NEGFIN_FORECAST[TIP_PPTO])
+			    )
+			
+			RETURN 
+			    DIVIDE(ACTUAL_M - PPTO_M, PPTO_M, 0)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: ad3af0ef-631f-40fc-a25d-ccbc50bac31e
+
+	measure %DIF_PPTO_GTO_COB = ```
+			
+			VAR ACTUAL = 
+			    CALCULATE(
+			        SUM(FAC_NEGFIN_FORECAST[IMP]), 
+			        FAC_NEGFIN_FORECAST[TIP_PPTO] = "REAL",
+			        FAC_NEGFIN_FORECAST[IND_DES] = "INGRESO POR GASTO DE COBRANZA"
+			    )
+			
+			VAR PPTO_AJUSTADO = 
+			    CALCULATE(
+			        SUM(FAC_NEGFIN_FORECAST[IMP]), 
+			        FAC_NEGFIN_FORECAST[TIP_PPTO] <> "REAL",
+			         FAC_NEGFIN_FORECAST[IND_DES] = "INGRESO POR GASTO DE COBRANZA",
+			        ALL(FAC_NEGFIN_FORECAST[TIP_PPTO])
+			    )
+			
+			-- Normalizamos el PPTO multiplicando por 100 para igualar la escala del REAL
+			
+			
+			RETURN 
+			   IF(
+			        ISBLANK(ACTUAL) || ISBLANK(PPTO_AJUSTADO), 
+			        0, 
+			        DIVIDE(ACTUAL-PPTO_AJUSTADO, PPTO_AJUSTADO, 0)
+			    )
+			```
+		lineageTag: 3ada30ab-351f-4916-a54b-b00296b7c6b0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Filtro_Ultima_Fecha =
+			
+			VAR MaxFecha = CALCULATE(MAX('FAC_NEGFIN_FORECAST'[FECHA_CARGA]), ALL('FAC_NEGFIN_FORECAST'))
+			RETURN
+			IF(SELECTEDVALUE('FAC_NEGFIN_FORECAST'[FECHA_CARGA]) = MaxFecha, 1, 0)
+		formatString: 0
+		lineageTag: f5f7ebcd-9015-4b31-89b0-b5e21da474f2
+
+	measure RECUPERACION_REAL =
+			
+			CALCULATE(
+			    SUMX(
+			        FAC_NEGFIN_FORECAST,
+			        VAR EsUltimoDia = (FAC_NEGFIN_FORECAST[FECHA_CARGA] = EOMONTH(FAC_NEGFIN_FORECAST[FECHA_CARGA], 0))
+			        RETURN
+			        IF(
+			            FAC_NEGFIN_FORECAST[TIP_INF] = 110 &&
+			            FAC_NEGFIN_FORECAST[TIP_PPTO] = "REAL" &&
+			            FAC_NEGFIN_FORECAST[IND_DES] = "RECUPERACIONES",
+			            [IMP] * 1.16,
+			            [IMP]
+			        )
+			    ),
+			    ALL(FAC_NEGFIN_FORECAST[TIP_PPTO]) -- <--- Esto obliga a la medida a ignorar el Slicer
+			
+			)
+		lineageTag: 850d48f0-1646-4535-9a00-3e3941ed0bc7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure FECHA_ACTUALIZACION =
+			
+			VAR FECHAULTIMA = MAX(FAC_NEGFIN_FORECAST[FECHA_CARGA])
+			RETURN
+			    FECHAULTIMA+1
+		formatString: Short Date
+		lineageTag: baabe10e-7a79-4b7e-baa3-f80c7b1e05dd
+
+	measure TOTAL_IMP_SIN_BLANK = ```
+			
+			        VAR RESULTADO =
+			                SUM(FAC_NEGFIN_FORECAST[IMP])
+			        RETURN 
+			            COALESCE(RESULTADO, " ")
+			```
+		lineageTag: 29849bea-e78c-4cfa-aa05-80c011eef6cf
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure PPTO_VALOR_TARGET = ```
+			
+			CALCULATE(
+			    SUM(FAC_NEGFIN_FORECAST[IMP]) * 1000, 
+			    FAC_NEGFIN_FORECAST[TIP_PPTO] <> "REAL",
+			    FAC_NEGFIN_FORECAST[IND_DES] = "RECUPERACIONES"
+			)
+			```
+		lineageTag: 30ee9ef4-ef0f-44e9-8809-7817f6762d12
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure %DIF_DIA_graf = ```
+			
+			VAR FechaContexto = MAX('FAC_NEGFIN_FORECAST'[FECHA_CARGA])
+			VAR Actual = SUM('FAC_NEGFIN_FORECAST'[IMP])
+			
+			VAR Anterior = 
+			    CALCULATE(
+			        SUM('FAC_NEGFIN_FORECAST'[IMP]),
+			        -- Borramos el filtro de fecha para poder ir atrás, 
+			        -- pero MANTENEMOS el filtro del indicador (IND_DES_REAL)
+			        ALLEXCEPT('FAC_NEGFIN_FORECAST', 'FAC_NEGFIN_FORECAST'[IND_DES_REAL]),
+			        'FAC_NEGFIN_FORECAST'[FECHA_CARGA] = FechaContexto - 1
+			    )
+			
+			RETURN 
+			    IF(
+			        ISBLANK(Anterior) || Anterior = 0, 
+			        0, 
+			        DIVIDE(Actual - Anterior, Anterior, 0)
+			    )
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 14da60a6-c35b-4e46-a57c-d06300a6c88a
+
+	column Prueba
+		dataType: string
+		lineageTag: 7b0a9ad0-a111-4af2-9942-11db7ac4c453
+		summarizeBy: none
+		sourceColumn: Prueba
+
+		annotation SummarizationSetBy = Automatic
+
+	column Filtro_Slicer_Dinamico =
+			
+			VAR MaxFechaHechos = CALCULATE(MAX('FAC_NEGFIN_FORECAST'[FECHA_CARGA]), ALL('FAC_NEGFIN_FORECAST'))
+			VAR FechaSlicer = SELECTEDVALUE('vdim_calendario'[FECHA_COMPLETA])
+			
+			RETURN
+			IF(FechaSlicer = MaxFechaHechos, 1, 0)
+		formatString: 0
+		lineageTag: c026babb-b766-48dd-8104-dd97dc386f18
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Medidas = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Prueba = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Prueba", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
