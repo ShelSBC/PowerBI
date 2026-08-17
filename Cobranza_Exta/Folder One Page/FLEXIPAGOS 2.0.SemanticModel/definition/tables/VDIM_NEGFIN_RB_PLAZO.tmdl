@@ -1,0 +1,51 @@
+table VDIM_NEGFIN_RB_PLAZO
+	lineageTag: 0e41be0e-5b42-4fb9-a643-2892e60ddb34
+
+	column ID
+		dataType: int64
+		formatString: 0
+		lineageTag: ae538abd-bb52-45ea-9f9f-925e1e153faf
+		summarizeBy: none
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PLAZO
+		dataType: string
+		lineageTag: d27e5bf6-76e7-44c4-80a7-a0b74160627a
+		summarizeBy: none
+		sourceColumn: PLAZO
+
+		annotation SummarizationSetBy = Automatic
+
+	column FCH_CARGA
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 909eeafd-6ee5-41b5-bcc2-8bb897df3f85
+		summarizeBy: none
+		sourceColumn: FCH_CARGA
+
+		variation Variación
+			isDefault
+			relationship: a7be256c-0a31-4099-82a7-13bc618bff9c
+			defaultHierarchy: LocalDateTable_92af4745-f84b-4ed8-812c-e85904bcd88f.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition VDIM_NEGFIN_RB_PLAZO = m
+		mode: import
+		source =
+				let
+				    Origen = GoogleBigQuery.Database(),
+				    #"crp-pro-dwh-semanticagold" = Origen{[Name="crp-pro-dwh-semanticagold"]}[Data],
+				    MUS_PRO_DWH_VIEWS_ODS_Schema = #"crp-pro-dwh-semanticagold"{[Name="MUS_PRO_DWH_VIEWS_ODS",Kind="Schema"]}[Data],
+				    VDIM_NEGFIN_RB_PLAZO_View = MUS_PRO_DWH_VIEWS_ODS_Schema{[Name="VDIM_NEGFIN_RB_PLAZO",Kind="View"]}[Data]
+				in
+				    VDIM_NEGFIN_RB_PLAZO_View
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,70 @@
+table VDIM_TIPO_TARJETA
+	lineageTag: b4c334bf-bf1f-4bbb-af80-98e571fc4d97
+
+	column TIP_INF
+		dataType: string
+		lineageTag: fb7da2d9-1883-44d8-8816-b090de0196fb
+		summarizeBy: none
+		sourceColumn: TIP_INF
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRODUCTO
+		dataType: string
+		lineageTag: fed2d927-4ca0-4c2a-9b06-08b8210e8a7b
+		summarizeBy: none
+		sourceColumn: PRODUCTO
+
+		annotation SummarizationSetBy = Automatic
+
+	column COLOR
+		dataType: string
+		lineageTag: 81e043e5-6449-4219-8fe5-f6cc950e35c0
+		summarizeBy: none
+		sourceColumn: COLOR
+
+		annotation SummarizationSetBy = Automatic
+
+	column ORG
+		dataType: string
+		lineageTag: b31dd1f3-5be5-41c1-a7ff-889fc3ab873c
+		summarizeBy: none
+		sourceColumn: ORG
+
+		annotation SummarizationSetBy = Automatic
+
+	column NEG_FIN
+		dataType: string
+		lineageTag: 7e8cf809-9294-4374-a80c-ecfe22054177
+		summarizeBy: none
+		sourceColumn: NEG_FIN
+
+		annotation SummarizationSetBy = Automatic
+
+	column COLOR_ORG
+		dataType: string
+		lineageTag: 3c1173c7-f667-445e-b758-7d973b32c09d
+		summarizeBy: none
+		sourceColumn: COLOR_ORG
+
+		annotation SummarizationSetBy = Automatic
+
+	column COLOR_TOTAL
+		dataType: string
+		lineageTag: 11ad5971-69f3-4e33-8b94-63742dd14809
+		summarizeBy: none
+		sourceColumn: COLOR_TOTAL
+
+		annotation SummarizationSetBy = Automatic
+
+	partition VDIM_TIPO_TARJETA = m
+		mode: import
+		source =
+				let
+				    Origen = GoogleBigQuery.Database(),
+				    #"crp-pro-cx-semantica" = Origen{[Name="crp-pro-cx-semantica"]}[Data],
+				    mus_pro_negfin_shared_views_Schema = #"crp-pro-cx-semantica"{[Name="mus_pro_negfin_shared_views",Kind="Schema"]}[Data],
+				    VDIM_TIPO_TARJETA_View = mus_pro_negfin_shared_views_Schema{[Name="VDIM_TIPO_TARJETA",Kind="View"]}[Data]
+				in
+				    VDIM_TIPO_TARJETA_View
+

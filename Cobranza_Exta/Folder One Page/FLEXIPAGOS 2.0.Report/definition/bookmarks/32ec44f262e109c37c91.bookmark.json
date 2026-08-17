@@ -1,0 +1,116 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.0.0/schema.json",
+  "displayName": "SEG_RFM - SALDO %",
+  "name": "32ec44f262e109c37c91",
+  "options": {
+    "targetVisualNames": [
+      "2259ed4461770f0607ee"
+    ]
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "14e6f1f3743e3d806a47",
+    "sections": {
+      "14e6f1f3743e3d806a47": {
+        "filters": {
+          "byExpr": [
+            {
+              "name": "7cbe9d9345587b827e78",
+              "type": "Categorical",
+              "filter": {
+                "Version": 2,
+                "From": [
+                  {
+                    "Name": "v",
+                    "Entity": "VDIM_CALENDARIO",
+                    "Type": 0
+                  }
+                ],
+                "Where": [
+                  {
+                    "Condition": {
+                      "In": {
+                        "Expressions": [
+                          {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "v"
+                                }
+                              },
+                              "Property": "FLG_T0"
+                            }
+                          }
+                        ],
+                        "Values": [
+                          [
+                            {
+                              "Literal": {
+                                "Value": "'1'"
+                              }
+                            }
+                          ]
+                        ]
+                      }
+                    }
+                  }
+                ]
+              },
+              "expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VDIM_CALENDARIO"
+                    }
+                  },
+                  "Property": "FLG_T0"
+                }
+              },
+              "howCreated": 1
+            }
+          ]
+        },
+        "visualContainers": {},
+        "visualContainerGroups": {
+          "accb11df4c9ac6073da9": {
+            "isHidden": false
+          },
+          "67355802e48a0a6ca870": {
+            "isHidden": false
+          },
+          "f912d618fae91757b3a1": {
+            "isHidden": false,
+            "children": {
+              "25e59d79bc84327ca744": {
+                "isHidden": false
+              }
+            }
+          },
+          "e63dc5f2d262f3cbd8bf": {
+            "isHidden": false
+          },
+          "77ed44c52053ecacc552": {
+            "isHidden": false
+          }
+        }
+      }
+    },
+    "objects": {
+      "merge": {
+        "outspacePane": [
+          {
+            "properties": {
+              "expanded": {
+                "expr": {
+                  "Literal": {
+                    "Value": "true"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,1178 @@
+/// Castigos % saldo plan año 2
+table MEDIDAS
+	lineageTag: f43f995d-d4cb-492c-9332-0ef505f53312
+
+	/// Calculo porcentaje 30+
+	measure PCT_SDOACT_30 =
+			DIVIDE(
+			    CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_ACT]),VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_30]=1),
+			    CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_ACT]))
+			)
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		lineageTag: 4d61ba7e-57c0-403b-990a-51a2da794164
+
+	measure temadinamico_orange = ```
+			VAR seleccion_ =
+			    SELECTEDVALUE ( VDIM_PRODUCTO[TIP_INF] )
+			RETURN
+			    IF (
+			        seleccion_ = 100,
+			        "#666666",
+			        IF (
+			            seleccion_ = 110,
+			            "#ff00ff",
+			             IF( seleccion_=210, "#9900FF" , 
+			           IF(seleccion_=200 ,"#666666", 
+			            "#FD6F21"))
+			        )
+			    )
+			```
+		lineageTag: 9dbd0745-51dd-4bde-9aac-825b5e83faa0
+
+	measure temadinamico_violeta = ```
+			VAR seleccion_ =
+			    SELECTEDVALUE ( VDIM_PRODUCTO[TIP_INF] )
+			RETURN
+			    IF (
+			        seleccion_ = 100,
+			        "#666666",
+			        IF (
+			            seleccion_ = 110,
+			            "#ff00ff",
+			           IF( seleccion_=210, "#9900FF" , 
+			           IF(seleccion_=200 ,"#666666", 
+			            "#BF7EB4"))
+			        )
+			    )
+			```
+		lineageTag: 207c3c68-20b8-4f06-a230-cd9e098f2217
+
+	measure Nombre_Tarjeta = ```
+			VAR NombreDinamico =
+			    SELECTEDVALUE (
+			        VDIM_PRODUCTO[TIP_INF],
+			        ""
+			    )
+			VAR NombreDinamico_ =
+			    SWITCH (
+			        TRUE (),
+			        NombreDinamico = 110, "Dilisa",
+			        NombreDinamico = 100, "LPC",
+			         NombreDinamico = 210, "SBB TD",
+			        NombreDinamico = 200, "SBB VISA"
+			    )
+			VAR A_ = "Tarjeta " & NombreDinamico_
+			RETURN
+			    IF (
+			        NombreDinamico = "",
+			        "Todos los productos",
+			        A_
+			    )
+			    
+			```
+		lineageTag: ee853e78-661f-4227-b1b3-04bfdaaea6ae
+
+	measure CTA_SDO_ACT_FLG_30_3 =
+			CALCULATE (
+			    [CTA_SDO_ACT_FLG_30],
+			    FILTER (
+			        VFAC_NEGFIN_RB_FLEXIPAGOS,
+			        VFAC_NEGFIN_RB_FLEXIPAGOS[ANTIG_ESTR] = 3
+			    )
+			)
+		formatString: 0.0\ %;-0.0\ %;0.0\ %
+		lineageTag: 4eacc181-a464-485c-90a7-b16e36d3b257
+
+	measure CTA_SDO_ACT_FLG_30 =
+			DIVIDE (
+			    CALCULATE (
+			        SUM ( VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_ACT] ),
+			        VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_30] = 1
+			    ),
+			    SUM ( VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_ACT] ),
+			    0
+			)
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		lineageTag: 3d1e6046-8c8f-4aa4-82fe-a1a694265d2d
+
+	measure CTA_SDO_ACT_FLG_90_9 =
+			CALCULATE (
+			    [CTA_SDO_ACT_FLG_90],
+			    FILTER (
+			        VFAC_NEGFIN_RB_FLEXIPAGOS,
+			        VFAC_NEGFIN_RB_FLEXIPAGOS[ANTIG_ESTR] = 9
+			    )
+			)
+		formatString: 0.0\ %;-0.0\ %;0.0\ %
+		lineageTag: 854d9bd6-d3ee-4b91-b09c-dc79180c78d9
+
+	measure CTA_SDO_ACT_FLG_90 = ```
+			DIVIDE (
+			    CALCULATE (
+			        SUM ( VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_ACT] ),
+			        VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_90] = 1 
+			    ),CALCULATE (
+			    SUM ( VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_ACT] )
+			   ),0
+			)
+			```
+		lineageTag: 752290c9-3e35-4f1d-a288-36e90f13851b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ' Y1_CASTIGOS' =
+			VAR A =
+			    CALCULATE (
+			        SUM (VFAC_NEGFIN_RB_FLEXIPAGOS[IMP_CAST] ),
+			        VFAC_NEGFIN_RB_FLEXIPAGOS[YTD_CAST] = "Y1",
+			        VFAC_NEGFIN_RB_FLEXIPAGOS[RANG_Y1] = 1
+			    )
+			VAR B =
+			    DIVIDE (
+			        CALCULATE (
+			            SUM ( VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_ACT] ),
+			            VFAC_NEGFIN_RB_FLEXIPAGOS[YTD_ESTR] = "Y1",
+			            VFAC_NEGFIN_RB_FLEXIPAGOS[RANG_Y1] = 1
+			        ),
+			        13,
+			        0
+			    )
+			VAR C =
+			    DIVIDE (
+			        A,
+			        B,
+			        0
+			    )
+			RETURN
+			    C
+		formatString: 0.0\ %;-0.0\ %;0.0\ %
+		lineageTag: 4a940cc9-83a4-4b30-9b97-681e13c13ef3
+
+	measure ' Y2_CASTIGOS' =
+			VAR A =
+			    CALCULATE (
+			        SUM (VFAC_NEGFIN_RB_FLEXIPAGOS[IMP_CAST] ),
+			        VFAC_NEGFIN_RB_FLEXIPAGOS[YTD_CAST] = "Y2",
+			        VFAC_NEGFIN_RB_FLEXIPAGOS[RANG_Y2] = 1
+			    )
+			VAR B =
+			    DIVIDE (
+			        CALCULATE (
+			            SUM ( VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_ACT] ),
+			            VFAC_NEGFIN_RB_FLEXIPAGOS[YTD_ESTR] = "Y2",
+			            VFAC_NEGFIN_RB_FLEXIPAGOS[RANG_Y2] = 1
+			        ),
+			        12,
+			        0
+			    )
+			VAR C =
+			    DIVIDE (
+			        A,
+			        B,
+			        0
+			    )
+			RETURN
+			    CALCULATE (
+			        C,
+			        FILTER (
+			            VFAC_NEGFIN_RB_FLEXIPAGOS,
+			            VFAC_NEGFIN_RB_FLEXIPAGOS[ACTIVA] = 1
+			        )
+			    )
+		formatString: 0.0\ %;-0.0\ %;0.0\ %
+		lineageTag: 6a6f8167-706e-4c1d-a5ad-103099832c4d
+
+	measure ' CTA_SDO_PLAN_FLG_30' =
+			DIVIDE (
+			    CALCULATE (
+			        SUM ( VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_PLAN] ),
+			        VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_30] = 1
+			    ),
+			    SUM ( VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_PLAN] ),
+			    0
+			)
+		lineageTag: 4b80d8a5-dd90-40ce-80b0-3c2fafa3cbdc
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure CTA_SDO_PLAN_FLG_30_3 =
+			CALCULATE (
+			    [ CTA_SDO_PLAN_FLG_30],
+			    FILTER (
+			        VFAC_NEGFIN_RB_FLEXIPAGOS,
+			        VFAC_NEGFIN_RB_FLEXIPAGOS[ANTIG_ESTR] = 3
+			    )
+			)
+		formatString: 0.0\ %;-0.0\ %;0.0\ %
+		lineageTag: b77fe56c-2c8b-40c1-acaf-1cd568ce3057
+
+	measure ' CTA_SDO_PLAN_FLG_90' =
+			DIVIDE (
+			    CALCULATE (
+			        SUM ( VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_PLAN] ),
+			        VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_90] = 1,VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT]=1
+			    ),
+			    CALCULATE(SUM ( VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_PLAN] ),VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT]=1),
+			    0
+			)
+		lineageTag: 7c42410e-7fa1-4093-ba54-9d3ca340a210
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure CTA_SDO_PLAN_FLG_90_9 =
+			CALCULATE (
+			    [ CTA_SDO_PLAN_FLG_90],
+			    FILTER (
+			        VFAC_NEGFIN_RB_FLEXIPAGOS,
+			        VFAC_NEGFIN_RB_FLEXIPAGOS[ANTIG_ESTR] = 9
+			    )
+			)
+		formatString: 0.0\ %;-0.0\ %;0.0\ %
+		lineageTag: f485cbe7-aeef-4d3f-954a-510d06c8c288
+
+	measure ' Y1_CASTIGOS_PLAN' =
+			VAR A =
+			    CALCULATE (
+			        SUM (VFAC_NEGFIN_RB_FLEXIPAGOS[IMP_CAST] ),
+			        VFAC_NEGFIN_RB_FLEXIPAGOS[YTD_CAST] = "Y1",
+			        VFAC_NEGFIN_RB_FLEXIPAGOS[RANG_Y1] = 1
+			    )
+			VAR B =
+			    DIVIDE (
+			        CALCULATE (
+			            SUM ( VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_PLAN] ),
+			            VFAC_NEGFIN_RB_FLEXIPAGOS[YTD_ESTR] = "Y1",
+			            VFAC_NEGFIN_RB_FLEXIPAGOS[RANG_Y1] = 1
+			        ),
+			        13,
+			        0
+			    )
+			VAR C =
+			    DIVIDE (
+			        A,
+			        B,
+			        0
+			    )
+			RETURN
+			    C
+		formatString: 0.0\ %;-0.0\ %;0.0\ %
+		lineageTag: 4a665126-0dc8-4ba5-af58-8c28d9bd5130
+
+	measure ' Y2_CASTIGOS_PLAN' =
+			VAR A =
+			    CALCULATE (
+			        SUM (VFAC_NEGFIN_RB_FLEXIPAGOS[IMP_CAST] ),
+			        VFAC_NEGFIN_RB_FLEXIPAGOS[YTD_CAST] = "Y2",
+			        VFAC_NEGFIN_RB_FLEXIPAGOS[RANG_Y2] = 1
+			    )
+			VAR B =
+			    DIVIDE (
+			        CALCULATE (
+			            SUM ( VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_PLAN] ),
+			            VFAC_NEGFIN_RB_FLEXIPAGOS[YTD_ESTR] = "Y2",
+			            VFAC_NEGFIN_RB_FLEXIPAGOS[RANG_Y2] = 1
+			        ),
+			        12,
+			        0
+			    )
+			VAR C =
+			    DIVIDE (
+			        A,
+			        B,
+			        0
+			    )
+			RETURN
+			    CALCULATE (
+			        C,
+			        FILTER (
+			            VFAC_NEGFIN_RB_FLEXIPAGOS,
+			            VFAC_NEGFIN_RB_FLEXIPAGOS[ACTIVA] = 1
+			        )
+			    )
+		formatString: 0.0\ %;-0.0\ %;0.0\ %
+		lineageTag: ed8cc190-3dee-4835-8a6b-41ca0b36c30a
+
+	measure VT_CTA = CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[CTAS]), FILTER(VFAC_NEGFIN_RB_FLEXIPAGOS, VFAC_NEGFIN_RB_FLEXIPAGOS[ANTIG_ESTR]=0))
+		formatString: 0.0
+		lineageTag: 152ac7e0-b665-4374-a900-4a506947e626
+
+	measure VT_SALDO_PLAN = CALCULATE(DIVIDE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_PLAN]),1,0),FILTER(VFAC_NEGFIN_RB_FLEXIPAGOS,VFAC_NEGFIN_RB_FLEXIPAGOS[ANTIG_ESTR]=0))
+		lineageTag: 4d67ef82-83c3-4a7e-8863-52517f01b380
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure VT_CTA_SDO_PLAN_FLG_30_30 = ```
+			
+			CALCULATE (
+			    [ CTA_SDO_PLAN_FLG_30],
+			    FILTER (
+			        VFAC_NEGFIN_RB_FLEXIPAGOS, 
+			        VFAC_NEGFIN_RB_FLEXIPAGOS[ANTIG_ESTR] = 3
+			    )
+			)
+			```
+		formatString: 0.0\ %;-0.0\ %;0.0\ %
+		lineageTag: 85f1ca3e-fa34-4578-8353-ff49d912c490
+
+	measure VT_CTA_SDO_PLAN_FLG_60_30 = ```
+			
+			CALCULATE (
+			    [ CTA_SDO_PLAN_FLG_30],
+			    FILTER (
+			        VFAC_NEGFIN_RB_FLEXIPAGOS, 
+			        VFAC_NEGFIN_RB_FLEXIPAGOS[ANTIG_ESTR] = 6
+			    )
+			)
+			```
+		formatString: 0.0\ %;-0.0\ %;0.0\ %
+		lineageTag: c48623ac-1654-41a3-baa4-c3a944f39d0a
+
+	measure VT_CTA_SDO_PLAN_FLG_90_30 = ```
+			
+			CALCULATE (
+			    [ CTA_SDO_PLAN_FLG_30],
+			    FILTER (
+			        VFAC_NEGFIN_RB_FLEXIPAGOS, 
+			        VFAC_NEGFIN_RB_FLEXIPAGOS[ANTIG_ESTR] = 9
+			    )
+			)
+			```
+		formatString: 0.0\ %;-0.0\ %;0.0\ %
+		lineageTag: e1ba415f-4e70-471c-bcff-06ca61eedc0f
+
+	measure VT_CTA_SDO_PLAN_FLG_120_30 = ```
+			
+			CALCULATE (
+			    [ CTA_SDO_PLAN_FLG_30],
+			    FILTER (
+			        VFAC_NEGFIN_RB_FLEXIPAGOS, 
+			        VFAC_NEGFIN_RB_FLEXIPAGOS[ANTIG_ESTR] = 12
+			    )
+			)
+			```
+		formatString: 0.0\ %;-0.0\ %;0.0\ %
+		lineageTag: bccbda8b-e151-405f-9ac7-5c6669ab294e
+
+	measure VT_CTA_SDO_PLAN_FLG_60_90 = ```
+			
+			CALCULATE (
+			    [ CTA_SDO_PLAN_FLG_90],
+			    FILTER (
+			        VFAC_NEGFIN_RB_FLEXIPAGOS, 
+			        VFAC_NEGFIN_RB_FLEXIPAGOS[ANTIG_ESTR] = 6
+			    )
+			)
+			```
+		formatString: 0.0\ %;-0.0\ %;0.0\ %
+		lineageTag: eabdb48a-6615-4887-97fb-4e2c1cd9ff75
+
+	measure VT_CTA_SDO_PLAN_FLG_90_90 = ```
+			
+			CALCULATE (
+			    [ CTA_SDO_PLAN_FLG_90],
+			    FILTER (
+			        VFAC_NEGFIN_RB_FLEXIPAGOS, 
+			        VFAC_NEGFIN_RB_FLEXIPAGOS[ANTIG_ESTR] = 9
+			    )
+			)
+			```
+		formatString: 0.0\ %;-0.0\ %;0.0\ %
+		lineageTag: 14f2072b-f21a-4b50-a035-c4edaef33cf1
+
+	measure VT_CTA_SDO_PLAN_FLG_120_90 = ```
+			
+			CALCULATE (
+			    [ CTA_SDO_PLAN_FLG_90],
+			    FILTER (
+			        VFAC_NEGFIN_RB_FLEXIPAGOS, 
+			        VFAC_NEGFIN_RB_FLEXIPAGOS[ANTIG_ESTR] = 12
+			    )
+			)
+			```
+		formatString: 0.0\ %;-0.0\ %;0.0\ %
+		lineageTag: 3fbfe7dd-a5de-4ca0-a15d-66409a3e79af
+
+	measure VT_CTA_SDO_ACT_FLG_120_30 = ```
+			
+			CALCULATE (
+			    [CTA_SDO_ACT_FLG_30],
+			    FILTER (
+			        VFAC_NEGFIN_RB_FLEXIPAGOS, 
+			        VFAC_NEGFIN_RB_FLEXIPAGOS[ANTIG_ESTR] = 12
+			    )
+			)
+			```
+		formatString: 0.0\ %;-0.0\ %;0.0\ %
+		lineageTag: 066419c4-1069-42bf-97a9-9bd8bd50b32b
+
+	measure VT_CTA_SDO_ACT_FLG_120_90 = ```
+			
+			CALCULATE (
+			    [CTA_SDO_ACT_FLG_90],
+			    FILTER (
+			        VFAC_NEGFIN_RB_FLEXIPAGOS, 
+			        VFAC_NEGFIN_RB_FLEXIPAGOS[ANTIG_ESTR] = 12
+			    )
+			)
+			```
+		formatString: 0.0\ %;-0.0\ %;0.0\ %
+		lineageTag: c168a67a-623d-4e41-9594-f784120aa049
+
+	measure VT_CTA_SDO_ACT_FLG_30_30 = ```
+			
+			CALCULATE (
+			    [CTA_SDO_ACT_FLG_30],
+			    FILTER (
+			        VFAC_NEGFIN_RB_FLEXIPAGOS, 
+			        VFAC_NEGFIN_RB_FLEXIPAGOS[ANTIG_ESTR] = 3
+			     
+			    )
+			)
+			```
+		formatString: 0.0\ %;-0.0\ %;0.0\ %
+		lineageTag: aa30eaf5-7b04-4a33-a109-f948dd6652f0
+
+	measure VT_CTA_SDO_ACT_FLG_60_30 = ```
+			
+			CALCULATE (
+			    [CTA_SDO_ACT_FLG_30],
+			    FILTER (
+			        VFAC_NEGFIN_RB_FLEXIPAGOS, 
+			        VFAC_NEGFIN_RB_FLEXIPAGOS[ANTIG_ESTR] = 6
+			    )
+			)
+			```
+		formatString: 0.0\ %;-0.0\ %;0.0\ %
+		lineageTag: 24e1fa35-5197-4a77-897a-66e05cac0e5f
+
+	measure VT_CTA_SDO_ACT_FLG_60_90 = ```
+			
+			CALCULATE (
+			    [CTA_SDO_ACT_FLG_90],
+			    FILTER (
+			        VFAC_NEGFIN_RB_FLEXIPAGOS, 
+			        VFAC_NEGFIN_RB_FLEXIPAGOS[ANTIG_ESTR] = 6
+			    )
+			)
+			```
+		formatString: 0.0\ %;-0.0\ %;0.0\ %
+		lineageTag: c5cc320b-0678-45c7-b90c-ef116b618f15
+
+	measure VT_CTA_SDO_ACT_FLG_90_30 = ```
+			
+			CALCULATE (
+			    [CTA_SDO_ACT_FLG_30],
+			    FILTER (
+			        VFAC_NEGFIN_RB_FLEXIPAGOS, 
+			        VFAC_NEGFIN_RB_FLEXIPAGOS[ANTIG_ESTR] = 9
+			    )
+			)
+			```
+		formatString: 0.0\ %;-0.0\ %;0.0\ %
+		lineageTag: 36f12f6e-765d-46c0-845d-a8ad93320557
+
+	measure VT_CTA_SDO_ACT_FLG_90_90 = ```
+			
+			CALCULATE (
+			    [CTA_SDO_ACT_FLG_90],
+			    FILTER (
+			        VFAC_NEGFIN_RB_FLEXIPAGOS, 
+			        VFAC_NEGFIN_RB_FLEXIPAGOS[ANTIG_ESTR] = 9
+			    )
+			)
+			```
+		formatString: 0.0\ %;-0.0\ %;0.0\ %
+		lineageTag: 7397a509-d5ee-4d5d-98c0-511fe5576f97
+
+	measure VT_SALDO_ACT = CALCULATE(DIVIDE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[CTA_SDO_ACT]),1,0),FILTER(VFAC_NEGFIN_RB_FLEXIPAGOS,VFAC_NEGFIN_RB_FLEXIPAGOS[ANTIG_ESTR]=0))
+		lineageTag: d592367e-6f49-4b7b-a1cf-5031dc47f9fb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure PROM = DIVIDE(DIVIDE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[CTA_SDO_ACT]),1,0),SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[CTAS])/1000)
+		formatString: #,0
+		lineageTag: fbbdf82d-c7f3-464b-9034-b01fc8f1e5fc
+
+	measure color_t0_num_p =
+			IF (
+			    MAX ( VDIM_CALENDARIO[T0_NUM_P] ) = 1,
+			    "black",
+			    "rgba(0, 0, 0, 0)"
+			)
+		lineageTag: a1c18081-a952-430c-86c6-329a4983c346
+
+	measure ' Castigos / Saldo %' = DIVIDE([ Castigos $],CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_PLAN]),VFAC_NEGFIN_RB_FLEXIPAGOS[ACTIVA]=1))
+		formatString: 0.0\ %;-0.0\ %;0.0\ %
+		lineageTag: 9c5e6058-5170-421e-beeb-22a44f24df3d
+
+	measure ' Castigos $' = SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[IMP_CAST])
+		formatString: 0
+		lineageTag: 029ac2ec-f733-4dec-9598-80e70747b06a
+
+	measure 30+$% = DIVIDE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_PLAN_FLG_30_1]),SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_PLAN]),0)
+		formatString: 0.0\ %;-0.0\ %;0.0\ %
+		lineageTag: 311c41d0-0873-4d40-ab8f-a6da7f2f00b9
+
+	measure 90+$% = DIVIDE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_PLAN_FLG_90_1]),SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_PLAN]),0)
+		formatString: 0.0\ %;-0.0\ %;0.0\ %
+		lineageTag: 3d6a3ffc-bfc8-4b0a-89a2-11dd6a0a06bd
+
+	measure PROM_PLAN = DIVIDE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_PLAN]),SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[CTAS])/1000)
+		formatString: #,0
+		lineageTag: 3f6df3fb-a645-4e93-8152-fd13696482c0
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure '30+ %' = DIVIDE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[MORAS]),SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[CTAS]),0)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 72d81038-ab28-4c39-96db-c3893e8a8225
+
+	measure '60+ %' = DIVIDE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[RANG_NIV_MOR_CTA_60]),SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[CTAS]),0)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 8a6933e2-9c8d-47b1-b2ae-69afd72523e5
+
+	measure '90+ %' = DIVIDE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[RANG_NIV_MOR_CTA_90]),SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[CTAS]),0)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: bc288b19-4192-4f92-905d-a1087f319fc0
+
+	measure ' CUENTA_CORRIENTE' = ```
+			VAR A = CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[CTAS]), 
+			        FILTER(VFAC_NEGFIN_RB_FLEXIPAGOS,
+			                    VFAC_NEGFIN_RB_FLEXIPAGOS[BANDERA_OBS] = "TRUE" &&
+			                    VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT] = 1  &&
+			                    VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "0.-CTAS_VIG"
+			)
+			        )        VAR B =CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[CTAS]), 
+			        FILTER(VFAC_NEGFIN_RB_FLEXIPAGOS,
+			                    VFAC_NEGFIN_RB_FLEXIPAGOS[BANDERA_OBS] = "TRUE" &&
+			                    VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT] = 1
+			                        )
+			        )
+			RETURN DIVIDE(A,B, 0)
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 0b5e1f15-217d-401c-8a68-3e2084a54c75
+
+	measure '30+ % /SDO_PLAN' = DIVIDE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[RANG_NIV_MOR_SDO_PLAN_30]),SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_PLAN]),0)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: be7172f2-c031-496e-8d7a-9148bdbd11b5
+
+	measure '60+ % /SDO_PLAN' = DIVIDE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[RANG_NIV_MOR_SDO_PLAN_60]),SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_PLAN]),0)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 4709dfd1-48ee-4648-86b4-5c4502f549a4
+
+	measure '90+ % /SDO_PLAN' = DIVIDE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[RANG_NIV_MOR_SDO_PLAN_90]),SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_PLAN]),0)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: b580a168-8a19-4395-bbbc-54293e3598f7
+
+	measure '30+ $%' = DIVIDE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[RANG_NIV_MOR_SDO_ACT_30]),SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_ACT]),0)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 606526e8-1e2d-40b2-b17e-7da2f43248e5
+
+	measure '60+ %_SDO_ACT' = DIVIDE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[RANG_NIV_MOR_SDO_ACT_60]),SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_ACT]),0)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: d761a89d-14f6-4700-9205-aa45bf13e279
+
+	measure '90+ $%' = DIVIDE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[RANG_NIV_MOR_SDO_ACT_90]),SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_ACT]),0)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: dbecbe0d-8df1-449d-b8a1-fc1bba71ca16
+
+	measure CUENTA_NO_CORRIENTE = ```
+			VAR A = CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[CTAS]), 
+			        FILTER(VFAC_NEGFIN_RB_FLEXIPAGOS,
+			                    VFAC_NEGFIN_RB_FLEXIPAGOS[BANDERA_OBS] = "TRUE" &&
+			                    VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT] = 1 ))       
+			         VAR B = CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[CTAS]),DATEADD(VDIM_CALENDARIO[FECHA_CALENDARIO],-1,MONTH),VFAC_NEGFIN_RB_FLEXIPAGOS[BANDERA_OBS] = "TRUE",VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT] = 1)
+			RETURN DIVIDE(A,B,0)
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 374a5992-fee4-46ff-86e3-90366adeb087
+
+	measure ' CUENTA_CORRIENTE_PLAN' = ```
+			VAR A = CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_PLAN]), 
+			        FILTER(VFAC_NEGFIN_RB_FLEXIPAGOS,
+			                    VFAC_NEGFIN_RB_FLEXIPAGOS[BANDERA_OBS] = "TRUE" &&
+			                    VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT] = 1  &&
+			                    VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "0.-CTAS_VIG"
+			)
+			        )        VAR B =CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_PLAN]), 
+			        FILTER(VFAC_NEGFIN_RB_FLEXIPAGOS,
+			                    VFAC_NEGFIN_RB_FLEXIPAGOS[BANDERA_OBS] = "TRUE" &&
+			                    VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT] = 1
+			                        )
+			        )
+			RETURN DIVIDE(A,B, 0)
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 62eccbe6-3f24-4c97-9fcd-e5a1535f9307
+
+	measure CUENTA_NO_CORRIENTE_PLAN = ```
+			VAR A = CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_PLAN]), 
+			        FILTER(VFAC_NEGFIN_RB_FLEXIPAGOS,
+			                    VFAC_NEGFIN_RB_FLEXIPAGOS[BANDERA_OBS] = "TRUE" &&
+			                    VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT] = 1 ))       
+			         VAR B = CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_PLAN]),DATEADD(VDIM_CALENDARIO[FECHA_CALENDARIO],-1,MONTH),VFAC_NEGFIN_RB_FLEXIPAGOS[BANDERA_OBS] = "TRUE",VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT] = 1)
+			RETURN B --DIVIDE(A,B,0)
+			```
+		formatString: 0.00
+		lineageTag: 918188de-01f9-4584-9658-5e37a3151e04
+
+	measure CUENTA_NO_CORRIENTE_ACT = ```
+			VAR A = CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_ACT]), 
+			        FILTER(VFAC_NEGFIN_RB_FLEXIPAGOS,
+			                    VFAC_NEGFIN_RB_FLEXIPAGOS[BANDERA_OBS] = "TRUE" &&
+			                    VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT] = 1 ))       
+			         VAR B = CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_ACT]),
+			         DATEADD(VDIM_CALENDARIO[FECHA_CALENDARIO],-1,MONTH),
+			         VFAC_NEGFIN_RB_FLEXIPAGOS[BANDERA_OBS] = "TRUE",VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT] = 1)
+			RETURN DIVIDE(A,B,0)
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 5887d4a9-158d-43b0-befc-77579ac112fb
+
+	measure ' CUENTA_CORRIENTE_ACT' = ```
+			VAR A = CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_ACT]), 
+			        FILTER(VFAC_NEGFIN_RB_FLEXIPAGOS,
+			                    VFAC_NEGFIN_RB_FLEXIPAGOS[BANDERA_OBS] = "TRUE" &&
+			                    VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT] = 1  &&
+			                    VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "0.-CTAS_VIG"
+			)
+			        )        VAR B =CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_ACT]), 
+			        FILTER(VFAC_NEGFIN_RB_FLEXIPAGOS,
+			                    VFAC_NEGFIN_RB_FLEXIPAGOS[BANDERA_OBS] = "TRUE" &&
+			                    VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT] = 1
+			                        )
+			        )
+			RETURN DIVIDE(A,B, 0)
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 34bfeb9c-933c-428c-a7da-82fb1b1c2c4e
+
+	measure 'Castigos / Saldo % ACT' = DIVIDE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[IMP_CAST]),CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_ACT]),VFAC_NEGFIN_RB_FLEXIPAGOS[ACTIVA]=1))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 5715cb46-94ec-4c06-9a8c-1a1e914cb9f7
+
+	measure RR_CTA_1-29 =
+			
+			var corriente = CALCULATE(CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[CTAS]),
+			        FILTER(ALLEXCEPT(VFAC_NEGFIN_RB_FLEXIPAGOS,VDIM_CALENDARIO[FECHA_COMPLETA],VDIM_PRODUCTO[TIP_INF],VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT]),
+			                        VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "0.-CTAS_VIG"
+			                        )
+			                ),DATEADD(VDIM_CALENDARIO[FECHA_COMPLETA],-1,MONTH)
+			                )
+			var Mora_1_29 = CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[CTAS]),
+			FILTER(ALLEXCEPT(VFAC_NEGFIN_RB_FLEXIPAGOS,VDIM_CALENDARIO[FECHA_COMPLETA],VDIM_CALENDARIO[MES_ANIO_LETRA],VDIM_PRODUCTO[TIP_INF],VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT]),
+			                    VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "1.-1-29 DIAS"
+			                    )
+			                    )
+			
+			var div = DIVIDE(Mora_1_29,corriente,0)
+			
+			return div
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 1800f537-a3c0-4722-95b2-20ff0efc9762
+
+	measure RR_CTA_0 = CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[CTAS]),VFAC_NEGFIN_RB_FLEXIPAGOS[RANG_NIV_MOR_DESC]="CORRIENTE")/SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[CTAS])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 3ed29945-960a-4021-b63f-8a2b66677dae
+
+	measure RR_CTA_120 =
+			
+			var corriente = CALCULATE(CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[CTAS]),
+			        FILTER(ALLEXCEPT(VFAC_NEGFIN_RB_FLEXIPAGOS,VDIM_CALENDARIO[FECHA_COMPLETA],VDIM_PRODUCTO[TIP_INF],VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT]),
+			                        VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "4.-90_DIAS"
+			                        )
+			                ),DATEADD(VDIM_CALENDARIO[FECHA_COMPLETA],-1,MONTH)
+			                )
+			var Mora_1_29 = CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[CTAS]),
+			FILTER(ALLEXCEPT(VFAC_NEGFIN_RB_FLEXIPAGOS,VDIM_CALENDARIO[FECHA_COMPLETA],VDIM_CALENDARIO[MES_ANIO_LETRA],VDIM_PRODUCTO[TIP_INF],VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT]),
+			                    VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "5.-120_DIAS"
+			                    ))
+			
+			var div = DIVIDE(Mora_1_29,corriente,0)
+			
+			return div
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 0a3e672a-85ed-4701-9109-df379483bf02
+
+	measure RR_CTA_150 =
+			
+			var corriente = CALCULATE(CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[CTAS]),
+			        FILTER(ALLEXCEPT(VFAC_NEGFIN_RB_FLEXIPAGOS,VDIM_CALENDARIO[FECHA_COMPLETA],VDIM_PRODUCTO[TIP_INF],VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT]),
+			                        VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "5.-120_DIAS"
+			                        )
+			                ),DATEADD(VDIM_CALENDARIO[FECHA_COMPLETA],-1,MONTH)
+			                )
+			var Mora_1_29 = CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[CTAS]),
+			FILTER(ALLEXCEPT(VFAC_NEGFIN_RB_FLEXIPAGOS,VDIM_CALENDARIO[FECHA_COMPLETA],VDIM_CALENDARIO[MES_ANIO_LETRA],VDIM_PRODUCTO[TIP_INF],VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT]),
+			                    VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "6.-150_DIAS"
+			                    ))
+			
+			var div = DIVIDE(Mora_1_29,corriente,0)
+			
+			return div
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 31752a64-b83f-42a7-8fcd-84f03469a34a
+
+	measure RR_CTA_180 =
+			
+			var corriente = CALCULATE(CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[CTAS]),
+			        FILTER(ALLEXCEPT(VFAC_NEGFIN_RB_FLEXIPAGOS,VDIM_CALENDARIO[FECHA_COMPLETA],VDIM_PRODUCTO[TIP_INF],VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT]),
+			                        VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "6.-150_DIAS"
+			                        )
+			                ),DATEADD(VDIM_CALENDARIO[FECHA_COMPLETA],-1,MONTH)
+			                )
+			var Mora_1_29 = CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[CTAS]),
+			FILTER(ALLEXCEPT(VFAC_NEGFIN_RB_FLEXIPAGOS,VDIM_CALENDARIO[FECHA_COMPLETA],VDIM_CALENDARIO[MES_ANIO_LETRA],VDIM_PRODUCTO[TIP_INF],VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT]),
+			                    VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "7.-180_DIAS"
+			                    ))
+			
+			var div = DIVIDE(Mora_1_29,corriente,0)
+			
+			return div
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 81060959-67d0-42b0-9519-41eb53c50e81
+
+	measure RR_CTA_210 =
+			
+			var corriente = CALCULATE(CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[CTAS]),
+			        FILTER(ALLEXCEPT(VFAC_NEGFIN_RB_FLEXIPAGOS,VDIM_CALENDARIO[FECHA_COMPLETA],VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT],VDIM_PRODUCTO[TIP_INF]),
+			                        VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "7.-180_DIAS"
+			                        )
+			                ),DATEADD(VDIM_CALENDARIO[FECHA_COMPLETA],-1,MONTH)
+			                )
+			var Mora_1_29 = CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[CTAS]),
+			FILTER(ALLEXCEPT(VFAC_NEGFIN_RB_FLEXIPAGOS,VDIM_CALENDARIO[FECHA_COMPLETA],VDIM_CALENDARIO[MES_ANIO_LETRA],VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT],VDIM_PRODUCTO[TIP_INF]),
+			                    VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "8.-210_DIAS"
+			                    ))
+			
+			var div = DIVIDE(Mora_1_29,corriente,0)
+			
+			return div
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 9d41efd3-26b6-42b3-99ef-60fef82c537a
+
+	measure RR_CTA_30 =
+			
+			var corriente = CALCULATE(CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[CTAS]),
+			        FILTER(ALLEXCEPT(VFAC_NEGFIN_RB_FLEXIPAGOS,VDIM_CALENDARIO[FECHA_COMPLETA],VDIM_PRODUCTO[TIP_INF],VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT]),
+			                        VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "1.-1-29 DIAS"
+			                        )
+			                ),DATEADD(VDIM_CALENDARIO[FECHA_COMPLETA],-1,MONTH)
+			                )
+			var Mora_1_29 = CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[CTAS]),
+			FILTER(ALLEXCEPT(VFAC_NEGFIN_RB_FLEXIPAGOS,VDIM_CALENDARIO[FECHA_COMPLETA],VDIM_CALENDARIO[MES_ANIO_LETRA],VDIM_PRODUCTO[TIP_INF],VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT]),
+			                    VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "2.-30_DIAS"
+			                    ))
+			
+			var div = DIVIDE(Mora_1_29,corriente,0)
+			
+			return div
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 1659d077-7567-459a-bf13-1daa1efc8afc
+
+	measure RR_CTA_60 =
+			
+			var corriente = CALCULATE(CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[CTAS]),
+			        FILTER(ALLEXCEPT(VFAC_NEGFIN_RB_FLEXIPAGOS,VDIM_CALENDARIO[FECHA_COMPLETA],VDIM_PRODUCTO[TIP_INF],VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT]),
+			                        VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "2.-30_DIAS"
+			                        )
+			                ),DATEADD(VDIM_CALENDARIO[FECHA_COMPLETA],-1,MONTH)
+			                )
+			var Mora_1_29 = CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[CTAS]),
+			FILTER(ALLEXCEPT(VFAC_NEGFIN_RB_FLEXIPAGOS,VDIM_CALENDARIO[FECHA_COMPLETA],VDIM_CALENDARIO[MES_ANIO_LETRA],VDIM_PRODUCTO[TIP_INF],VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT]),
+			                    VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "3.-60_DIAS"
+			                    ))
+			
+			var div = DIVIDE(Mora_1_29,corriente,0)
+			
+			return div
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 9dbd3ddb-d693-41e9-a824-18287166c3b2
+
+	measure RR_CTA_90 =
+			
+			var corriente = CALCULATE(CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[CTAS]),
+			        FILTER(ALLEXCEPT(VFAC_NEGFIN_RB_FLEXIPAGOS,VDIM_CALENDARIO[FECHA_COMPLETA],VDIM_PRODUCTO[TIP_INF],VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT]),
+			                        VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "3.-60_DIAS"
+			                        )
+			                ),DATEADD(VDIM_CALENDARIO[FECHA_COMPLETA],-1,MONTH)
+			                )
+			var Mora_1_29 = CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[CTAS]),
+			FILTER(ALLEXCEPT(VFAC_NEGFIN_RB_FLEXIPAGOS,VDIM_CALENDARIO[FECHA_COMPLETA],VDIM_CALENDARIO[MES_ANIO_LETRA],VDIM_PRODUCTO[TIP_INF],VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT]),
+			                    VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "4.-90_DIAS"
+			                    ))
+			
+			var div = DIVIDE(Mora_1_29,corriente,0)
+			
+			return div
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 498f0dfb-dfbc-4bf3-8391-181e1a71956e
+
+	measure RR_CTA_0_PLAN = CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_PLAN]),VFAC_NEGFIN_RB_FLEXIPAGOS[RANG_NIV_MOR_DESC]="CORRIENTE")/SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_PLAN])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 3fe244e3-226a-4c51-9e2a-a1e4307e5202
+
+	measure RR_CTA_1-29_PLAN =
+			
+			var corriente = CALCULATE(CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_PLAN]),
+			        FILTER(ALLEXCEPT(VFAC_NEGFIN_RB_FLEXIPAGOS,VDIM_CALENDARIO[FECHA_COMPLETA],VDIM_PRODUCTO[TIP_INF],VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT]),
+			                        VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "0.-CTAS_VIG"
+			                        )
+			                ),DATEADD(VDIM_CALENDARIO[FECHA_COMPLETA],-1,MONTH)
+			                )
+			var Mora_1_29 = CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_PLAN]),
+			FILTER(ALLEXCEPT(VFAC_NEGFIN_RB_FLEXIPAGOS,VDIM_CALENDARIO[FECHA_COMPLETA],VDIM_CALENDARIO[MES_ANIO_LETRA],VDIM_PRODUCTO[TIP_INF],VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT]),
+			                    VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "1.-1-29 DIAS"
+			                    )
+			                    )
+			
+			var div = DIVIDE(Mora_1_29,corriente,0)
+			
+			return div
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 18e1d9d7-af23-47d2-8ca3-8af0ed12441f
+
+	measure RR_CTA_120_PLAN =
+			
+			var corriente = CALCULATE(CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_PLAN]),
+			        FILTER(ALLEXCEPT(VFAC_NEGFIN_RB_FLEXIPAGOS,VDIM_CALENDARIO[FECHA_COMPLETA],VDIM_PRODUCTO[TIP_INF],VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT]),
+			                        VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "4.-90_DIAS"
+			                        )
+			                ),DATEADD(VDIM_CALENDARIO[FECHA_COMPLETA],-1,MONTH)
+			                )
+			var Mora_1_29 = CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_PLAN]),
+			FILTER(ALLEXCEPT(VFAC_NEGFIN_RB_FLEXIPAGOS,VDIM_CALENDARIO[FECHA_COMPLETA],VDIM_CALENDARIO[MES_ANIO_LETRA],VDIM_PRODUCTO[TIP_INF],VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT]),
+			                    VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "5.-120_DIAS"
+			                    ))
+			
+			var div = DIVIDE(Mora_1_29,corriente,0)
+			
+			return div
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 2a6bca9f-82c8-47ec-8afb-b25d33a2825b
+
+	measure RR_CTA_150_PLAN =
+			
+			var corriente = CALCULATE(CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_PLAN]),
+			        FILTER(ALLEXCEPT(VFAC_NEGFIN_RB_FLEXIPAGOS,VDIM_CALENDARIO[FECHA_COMPLETA],VDIM_PRODUCTO[TIP_INF],VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT]),
+			                        VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "5.-120_DIAS"
+			                        )
+			                ),DATEADD(VDIM_CALENDARIO[FECHA_COMPLETA],-1,MONTH)
+			                )
+			var Mora_1_29 = CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_PLAN]),
+			FILTER(ALLEXCEPT(VFAC_NEGFIN_RB_FLEXIPAGOS,VDIM_CALENDARIO[FECHA_COMPLETA],VDIM_CALENDARIO[MES_ANIO_LETRA],VDIM_PRODUCTO[TIP_INF],VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT]),
+			                    VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "6.-150_DIAS"
+			                    ))
+			
+			var div = DIVIDE(Mora_1_29,corriente,0)
+			
+			return div
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 4de553a0-0b91-45bf-917a-b50b92cd3ef5
+
+	measure RR_CTA_180_PLAN =
+			
+			var corriente = CALCULATE(CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_PLAN]),
+			        FILTER(ALLEXCEPT(VFAC_NEGFIN_RB_FLEXIPAGOS,VDIM_CALENDARIO[FECHA_COMPLETA],VDIM_PRODUCTO[TIP_INF],VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT]),
+			                        VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "6.-150_DIAS"
+			                        )
+			                ),DATEADD(VDIM_CALENDARIO[FECHA_COMPLETA],-1,MONTH)
+			                )
+			var Mora_1_29 = CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_PLAN]),
+			FILTER(ALLEXCEPT(VFAC_NEGFIN_RB_FLEXIPAGOS,VDIM_CALENDARIO[FECHA_COMPLETA],VDIM_CALENDARIO[MES_ANIO_LETRA],VDIM_PRODUCTO[TIP_INF],VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT]),
+			                    VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "7.-180_DIAS"
+			                    ))
+			
+			var div = DIVIDE(Mora_1_29,corriente,0)
+			
+			return div
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 24d93b60-06e9-444e-a7ec-14c1e834a0a9
+
+	measure RR_CTA_210_PLAN =
+			
+			var corriente = CALCULATE(CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_PLAN]),
+			        FILTER(ALLEXCEPT(VFAC_NEGFIN_RB_FLEXIPAGOS,VDIM_CALENDARIO[FECHA_COMPLETA],VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT],VDIM_PRODUCTO[TIP_INF]),
+			                        VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "7.-180_DIAS"
+			                        )
+			                ),DATEADD(VDIM_CALENDARIO[FECHA_COMPLETA],-1,MONTH)
+			                )
+			var Mora_1_29 = CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_PLAN]),
+			FILTER(ALLEXCEPT(VFAC_NEGFIN_RB_FLEXIPAGOS,VDIM_CALENDARIO[FECHA_COMPLETA],VDIM_CALENDARIO[MES_ANIO_LETRA],VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT],VDIM_PRODUCTO[TIP_INF]),
+			                    VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "8.-210_DIAS"
+			                    ))
+			
+			var div = DIVIDE(Mora_1_29,corriente,0)
+			
+			return div
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 6c34cdcd-3640-4130-abbb-848ee85793bd
+
+	measure RR_CTA_30_PLAN =
+			
+			var corriente = CALCULATE(CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_PLAN]),
+			        FILTER(ALLEXCEPT(VFAC_NEGFIN_RB_FLEXIPAGOS,VDIM_CALENDARIO[FECHA_COMPLETA],VDIM_PRODUCTO[TIP_INF],VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT]),
+			                        VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "1.-1-29 DIAS"
+			                        )
+			                ),DATEADD(VDIM_CALENDARIO[FECHA_COMPLETA],-1,MONTH)
+			                )
+			var Mora_1_29 = CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_PLAN]),
+			FILTER(ALLEXCEPT(VFAC_NEGFIN_RB_FLEXIPAGOS,VDIM_CALENDARIO[FECHA_COMPLETA],VDIM_CALENDARIO[MES_ANIO_LETRA],VDIM_PRODUCTO[TIP_INF],VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT]),
+			                    VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "2.-30_DIAS"
+			                    ))
+			
+			var div = DIVIDE(Mora_1_29,corriente,0)
+			
+			return div
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: db47d3c1-67a7-420d-b4fd-631d28af1274
+
+	measure RR_CTA_60_PLAN =
+			
+			var corriente = CALCULATE(CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_PLAN]),
+			        FILTER(ALLEXCEPT(VFAC_NEGFIN_RB_FLEXIPAGOS,VDIM_CALENDARIO[FECHA_COMPLETA],VDIM_PRODUCTO[TIP_INF],VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT]),
+			                        VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "2.-30_DIAS"
+			                        )
+			                ),DATEADD(VDIM_CALENDARIO[FECHA_COMPLETA],-1,MONTH)
+			                )
+			var Mora_1_29 = CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_PLAN]),
+			FILTER(ALLEXCEPT(VFAC_NEGFIN_RB_FLEXIPAGOS,VDIM_CALENDARIO[FECHA_COMPLETA],VDIM_CALENDARIO[MES_ANIO_LETRA],VDIM_PRODUCTO[TIP_INF],VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT]),
+			                    VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "3.-60_DIAS"
+			                    ))
+			
+			var div = DIVIDE(Mora_1_29,corriente,0)
+			
+			return div
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: f3547e5a-e742-41dc-81fb-6d761b2cbd08
+
+	measure RR_CTA_90_PLAN =
+			
+			var corriente = CALCULATE(CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_PLAN]),
+			        FILTER(ALLEXCEPT(VFAC_NEGFIN_RB_FLEXIPAGOS,VDIM_CALENDARIO[FECHA_COMPLETA],VDIM_PRODUCTO[TIP_INF],VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT]),
+			                        VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "3.-60_DIAS"
+			                        )
+			                ),DATEADD(VDIM_CALENDARIO[FECHA_COMPLETA],-1,MONTH)
+			                )
+			var Mora_1_29 = CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_PLAN]),
+			FILTER(ALLEXCEPT(VFAC_NEGFIN_RB_FLEXIPAGOS,VDIM_CALENDARIO[FECHA_COMPLETA],VDIM_CALENDARIO[MES_ANIO_LETRA],VDIM_PRODUCTO[TIP_INF],VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT]),
+			                    VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "4.-90_DIAS"
+			                    ))
+			
+			var div = DIVIDE(Mora_1_29,corriente,0)
+			
+			return div
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 7ab27084-385e-4937-93ee-8e33b71f2473
+
+	measure '30+ % /SDO_ACTUAL' = DIVIDE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[RANG_NIV_MOR_SDO_ACT_30]),SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_ACT]),0)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 4e6111c6-0253-41f1-97b0-de30b9af213b
+
+	measure '90+ % /SDO_ACTUAL' = DIVIDE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[RANG_NIV_MOR_SDO_ACT_90]),SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_ACT]),0)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 0bb5b875-0627-4bba-be86-1a51d46ea93f
+
+	measure RR_CTA_0_ACTUAL = CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_ACT]),VFAC_NEGFIN_RB_FLEXIPAGOS[RANG_NIV_MOR_DESC]="CORRIENTE")/SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_ACT])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 1c689b45-4e87-483d-a647-83df1b5880db
+
+	measure RR_CTA_1-29_ACTUAL =
+			
+			var corriente = CALCULATE(CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_ACT]),
+			        FILTER(ALLEXCEPT(VFAC_NEGFIN_RB_FLEXIPAGOS,VDIM_CALENDARIO[FECHA_COMPLETA],VDIM_PRODUCTO[TIP_INF],VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT]),
+			                        VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "0.-CTAS_VIG"
+			                        )
+			                ),DATEADD(VDIM_CALENDARIO[FECHA_COMPLETA],-1,MONTH)
+			                )
+			var Mora_1_29 = CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_ACT]),
+			FILTER(ALLEXCEPT(VFAC_NEGFIN_RB_FLEXIPAGOS,VDIM_CALENDARIO[FECHA_COMPLETA],VDIM_CALENDARIO[MES_ANIO_LETRA],VDIM_PRODUCTO[TIP_INF],VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT]),
+			                    VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "1.-1-29 DIAS"
+			                    )
+			                    )
+			
+			var div = DIVIDE(Mora_1_29,corriente,0)
+			
+			return div
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 9518fc81-5f8e-441d-ad9e-376d89bf8852
+
+	measure RR_CTA_120_ACTUAL =
+			
+			var corriente = CALCULATE(CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_ACT]),
+			        FILTER(ALLEXCEPT(VFAC_NEGFIN_RB_FLEXIPAGOS,VDIM_CALENDARIO[FECHA_COMPLETA],VDIM_PRODUCTO[TIP_INF],VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT]),
+			                        VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "4.-90_DIAS"
+			                        )
+			                ),DATEADD(VDIM_CALENDARIO[FECHA_COMPLETA],-1,MONTH)
+			                )
+			var Mora_1_29 = CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_ACT]),
+			FILTER(ALLEXCEPT(VFAC_NEGFIN_RB_FLEXIPAGOS,VDIM_CALENDARIO[FECHA_COMPLETA],VDIM_CALENDARIO[MES_ANIO_LETRA],VDIM_PRODUCTO[TIP_INF],VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT]),
+			                    VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "5.-120_DIAS"
+			                    ))
+			
+			var div = DIVIDE(Mora_1_29,corriente,0)
+			
+			return div
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 92651087-0463-4f65-a2dd-24a14dfb15df
+
+	measure RR_CTA_150_ACTUAL =
+			
+			var corriente = CALCULATE(CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_ACT]),
+			        FILTER(ALLEXCEPT(VFAC_NEGFIN_RB_FLEXIPAGOS,VDIM_CALENDARIO[FECHA_COMPLETA],VDIM_PRODUCTO[TIP_INF],VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT]),
+			                        VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "5.-120_DIAS"
+			                        )
+			                ),DATEADD(VDIM_CALENDARIO[FECHA_COMPLETA],-1,MONTH)
+			                )
+			var Mora_1_29 = CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_ACT]),
+			FILTER(ALLEXCEPT(VFAC_NEGFIN_RB_FLEXIPAGOS,VDIM_CALENDARIO[FECHA_COMPLETA],VDIM_CALENDARIO[MES_ANIO_LETRA],VDIM_PRODUCTO[TIP_INF],VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT]),
+			                    VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "6.-150_DIAS"
+			                    ))
+			
+			var div = DIVIDE(Mora_1_29,corriente,0)
+			
+			return div
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 8e136fad-af8d-4161-9962-5a631c281843
+
+	measure RR_CTA_180_ACTUAL =
+			
+			var corriente = CALCULATE(CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_ACT]),
+			        FILTER(ALLEXCEPT(VFAC_NEGFIN_RB_FLEXIPAGOS,VDIM_CALENDARIO[FECHA_COMPLETA],VDIM_PRODUCTO[TIP_INF],VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT]),
+			                        VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "6.-150_DIAS"
+			                        )
+			                ),DATEADD(VDIM_CALENDARIO[FECHA_COMPLETA],-1,MONTH)
+			                )
+			var Mora_1_29 = CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_ACT]),
+			FILTER(ALLEXCEPT(VFAC_NEGFIN_RB_FLEXIPAGOS,VDIM_CALENDARIO[FECHA_COMPLETA],VDIM_CALENDARIO[MES_ANIO_LETRA],VDIM_PRODUCTO[TIP_INF],VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT]),
+			                    VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "7.-180_DIAS"
+			                    ))
+			
+			var div = DIVIDE(Mora_1_29,corriente,0)
+			
+			return div
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 6deb6ecf-f759-4941-adcb-93bb2f77ea50
+
+	measure RR_CTA_210_ACTUAL =
+			
+			var corriente = CALCULATE(CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_ACT]),
+			        FILTER(ALLEXCEPT(VFAC_NEGFIN_RB_FLEXIPAGOS,VDIM_CALENDARIO[FECHA_COMPLETA],VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT],VDIM_PRODUCTO[TIP_INF]),
+			                        VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "7.-180_DIAS"
+			                        )
+			                ),DATEADD(VDIM_CALENDARIO[FECHA_COMPLETA],-1,MONTH)
+			                )
+			var Mora_1_29 = CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_ACT]),
+			FILTER(ALLEXCEPT(VFAC_NEGFIN_RB_FLEXIPAGOS,VDIM_CALENDARIO[FECHA_COMPLETA],VDIM_CALENDARIO[MES_ANIO_LETRA],VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT],VDIM_PRODUCTO[TIP_INF]),
+			                    VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "8.-210_DIAS"
+			                    ))
+			
+			var div = DIVIDE(Mora_1_29,corriente,0)
+			
+			return div
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 55e55107-c393-4a78-b468-347d4e3a68cc
+
+	measure RR_CTA_30_ACTUAL =
+			
+			var corriente = CALCULATE(CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_ACT]),
+			        FILTER(ALLEXCEPT(VFAC_NEGFIN_RB_FLEXIPAGOS,VDIM_CALENDARIO[FECHA_COMPLETA],VDIM_PRODUCTO[TIP_INF],VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT]),
+			                        VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "1.-1-29 DIAS"
+			                        )
+			                ),DATEADD(VDIM_CALENDARIO[FECHA_COMPLETA],-1,MONTH)
+			                )
+			var Mora_1_29 = CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_ACT]),
+			FILTER(ALLEXCEPT(VFAC_NEGFIN_RB_FLEXIPAGOS,VDIM_CALENDARIO[FECHA_COMPLETA],VDIM_CALENDARIO[MES_ANIO_LETRA],VDIM_PRODUCTO[TIP_INF],VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT]),
+			                    VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "2.-30_DIAS"
+			                    ))
+			
+			var div = DIVIDE(Mora_1_29,corriente,0)
+			
+			return div
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 40726c3b-20e8-4325-9f41-0a8b55be66ff
+
+	measure RR_CTA_60_ACTUAL =
+			
+			var corriente = CALCULATE(CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_ACT]),
+			        FILTER(ALLEXCEPT(VFAC_NEGFIN_RB_FLEXIPAGOS,VDIM_CALENDARIO[FECHA_COMPLETA],VDIM_PRODUCTO[TIP_INF],VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT]),
+			                        VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "2.-30_DIAS"
+			                        )
+			                ),DATEADD(VDIM_CALENDARIO[FECHA_COMPLETA],-1,MONTH)
+			                )
+			var Mora_1_29 = CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_ACT]),
+			FILTER(ALLEXCEPT(VFAC_NEGFIN_RB_FLEXIPAGOS,VDIM_CALENDARIO[FECHA_COMPLETA],VDIM_CALENDARIO[MES_ANIO_LETRA],VDIM_PRODUCTO[TIP_INF],VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT]),
+			                    VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "3.-60_DIAS"
+			                    ))
+			
+			var div = DIVIDE(Mora_1_29,corriente,0)
+			
+			return div
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: eaf23075-6a09-4de6-8e90-2f32150dd410
+
+	measure RR_CTA_90_ACT =
+			
+			var corriente = CALCULATE(CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_ACT]),
+			        FILTER(ALLEXCEPT(VFAC_NEGFIN_RB_FLEXIPAGOS,VDIM_CALENDARIO[FECHA_COMPLETA],VDIM_PRODUCTO[TIP_INF],VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT]),
+			                        VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "3.-60_DIAS"
+			                        )
+			                ),DATEADD(VDIM_CALENDARIO[FECHA_COMPLETA],-1,MONTH)
+			                )
+			var Mora_1_29 = CALCULATE(SUM(VFAC_NEGFIN_RB_FLEXIPAGOS[SDO_ACT]),
+			FILTER(ALLEXCEPT(VFAC_NEGFIN_RB_FLEXIPAGOS,VDIM_CALENDARIO[FECHA_COMPLETA],VDIM_CALENDARIO[MES_ANIO_LETRA],VDIM_PRODUCTO[TIP_INF],VFAC_NEGFIN_RB_FLEXIPAGOS[FLG_ACT]),
+			                    VFAC_NEGFIN_RB_FLEXIPAGOS[LLAVE_RANG_NIV_MOR] = "4.-90_DIAS"
+			                    ))
+			
+			var div = DIVIDE(Mora_1_29,corriente,0)
+			
+			return div
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 93d78b53-df5d-476b-a791-bd6e0fcb67f9
+
+	column 'Titulos Dinamicos' =
+			VAR TextoFijo = "Cobranza: Flexipagos"
+			VAR NombreDinamico =
+			    SELECTEDVALUE (
+			        VFAC_NEGFIN_RB_FLEXIPAGOS[TIP_INF],
+			        ""
+			    )
+			VAR NombreDinamico_ =
+			    SWITCH (
+			        TRUE (),
+			        NombreDinamico = 110, "Dilisa",
+			        NombreDinamico = 100, "LPC",
+			        NombreDinamico = 210, "TD",
+			        NombreDinamico = 200, "VISA"
+			    )
+			VAR NombreDinamico2 =
+			    SWITCH (
+			        TRUE (),
+			        SELECTEDVALUE ( Titulos[Value3] ) = 0, "Linea de Credito",
+			        SELECTEDVALUE ( Titulos[Value3] ) = 1, "Edades",
+			        SELECTEDVALUE ( Titulos[Value3] ) = 2, "Segmento Cliente",
+			        SELECTEDVALUE ( Titulos[Value3] ) = 3, "Nivel Riesgo",
+			        SELECTEDVALUE ( Titulos[Value3] ) = 4, "Segmento RFM",
+			        SELECTEDVALUE ( Titulos[Value3] ) = 5, "Antiguedad tarjeta",
+			        SELECTEDVALUE ( Titulos[Value3] ) = 6, "Totalero y revolvente"
+			    )
+			RETURN
+			    TextoFijo
+		lineageTag: e054ace1-25a4-45c8-9f8f-5a00ca76c7ed
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition MEDIDAS = m
+		mode: import
+		source =
+				let
+				    Origen = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Columna1 = _t]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(Origen,{{"Columna1", type text}}),
+				    #"Columnas quitadas" = Table.RemoveColumns(#"Tipo cambiado",{"Columna1"})
+				in
+				    #"Columnas quitadas"
+
+	annotation PBI_ResultType = Table
+

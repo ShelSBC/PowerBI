@@ -1,0 +1,129 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.0.0/schema.json",
+  "displayName": "EDAD - SALDO %",
+  "name": "4555240800dd24210966",
+  "options": {
+    "targetVisualNames": []
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "e9b4e2837bfe85b8fc1e",
+    "sections": {
+      "e9b4e2837bfe85b8fc1e": {
+        "filters": {
+          "byExpr": [
+            {
+              "name": "7cbe9d9345587b827e78",
+              "type": "Categorical",
+              "filter": {
+                "Version": 2,
+                "From": [
+                  {
+                    "Name": "v",
+                    "Entity": "VDIM_CALENDARIO",
+                    "Type": 0
+                  }
+                ],
+                "Where": [
+                  {
+                    "Condition": {
+                      "In": {
+                        "Expressions": [
+                          {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "v"
+                                }
+                              },
+                              "Property": "FLG_T0"
+                            }
+                          }
+                        ],
+                        "Values": [
+                          [
+                            {
+                              "Literal": {
+                                "Value": "'1'"
+                              }
+                            }
+                          ]
+                        ]
+                      }
+                    }
+                  }
+                ]
+              },
+              "expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VDIM_CALENDARIO"
+                    }
+                  },
+                  "Property": "FLG_T0"
+                }
+              },
+              "howCreated": 1
+            },
+            {
+              "name": "92a3e32cb6fb08d461a2",
+              "type": "Categorical",
+              "expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VFAC_NEGFIN_RB_FLEXIPAGOS"
+                    }
+                  },
+                  "Property": "ANTIG_ESTR"
+                }
+              },
+              "howCreated": 1
+            }
+          ]
+        },
+        "visualContainers": {},
+        "visualContainerGroups": {
+          "dafcefa822d4f030ccee": {
+            "isHidden": false
+          },
+          "2f9becb30e6c065ea5e1": {
+            "isHidden": false
+          },
+          "493c9f499f9670e33015": {
+            "isHidden": false
+          },
+          "34e43912eb0d5ebb8bcd": {
+            "isHidden": false,
+            "children": {
+              "ea9fec35a88a984f6ad5": {
+                "isHidden": false
+              }
+            }
+          },
+          "c92825078218a5ac023d": {
+            "isHidden": false
+          }
+        }
+      }
+    },
+    "objects": {
+      "merge": {
+        "outspacePane": [
+          {
+            "properties": {
+              "expanded": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

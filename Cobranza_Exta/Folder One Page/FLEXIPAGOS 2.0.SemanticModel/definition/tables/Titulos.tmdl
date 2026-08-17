@@ -1,0 +1,41 @@
+table Titulos
+	lineageTag: 66d4e0b5-ea1c-4612-814d-7d0cf98230ce
+
+	column Value1
+		lineageTag: bd8dbc03-9355-40dd-964f-b47453bbcfb0
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Value1]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Value2
+		lineageTag: 14061106-ec0a-415a-af6a-4c307893cc24
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Value2]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Value3
+		formatString: 0
+		lineageTag: cbc7245c-d77a-4da9-9dcf-e60635f94d84
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Titulos = calculated
+		mode: import
+		source =
+				{
+				    ("Linea de Credito", NAMEOF(VFAC_NEGFIN_RB_FLEXIPAGOS[RANG_LC]),0),
+				    ("Edades", NAMEOF(VFAC_NEGFIN_RB_FLEXIPAGOS[RANGO_EDAD]),1),
+				    ("Segmento Cliente", NAMEOF(VFAC_NEGFIN_RB_FLEXIPAGOS[SEGMENTO_CLIENTE]),2),
+				    ("Segmento RFM", NAMEOF(VFAC_NEGFIN_RB_FLEXIPAGOS[RFM_CREDITO]),3),
+				    ("Antiguedad tarjeta", NAMEOF(VFAC_NEGFIN_RB_FLEXIPAGOS[ANTIG_ESTR]),4)
+				}
+
+	annotation PBI_Id = 30bd1142695c42ad9bc511278ee86f00
+

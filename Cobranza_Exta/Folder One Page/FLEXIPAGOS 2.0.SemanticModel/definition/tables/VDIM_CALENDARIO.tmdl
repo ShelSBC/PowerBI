@@ -1,0 +1,364 @@
+table VDIM_CALENDARIO
+	lineageTag: c6b83f31-7ad6-4a20-9080-3e4755a85cee
+
+	column ANIO_MES
+		dataType: string
+		lineageTag: e1d5b120-754b-448b-87b5-5ca9b053eb78
+		summarizeBy: none
+		sourceColumn: ANIO_MES
+
+		annotation SummarizationSetBy = Automatic
+
+	column MES_ANIO_LETRA
+		dataType: string
+		lineageTag: ad771a0e-370a-4fcb-93f5-4e2d58ebf816
+		summarizeBy: none
+		sourceColumn: MES_ANIO_LETRA
+		sortByColumn: ANIO_MES
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column MES_LETRA
+		dataType: string
+		lineageTag: 032f84de-08cb-463b-9eb6-e44956ebe032
+		summarizeBy: none
+		sourceColumn: MES_LETRA
+		sortByColumn: MES
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLAG
+		dataType: string
+		lineageTag: acbaf969-a993-4531-9543-f7bff3087ff6
+		summarizeBy: none
+		sourceColumn: FLAG
+
+		annotation SummarizationSetBy = Automatic
+
+	column MES_DESC = RIGHT(VDIM_CALENDARIO[ANIO_MES],2)
+		lineageTag: 77ec7ce7-aa54-409f-ad32-7db21ba52ffb
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column ANIO = left(VDIM_CALENDARIO[ANIO_MES],4)
+		lineageTag: 884180f2-78df-4265-880f-b599fff7a4ce
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column FECHA_CALENDARIO = CONCATENATE(CONCATENATE(CONCATENATE(CONCATENATE(VDIM_CALENDARIO[ANIO],"-"),VDIM_CALENDARIO[MES_DESC]),"-"),"01")
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: a4857e53-3600-4f6b-a36b-78a27a0d227e
+		summarizeBy: none
+
+		variation Variación
+			isDefault
+			relationship: 9c198423-8a75-43bc-9922-058be72e06e8
+			defaultHierarchy: LocalDateTable_f8bea514-5f10-46dc-a7f7-c31e25d1085d.'Jerarquía de fechas'
+
+		changedProperty = DataType
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column FCH_LETRA =
+			CONCATENATE(CONCATENATE(SWITCH(VDIM_CALENDARIO[MES_DESC],
+			"01","Ene",
+			"02","Feb",
+			"03","Mar",
+			"04","Abr",
+			"05","May",
+			"06","Jun",
+			"07","Jul",
+			"08","Ago",
+			"09","Sep",
+			"10","Oct",
+			"11","Nov",
+			"12","Dic",""
+			),"-"),RIGHT(VDIM_CALENDARIO[ANIO],2))
+		lineageTag: 59ddd368-d5ce-439a-bbb3-b93ba528ab37
+		summarizeBy: none
+		sortByColumn: ANIO_MES
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column MES
+		dataType: string
+		lineageTag: ec92955f-0e7c-4d63-92fb-d65896625147
+		summarizeBy: none
+		sourceColumn: MES
+
+		annotation SummarizationSetBy = Automatic
+
+	column ANIO_YYYY
+		dataType: string
+		lineageTag: faf8ab99-b2ca-4533-be33-5c5f6c52a1ca
+		summarizeBy: none
+		sourceColumn: ANIO_YYYY
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLAG_1
+		dataType: string
+		lineageTag: a2c8a8a7-0f0c-4cfe-9740-a595edd86d65
+		summarizeBy: none
+		sourceColumn: FLAG_1
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLAG_P
+		dataType: string
+		lineageTag: 9d01f1d0-b09d-4a7a-890d-2e719f3a9208
+		summarizeBy: none
+		sourceColumn: FLAG_P
+
+		annotation SummarizationSetBy = Automatic
+
+	column T0
+		dataType: string
+		lineageTag: 24f74538-5d06-4879-98e7-d20695dfb94c
+		summarizeBy: none
+		sourceColumn: T0
+
+		annotation SummarizationSetBy = Automatic
+
+	column T1
+		dataType: string
+		lineageTag: de1ec22c-3541-466f-818a-edc03c17192a
+		summarizeBy: none
+		sourceColumn: T1
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLG_T0
+		dataType: string
+		lineageTag: e3c1d192-f933-4612-a9cb-bd017c79f209
+		summarizeBy: none
+		sourceColumn: FLG_T0
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLG_T0_1Y
+		dataType: string
+		lineageTag: 73101876-e7a6-4a0c-a462-b1287f83632b
+		summarizeBy: none
+		sourceColumn: FLG_T0_1Y
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLG_T1
+		dataType: string
+		lineageTag: d9ec5c7e-1857-41c8-8eee-999f572ae881
+		summarizeBy: none
+		sourceColumn: FLG_T1
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLG_T1_1Y
+		dataType: string
+		lineageTag: 2321cf2b-a161-4fd1-b67d-fabbf3b6e9dd
+		summarizeBy: none
+		sourceColumn: FLG_T1_1Y
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLG_UM_T0
+		dataType: string
+		lineageTag: 6b8b738f-2936-4246-9481-7a4ce1defcac
+		summarizeBy: none
+		sourceColumn: FLG_UM_T0
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLG_UM_T1
+		dataType: string
+		lineageTag: 0fd52c55-c673-4d5e-b2a4-d6235e934619
+		summarizeBy: none
+		sourceColumn: FLG_UM_T1
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLG_T0_ACUM
+		dataType: string
+		lineageTag: 6b922e63-cdce-4b8d-aa5f-5f25e61aa2ec
+		summarizeBy: none
+		sourceColumn: FLG_T0_ACUM
+
+		annotation SummarizationSetBy = Automatic
+
+	column T1_NUM_P
+		dataType: int64
+		formatString: 0
+		lineageTag: c1329a7a-965f-4eab-8797-431526990065
+		summarizeBy: sum
+		sourceColumn: T1_NUM_P
+
+		annotation SummarizationSetBy = Automatic
+
+	column T0_NUM_P
+		dataType: int64
+		formatString: 0
+		lineageTag: 8b1c3d09-a9e4-4bc3-ad30-57f143022280
+		summarizeBy: sum
+		sourceColumn: T0_NUM_P
+
+		annotation SummarizationSetBy = Automatic
+
+	column BANDERA_MOB3
+		dataType: int64
+		formatString: 0
+		lineageTag: 0c2b46a6-9691-41f9-ab33-975b2705f713
+		summarizeBy: sum
+		sourceColumn: BANDERA_MOB3
+
+		annotation SummarizationSetBy = Automatic
+
+	column BANDERA_MOB9
+		dataType: int64
+		formatString: 0
+		lineageTag: f14f138b-64b8-4137-b3bb-1979ed02e98f
+		summarizeBy: sum
+		sourceColumn: BANDERA_MOB9
+
+		annotation SummarizationSetBy = Automatic
+
+	column BANDERA_Y1
+		dataType: int64
+		formatString: 0
+		lineageTag: 6bde3d80-7ead-40ae-88a5-60665116386f
+		summarizeBy: sum
+		sourceColumn: BANDERA_Y1
+
+		annotation SummarizationSetBy = Automatic
+
+	column BANDERA_Y2
+		dataType: int64
+		formatString: 0
+		lineageTag: 73d6e8ec-aeb3-4022-bc28-b8e589a05bcb
+		summarizeBy: sum
+		sourceColumn: BANDERA_Y2
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLG_T0_3Y
+		dataType: int64
+		formatString: 0
+		lineageTag: f6317139-7229-4085-bd99-72a92e22e07b
+		summarizeBy: sum
+		sourceColumn: FLG_T0_3Y
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLG_DIC
+		dataType: string
+		lineageTag: cd4d5808-6ec5-4582-aa1d-2486e8e05539
+		summarizeBy: none
+		sourceColumn: FLG_DIC
+
+		annotation SummarizationSetBy = Automatic
+
+	column BANDERA_MOBS_VT
+		dataType: int64
+		formatString: 0
+		lineageTag: 9a785e3f-58d6-41cc-82af-32a1282cc773
+		summarizeBy: sum
+		sourceColumn: BANDERA_MOBS_VT
+
+		annotation SummarizationSetBy = Automatic
+
+	column FECHA_COMPLETA
+		dataType: dateTime
+		formatString: yyyy-mm
+		lineageTag: 160cf864-9084-4f0b-919c-b7fa67b98347
+		summarizeBy: none
+		sourceColumn: FECHA_COMPLETA
+
+		variation Variación
+			isDefault
+			relationship: 7ce80921-190c-48e5-8e5c-478e4d684162
+			defaultHierarchy: LocalDateTable_e4196c59-13f3-4d45-8019-c749c6f131a6.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column FCH_SEM
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 4bce50e4-6966-4d7d-ab92-c843f0a5dd78
+		summarizeBy: none
+		sourceColumn: FCH_SEM
+
+		variation Variación
+			isDefault
+			relationship: 04aeb703-21e5-4314-ae22-ffaa21a51641
+			defaultHierarchy: LocalDateTable_adc4e456-374a-4844-b81e-5e13739341cd.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column BANDERA_MOB3_vt
+		dataType: int64
+		formatString: 0
+		lineageTag: 909f4a95-cccf-4b92-9866-262e9b828e36
+		summarizeBy: sum
+		sourceColumn: BANDERA_MOB3_vt
+
+		annotation SummarizationSetBy = Automatic
+
+	column BANDERA_MOB9_VT
+		dataType: int64
+		formatString: 0
+		lineageTag: 566f0859-9e10-449e-bd91-00c87cbc389e
+		summarizeBy: sum
+		sourceColumn: BANDERA_MOB9_VT
+
+		annotation SummarizationSetBy = Automatic
+
+	column BANDERA_YTD_ACT
+		dataType: int64
+		formatString: 0
+		lineageTag: c4bf02a8-6c92-4172-bf79-a3d4e41a510d
+		summarizeBy: sum
+		sourceColumn: BANDERA_YTD_ACT
+
+		annotation SummarizationSetBy = Automatic
+
+	column BANDERA_YTD_1ANT
+		dataType: int64
+		formatString: 0
+		lineageTag: 11ddf933-b164-4030-b5d0-5a2b3a39b6ee
+		summarizeBy: sum
+		sourceColumn: BANDERA_YTD_1ANT
+
+		annotation SummarizationSetBy = Automatic
+
+	partition VDIM_CALENDARIO-678a5049-86bc-4b69-9014-b110832b7feb = m
+		mode: import
+		source =
+				let
+				    Origen = GoogleBigQuery.Database([UseStorageApi=false, BillingProject="crp-pro-cx-semantica"]),
+				    #"crp-pro-cx-semantica" = Origen{[Name="crp-pro-cx-semantica"]}[Data],
+				    mus_pro_negfin_shared_views_Schema = #"crp-pro-cx-semantica"{[Name="mus_pro_negfin_shared_views",Kind="Schema"]}[Data],
+				    VDIM_CALENDARIO_View = mus_pro_negfin_shared_views_Schema{[Name="VDIM_CALENDARIO",Kind="View"]}[Data]
+				in
+				    VDIM_CALENDARIO_View
+
+	annotation PBI_ResultType = Table
+

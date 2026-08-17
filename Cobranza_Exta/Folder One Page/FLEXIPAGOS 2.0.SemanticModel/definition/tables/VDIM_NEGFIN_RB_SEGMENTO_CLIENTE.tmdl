@@ -1,0 +1,52 @@
+table VDIM_NEGFIN_RB_SEGMENTO_CLIENTE
+	lineageTag: 2dc860f4-9d41-4b01-9cdc-e870ef4ea23b
+
+	column ID
+		dataType: double
+		formatString: 0.0
+		lineageTag: 14bf9ca1-626a-4916-91d7-ccc2dd3091de
+		summarizeBy: none
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SEGMENTO_CLIENTE
+		dataType: string
+		lineageTag: eb4af3de-aeed-4938-a059-67614e9e5ee7
+		summarizeBy: none
+		sourceColumn: SEGMENTO_CLIENTE
+
+		annotation SummarizationSetBy = Automatic
+
+	column FCH_CARGA
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 23cbac45-f971-4eb8-9a67-20925068c290
+		summarizeBy: none
+		sourceColumn: FCH_CARGA
+
+		variation Variación
+			isDefault
+			relationship: b7ecda6f-b846-4f95-b945-58e8c86ede0d
+			defaultHierarchy: LocalDateTable_daf2e1c8-38ce-4f4a-95c9-23bee087bbfb.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition VDIM_NEGFIN_RB_SEGMENTO_CLIENTE = m
+		mode: import
+		source =
+				let
+				    Origen = GoogleBigQuery.Database(),
+				    #"crp-pro-dwh-semanticagold" = Origen{[Name="crp-pro-dwh-semanticagold"]}[Data],
+				    MUS_PRO_DWH_VIEWS_ODS_Schema = #"crp-pro-dwh-semanticagold"{[Name="MUS_PRO_DWH_VIEWS_ODS",Kind="Schema"]}[Data],
+				    VDIM_NEGFIN_RB_SEGMENTO_CLIENTE_View = MUS_PRO_DWH_VIEWS_ODS_Schema{[Name="VDIM_NEGFIN_RB_SEGMENTO_CLIENTE",Kind="View"]}[Data],
+				    #"Tipo cambiado" = Table.TransformColumnTypes(VDIM_NEGFIN_RB_SEGMENTO_CLIENTE_View,{{"ID", type number}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,170 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.0.0/schema.json",
+  "displayName": "MOBS_AT - SALDO #MM",
+  "name": "fb6146fb1a89862f1865",
+  "options": {
+    "targetVisualNames": [
+      "e6e894d9cc3893cc5875"
+    ]
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "f44dd6a7df2b52ea98f2",
+    "sections": {
+      "f44dd6a7df2b52ea98f2": {
+        "filters": {
+          "byExpr": [
+            {
+              "name": "7cbe9d9345587b827e78",
+              "type": "Categorical",
+              "filter": {
+                "Version": 2,
+                "From": [
+                  {
+                    "Name": "v",
+                    "Entity": "VDIM_CALENDARIO",
+                    "Type": 0
+                  }
+                ],
+                "Where": [
+                  {
+                    "Condition": {
+                      "In": {
+                        "Expressions": [
+                          {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "v"
+                                }
+                              },
+                              "Property": "FLG_T0"
+                            }
+                          }
+                        ],
+                        "Values": [
+                          [
+                            {
+                              "Literal": {
+                                "Value": "'1'"
+                              }
+                            }
+                          ]
+                        ]
+                      }
+                    }
+                  }
+                ]
+              },
+              "expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VDIM_CALENDARIO"
+                    }
+                  },
+                  "Property": "FLG_T0"
+                }
+              },
+              "howCreated": 1
+            },
+            {
+              "name": "9304865d60894317ec74",
+              "type": "Categorical",
+              "filter": {
+                "Version": 2,
+                "From": [
+                  {
+                    "Name": "v",
+                    "Entity": "VFAC_NEGFIN_RB_FLEXIPAGOS",
+                    "Type": 0
+                  }
+                ],
+                "Where": [
+                  {
+                    "Condition": {
+                      "In": {
+                        "Expressions": [
+                          {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "v"
+                                }
+                              },
+                              "Property": "ACTIVA"
+                            }
+                          }
+                        ],
+                        "Values": [
+                          [
+                            {
+                              "Literal": {
+                                "Value": "1L"
+                              }
+                            }
+                          ]
+                        ]
+                      }
+                    }
+                  }
+                ]
+              },
+              "expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VFAC_NEGFIN_RB_FLEXIPAGOS"
+                    }
+                  },
+                  "Property": "ACTIVA"
+                }
+              },
+              "howCreated": 1
+            }
+          ]
+        },
+        "visualContainers": {},
+        "visualContainerGroups": {
+          "84bcf01c37eea367f233": {
+            "isHidden": false
+          },
+          "21484203cd399f5bcf79": {
+            "isHidden": false
+          },
+          "5c2d8185da257d9e6629": {
+            "isHidden": false,
+            "children": {
+              "39b17d25d02a3d9e0762": {
+                "isHidden": false
+              }
+            }
+          },
+          "3a537984f602341251e5": {
+            "isHidden": false
+          },
+          "eccd29ad203d576d44d3": {
+            "isHidden": false
+          }
+        }
+      }
+    },
+    "objects": {
+      "merge": {
+        "outspacePane": [
+          {
+            "properties": {
+              "expanded": {
+                "expr": {
+                  "Literal": {
+                    "Value": "true"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

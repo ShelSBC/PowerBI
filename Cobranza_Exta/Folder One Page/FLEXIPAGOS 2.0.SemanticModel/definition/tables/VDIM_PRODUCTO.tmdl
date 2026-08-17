@@ -1,0 +1,52 @@
+table VDIM_PRODUCTO
+	lineageTag: 40d4248a-84c8-4891-8e19-a20bd23ef20d
+
+	column TIP_INF
+		dataType: int64
+		formatString: 0
+		lineageTag: eed42e88-84df-4f36-817b-4b97b590423b
+		summarizeBy: none
+		sourceColumn: TIP_INF
+
+		annotation SummarizationSetBy = Automatic
+
+	column ID
+		dataType: int64
+		formatString: 0
+		lineageTag: d573fc10-e003-4a95-a1e3-210486f66960
+		summarizeBy: none
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column FCH_CARGA
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 2042eef2-bed0-4ff2-a5f0-c37f583b0855
+		summarizeBy: none
+		sourceColumn: FCH_CARGA
+
+		variation Variación
+			isDefault
+			relationship: 5562ee83-0604-4fe1-8902-a04949da2ed1
+			defaultHierarchy: LocalDateTable_26601a41-b090-4ebb-8a10-61918cbbeb7f.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition VDIM_PRODUCTO = m
+		mode: import
+		source =
+				let
+				    Origen = GoogleBigQuery.Database(),
+				    #"crp-pro-dwh-semanticagold" = Origen{[Name="crp-pro-dwh-semanticagold"]}[Data],
+				    MUS_PRO_DWH_VIEWS_ODS_Schema = #"crp-pro-dwh-semanticagold"{[Name="MUS_PRO_DWH_VIEWS_ODS",Kind="Schema"]}[Data],
+				    VDIM_NEGFIN_RB_TIPO_PRODUCTO_View = MUS_PRO_DWH_VIEWS_ODS_Schema{[Name="VDIM_NEGFIN_RB_TIPO_PRODUCTO",Kind="View"]}[Data]
+				in
+				    VDIM_NEGFIN_RB_TIPO_PRODUCTO_View
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+
