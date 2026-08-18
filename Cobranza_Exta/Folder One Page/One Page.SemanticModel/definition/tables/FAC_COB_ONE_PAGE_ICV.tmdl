@@ -1,0 +1,189 @@
+table FAC_COB_ONE_PAGE_ICV
+	lineageTag: dba28321-7f51-4db2-a851-d20be8eb670b
+
+	column ANIOMES
+		dataType: int64
+		formatString: 0
+		lineageTag: 408dfadf-bf2d-44fb-95ff-17c89afc9836
+		summarizeBy: sum
+		sourceColumn: ANIOMES
+
+		annotation SummarizationSetBy = Automatic
+
+	column ANIO
+		dataType: int64
+		formatString: 0
+		lineageTag: f06f5213-5a38-43e4-8e63-e8c86a74f42b
+		summarizeBy: sum
+		sourceColumn: ANIO
+
+		annotation SummarizationSetBy = Automatic
+
+	column MES
+		dataType: int64
+		formatString: 0
+		lineageTag: caceedee-7933-494d-a24f-6a3a65c05338
+		summarizeBy: sum
+		sourceColumn: MES
+
+		annotation SummarizationSetBy = Automatic
+
+	column TIP_INF
+		dataType: int64
+		formatString: 0
+		lineageTag: b65ad9dd-ba14-4352-bd57-d909f3077f17
+		summarizeBy: sum
+		sourceColumn: TIP_INF
+
+		annotation SummarizationSetBy = Automatic
+
+	column ZONA
+		dataType: string
+		lineageTag: 34a4ea29-0f22-4ba2-ba54-786e1757d8ea
+		summarizeBy: none
+		sourceColumn: ZONA
+
+		annotation SummarizationSetBy = Automatic
+
+	column NO_TIENDA
+		dataType: int64
+		formatString: 0
+		lineageTag: 9879cc60-a2fc-4de3-b13c-75b9a2b050d0
+		summarizeBy: sum
+		sourceColumn: NO_TIENDA
+
+		annotation SummarizationSetBy = Automatic
+
+	column DETALLE
+		dataType: string
+		lineageTag: cdf25fe3-5f27-4961-93a1-a09a8c1ca0ab
+		summarizeBy: none
+		sourceColumn: DETALLE
+
+		annotation SummarizationSetBy = Automatic
+
+	column SUM_SDO_VIG_0_1
+		dataType: double
+		lineageTag: 13dc9879-fd77-4865-8335-1086101813d4
+		summarizeBy: sum
+		sourceColumn: SUM_SDO_VIG_0_1
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SUM_SDO_VIG_1_29
+		dataType: double
+		lineageTag: 9f28cde5-f3cc-44d7-bff3-2fee79cc734e
+		summarizeBy: sum
+		sourceColumn: SUM_SDO_VIG_1_29
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SUM_SDO_VIG_30_59
+		dataType: double
+		lineageTag: 49d9e0ad-6007-4118-9cf0-453c124859a7
+		summarizeBy: sum
+		sourceColumn: SUM_SDO_VIG_30_59
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SUM_SDO_VIG_60_89
+		dataType: double
+		lineageTag: eead8de7-2b71-4b16-9d22-bbe2814ca361
+		summarizeBy: sum
+		sourceColumn: SUM_SDO_VIG_60_89
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SUM_SDO_VIG_90_110
+		dataType: double
+		lineageTag: 4e409ded-52fb-4fd9-8b69-d4e785afbb32
+		summarizeBy: sum
+		sourceColumn: SUM_SDO_VIG_90_110
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SUM_SDO_VIG_120_149
+		dataType: double
+		lineageTag: 46de60d8-e617-4403-8eb4-7a9b20ce3a67
+		summarizeBy: sum
+		sourceColumn: SUM_SDO_VIG_120_149
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SUM_SDO_VIG_150_179
+		dataType: double
+		lineageTag: 851edefb-9072-4780-b9e5-5a1ee6e5977c
+		summarizeBy: sum
+		sourceColumn: SUM_SDO_VIG_150_179
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SUM_SDO_VIG_180_209
+		dataType: double
+		lineageTag: 1185bcb9-675d-46c9-8013-2be68b2b83f6
+		summarizeBy: sum
+		sourceColumn: SUM_SDO_VIG_180_209
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SUM_SDO_VIG_210
+		dataType: double
+		lineageTag: 31c34faa-cd32-4eec-b3b9-000dcc5824f1
+		summarizeBy: sum
+		sourceColumn: SUM_SDO_VIG_210
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ICV
+		dataType: double
+		lineageTag: 3ea5d29b-21e6-4f96-a999-74e668343397
+		summarizeBy: sum
+		sourceColumn: ICV
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SALDOS
+		dataType: double
+		lineageTag: 168b2834-4cdd-4104-8fd0-5a8b127c70f1
+		summarizeBy: sum
+		sourceColumn: SALDOS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition FAC_COB_ONE_PAGE_ICV = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([UseStorageApi=false, BillingProject="crp-pro-cx-semantica"]),
+				    #"crp-dev-dominio-negfin" = Source{[Name="crp-dev-dominio-negfin"]}[Data],
+				    mus_dev_cobr_prd_tbls_Schema = #"crp-dev-dominio-negfin"{[Name="mus_dev_cobr_prd_tbls",Kind="Schema"]}[Data],
+				    FAC_COB_ONE_PAGE_ICV_Table = mus_dev_cobr_prd_tbls_Schema{[Name="FAC_COB_ONE_PAGE_ICV",Kind="Table"]}[Data]
+				in
+				    FAC_COB_ONE_PAGE_ICV_Table
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
