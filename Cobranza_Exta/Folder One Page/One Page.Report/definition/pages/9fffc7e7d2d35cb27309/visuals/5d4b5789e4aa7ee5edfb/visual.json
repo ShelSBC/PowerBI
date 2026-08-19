@@ -3,11 +3,11 @@
   "name": "5d4b5789e4aa7ee5edfb",
   "position": {
     "x": 0,
-    "y": 0,
+    "y": 2.4206816514500136,
     "z": 7000,
-    "height": 75.714285714285722,
-    "width": 122.66334501102892,
-    "tabOrder": 10000
+    "height": 70.7667826047421,
+    "width": 240.23460410557186,
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "slicer",
@@ -20,13 +20,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "VDIM_PRODUCTO"
+                      "Entity": "VDIM_TIPO_TARJETA"
                     }
                   },
                   "Property": "TIP_INF"
                 }
               },
-              "queryRef": "VDIM_PRODUCTO.TIP_INF",
+              "queryRef": "VDIM_TIPO_TARJETA.TIP_INF",
               "nativeQueryRef": "TIP_INF",
               "active": true
             }
@@ -75,47 +75,6 @@
                 "Literal": {
                   "Value": "1D"
                 }
-              }
-            },
-            "filter": {
-              "filter": {
-                "Version": 2,
-                "From": [
-                  {
-                    "Name": "v",
-                    "Entity": "VDIM_PRODUCTO",
-                    "Type": 0
-                  }
-                ],
-                "Where": [
-                  {
-                    "Condition": {
-                      "In": {
-                        "Expressions": [
-                          {
-                            "Column": {
-                              "Expression": {
-                                "SourceRef": {
-                                  "Source": "v"
-                                }
-                              },
-                              "Property": "TIP_INF"
-                            }
-                          }
-                        ],
-                        "Values": [
-                          [
-                            {
-                              "Literal": {
-                                "Value": "110L"
-                              }
-                            }
-                          ]
-                        ]
-                      }
-                    }
-                  }
-                ]
               }
             }
           }
@@ -208,6 +167,27 @@
                   "Value": "0D"
                 }
               }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "VDIM_TIPO_TARJETA"
+                            }
+                          },
+                          "Property": "COLOR"
+                        }
+                      },
+                      "Function": 4
+                    }
+                  }
+                }
+              }
             }
           }
         }
@@ -218,7 +198,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             },
@@ -264,12 +244,12 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "Filter025326281e5559559e1f",
+        "name": "e556afda936eff651f17",
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "VDIM_PRODUCTO"
+                "Entity": "VDIM_TIPO_TARJETA"
               }
             },
             "Property": "TIP_INF"
@@ -281,59 +261,101 @@
           "From": [
             {
               "Name": "v",
-              "Entity": "VDIM_PRODUCTO",
+              "Entity": "VDIM_TIPO_TARJETA",
               "Type": 0
             }
           ],
           "Where": [
             {
               "Condition": {
-                "Not": {
-                  "Expression": {
-                    "In": {
-                      "Expressions": [
-                        {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Source": "v"
-                              }
-                            },
-                            "Property": "TIP_INF"
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "v"
                           }
+                        },
+                        "Property": "TIP_INF"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'100'"
                         }
-                      ],
-                      "Values": [
-                        [
-                          {
-                            "Literal": {
-                              "Value": "null"
-                            }
-                          }
-                        ]
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        },
-        "objects": {
-          "general": [
-            {
-              "properties": {
-                "isInvertedSelectionMode": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "true"
-                    }
-                  }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'110'"
+                        }
+                      }
+                    ]
+                  ]
                 }
               }
             }
           ]
         }
+      },
+      {
+        "name": "8ef768e60dc1a6bea050",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "VDIM_TIPO_TARJETA"
+              }
+            },
+            "Property": "ORG"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "v",
+              "Entity": "VDIM_TIPO_TARJETA",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "v"
+                          }
+                        },
+                        "Property": "ORG"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'LIVERPOOL'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
       }
     ]
   }

@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
-  "name": "965c74cd9ecd2cc8c1e2",
+  "name": "4dcbddc78c0692e44d27",
   "position": {
-    "x": 278.59691661397295,
-    "y": 2.3258255563283412,
-    "z": 2000,
-    "height": 70.053333933433848,
-    "width": 154.85473816864325,
-    "tabOrder": 2000
+    "x": 815.05797384105847,
+    "y": 0,
+    "z": 10000,
+    "height": 81.114386659765515,
+    "width": 145.63719423003354,
+    "tabOrder": 0
   },
   "visual": {
     "visualType": "slicer",
@@ -20,16 +20,16 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "VDIM_CALENDARIO"
+                      "Entity": "FAC_COB_ONE_PAGE_ICV"
                     }
                   },
-                  "Property": "ANIO_YYYY"
+                  "Property": "NO_TIENDA"
                 }
               },
-              "queryRef": "VDIM_CALENDARIO.ANIO_YYYY",
-              "nativeQueryRef": "AÑO",
+              "queryRef": "FAC_COB_ONE_PAGE_ICV.NO_TIENDA",
+              "nativeQueryRef": "NO_TIENDA",
               "active": true,
-              "displayName": "AÑO"
+              "displayName": "NO_TIENDA"
             }
           ]
         }
@@ -69,47 +69,6 @@
                 "Literal": {
                   "Value": "2D"
                 }
-              }
-            },
-            "filter": {
-              "filter": {
-                "Version": 2,
-                "From": [
-                  {
-                    "Name": "v",
-                    "Entity": "VDIM_CALENDARIO",
-                    "Type": 0
-                  }
-                ],
-                "Where": [
-                  {
-                    "Condition": {
-                      "In": {
-                        "Expressions": [
-                          {
-                            "Column": {
-                              "Expression": {
-                                "SourceRef": {
-                                  "Source": "v"
-                                }
-                              },
-                              "Property": "ANIO_YYYY"
-                            }
-                          }
-                        ],
-                        "Values": [
-                          [
-                            {
-                              "Literal": {
-                                "Value": "'2026'"
-                              }
-                            }
-                          ]
-                        ]
-                      }
-                    }
-                  }
-                ]
               }
             }
           }
@@ -158,7 +117,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Año'"
+                  "Value": "'No.Tienda'"
                 }
               }
             },
@@ -247,6 +206,13 @@
                   "Value": "true"
                 }
               }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
             }
           }
         }
@@ -254,19 +220,20 @@
     },
     "drillFilterOtherVisuals": true
   },
-  "parentGroupName": "76497453b76a743cc2e8",
+  "parentGroupName": "e46e6980b515c77b0c28",
   "filterConfig": {
     "filters": [
       {
-        "name": "Filter76eb639d96527005ae45",
+        "name": "e9d7f4351a353e3684e0",
+        "ordinal": 0,
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "VDIM_CALENDARIO"
+                "Entity": "FAC_COB_ONE_PAGE_ICV"
               }
             },
-            "Property": "ANIO_YYYY"
+            "Property": "NO_TIENDA"
           }
         },
         "type": "Categorical",
@@ -274,8 +241,8 @@
           "Version": 2,
           "From": [
             {
-              "Name": "v",
-              "Entity": "VDIM_CALENDARIO",
+              "Name": "f",
+              "Entity": "FAC_COB_ONE_PAGE_ICV",
               "Type": 0
             }
           ],
@@ -290,10 +257,10 @@
                           "Column": {
                             "Expression": {
                               "SourceRef": {
-                                "Source": "v"
+                                "Source": "f"
                               }
                             },
-                            "Property": "ANIO_YYYY"
+                            "Property": "NO_TIENDA"
                           }
                         }
                       ],
@@ -329,6 +296,7 @@
           ]
         }
       }
-    ]
+    ],
+    "filterSortOrder": "Custom"
   }
 }

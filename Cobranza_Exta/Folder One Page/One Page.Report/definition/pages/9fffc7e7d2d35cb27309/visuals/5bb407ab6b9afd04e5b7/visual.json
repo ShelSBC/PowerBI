@@ -1,0 +1,103 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "5bb407ab6b9afd04e5b7",
+  "position": {
+    "x": 50,
+    "y": 223,
+    "z": 7000,
+    "height": 365,
+    "width": 445,
+    "tabOrder": 7000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Columns": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FAC_COB_ONE_PAGE_ICV"
+                    }
+                  },
+                  "Property": "TIP_INF"
+                }
+              },
+              "queryRef": "FAC_COB_ONE_PAGE_ICV.TIP_INF",
+              "nativeQueryRef": "TIP_INF",
+              "active": true
+            }
+          ]
+        },
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FAC_COB_ONE_PAGE_ICV"
+                    }
+                  },
+                  "Property": "ZONA"
+                }
+              },
+              "queryRef": "FAC_COB_ONE_PAGE_ICV.ZONA",
+              "nativeQueryRef": "ZONA",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FAC_COB_ONE_PAGE_ICV"
+                        }
+                      },
+                      "Property": "SALDOS"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(FAC_COB_ONE_PAGE_ICV.SALDOS)",
+              "nativeQueryRef": "Sum of SALDOS"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "FAC_COB_ONE_PAGE_ICV"
+                      }
+                    },
+                    "Property": "SALDOS"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

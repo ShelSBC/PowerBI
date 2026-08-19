@@ -39,7 +39,7 @@ table VDIM_NEGFIN_RB_CVE_ZNA
 		mode: import
 		source =
 				let
-				    Origen = GoogleBigQuery.Database(),
+				    Origen = GoogleBigQuery.Database([UseStorageApi=false, BillingProject="crp-pro-cx-semantica"]),
 				    #"crp-pro-dwh-semanticagold" = Origen{[Name="crp-pro-dwh-semanticagold"]}[Data],
 				    MUS_PRO_DWH_VIEWS_ODS_Schema = #"crp-pro-dwh-semanticagold"{[Name="MUS_PRO_DWH_VIEWS_ODS",Kind="Schema"]}[Data],
 				    VDIM_NEGFIN_RB_CVE_ZNA_View = MUS_PRO_DWH_VIEWS_ODS_Schema{[Name="VDIM_NEGFIN_RB_CVE_ZNA",Kind="View"]}[Data],

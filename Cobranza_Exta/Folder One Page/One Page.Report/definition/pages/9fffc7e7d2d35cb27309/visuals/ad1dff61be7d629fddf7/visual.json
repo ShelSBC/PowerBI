@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "ad1dff61be7d629fddf7",
   "position": {
-    "x": 1001.9653821201506,
-    "y": 1.3850174216027877,
+    "x": 630.70709506886408,
+    "y": 2.3258255563283412,
     "z": 9000,
-    "height": 71.559233449477361,
-    "width": 110.93457895419748,
-    "tabOrder": 1000
+    "height": 73.740351508877737,
+    "width": 153.01122938092132,
+    "tabOrder": 4000
   },
   "visual": {
     "visualType": "slicer",
@@ -68,6 +68,47 @@
                 "Literal": {
                   "Value": "2D"
                 }
+              }
+            },
+            "filter": {
+              "filter": {
+                "Version": 2,
+                "From": [
+                  {
+                    "Name": "v",
+                    "Entity": "VDIM_NEGFIN_RB_CVE_ZNA",
+                    "Type": 0
+                  }
+                ],
+                "Where": [
+                  {
+                    "Condition": {
+                      "In": {
+                        "Expressions": [
+                          {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "v"
+                                }
+                              },
+                              "Property": "CVE_ZONA"
+                            }
+                          }
+                        ],
+                        "Values": [
+                          [
+                            {
+                              "Literal": {
+                                "Value": "'03. Centro'"
+                              }
+                            }
+                          ]
+                        ]
+                      }
+                    }
+                  }
+                ]
               }
             }
           }

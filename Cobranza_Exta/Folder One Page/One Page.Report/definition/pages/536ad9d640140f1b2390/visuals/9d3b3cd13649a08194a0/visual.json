@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
-  "name": "965c74cd9ecd2cc8c1e2",
+  "name": "9d3b3cd13649a08194a0",
   "position": {
-    "x": 278.59691661397295,
-    "y": 2.3258255563283412,
-    "z": 2000,
-    "height": 70.053333933433848,
-    "width": 154.85473816864325,
-    "tabOrder": 2000
+    "x": 0,
+    "y": 2.4206816514500136,
+    "z": 7000,
+    "height": 70.7667826047421,
+    "width": 240.23460410557186,
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "slicer",
@@ -20,16 +20,15 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "VDIM_CALENDARIO"
+                      "Entity": "VDIM_TIPO_TARJETA"
                     }
                   },
-                  "Property": "ANIO_YYYY"
+                  "Property": "TIP_INF"
                 }
               },
-              "queryRef": "VDIM_CALENDARIO.ANIO_YYYY",
-              "nativeQueryRef": "AÑO",
-              "active": true,
-              "displayName": "AÑO"
+              "queryRef": "VDIM_TIPO_TARJETA.TIP_INF",
+              "nativeQueryRef": "TIP_INF",
+              "active": true
             }
           ]
         }
@@ -42,7 +41,7 @@
             "mode": {
               "expr": {
                 "Literal": {
-                  "Value": "'Dropdown'"
+                  "Value": "'Basic'"
                 }
               }
             }
@@ -71,45 +70,11 @@
                 }
               }
             },
-            "filter": {
-              "filter": {
-                "Version": 2,
-                "From": [
-                  {
-                    "Name": "v",
-                    "Entity": "VDIM_CALENDARIO",
-                    "Type": 0
-                  }
-                ],
-                "Where": [
-                  {
-                    "Condition": {
-                      "In": {
-                        "Expressions": [
-                          {
-                            "Column": {
-                              "Expression": {
-                                "SourceRef": {
-                                  "Source": "v"
-                                }
-                              },
-                              "Property": "ANIO_YYYY"
-                            }
-                          }
-                        ],
-                        "Values": [
-                          [
-                            {
-                              "Literal": {
-                                "Value": "'2026'"
-                              }
-                            }
-                          ]
-                        ]
-                      }
-                    }
-                  }
-                ]
+            "orientation": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
               }
             }
           }
@@ -158,7 +123,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Año'"
+                  "Value": "'Producto'"
                 }
               }
             },
@@ -202,6 +167,27 @@
                   "Value": "0D"
                 }
               }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "VDIM_TIPO_TARJETA"
+                            }
+                          },
+                          "Property": "COLOR"
+                        }
+                      },
+                      "Function": 4
+                    }
+                  }
+                }
+              }
             }
           }
         }
@@ -212,7 +198,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             },
@@ -254,19 +240,19 @@
     },
     "drillFilterOtherVisuals": true
   },
-  "parentGroupName": "76497453b76a743cc2e8",
+  "parentGroupName": "e46e6980b515c77b0c28",
   "filterConfig": {
     "filters": [
       {
-        "name": "Filter76eb639d96527005ae45",
+        "name": "e556afda936eff651f17",
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "VDIM_CALENDARIO"
+                "Entity": "VDIM_TIPO_TARJETA"
               }
             },
-            "Property": "ANIO_YYYY"
+            "Property": "TIP_INF"
           }
         },
         "type": "Categorical",
@@ -275,59 +261,101 @@
           "From": [
             {
               "Name": "v",
-              "Entity": "VDIM_CALENDARIO",
+              "Entity": "VDIM_TIPO_TARJETA",
               "Type": 0
             }
           ],
           "Where": [
             {
               "Condition": {
-                "Not": {
-                  "Expression": {
-                    "In": {
-                      "Expressions": [
-                        {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Source": "v"
-                              }
-                            },
-                            "Property": "ANIO_YYYY"
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "v"
                           }
+                        },
+                        "Property": "TIP_INF"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'100'"
                         }
-                      ],
-                      "Values": [
-                        [
-                          {
-                            "Literal": {
-                              "Value": "null"
-                            }
-                          }
-                        ]
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        },
-        "objects": {
-          "general": [
-            {
-              "properties": {
-                "isInvertedSelectionMode": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "true"
-                    }
-                  }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'110'"
+                        }
+                      }
+                    ]
+                  ]
                 }
               }
             }
           ]
         }
+      },
+      {
+        "name": "8ef768e60dc1a6bea050",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "VDIM_TIPO_TARJETA"
+              }
+            },
+            "Property": "ORG"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "v",
+              "Entity": "VDIM_TIPO_TARJETA",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "v"
+                          }
+                        },
+                        "Property": "ORG"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'LIVERPOOL'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
       }
     ]
   }

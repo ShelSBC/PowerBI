@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
   "name": "9b5286dcc04a3df6853f",
   "position": {
-    "x": 232.62052679382379,
-    "y": 2.7700348432055755,
+    "x": 455.57376023527951,
+    "y": 2.3258255563283412,
     "z": 1000,
-    "height": 72.020905923344969,
-    "width": 110.44588036849616,
-    "tabOrder": 8000
+    "height": 73.740351508877737,
+    "width": 143.79368544231158,
+    "tabOrder": 3000
   },
   "visual": {
     "visualType": "slicer",
@@ -69,6 +69,47 @@
                 "Literal": {
                   "Value": "2D"
                 }
+              }
+            },
+            "filter": {
+              "filter": {
+                "Version": 2,
+                "From": [
+                  {
+                    "Name": "v",
+                    "Entity": "VDIM_CALENDARIO",
+                    "Type": 0
+                  }
+                ],
+                "Where": [
+                  {
+                    "Condition": {
+                      "In": {
+                        "Expressions": [
+                          {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "v"
+                                }
+                              },
+                              "Property": "MES_LETRA"
+                            }
+                          }
+                        ],
+                        "Values": [
+                          [
+                            {
+                              "Literal": {
+                                "Value": "'Mar'"
+                              }
+                            }
+                          ]
+                        ]
+                      }
+                    }
+                  }
+                ]
               }
             }
           }
