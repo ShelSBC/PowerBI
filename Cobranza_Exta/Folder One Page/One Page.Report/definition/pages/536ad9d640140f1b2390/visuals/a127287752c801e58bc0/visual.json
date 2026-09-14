@@ -1,0 +1,216 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "a127287752c801e58bc0",
+  "position": {
+    "x": 0,
+    "y": 261.25,
+    "z": 10001,
+    "height": 348.75,
+    "width": 462.5,
+    "tabOrder": 10001
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FAC_COB_ONE_PAGE_ICV"
+                    }
+                  },
+                  "Property": "Ranking"
+                }
+              },
+              "queryRef": "FAC_COB_ONE_PAGE_ICV.Ranking",
+              "nativeQueryRef": "Ranking"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VFAC_COB_RANKING"
+                    }
+                  },
+                  "Property": "PLAZA"
+                }
+              },
+              "queryRef": "VFAC_COB_RANKING.PLAZA",
+              "nativeQueryRef": "PLAZA"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MEDIDAS"
+                    }
+                  },
+                  "Property": "% Recuperacion Real"
+                }
+              },
+              "queryRef": "MEDIDAS.% Recuperacion Real",
+              "nativeQueryRef": "% Recuperacion Real"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FAC_COB_ONE_PAGE_ICV"
+                  }
+                },
+                "Property": "Ranking"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "4305e15f17e3c368ed3e",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FAC_COB_ONE_PAGE_ICV"
+              }
+            },
+            "Property": "Ranking"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "eb3eb4b78aaac48a7010",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "VFAC_COB_RANKING"
+              }
+            },
+            "Property": "PLAZA"
+          }
+        },
+        "type": "TopN",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "subquery",
+              "Expression": {
+                "Subquery": {
+                  "Query": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "v",
+                        "Entity": "VFAC_COB_RANKING",
+                        "Type": 0
+                      },
+                      {
+                        "Name": "m",
+                        "Entity": "MEDIDAS",
+                        "Type": 0
+                      }
+                    ],
+                    "Select": [
+                      {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "v"
+                            }
+                          },
+                          "Property": "PLAZA"
+                        },
+                        "Name": "field"
+                      }
+                    ],
+                    "OrderBy": [
+                      {
+                        "Direction": 2,
+                        "Expression": {
+                          "Measure": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "m"
+                              }
+                            },
+                            "Property": "% Recuperacion Real"
+                          }
+                        }
+                      }
+                    ],
+                    "Top": 10
+                  }
+                }
+              },
+              "Type": 2
+            },
+            {
+              "Name": "v",
+              "Entity": "VFAC_COB_RANKING",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "v"
+                          }
+                        },
+                        "Property": "PLAZA"
+                      }
+                    }
+                  ],
+                  "Table": {
+                    "SourceRef": {
+                      "Source": "subquery"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "96806731310c17655697",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MEDIDAS"
+              }
+            },
+            "Property": "% Recuperacion Real"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

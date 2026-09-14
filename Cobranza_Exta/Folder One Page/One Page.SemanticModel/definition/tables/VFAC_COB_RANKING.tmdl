@@ -1,0 +1,97 @@
+table VFAC_COB_RANKING
+	lineageTag: d721c1c1-9597-4fb6-a3ad-122594642bd2
+
+	column FECHA_MES
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: d12d80e8-96c0-4c8e-8a56-eb02e9338e55
+		summarizeBy: none
+		sourceColumn: FECHA_MES
+
+		variation Variation
+			isDefault
+			relationship: 1ab271da-002e-4310-88c4-ec52e2e89342
+			defaultHierarchy: LocalDateTable_79b67918-c1dd-4a63-adfc-810226f37d28.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ANIOMES
+		dataType: string
+		lineageTag: a47deeca-0a2f-48d6-a2ec-461f57cb1c32
+		summarizeBy: none
+		sourceColumn: ANIOMES
+
+		annotation SummarizationSetBy = Automatic
+
+	column PLAZA
+		dataType: string
+		lineageTag: 67b03393-ddf7-4ce6-ad52-40d8f2c04de4
+		summarizeBy: none
+		sourceColumn: PLAZA
+
+		annotation SummarizationSetBy = Automatic
+
+	column ZONA
+		dataType: string
+		lineageTag: cbe93c12-3942-493d-9ecc-6c77dde9a4f2
+		summarizeBy: none
+		sourceColumn: ZONA
+
+		annotation SummarizationSetBy = Automatic
+
+	column CUENTAS
+		dataType: int64
+		formatString: 0
+		lineageTag: 31f67c6b-3aee-4534-93bd-b78d72942f72
+		summarizeBy: sum
+		sourceColumn: CUENTAS
+
+		annotation SummarizationSetBy = Automatic
+
+	column IMPORTE
+		dataType: double
+		lineageTag: 38c19cbe-d93d-4a57-a592-03dca083fb3c
+		summarizeBy: sum
+		sourceColumn: IMPORTE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PAGOS
+		dataType: double
+		lineageTag: c19a52df-ad96-4c85-9f80-e6b9b9e5edcd
+		summarizeBy: sum
+		sourceColumn: PAGOS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PORC_RECUP
+		dataType: double
+		lineageTag: 9e06c3a8-33dc-4281-b849-4a5716d7911e
+		summarizeBy: sum
+		sourceColumn: PORC_RECUP
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition VFAC_COB_RANKING = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([UseStorageApi=false, BillingProject="crp-dev-dominio-negfin"]),
+				    #"crp-dev-dominio-negfin" = Source{[Name="crp-dev-dominio-negfin"]}[Data],
+				    mus_dev_cobr_prd_views_Schema = #"crp-dev-dominio-negfin"{[Name="mus_dev_cobr_prd_views",Kind="Schema"]}[Data],
+				    VFAC_COB_RANKING_View = mus_dev_cobr_prd_views_Schema{[Name="VFAC_COB_RANKING",Kind="View"]}[Data]
+				in
+				    VFAC_COB_RANKING_View
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

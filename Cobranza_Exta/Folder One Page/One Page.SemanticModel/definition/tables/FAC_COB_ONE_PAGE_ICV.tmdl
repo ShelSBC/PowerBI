@@ -1,6 +1,17 @@
 table FAC_COB_ONE_PAGE_ICV
 	lineageTag: dba28321-7f51-4db2-a851-d20be8eb670b
 
+	measure Ranking =
+			
+			RANKX(
+			    ALLSELECTED('VFAC_COB_RANKING'[PLAZA]),
+			    [% Recuperacion Real],
+			    ,
+			    DESC
+			)
+		formatString: 0
+		lineageTag: 5d5dfc85-3b22-48f9-bcf5-be745a75507c
+
 	column ANIOMES
 		dataType: int64
 		formatString: 0

@@ -38,7 +38,7 @@ table VDIM_NEGFIN_RB_PLAZO
 		mode: import
 		source =
 				let
-				    Origen = GoogleBigQuery.Database(),
+				    Origen = GoogleBigQuery.Database([UseStorageApi=false, BillingProject="crp-dev-dominio-negfin"]),
 				    #"crp-pro-dwh-semanticagold" = Origen{[Name="crp-pro-dwh-semanticagold"]}[Data],
 				    MUS_PRO_DWH_VIEWS_ODS_Schema = #"crp-pro-dwh-semanticagold"{[Name="MUS_PRO_DWH_VIEWS_ODS",Kind="Schema"]}[Data],
 				    VDIM_NEGFIN_RB_PLAZO_View = MUS_PRO_DWH_VIEWS_ODS_Schema{[Name="VDIM_NEGFIN_RB_PLAZO",Kind="View"]}[Data]

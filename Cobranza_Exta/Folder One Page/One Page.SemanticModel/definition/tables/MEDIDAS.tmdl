@@ -1129,6 +1129,18 @@ table MEDIDAS
 		formatString: 0.0%;-0.0%;0.0%
 		lineageTag: 93d78b53-df5d-476b-a791-bd6e0fcb67f9
 
+	measure '% Recuperacion Real' = ```
+			
+			DIVIDE(
+			    SUM('VFAC_COB_RANKING'[PAGOS]), 
+			    SUM('VFAC_COB_RANKING'[IMPORTE]), 
+			    0
+			) * 100
+			```
+		lineageTag: cd8b8867-86df-4d05-9cbb-5dc9b36462bb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column 'Titulos Dinamicos' =
 			VAR TextoFijo = "Cobranza: Flexipagos"
 			VAR NombreDinamico =
@@ -1173,4 +1185,6 @@ table MEDIDAS
 				    #"Columnas quitadas"
 
 	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
 

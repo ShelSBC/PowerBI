@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "bb2dca24e5d37169bd78",
   "position": {
     "x": 455.57376023527951,
@@ -17,24 +17,109 @@
           "projections": [
             {
               "field": {
-                "Column": {
+                "HierarchyLevel": {
                   "Expression": {
-                    "SourceRef": {
-                      "Entity": "VDIM_CALENDARIO"
+                    "Hierarchy": {
+                      "Expression": {
+                        "PropertyVariationSource": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "VFAC_COB_RANKING"
+                            }
+                          },
+                          "Name": "Variation",
+                          "Property": "FECHA_MES"
+                        }
+                      },
+                      "Hierarchy": "Jerarquía de fechas"
                     }
                   },
-                  "Property": "MES_LETRA"
+                  "Level": "Año"
                 }
               },
-              "queryRef": "VDIM_CALENDARIO.MES_LETRA",
-              "nativeQueryRef": "MES",
-              "active": true,
-              "displayName": "MES"
+              "queryRef": "VFAC_COB_RANKING.FECHA_MES.Variation.Jerarquía de fechas.Año",
+              "nativeQueryRef": "FECHA_MES Año",
+              "active": true
+            },
+            {
+              "field": {
+                "HierarchyLevel": {
+                  "Expression": {
+                    "Hierarchy": {
+                      "Expression": {
+                        "PropertyVariationSource": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "VFAC_COB_RANKING"
+                            }
+                          },
+                          "Name": "Variation",
+                          "Property": "FECHA_MES"
+                        }
+                      },
+                      "Hierarchy": "Jerarquía de fechas"
+                    }
+                  },
+                  "Level": "Mes"
+                }
+              },
+              "queryRef": "VFAC_COB_RANKING.FECHA_MES.Variation.Jerarquía de fechas.Mes",
+              "nativeQueryRef": "FECHA_MES Mes",
+              "active": true
             }
           ]
         }
       }
     },
+    "expansionStates": [
+      {
+        "roles": [
+          "Values"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "VFAC_COB_RANKING.FECHA_MES.Variation.Jerarquía de fechas.Año"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "LocalDateTable_79b67918-c1dd-4a63-adfc-810226f37d28"
+                    }
+                  },
+                  "Property": "Año"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "VFAC_COB_RANKING.FECHA_MES.Variation.Jerarquía de fechas.Mes"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          }
+        ],
+        "root": {
+          "children": [
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "2026L"
+                  }
+                }
+              ],
+              "isToggled": true
+            }
+          ]
+        }
+      }
+    ],
     "objects": {
       "data": [
         {
@@ -76,8 +161,8 @@
                 "Version": 2,
                 "From": [
                   {
-                    "Name": "v",
-                    "Entity": "VDIM_CALENDARIO",
+                    "Name": "l",
+                    "Entity": "LocalDateTable_79b67918-c1dd-4a63-adfc-810226f37d28",
                     "Type": 0
                   }
                 ],
@@ -90,10 +175,20 @@
                             "Column": {
                               "Expression": {
                                 "SourceRef": {
-                                  "Source": "v"
+                                  "Source": "l"
                                 }
                               },
-                              "Property": "MES_LETRA"
+                              "Property": "Año"
+                            }
+                          },
+                          {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "l"
+                                }
+                              },
+                              "Property": "Mes"
                             }
                           }
                         ],
@@ -101,10 +196,119 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'Mar'"
+                                "Value": "2026L"
+                              }
+                            },
+                            {
+                              "Literal": {
+                                "Value": "'junio'"
                               }
                             }
                           ]
+                        ]
+                      }
+                    },
+                    "Annotations": {
+                      "filterExpressionMetadata": {
+                        "expressions": [
+                          {
+                            "HierarchyLevel": {
+                              "Expression": {
+                                "Hierarchy": {
+                                  "Expression": {
+                                    "PropertyVariationSource": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Entity": "VFAC_COB_RANKING"
+                                        }
+                                      },
+                                      "Name": "Variation",
+                                      "Property": "FECHA_MES"
+                                    }
+                                  },
+                                  "Hierarchy": "Jerarquía de fechas"
+                                }
+                              },
+                              "Level": "Año"
+                            }
+                          },
+                          {
+                            "HierarchyLevel": {
+                              "Expression": {
+                                "Hierarchy": {
+                                  "Expression": {
+                                    "PropertyVariationSource": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Entity": "VFAC_COB_RANKING"
+                                        }
+                                      },
+                                      "Name": "Variation",
+                                      "Property": "FECHA_MES"
+                                    }
+                                  },
+                                  "Hierarchy": "Jerarquía de fechas"
+                                }
+                              },
+                              "Level": "Mes"
+                            }
+                          }
+                        ],
+                        "decomposedIdentities": {
+                          "values": [
+                            [
+                              {
+                                "0": [
+                                  {
+                                    "Literal": {
+                                      "Value": "2026L"
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "1": [
+                                  {
+                                    "Literal": {
+                                      "Value": "'junio'"
+                                    }
+                                  }
+                                ]
+                              }
+                            ]
+                          ],
+                          "columns": [
+                            {
+                              "value": {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Entity": "LocalDateTable_79b67918-c1dd-4a63-adfc-810226f37d28"
+                                    }
+                                  },
+                                  "Property": "Año"
+                                }
+                              }
+                            },
+                            {
+                              "value": {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Entity": "LocalDateTable_79b67918-c1dd-4a63-adfc-810226f37d28"
+                                    }
+                                  },
+                                  "Property": "Mes"
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        "valueMap": [
+                          {
+                            "0": "2026",
+                            "1": "junio"
+                          }
                         ]
                       }
                     }
@@ -313,6 +517,7 @@
             }
           ]
         },
+        "howCreated": "User",
         "objects": {
           "general": [
             {
