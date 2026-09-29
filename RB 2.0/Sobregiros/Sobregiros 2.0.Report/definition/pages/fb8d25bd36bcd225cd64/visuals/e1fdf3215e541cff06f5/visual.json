@@ -1,0 +1,829 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "e1fdf3215e541cff06f5",
+  "position": {
+    "x": 796.29233511586449,
+    "y": 290.90909090909088,
+    "z": 22000,
+    "height": 399.28698752228161,
+    "width": 472.29946524064172,
+    "tabOrder": 20000
+  },
+  "visual": {
+    "visualType": "columnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VDIM_CALENDARIO"
+                    }
+                  },
+                  "Property": "MES_ANIO_LETRA"
+                }
+              },
+              "queryRef": "VDIM_CALENDARIO.MES_ANIO_LETRA",
+              "nativeQueryRef": "MES_ANIO_LETRA",
+              "active": true
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_V2_TRN_NEW"
+                    }
+                  },
+                  "Property": "MACROSEGMENTO_DESC"
+                }
+              },
+              "queryRef": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_V2_TRN_NEW.MACROSEGMENTO_DESC",
+              "nativeQueryRef": "MACROSEGMENTO_DESC"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_V2_TRN_NEW"
+                        }
+                      },
+                      "Property": "SDO_MM_2"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_V2_TRN_NEW.SDO_MM_2)",
+              "nativeQueryRef": "Suma de SDO_MM_2"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "VFAC_MIX_DISPOSICIONES_MAC_DIG_TRN"
+                  }
+                },
+                "Property": "  SEGMENTO_OFICIAL_DES"
+              }
+            },
+            "direction": "Ascending"
+          },
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "VFAC_MIX_DISPOSICIONES_MAC_DIG_TRN"
+                  }
+                },
+                "Property": "  POTENCIAL/PREMIUM"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "categoryAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "legend": [
+        {
+          "properties": {
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'BottomCenter'"
+                }
+              }
+            },
+            "showTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#DD33A0'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_MIX_DISPOSICIONES_MAC_DIG_TRN"
+                          }
+                        },
+                        "Property": "  SEGMENTO_OFICIAL_DES"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'No clasificado'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_MIX_DISPOSICIONES_MAC_DIG_TRN"
+                          }
+                        },
+                        "Property": "  SEGMENTO_OFICIAL_DES"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'12'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 4,
+                      "Percent": -0.5
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_MIX_DISPOSICIONES_MAC_DIG_TRN"
+                          }
+                        },
+                        "Property": "  SEGMENTO_OFICIAL_DES"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'11'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0CFA1C'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_MIX_DISPOSICIONES_MAC_DIG_TRN"
+                          }
+                        },
+                        "Property": "  SEGMENTO_OFICIAL_DES"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'10'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 9,
+                      "Percent": 0.6
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_MIX_DISPOSICIONES_MAC_DIG_TRN"
+                          }
+                        },
+                        "Property": "  SEGMENTO_OFICIAL_DES"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "' 9'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#44D6D6'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_MIX_DISPOSICIONES_MAC_DIG_TRN"
+                          }
+                        },
+                        "Property": "  SEGMENTO_OFICIAL_DES"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "' 8'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#E33728'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_MIX_DISPOSICIONES_MAC_DIG_TRN"
+                          }
+                        },
+                        "Property": "  SEGMENTO_OFICIAL_DES"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "' 7'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFC40'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_MIX_DISPOSICIONES_MAC_DIG_TRN"
+                          }
+                        },
+                        "Property": "  SEGMENTO_OFICIAL_DES"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "' 6'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#C83493'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_MIX_DISPOSICIONES_MAC_DIG_TRN"
+                          }
+                        },
+                        "Property": "  SEGMENTO_OFICIAL_DES"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "' 5'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#C2F6F7'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_MIX_DISPOSICIONES_MAC_DIG_TRN"
+                          }
+                        },
+                        "Property": "  SEGMENTO_OFICIAL_DES"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "' 4'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F9C344'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_MIX_DISPOSICIONES_MAC_DIG_TRN"
+                          }
+                        },
+                        "Property": "  SEGMENTO_OFICIAL_DES"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "' 3'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#119E1D'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_MIX_DISPOSICIONES_MAC_DIG_TRN"
+                          }
+                        },
+                        "Property": "  SEGMENTO_OFICIAL_DES"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "' 2'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 2,
+                      "Percent": -0.25
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_MIX_DISPOSICIONES_MAC_DIG_TRN"
+                          }
+                        },
+                        "Property": "  SEGMENTO_OFICIAL_DES"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "' 1'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "labelOrientation": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            },
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "0L"
+                }
+              }
+            },
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            },
+            "labelOverflow": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "enableBackground": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "backgroundTransparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "30L"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Saldo $MM'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "16D"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "80e8e3294f4a67f33787",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_V2_TRN_NEW"
+              }
+            },
+            "Property": "MACROSEGMENTO_DESC"
+          }
+        },
+        "type": "Categorical",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "isHidden": true
+}

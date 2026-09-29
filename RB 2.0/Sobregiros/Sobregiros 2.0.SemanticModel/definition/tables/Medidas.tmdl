@@ -1,0 +1,482 @@
+/// Calculos generados para las visualizaciones
+table Medidas
+	lineageTag: 714d3f32-12b7-441e-9dd4-48d62e1fce9c
+
+	/// Titulo de 30 + 3 meses en libros 
+	measure TITULO_30_3_MOB =
+			"30 @ 3 MoB " & "("
+			    & CALCULATE (
+			        MAX ( VDIM_CALENDARIO[MES_ANIO_LETRA] ),
+			        FILTER (
+			            VDIM_CALENDARIO,
+			            VDIM_CALENDARIO[BANDERA_MOB3] = 1
+			        )
+			    ) & ")"
+		lineageTag: e559291c-04fa-4666-ae68-8734b2c2b40b
+
+	/// Titulo de 90 + 9 meses en libros 
+	measure TITULO_90_9_MOB =
+			"90 @ 9 MoB " & "("
+			    & CALCULATE (
+			        MAX ( VDIM_CALENDARIO[MES_ANIO_LETRA] ),
+			        FILTER (
+			            VDIM_CALENDARIO,
+			            VDIM_CALENDARIO[BANDERA_MOB9] = 1
+			        )
+			    ) & ")"
+		lineageTag: 74998807-03b9-41e1-8614-12bc8476081b
+
+	/// Color para dato mas actual
+	measure color_t0_num_p =
+			IF (
+			    MAX ( VDIM_CALENDARIO[T0_NUM_P] ) = 1,
+			    "black",
+			    "rgba(0, 0, 0, 0)"
+			)
+		lineageTag: b60bf6b6-d69c-4f64-8827-655dbb373718
+
+	/// Calculo de mapa de calor violeta
+	measure temadinamico_violeta =
+			VAR seleccion_ =
+			    SELECTEDVALUE ( VDIM_PRODUCTO[TIP_INF] )
+			RETURN
+			    IF (
+			        seleccion_ = 100,
+			        "#666666",
+			        IF (
+			            seleccion_ = 110,
+			            "#ff00ff",
+			            "#BF7EB4"
+			        )
+			    )
+		lineageTag: ecd56a50-60f9-4e99-86f7-7b0a1bba3d24
+
+	/// Color de mapa de calor
+	measure temadinamico_orange =
+			VAR seleccion_ =
+			    SELECTEDVALUE ( VDIM_PRODUCTO[TIP_INF] )
+			RETURN
+			    IF (
+			        seleccion_ = 100,
+			        "#666666",
+			        IF (
+			            seleccion_ = 110,
+			            "#ff00ff",
+			            "#FD6F21"
+			        )
+			    )
+		lineageTag: 3180e3cf-0a39-4dfe-b9a6-484d67b48579
+
+	/// Bandera nombres de titulos
+	measure Nombre_Tarjeta =
+			VAR NombreDinamico =
+			    SELECTEDVALUE (
+			        VDIM_PRODUCTO[TIP_INF],
+			        ""
+			    )
+			VAR NombreDinamico_ =
+			    SWITCH (
+			        TRUE (),
+			        NombreDinamico = 110, "Dilisa",
+			        NombreDinamico = 100, "LPC"
+			    )
+			VAR A_ = "Tarjeta " & NombreDinamico_
+			RETURN
+			    IF (
+			        NombreDinamico = "",
+			        "Todos los productos",
+			        A_
+			    )
+		lineageTag: ca3102c1-d149-4d5f-9fa7-dcf688d65d60
+
+	/// Color de meses en libros 30+
+	measure colorMob3 =
+			IF (
+			    MAX ( VDIM_CALENDARIO[BANDERA_MOB3] ) = 1,
+			    "black",
+			    "rgba(0, 0, 0, 0)"
+			)
+		lineageTag: d948c57b-fb8d-4d55-8670-28012d7cd3c5
+
+	/// Color de meses en libros 90+
+	measure colorMob9 =
+			IF (
+			    MAX ( VDIM_CALENDARIO[BANDERA_MOB9] ) = 1,
+			    "black",
+			    "rgba(0, 0, 0, 0)"
+			)
+		lineageTag: 15cc539a-5ea7-4ef9-87e5-ebe948a5c054
+
+	measure '1 PROMEDIOS $/#' =
+			if (ISBLANK(DIVIDE(SUM(FAC_MIGRACION_SOBREGIROS_INSUMO_SOBREGIROS_DILISA_TRN_NEW[IMP_SOBREGIRO_1000000])
+			,SUM(FAC_MIGRACION_SOBREGIROS_INSUMO_SOBREGIROS_DILISA_TRN_NEW[CTAS_MIL])/1000)),0
+			,DIVIDE(SUM(FAC_MIGRACION_SOBREGIROS_INSUMO_SOBREGIROS_DILISA_TRN_NEW[IMP_SOBREGIRO_1000000])
+			,SUM(FAC_MIGRACION_SOBREGIROS_INSUMO_SOBREGIROS_DILISA_TRN_NEW[CTAS_MIL])/1000))
+		formatString: #,0.0
+		lineageTag: 4e0627c8-92b7-4f1f-a455-0ad02c0a5237
+
+	measure IMP/CTAS = ```
+			
+			DIVIDE(
+			    SUM(FAC_MIGRACION_SOBREGIROS_INSUMO_SOBREGIROS_DILISA_TRN_NEW[IMP_SOBREGIRO_1000000]),
+			    SUM(FAC_MIGRACION_SOBREGIROS_INSUMO_SOBREGIROS_DILISA_TRN_NEW[CTAS])
+			) * 1000
+			
+			```
+		lineageTag: fb5e8728-4764-4c69-a624-dbc84467c98e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '00 Año Efectivo' = ```
+			
+			VAR AnioSeleccionado = SELECTEDVALUE ( VDIM_CALENDARIO[ANIO_YYYY] ) 
+			VAR AnioValido = 
+			    NOT ISBLANK ( AnioSeleccionado ) && 
+			    COUNTROWS ( 
+			        FILTER ( 
+			            ALL ( FAC_RB_2_SOBREGIROS_TRN ), 
+			            FAC_RB_2_SOBREGIROS_TRN[ANIO_ESTR] = AnioSeleccionado 
+			        ) 
+			    ) > 0 
+			RETURN 
+			    IF ( 
+			        HASONEVALUE ( VDIM_CALENDARIO[ANIO_YYYY] ) && AnioValido, 
+			        AnioSeleccionado, 
+			        CALCULATE ( 
+			            MAX ( FAC_RB_2_SOBREGIROS_TRN[ANIO_ESTR] ), 
+			            REMOVEFILTERS ( VDIM_CALENDARIO ) 
+			        ) 
+			    )
+			```
+		lineageTag: 5679d1e0-8aa4-41cf-9f3a-8e3f36125cfd
+
+	measure '00 Mes Efectivo' = ```
+			
+			VAR MesSeleccionado = SELECTEDVALUE ( VDIM_CALENDARIO[MES] ) 
+			VAR AnioEfectivo = [00 Año Efectivo] 
+			
+			VAR MesValido = 
+			    NOT ISBLANK ( MesSeleccionado ) && 
+			    COUNTROWS ( 
+			        FILTER ( 
+			            ALL ( FAC_RB_2_SOBREGIROS_TRN ), 
+			            FAC_RB_2_SOBREGIROS_TRN[MES_ESTR] = MesSeleccionado 
+			            && FAC_RB_2_SOBREGIROS_TRN[ANIO_ESTR] = AnioEfectivo 
+			        ) 
+			    ) > 0 
+			
+			RETURN 
+			    IF ( 
+			        HASONEVALUE ( VDIM_CALENDARIO[MES] ) && MesValido, 
+			        MesSeleccionado, 
+			        CALCULATE ( 
+			            MAX ( FAC_RB_2_SOBREGIROS_TRN[MES_ESTR] ), 
+			            REMOVEFILTERS ( VDIM_CALENDARIO ), 
+			            FILTER ( 
+			                ALL ( FAC_RB_2_SOBREGIROS_TRN ), 
+			                FAC_RB_2_SOBREGIROS_TRN[ANIO_ESTR] = AnioEfectivo 
+			            ) 
+			        ) 
+			    )
+			```
+		lineageTag: a13ecfc9-45d0-4272-9ffe-0832f80e6d79
+
+	measure '01 Cuentas #k' = ```
+			
+			VAR AnioObjetivo = [00 Año Efectivo]
+			VAR MesObjetivo = [00 Mes Efectivo] 
+			VAR AnioMesObjetivo = AnioObjetivo & MesObjetivo 
+			
+			RETURN 
+			CALCULATE ( 
+			    SUM ( FAC_RB_2_SOBREGIROS_TRN[CTAS_K] ),
+			    REMOVEFILTERS ( VDIM_CALENDARIO ), 
+			    VDIM_CALENDARIO[ANIO_MES] = AnioMesObjetivo 
+			)
+			```
+		formatString: #,0
+		lineageTag: ddd83ff3-6b5f-4664-accb-a0d6c28d377e
+
+	measure '01 Cuentas #k (Anterior)' = ```
+			
+			VAR AnioActual = [00 Año Efectivo] 
+			VAR MesActual = [00 Mes Efectivo] 
+			
+			-- Convertimos a número solo para restar 1 año y luego volvemos a texto de 4 dígitos
+			VAR AnioObjetivo = FORMAT ( VALUE ( AnioActual ) - 1, "0000" ) 
+			
+			-- Aseguramos que el mes tenga 2 dígitos convirtiendo el texto a número para FORMAT
+			VAR MesObjetivoFormatted = FORMAT ( VALUE ( MesActual ), "00" )
+			
+			VAR AnioMesObjetivo = AnioObjetivo & MesObjetivoFormatted 
+			
+			RETURN 
+			COALESCE ( 
+			    CALCULATE ( 
+			        SUM ( FAC_RB_2_SOBREGIROS_TRN[CTAS_K] ), 
+			        REMOVEFILTERS ( VDIM_CALENDARIO ), 
+			        VDIM_CALENDARIO[ANIO_MES] = AnioMesObjetivo 
+			    ), 
+			    0 
+			)
+			```
+		lineageTag: fa11a924-05f4-4d8d-bf3c-4e08081a67a3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '02 Cuentas Acum' = ```
+			
+			VAR AnioObjetivo = [00 Año Efectivo] 
+			VAR MesObjetivo = [00 Mes Efectivo] 
+			
+			VAR MesObjetivoFormatted = FORMAT ( VALUE ( MesObjetivo ), "00" )
+			VAR AnioMesLimite = AnioObjetivo & MesObjetivoFormatted 
+			
+			RETURN 
+			CALCULATE ( 
+			    SUM ( FAC_RB_2_SOBREGIROS_TRN[CTAS_K] ), 
+			    REMOVEFILTERS ( VDIM_CALENDARIO ), 
+			    VDIM_CALENDARIO[ANIO_YYYY] = AnioObjetivo, 
+			    VDIM_CALENDARIO[ANIO_MES] <= AnioMesLimite 
+			)
+			```
+		lineageTag: fa4e895e-6530-478a-846c-216598655c1b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '03 Cuentas Acum (Anterior)' = ```
+			
+			VAR AnioActual = [00 Año Efectivo] 
+			VAR MesActual = [00 Mes Efectivo] 
+			
+			VAR AnioObjetivo = FORMAT ( VALUE ( AnioActual ) - 1, "0000" ) 
+			VAR MesObjetivoFormatted = FORMAT ( VALUE ( MesActual ), "00" )
+			
+			VAR AnioMesLimite = AnioObjetivo & MesObjetivoFormatted 
+			
+			RETURN 
+			COALESCE ( 
+			    CALCULATE ( 
+			        SUM ( FAC_RB_2_SOBREGIROS_TRN[CTAS_K] ), 
+			        REMOVEFILTERS ( VDIM_CALENDARIO ), 
+			        VDIM_CALENDARIO[ANIO_YYYY] = AnioObjetivo, 
+			        VDIM_CALENDARIO[ANIO_MES] <= AnioMesLimite 
+			    ), 
+			    0 
+			)
+			```
+		lineageTag: 04233350-04d0-43c9-9673-442d69192959
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '01 Imp $' = ```
+			
+			VAR AnioObjetivo = [00 Año Efectivo]
+			VAR MesObjetivo = [00 Mes Efectivo] 
+			VAR AnioMesObjetivo = AnioObjetivo & MesObjetivo 
+			
+			RETURN 
+			CALCULATE ( 
+			    SUM (FAC_RB_2_SOBREGIROS_TRN[IMP_SOBREGIRO_M] ),
+			    REMOVEFILTERS ( VDIM_CALENDARIO ), 
+			    VDIM_CALENDARIO[ANIO_MES] = AnioMesObjetivo 
+			)
+			```
+		lineageTag: b4cb5aaa-b86e-41f2-b49e-6765bcb7cddb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '01 Imp $ (Anterior)' = ```
+			
+			VAR AnioActual = [00 Año Efectivo] 
+			VAR MesActual = [00 Mes Efectivo] 
+			
+			-- Convertimos a número solo para restar 1 año y luego volvemos a texto de 4 dígitos
+			VAR AnioObjetivo = FORMAT ( VALUE ( AnioActual ) - 1, "0000" ) 
+			
+			-- Aseguramos que el mes tenga 2 dígitos convirtiendo el texto a número para FORMAT
+			VAR MesObjetivoFormatted = FORMAT ( VALUE ( MesActual ), "00" )
+			
+			VAR AnioMesObjetivo = AnioObjetivo & MesObjetivoFormatted 
+			
+			RETURN 
+			COALESCE ( 
+			    CALCULATE ( 
+			        SUM ( FAC_RB_2_SOBREGIROS_TRN[IMP_SOBREGIRO_M] ), 
+			        REMOVEFILTERS ( VDIM_CALENDARIO ), 
+			        VDIM_CALENDARIO[ANIO_MES] = AnioMesObjetivo 
+			    ), 
+			    0 
+			)
+			```
+		lineageTag: 17d5f688-04de-4cde-81f8-1a9cdf91d48a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '02 Imp Acum' = ```
+			
+			VAR AnioObjetivo = [00 Año Efectivo] 
+			VAR MesObjetivo = [00 Mes Efectivo] 
+			
+			-- Aseguramos que el mes tenga 2 dígitos convirtiendo texto a número para FORMAT
+			VAR MesObjetivoFormatted = FORMAT ( VALUE ( MesObjetivo ), "00" )
+			VAR AnioMesLimite = AnioObjetivo & MesObjetivoFormatted 
+			
+			RETURN 
+			CALCULATE ( 
+			    SUM ( FAC_RB_2_SOBREGIROS_TRN[IMP_SOBREGIRO_M] ), 
+			    REMOVEFILTERS ( VDIM_CALENDARIO ), 
+			    VDIM_CALENDARIO[ANIO_YYYY] = AnioObjetivo, 
+			    VDIM_CALENDARIO[ANIO_MES] <= AnioMesLimite 
+			)
+			```
+		lineageTag: 156b3112-21b7-44b9-b1d6-785f9a4418a0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '02 Imp Acum (Anterior)' = ```
+			
+			VAR AnioActual = [00 Año Efectivo] 
+			VAR MesActual = [00 Mes Efectivo] 
+			
+			-- Calculamos el año anterior convertiéndolo a número y formateándolo a 4 dígitos
+			VAR AnioObjetivo = FORMAT ( VALUE ( AnioActual ) - 1, "0000" ) 
+			
+			-- Aseguramos que el mes tenga 2 dígitos convirtiendo el texto a número para FORMAT
+			VAR MesObjetivoFormatted = FORMAT ( VALUE ( MesActual ), "00" )
+			VAR AnioMesLimite = AnioObjetivo & MesObjetivoFormatted 
+			
+			RETURN 
+			COALESCE ( 
+			    CALCULATE ( 
+			        SUM ( FAC_RB_2_SOBREGIROS_TRN[IMP_SOBREGIRO_M] ), 
+			        REMOVEFILTERS ( VDIM_CALENDARIO ), 
+			        VDIM_CALENDARIO[ANIO_YYYY] = AnioObjetivo, 
+			        VDIM_CALENDARIO[ANIO_MES] <= AnioMesLimite 
+			    ), 
+			    0 
+			)
+			```
+		lineageTag: d7ff334a-adc2-4ce3-86e1-5110255407eb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '0 Etiqueta Periodo Actual' =
+			
+			VAR AnioObjetivo = [00 Año Efectivo]
+			VAR MesObjetivo  = [00 Mes Efectivo]
+			VAR MesObjetivoTxt = FORMAT ( VALUE ( MesObjetivo ), "00" )
+			
+			VAR NombreMes =
+			    CALCULATE (
+			        MAX ( VDIM_CALENDARIO[MES_LETRA] ),
+			        REMOVEFILTERS ( VDIM_CALENDARIO ),
+			        VDIM_CALENDARIO[MES] = MesObjetivoTxt
+			    )
+			RETURN
+			NombreMes & "'" & RIGHT ( AnioObjetivo, 2 )
+		lineageTag: f3eff965-651f-48ae-accb-4a46d4dd2f24
+
+	measure '0 Etiqueta Periodo Anterior' =
+			
+			VAR AnioActual = [00 Año Efectivo]
+			VAR MesActual  = [00 Mes Efectivo]
+			VAR AnioObjetivo = VALUE ( AnioActual ) - 1
+			VAR MesActualTxt = FORMAT ( VALUE ( MesActual ), "00" )
+			
+			VAR NombreMes =
+			    CALCULATE (
+			        MAX ( VDIM_CALENDARIO[MES_LETRA] ),
+			        REMOVEFILTERS ( VDIM_CALENDARIO ),
+			        VDIM_CALENDARIO[MES] = MesActualTxt
+			    )
+			RETURN
+			NombreMes & "'" & RIGHT ( FORMAT ( AnioObjetivo, "0000" ), 2 )
+		lineageTag: d6ddbddf-5602-4cb3-8a45-f2024f93eee9
+
+	measure '01 Saldo $ (Anterior)' = ```
+			
+			VAR AnioActual = [00 Año Efectivo] 
+			VAR MesActual = [00 Mes Efectivo] 
+			
+			VAR AnioObjetivo = FORMAT ( VALUE ( AnioActual ) - 1, "0000" ) 
+			VAR MesObjetivoFormatted = FORMAT ( VALUE ( MesActual ), "00" )
+			VAR AnioMesObjetivo = AnioObjetivo & MesObjetivoFormatted 
+			
+			-- 1. Suma total de importe para el mismo mes del año anterior
+			VAR TotalImporteAnterior = 
+			    CALCULATE ( 
+			        SUM ( FAC_RB_2_SOBREGIROS_TRN[IMP_SOBREGIRO_M] ), 
+			        REMOVEFILTERS ( VDIM_CALENDARIO ), 
+			        VDIM_CALENDARIO[ANIO_MES] = AnioMesObjetivo 
+			    )
+			
+			-- 2. Suma total de cuentas para el mismo mes del año anterior
+			VAR TotalCuentasAnterior = 
+			    CALCULATE ( 
+			        SUM ( FAC_RB_2_SOBREGIROS_TRN[CTAS_K] ), 
+			        REMOVEFILTERS ( VDIM_CALENDARIO ), 
+			        VDIM_CALENDARIO[ANIO_MES] = AnioMesObjetivo 
+			    )
+			
+			-- 3. Ratio ponderado del año anterior
+			RETURN 
+			COALESCE ( 
+			    DIVIDE ( TotalImporteAnterior, TotalCuentasAnterior, 0 ) * 1000, 
+			    0 
+			)
+			```
+		lineageTag: 448d2a92-eaec-485a-ad6a-51e2dcfdad41
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '01 Saldo $' = ```
+			
+			VAR AnioObjetivo = [00 Año Efectivo]
+			VAR MesObjetivo = [00 Mes Efectivo] 
+			VAR MesObjetivoFormatted = FORMAT ( VALUE ( MesObjetivo ), "00" )
+			VAR AnioMesObjetivo = AnioObjetivo & MesObjetivoFormatted 
+			
+			-- 1. Calculamos la suma del importe total para el periodo
+			VAR TotalImporte = 
+			    CALCULATE ( 
+			        SUM ( FAC_RB_2_SOBREGIROS_TRN[IMP_SOBREGIRO_M] ),
+			        REMOVEFILTERS ( VDIM_CALENDARIO ), 
+			        VDIM_CALENDARIO[ANIO_MES] = AnioMesObjetivo 
+			    )
+			
+			-- 2. Calculamos la suma total de cuentas para el periodo
+			VAR TotalCuentas = 
+			    CALCULATE ( 
+			        SUM ( FAC_RB_2_SOBREGIROS_TRN[CTAS_K] ),
+			        REMOVEFILTERS ( VDIM_CALENDARIO ), 
+			        VDIM_CALENDARIO[ANIO_MES] = AnioMesObjetivo 
+			    )
+			
+			-- 3. Dividimos los totales agregados
+			RETURN 
+			COALESCE ( 
+			    DIVIDE ( TotalImporte, TotalCuentas, 0 ) * 1000, 
+			    0 
+			)
+			```
+		lineageTag: 2c7d0369-63fb-4046-ab99-6c6cfd029b3f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Columna blanca
+	column Column
+		formatString: 0
+		lineageTag: 6ff18ef5-af49-4c68-9f4f-7dfe07660db3
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Medidas = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = dbbbeae8ccb44038b766b49e2ff17ea5
+

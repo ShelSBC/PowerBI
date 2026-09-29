@@ -1,0 +1,181 @@
+table FAC_NEGFIN_SOBREGIROS_NR_AGE_NEW
+	lineageTag: 0b141f5a-0143-4d04-b554-739b0fb36c00
+
+	column ANIOMES_OBS
+		dataType: double
+		lineageTag: abe437c2-5c8a-4faf-9119-e84a6904381a
+		summarizeBy: none
+		sourceColumn: ANIOMES_OBS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ANIOMES_ESTR
+		dataType: double
+		lineageTag: 6110243b-9ca3-4e05-b78e-42cd9470bdac
+		summarizeBy: sum
+		sourceColumn: ANIOMES_ESTR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ANTIG_ESTR
+		dataType: double
+		lineageTag: ee616316-99e9-44bf-92b2-23378d43b372
+		summarizeBy: sum
+		sourceColumn: ANTIG_ESTR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FLG_DIG
+		dataType: string
+		lineageTag: 30aab189-9a20-4225-bd21-73b7f7c2dd32
+		summarizeBy: none
+		sourceColumn: FLG_DIG
+
+		annotation SummarizationSetBy = Automatic
+
+	column TIP_INF
+		dataType: int64
+		formatString: 0
+		lineageTag: 87323c83-d97a-46fe-b4b0-62bf779a894f
+		summarizeBy: none
+		sourceColumn: TIP_INF
+
+		annotation SummarizationSetBy = Automatic
+
+	column CTAS
+		dataType: int64
+		formatString: 0
+		lineageTag: d0247742-9428-40c9-8960-af16e1620400
+		summarizeBy: sum
+		sourceColumn: CTAS
+
+		annotation SummarizationSetBy = Automatic
+
+	column SDO
+		dataType: double
+		lineageTag: d2ede78f-efaa-4842-b24b-f2eec31465b9
+		summarizeBy: sum
+		sourceColumn: SDO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column IMP_SOBREGIRO
+		dataType: double
+		lineageTag: 95086e63-01d4-43bf-afcb-9a7217488949
+		summarizeBy: sum
+		sourceColumn: IMP_SOBREGIRO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column IMP_SOBREGIRO_10000
+		dataType: double
+		lineageTag: 6b9756c8-2d40-4298-b16f-0cc71bc4841d
+		summarizeBy: sum
+		sourceColumn: IMP_SOBREGIRO_10000
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column NIV_RIESGO
+		dataType: string
+		lineageTag: c43c6947-e703-4053-81dd-cac749691cd7
+		summarizeBy: none
+		sourceColumn: NIV_RIESGO
+
+		annotation SummarizationSetBy = Automatic
+
+	column SEGMENTO_CLIENTE
+		dataType: string
+		lineageTag: 8cc1ae89-867c-4864-8f2d-6dbda03a3912
+		summarizeBy: none
+		sourceColumn: SEGMENTO_CLIENTE
+
+		annotation SummarizationSetBy = Automatic
+
+	column RANG_LIM_CRD
+		dataType: string
+		lineageTag: dd81771e-c02d-4591-b160-d556ca1ef9e1
+		summarizeBy: none
+		sourceColumn: RANG_LIM_CRD
+
+		annotation SummarizationSetBy = Automatic
+
+	column MACROSEGMENTO
+		dataType: double
+		lineageTag: 8b0d95eb-8ffc-4cbc-948c-4c7d4206f110
+		summarizeBy: sum
+		sourceColumn: MACROSEGMENTO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CTA_TOTALERO_FLG
+		dataType: int64
+		formatString: 0
+		lineageTag: b0701137-e4f1-4322-86a6-ffa4e0d51ed7
+		summarizeBy: sum
+		sourceColumn: CTA_TOTALERO_FLG
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLG_TOTALERO
+		dataType: string
+		lineageTag: 83ab9c8d-eacc-4899-89d8-bb10a9d15a56
+		summarizeBy: none
+		sourceColumn: FLG_TOTALERO
+
+		annotation SummarizationSetBy = Automatic
+
+	column RANG_MOBS
+		dataType: string
+		lineageTag: 2301e4c7-1ec9-4c49-8d19-8a31626e6efa
+		summarizeBy: none
+		sourceColumn: RANG_MOBS
+
+		annotation SummarizationSetBy = Automatic
+
+	column RANG_MOBS_DESC
+		dataType: string
+		lineageTag: b07b8753-7211-4103-a03c-57ce66703fac
+		summarizeBy: none
+		sourceColumn: RANG_MOBS_DESC
+
+		annotation SummarizationSetBy = Automatic
+
+	column SDO_10000
+		dataType: double
+		lineageTag: ed9d8ff5-748e-47b2-b83c-ab260fca9e0b
+		summarizeBy: sum
+		sourceColumn: SDO_10000
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition FAC_NEGFIN_SOBREGIROS_NR_AGE_NEW = m
+		mode: import
+		source =
+				let
+				    Origen = GoogleBigQuery.Database([UseStorageApi=false, BillingProject="crp-pro-dwh-semanticagold"]),
+				    #"crp-sdx-cx-semantica" = Origen{[Name="crp-sdx-cx-semantica"]}[Data],
+				    mus_sdx_neg_fin_shared_views_Schema = #"crp-sdx-cx-semantica"{[Name="mus_sdx_neg_fin_shared_views",Kind="Schema"]}[Data],
+				    FAC_NEGFIN_SOBREGIROS_NR_AGE_NEW_Table = mus_sdx_neg_fin_shared_views_Schema{[Name="FAC_NEGFIN_SOBREGIROS_NR_AGE_NEW",Kind="Table"]}[Data]
+				in
+				    FAC_NEGFIN_SOBREGIROS_NR_AGE_NEW_Table
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

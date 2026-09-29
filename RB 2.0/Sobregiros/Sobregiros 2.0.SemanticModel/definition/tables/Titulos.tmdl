@@ -1,0 +1,43 @@
+table Titulos
+	lineageTag: acd336ac-e24b-4ea8-ba32-dde45ee075df
+
+	column Value1
+		lineageTag: 98e677e6-102b-4beb-9dd4-cc77ae8ab074
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Value1]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Value2
+		lineageTag: 71389a18-6710-4273-b09b-a975166cd24e
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Value2]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Value3
+		formatString: 0
+		lineageTag: 5f937e61-862c-4827-9c6f-b00d4b3fe1f1
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Titulos = calculated
+		mode: import
+		source =
+				{
+				    ("Linea de Credito", NAMEOF(FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW[RANG_LIM_CRD]),0),
+				    ("Edades", NAMEOF(FAC_MIGRACION_SOBREGIROS_INSUMO_EDAD_DILISA_TRN_NEW[RANG_EDAD]),1),
+				    ("Segmento Cliente", NAMEOF(FAC_MIGRACION_SOBREGIROS_INSUMO_SOBREGIROS_DILISA_TRN_NEW[SEGMENTO_CLIENTE]),2),
+				    ("Nivel Riesgo", NAMEOF(FAC_NEGFIN_SOBREGIROS_NR_AGE_NEW[NIV_RIESGO]),3),
+				    ("Segmento RFM", NAMEOF(FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_V2_TRN_NEW[SEGMENTO_RFM]),4),
+				    ("Antiguedad tarjeta", NAMEOF(FAC_MIGRACION_SOBREGIROS_INSUMO_EDAD_DILISA_TRN_NEW[ANTIG_ESTR]),5),
+				    ("Totalero y revolvente", NAMEOF(FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_V2_TRN_NEW[CTA_TOTALERO_FLG]),6)
+				}
+
+	annotation PBI_Id = 6be959979e104f8293adf5a2127846f1
+

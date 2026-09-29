@@ -1,0 +1,3100 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "b5508f7c8e44275495d4",
+  "position": {
+    "x": 95.468086377786122,
+    "y": 22.470040284528505,
+    "z": 1000,
+    "height": 500,
+    "width": 610,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Columns": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VDIM_CALENDARIO"
+                    }
+                  },
+                  "Property": "MES_LETRA"
+                }
+              },
+              "queryRef": "VDIM_CALENDARIO.MES_LETRA",
+              "nativeQueryRef": "MES_LETRA",
+              "active": true
+            }
+          ]
+        },
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VDIM_CALENDARIO"
+                    }
+                  },
+                  "Property": "ANIO_YYYY"
+                }
+              },
+              "queryRef": "VDIM_CALENDARIO.ANIO_YYYY",
+              "nativeQueryRef": "Cuentas #M",
+              "active": true,
+              "displayName": "Cuentas #M"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW"
+                    }
+                  },
+                  "Property": "RANG_LIM_CRD_DESC"
+                }
+              },
+              "queryRef": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW.RANG_LIM_CRD_DESC",
+              "nativeQueryRef": "RANG_LIM_CRD_DESC",
+              "active": false
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW"
+                        }
+                      },
+                      "Property": "CTAS"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW.CTAS)",
+              "nativeQueryRef": "Suma de CTAS"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "values": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "backColorSecondary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F3B4DC'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Calibri'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#09124F'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Calibri'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "rowHeaders": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Calibri'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "50.810948866412474D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Jun-21'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "53.9900990324793D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Jul-21'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "50D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Dic-21'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "49.40298918066188D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Jul-22'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "46.793405006763365D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Jun-22'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "43.95487172516105D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Dic-22'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "44.76276820128589D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Oct-22'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "50D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Oct-21'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "51.44482040349316D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Dic-20'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "47.631578947368425D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Ene-21'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "47.973684210526315D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Feb-21'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "48.31578947368421D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Mar-21'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "46.973684210526315D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Abr-21'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "49.973684210526315D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Ago-21'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "47.31578947368421D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Sep-21'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "47.631578947368425D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Ene-22'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "47.973684210526315D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Feb-22'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "48.973684210526315D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Mar-22'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "48.41004570463465D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Abr-22'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "48.84480148952433D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Sep-22'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "48.278688524590166D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Ene-23'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "48.6336673129514D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Nov-22'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "44.85536977423125D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Abr-23'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "46.4593210269537D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Jun-23'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "45.979211627989D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'May-23'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "45.523552139728956D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Mar-23'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "42.93069295296591D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Jul''21'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "42.980199304013055D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Ago''21'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "45.94059495689392D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Oct''21'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "42.568528812741235D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Dic''21'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "44.5533013182603D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Ene''22'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "43.04568339194151D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Feb''22'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "42.53807145916647D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Abr''22'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "43.49238538647649D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'May''22'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "44.076136970282434D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Jun''22'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "41.58376249621327D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Jul''22'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "44.55329863315137D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Ago''22'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "42.538073425051394D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Sep''22'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "43.04568339194151D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Oct''22'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "45.10660037537525D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Dic''22'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "43.04568811006167D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Feb''23'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "43.50761444727529D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Mar''23'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "43.55329729059842D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Abr''23'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "42.553295879197705D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Jun''23'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "42.09135629920582D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Jul''23'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "44.12500116301789D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Feb-23'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "43.24999656333769D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Jul-23'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "44.47846910276424D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'May-22'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "44.34928458684962D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Sep-23'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "43.827752314006986D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Oct-23'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "44.74162610636036D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "  FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Dic-23'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "44.296702164162596D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Ene-24'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "44.296702164162596D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Feb-23'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "44.296703512425424D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Feb-24'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "48.94505388973279D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'May-22'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "46.19780172877013D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'May-23'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "47.14285235203177D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Jun-23'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "47.98899664642436D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Jul-22'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "46.49450585404237D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Sep-22'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "44.39560881791216D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Oct-23'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "46.69230980896627D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "FCH_LETRA_ESTR"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Dic-23'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "45.0037647280108D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VDIM_CALENDARIO"
+                          }
+                        },
+                        "Property": "MES_LETRA"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Ene'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "42.76073163011486D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VDIM_CALENDARIO"
+                          }
+                        },
+                        "Property": "MES_LETRA"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Feb'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "43.242262443461215D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VDIM_CALENDARIO"
+                          }
+                        },
+                        "Property": "MES_LETRA"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Mar'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {},
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VDIM_CALENDARIO"
+                          }
+                        },
+                        "Property": "MES_LETRA"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Abr'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "45.40170150677001D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VDIM_CALENDARIO"
+                          }
+                        },
+                        "Property": "MES_LETRA"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'May'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "43.56753745089561D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VDIM_CALENDARIO"
+                          }
+                        },
+                        "Property": "MES_LETRA"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Jun'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "45.11239112149774D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VDIM_CALENDARIO"
+                          }
+                        },
+                        "Property": "MES_LETRA"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Jul'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "44.18827230668128D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VDIM_CALENDARIO"
+                          }
+                        },
+                        "Property": "MES_LETRA"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Ago'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "45.589083240621285D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VDIM_CALENDARIO"
+                          }
+                        },
+                        "Property": "MES_LETRA"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Sep'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "46.754779843592175D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VDIM_CALENDARIO"
+                          }
+                        },
+                        "Property": "MES_LETRA"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Oct'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "43.9842274861058D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VDIM_CALENDARIO"
+                          }
+                        },
+                        "Property": "MES_LETRA"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Nov'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "46.024542977546204D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VDIM_CALENDARIO"
+                          }
+                        },
+                        "Property": "MES_LETRA"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Dic'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "subTotals": [
+        {
+          "properties": {
+            "columnSubtotals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnTotal": [
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "rowTotal": [
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#09124F'"
+                    }
+                  }
+                }
+              }
+            },
+            "applyToHeaders": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "grid": [
+        {
+          "properties": {
+            "outlineColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Cuentas #K'"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "background": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#09124F'"
+                    }
+                  }
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "parentGroupName": "a7ae0fdfccc993f75c5d",
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "4bae5ee4089a8235bad4",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW"
+              }
+            },
+            "Property": "RANG_LIM_CRD_DESC"
+          }
+        },
+        "type": "Categorical",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

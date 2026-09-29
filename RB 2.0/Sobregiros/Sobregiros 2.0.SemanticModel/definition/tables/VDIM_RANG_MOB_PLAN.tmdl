@@ -1,0 +1,38 @@
+/// Contiene el catalogo de meses en libros
+table VDIM_RANG_MOB_PLAN
+	lineageTag: a9e95f53-13c0-49b1-9f9d-37a52a567690
+
+	/// Llave para conexccion a la bandera de meses en libros 
+	column LLAVE_RANG_MOB_PLAN
+		dataType: int64
+		formatString: 0
+		lineageTag: b2613ada-d830-47c1-8780-504f4a17ecb4
+		summarizeBy: sum
+		sourceColumn: LLAVE_RANG_MOB_PLAN
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Bandera meses en libros
+	column RANG_MOB_PLAN
+		dataType: string
+		lineageTag: 0746dba1-26d4-461f-a91f-e110cd3bdd00
+		summarizeBy: none
+		sourceColumn: RANG_MOB_PLAN
+
+		annotation SummarizationSetBy = Automatic
+
+	partition VDIM_RANG_MOB_PLAN = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([UseStorageApi=false, BillingProject="crp-pro-dwh-semanticagold"]),
+				    #"crp-pro-cx-semantica" = Source{[Name="crp-pro-cx-semantica"]}[Data],
+				    mus_pro_negfin_shared_views_Schema = #"crp-pro-cx-semantica"{[Name="mus_pro_negfin_shared_views",Kind="Schema"]}[Data],
+				    VDIM_RANG_MOB_PLAN_Table = mus_pro_negfin_shared_views_Schema{[Name="VDIM_RANG_MOB_PLAN",Kind="Table"]}[Data]
+				in
+				    VDIM_RANG_MOB_PLAN_Table
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegación
+

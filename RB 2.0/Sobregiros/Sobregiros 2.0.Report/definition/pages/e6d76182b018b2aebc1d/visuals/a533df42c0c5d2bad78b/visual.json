@@ -1,0 +1,235 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "a533df42c0c5d2bad78b",
+  "position": {
+    "x": 0,
+    "y": 160,
+    "z": 13000,
+    "height": 560,
+    "width": 1280,
+    "tabOrder": 12000
+  },
+  "visual": {
+    "visualType": "keyDriversVisual",
+    "query": {
+      "queryState": {
+        "ExplainBy": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                    }
+                  },
+                  "Property": "TIP_INF"
+                }
+              },
+              "queryRef": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN.TIP_INF",
+              "nativeQueryRef": "Producto",
+              "displayName": "Producto"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VDIM_CVE_ZNA"
+                    }
+                  },
+                  "Property": "CVE_ZNA"
+                }
+              },
+              "queryRef": "VDIM_CVE_ZNA.CVE_ZNA",
+              "nativeQueryRef": "CVE_ZNA"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VDIM_NIV_RIESGO"
+                    }
+                  },
+                  "Property": "NIV_RIESGO"
+                }
+              },
+              "queryRef": "VDIM_NIV_RIESGO.NIV_RIESGO",
+              "nativeQueryRef": "NIV_RIESGO"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VDIM_PRODUCTO"
+                    }
+                  },
+                  "Property": "TIP_INF"
+                }
+              },
+              "queryRef": "VDIM_PRODUCTO.TIP_INF",
+              "nativeQueryRef": "TIP_INF"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VDIM_RANG_LIM_CRD"
+                    }
+                  },
+                  "Property": "RANG_LIM_CRD"
+                }
+              },
+              "queryRef": "VDIM_RANG_LIM_CRD.RANG_LIM_CRD",
+              "nativeQueryRef": "RANG_LIM_CRD"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VDIM_RANG_EDAD"
+                    }
+                  },
+                  "Property": "RANGO_EDAD"
+                }
+              },
+              "queryRef": "VDIM_RANG_EDAD.RANGO_EDAD",
+              "nativeQueryRef": "RANGO_EDAD"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VDIM_RANG_MOB_PLAN"
+                    }
+                  },
+                  "Property": "RANG_MOB_PLAN"
+                }
+              },
+              "queryRef": "VDIM_RANG_MOB_PLAN.RANG_MOB_PLAN",
+              "nativeQueryRef": "RANG_MOB_PLAN"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VDIM_SEGMENTO_CTE"
+                    }
+                  },
+                  "Property": "SEGMENTO_CLIENTE"
+                }
+              },
+              "queryRef": "VDIM_SEGMENTO_CTE.SEGMENTO_CLIENTE",
+              "nativeQueryRef": "SEGMENTO_CLIENTE"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VDIM_SEGMENTO_RFM"
+                    }
+                  },
+                  "Property": "SEGMENTO_RFM"
+                }
+              },
+              "queryRef": "VDIM_SEGMENTO_RFM.SEGMENTO_RFM",
+              "nativeQueryRef": "SEGMENTO_RFM"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VDIM_TOTALERO"
+                    }
+                  },
+                  "Property": "BAND_TOT"
+                }
+              },
+              "queryRef": "VDIM_TOTALERO.BAND_TOT",
+              "nativeQueryRef": "BAND_TOT"
+            }
+          ]
+        },
+        "Target": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                        }
+                      },
+                      "Property": "CUENTAS"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(VFAC_DISPOSICIONES_COD_MAESTRO_TRN.CUENTAS)",
+              "nativeQueryRef": "Cuentas",
+              "displayName": "Cuentas"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                      }
+                    },
+                    "Property": "CUENTAS"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "keyDrivers": [
+        {
+          "properties": {
+            "numericTargetSelectedKind": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "selectedAnalysis": {
+              "expr": {
+                "Literal": {
+                  "Value": "'keyInfluencers'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "isHidden": true
+}

@@ -1,0 +1,192 @@
+table FAC_MIGRACION_SOBREGIROS_INTERESES_DILISA_TRN_NEW
+	lineageTag: eb66b0f3-239e-4023-9fa6-751824c79996
+
+	column ANIOMES_OBS
+		dataType: double
+		lineageTag: 3d34bf31-7a00-4f6b-9d46-d0d54cd2926f
+		summarizeBy: sum
+		sourceColumn: ANIOMES_OBS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ANIOMES_ESTR
+		dataType: double
+		lineageTag: 29ec7ce0-065f-4a4b-b607-3d1e17928ad5
+		summarizeBy: sum
+		sourceColumn: ANIOMES_ESTR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ANTIG_ESTR
+		dataType: double
+		lineageTag: fb234d7d-21c3-464a-a249-01d0c8a61729
+		summarizeBy: sum
+		sourceColumn: ANTIG_ESTR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TIP_INF
+		dataType: int64
+		formatString: 0
+		lineageTag: e0942f8e-b889-42af-8067-60f54a7ca803
+		summarizeBy: none
+		sourceColumn: TIP_INF
+
+		annotation SummarizationSetBy = Automatic
+
+	column YTD
+		dataType: string
+		lineageTag: 045d046c-ee79-4b00-917c-40bf4fb346db
+		summarizeBy: none
+		sourceColumn: YTD
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLG_CAST
+		dataType: int64
+		formatString: 0
+		lineageTag: bc38aa5a-c170-46b2-a080-f2b41aa07995
+		summarizeBy: sum
+		sourceColumn: FLG_CAST
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLG_WEB
+		dataType: double
+		lineageTag: 320f852c-061c-4c95-ac35-3466ffb7c888
+		summarizeBy: sum
+		sourceColumn: FLG_WEB
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CTAS
+		dataType: int64
+		formatString: 0
+		lineageTag: 36eb2761-a969-40e3-84d3-5e82d69ba505
+		summarizeBy: sum
+		sourceColumn: CTAS
+
+		annotation SummarizationSetBy = Automatic
+
+	column IMP_SOBREGIRO
+		dataType: double
+		lineageTag: 511b9f5d-3302-4382-8fdd-70098580248d
+		summarizeBy: sum
+		sourceColumn: IMP_SOBREGIRO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SDO
+		dataType: double
+		lineageTag: c68aa824-6622-4d8a-90be-b408e208927b
+		summarizeBy: sum
+		sourceColumn: SDO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column INT
+		dataType: double
+		lineageTag: f2a95499-6fca-48dc-8635-f7a94d3dbdc6
+		summarizeBy: sum
+		sourceColumn: INT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CASTI
+		dataType: double
+		lineageTag: fef2ccf8-2516-4482-8a71-0b93de9eb766
+		summarizeBy: sum
+		sourceColumn: CASTI
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FLG_DIG
+		dataType: string
+		lineageTag: 2fa1bf9e-598a-469c-8617-5d930f773bd5
+		summarizeBy: none
+		sourceColumn: FLG_DIG
+
+		annotation SummarizationSetBy = Automatic
+
+	column SEGMENTO_CLIENTE
+		dataType: string
+		lineageTag: 649cbf46-ef72-4f3b-8196-815be71844c4
+		summarizeBy: none
+		sourceColumn: SEGMENTO_CLIENTE
+
+		annotation SummarizationSetBy = Automatic
+
+	column YTD_CAST
+		dataType: string
+		lineageTag: 0abb8d8f-db8c-40e8-8860-e818d4a25f6c
+		summarizeBy: none
+		sourceColumn: YTD_CAST
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLG_30
+		dataType: int64
+		formatString: 0
+		lineageTag: a9673965-4c73-484c-846f-a1c2e23ddf91
+		summarizeBy: sum
+		sourceColumn: FLG_30
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLG_90
+		dataType: int64
+		formatString: 0
+		lineageTag: c7ac92f3-008a-4b64-9381-a3b39fc09d12
+		summarizeBy: sum
+		sourceColumn: FLG_90
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACTIVA
+		dataType: int64
+		formatString: 0
+		lineageTag: 778bbfa7-ab9c-4583-9d9c-c6e598b1fd10
+		summarizeBy: sum
+		sourceColumn: ACTIVA
+
+		annotation SummarizationSetBy = Automatic
+
+	column YTD_INT
+		dataType: string
+		lineageTag: 4471e601-0367-4512-8aef-2ddc209add80
+		summarizeBy: none
+		sourceColumn: YTD_INT
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FAC_MIGRACION_SOBREGIROS_INTERESES_DILISA_TRN_NEW = m
+		mode: import
+		source =
+				let
+				    Origen = GoogleBigQuery.Database([UseStorageApi=false, BillingProject="crp-pro-dwh-semanticagold"]),
+				    #"crp-pro-cx-analitica" = Origen{[Name="crp-pro-cx-analitica"]}[Data],
+				    mus_pro_negfin_tablas_finales_Schema = #"crp-pro-cx-analitica"{[Name="mus_pro_negfin_tablas_finales",Kind="Schema"]}[Data],
+				    FAC_MIGRACION_SOBREGIROS_INTERESES_DILISA_TRN_NEW_Table = mus_pro_negfin_tablas_finales_Schema{[Name="FAC_MIGRACION_SOBREGIROS_INTERESES_DILISA_TRN_NEW",Kind="Table"]}[Data]
+				in
+				    FAC_MIGRACION_SOBREGIROS_INTERESES_DILISA_TRN_NEW_Table
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

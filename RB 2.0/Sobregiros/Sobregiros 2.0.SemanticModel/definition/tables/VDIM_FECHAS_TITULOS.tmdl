@@ -1,0 +1,163 @@
+/// Catalogo de fechas para titulos 
+table VDIM_FECHAS_TITULOS
+	lineageTag: bd46c4ac-1708-4604-8516-a70203c8a092
+
+	/// Mes  visto a año corriente
+	column MES_ANO_0
+		dataType: string
+		lineageTag: 512b064b-0a3b-4951-a447-5831bfbabba8
+		summarizeBy: none
+		sourceColumn: MES_ANO_0
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Mes  visto un año antes
+	column MES_ANO_1
+		dataType: string
+		lineageTag: 955bf7ae-6cc3-45ec-a017-dd7aca5af9fc
+		summarizeBy: none
+		sourceColumn: MES_ANO_1
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Mes  visto dos años antes
+	column MES_ANO_2
+		dataType: string
+		lineageTag: 610d203a-84dc-41f8-aa21-5d999f5bff9e
+		summarizeBy: none
+		sourceColumn: MES_ANO_2
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Mes  visto tres años antes
+	column MES_ANO_3
+		dataType: string
+		lineageTag: aadd6899-c5e7-44a8-a380-7d58df07e4f5
+		summarizeBy: none
+		sourceColumn: MES_ANO_3
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Mes  visto cuatro años antes
+	column MES_ANO_4
+		dataType: string
+		lineageTag: 9fdeee3f-495a-429b-8cb8-02a0f5e6023e
+		summarizeBy: none
+		sourceColumn: MES_ANO_4
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Mes  visto cinco años antes
+	column MES_ANO_5
+		dataType: string
+		lineageTag: 1089b294-ec9d-4db1-b929-521e5e784b54
+		summarizeBy: none
+		sourceColumn: MES_ANO_5
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Mes T-1 
+	column MES_T1_0
+		dataType: string
+		lineageTag: 3a32de54-b728-4bc7-8b33-17d0ce6587d5
+		summarizeBy: none
+		sourceColumn: MES_T1_0
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Mes T-1 visto un año antes
+	column MES_T1_1
+		dataType: string
+		lineageTag: 70c8f652-0493-4282-9273-c6c9aa9f9d93
+		summarizeBy: none
+		sourceColumn: MES_T1_1
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Mes T-1 visto dos años antes
+	column MES_T1_2
+		dataType: string
+		lineageTag: 46d28daa-0ea4-48f1-b7fe-4d5a506fa450
+		summarizeBy: none
+		sourceColumn: MES_T1_2
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Mes T-1 visto tres años antes 
+	column MES_T1_3
+		dataType: string
+		lineageTag: b9f8a131-8662-4a69-b845-9ce714ae52c9
+		summarizeBy: none
+		sourceColumn: MES_T1_3
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Inicio de año visto a año actual 
+	column INICIO_0
+		dataType: string
+		lineageTag: 4e6d4f7a-8855-45c2-92e4-d79a4dc9a16b
+		summarizeBy: none
+		sourceColumn: INICIO_0
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Inicio de año visto un año antes 
+	column INICIO_1
+		dataType: string
+		lineageTag: 1129f423-65db-42c7-a5d4-d05d817e8743
+		summarizeBy: none
+		sourceColumn: INICIO_1
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Inicio de año visto dos años antes 
+	column INICIO_2
+		dataType: string
+		lineageTag: b7ff60a2-4072-4601-9475-c116897d4832
+		summarizeBy: none
+		sourceColumn: INICIO_2
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Inicio de año visto tres años antes 
+	column INICIO_3
+		dataType: string
+		lineageTag: 65f7ae74-7d50-4913-afc0-52c6c5231e69
+		summarizeBy: none
+		sourceColumn: INICIO_3
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Inicio de año visto tres años antes 
+	column INICIO_4
+		dataType: string
+		lineageTag: 668e2aed-25bb-4e10-9063-d039686ec51c
+		summarizeBy: none
+		sourceColumn: INICIO_4
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Mes  visto cinco años antes
+	column MES_FIN
+		dataType: string
+		lineageTag: 0a68aefc-25c5-4d18-9462-15a38a930c0c
+		summarizeBy: none
+		sourceColumn: MES_FIN
+
+		annotation SummarizationSetBy = Automatic
+
+	partition VDIM_FECHAS_TITULOS = m
+		mode: import
+		source =
+				let
+				    Origen = GoogleBigQuery.Database([UseStorageApi=false, BillingProject="crp-pro-dwh-semanticagold"]),
+				    #"crp-pro-cx-semantica" = Origen{[Name="crp-pro-cx-semantica"]}[Data],
+				    mus_pro_negfin_shared_views_Schema = #"crp-pro-cx-semantica"{[Name="mus_pro_negfin_shared_views",Kind="Schema"]}[Data],
+				    VDIM_FECHAS_TITULOS_View = mus_pro_negfin_shared_views_Schema{[Name="VDIM_FECHAS_TITULOS",Kind="View"]}[Data]
+				in
+				    VDIM_FECHAS_TITULOS_View
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegación
+

@@ -1,0 +1,336 @@
+table FAC_RB_2_SOBREGIROS_TRN
+	lineageTag: b6514d69-6f0c-4a3a-a12a-4d90a1e1eafb
+
+	measure Saldo_Promedio = ```
+			
+			CALCULATE ( 
+			    DIVIDE ( 
+			        SUM ( FAC_RB_2_SOBREGIROS_TRN[IMP_SOBREGIRO_M] ), 
+			        SUM ( FAC_RB_2_SOBREGIROS_TRN[CTAS] ), 
+			        0 
+			    ) * 1000 
+			)
+			```
+		lineageTag: 460b2e26-7581-42d0-9beb-a62b07a92e00
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CTAS
+		dataType: int64
+		formatString: 0
+		lineageTag: ecf84479-32cd-4a12-af36-06c738b5b32a
+		summarizeBy: sum
+		sourceColumn: CTAS
+
+		annotation SummarizationSetBy = Automatic
+
+	column CTAS_K
+		dataType: double
+		lineageTag: 70459b07-a32a-4ff2-9fbc-1efcbc7be722
+		summarizeBy: sum
+		sourceColumn: CTAS_K
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column IMP_SOBREGIRO
+		dataType: double
+		lineageTag: 085f1645-97e8-4544-bf9a-e20fa9da7796
+		summarizeBy: sum
+		sourceColumn: IMP_SOBREGIRO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column IMP_SOBREGIRO_M
+		dataType: double
+		lineageTag: 0b2489eb-8fd5-497d-9375-398df03376da
+		summarizeBy: sum
+		sourceColumn: IMP_SOBREGIRO_M
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SDO
+		dataType: double
+		lineageTag: a15208d4-7d88-4b8f-a108-42e7c7b1da6d
+		summarizeBy: sum
+		sourceColumn: SDO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SDO_M
+		dataType: double
+		lineageTag: ef4888f1-4813-423b-b467-6f9c93cf9953
+		summarizeBy: sum
+		sourceColumn: SDO_M
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CASTI
+		dataType: double
+		lineageTag: 55c635c5-1b18-46f3-a3cd-15eb922a83a7
+		summarizeBy: sum
+		sourceColumn: CASTI
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ANIOMES_OBS
+		dataType: double
+		lineageTag: 5f8fb05e-6f47-4ecf-95f5-a08d6e2a16eb
+		summarizeBy: none
+		sourceColumn: ANIOMES_OBS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ANIOMES_ESTR
+		dataType: double
+		lineageTag: 40203070-8b77-48be-b28b-f10ce7863b53
+		summarizeBy: sum
+		sourceColumn: ANIOMES_ESTR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ANIO_ESTR
+		dataType: string
+		lineageTag: a69eb08a-efd6-443f-bae8-af3f8dd0ce8b
+		summarizeBy: none
+		sourceColumn: ANIO_ESTR
+
+		annotation SummarizationSetBy = Automatic
+
+	column MES_ESTR
+		dataType: string
+		lineageTag: 4c138fb1-fe48-4632-b8f0-d5fc3ee4f06c
+		summarizeBy: none
+		sourceColumn: MES_ESTR
+
+		annotation SummarizationSetBy = Automatic
+
+	column ANTIG_ESTR
+		dataType: string
+		lineageTag: 64393b72-3974-4092-b15c-600845981ddd
+		summarizeBy: none
+		sourceColumn: ANTIG_ESTR
+
+		annotation SummarizationSetBy = Automatic
+
+	column YTD
+		dataType: string
+		lineageTag: 54bf92e1-66ee-42f0-a681-63e090770283
+		summarizeBy: none
+		sourceColumn: YTD
+
+		annotation SummarizationSetBy = Automatic
+
+	column TIP_INF
+		dataType: int64
+		formatString: 0
+		lineageTag: ce6ce482-7c28-4df8-8322-02448e4bc3cb
+		summarizeBy: none
+		sourceColumn: TIP_INF
+
+		annotation SummarizationSetBy = Automatic
+
+	column CVE_ZNA
+		dataType: string
+		lineageTag: 70f635de-afee-4ac3-879d-0231f02ed79e
+		summarizeBy: none
+		sourceColumn: CVE_ZNA
+
+		annotation SummarizationSetBy = Automatic
+
+	column RANG_EDAD
+		dataType: string
+		lineageTag: d95db726-62b8-4068-9034-a00346dead9c
+		summarizeBy: none
+		sourceColumn: RANG_EDAD
+
+		annotation SummarizationSetBy = Automatic
+
+	column GENERO
+		dataType: string
+		lineageTag: 77004a9a-abe3-4d67-ad53-05076b40efe7
+		summarizeBy: none
+		sourceColumn: GENERO
+
+		annotation SummarizationSetBy = Automatic
+
+	column NIV_RIESGO
+		dataType: string
+		lineageTag: 3c84b6a6-2a5f-429d-8ba5-d356cb508612
+		summarizeBy: none
+		sourceColumn: NIV_RIESGO
+
+		annotation SummarizationSetBy = Automatic
+
+	column RANG_LIM_CRD
+		dataType: string
+		lineageTag: 397d2f46-a90c-4458-b1b6-606acfa2da8a
+		summarizeBy: none
+		sourceColumn: RANG_LIM_CRD
+
+		annotation SummarizationSetBy = Automatic
+
+	column RANG_NIV_MOR
+		dataType: string
+		lineageTag: 97e9f2ed-fbc2-4357-a058-deb3cc478a73
+		summarizeBy: none
+		sourceColumn: RANG_NIV_MOR
+
+		annotation SummarizationSetBy = Automatic
+
+	column RANG_UTILIZA
+		dataType: string
+		lineageTag: 3dd1267d-a542-4012-b52d-4469b7b86b27
+		summarizeBy: none
+		sourceColumn: RANG_UTILIZA
+
+		annotation SummarizationSetBy = Automatic
+
+	column SEGMENTO_RFM
+		dataType: string
+		lineageTag: 2965d337-d103-40e9-be84-2aa8149bed49
+		summarizeBy: none
+		sourceColumn: SEGMENTO_RFM
+
+		annotation SummarizationSetBy = Automatic
+
+	column SEGMENTO_CLIENTE
+		dataType: string
+		lineageTag: efa40eb0-2971-410a-912d-8c24b9b94711
+		summarizeBy: none
+		sourceColumn: SEGMENTO_CLIENTE
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLG_30
+		dataType: string
+		lineageTag: 9dddde09-caae-4dea-977c-6ee1ea7a262f
+		summarizeBy: none
+		sourceColumn: FLG_30
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLG_90
+		dataType: string
+		lineageTag: 2f7575fe-7e5a-450c-9da8-293446b214ea
+		summarizeBy: none
+		sourceColumn: FLG_90
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLG_WEB
+		dataType: int64
+		formatString: 0
+		lineageTag: 7abd011e-28d6-4673-af69-6a90387dca44
+		summarizeBy: sum
+		sourceColumn: FLG_WEB
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLG_DIG
+		dataType: string
+		lineageTag: 31a39aa8-5df4-466a-8ff5-d2a8564eec09
+		summarizeBy: none
+		sourceColumn: FLG_DIG
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLG_OFF
+		dataType: string
+		lineageTag: 31a8a8dd-75b2-4771-91df-129235659b47
+		summarizeBy: none
+		sourceColumn: FLG_OFF
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLG_CAST
+		dataType: int64
+		formatString: 0
+		lineageTag: eeff1e16-2d21-4db0-9a17-5e4751ea43b8
+		summarizeBy: sum
+		sourceColumn: FLG_CAST
+
+		annotation SummarizationSetBy = Automatic
+
+	column ID_ZNA
+		dataType: int64
+		formatString: 0
+		lineageTag: 4b59cfab-3288-42a0-9841-3e4abc17bba1
+		summarizeBy: sum
+		sourceColumn: ID_ZNA
+
+		annotation SummarizationSetBy = Automatic
+
+	column RANG_MOBS_ALT
+		dataType: string
+		lineageTag: bf429e08-d29c-4c97-a652-7b76389958e0
+		summarizeBy: none
+		sourceColumn: RANG_MOBS_ALT
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLAG_Y
+		dataType: string
+		lineageTag: d6f5f690-53b6-4a37-a1c7-656bf4f0ff10
+		summarizeBy: none
+		sourceColumn: FLAG_Y
+
+		annotation SummarizationSetBy = Automatic
+
+	column BANDERA
+		dataType: string
+		lineageTag: a9fc7759-5c38-483c-81ca-ea0b0958934c
+		summarizeBy: none
+		sourceColumn: BANDERA
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLG_PERIODO_OBJETIVO
+		dataType: int64
+		formatString: 0
+		lineageTag: f4d8c427-c2a4-4658-bd46-701845988b8a
+		summarizeBy: sum
+		sourceColumn: FLG_PERIODO_OBJETIVO
+
+		annotation SummarizationSetBy = Automatic
+
+	column TIPO_PERIODO
+		dataType: string
+		lineageTag: 4007df73-da5e-4da7-bb1a-f8e1de2f4c26
+		summarizeBy: none
+		sourceColumn: TIPO_PERIODO
+
+		annotation SummarizationSetBy = Automatic
+
+	column ANIO_OBS = LEFT('FAC_RB_2_SOBREGIROS_TRN'[ANIOMES_OBS], 4)
+		lineageTag: becd3475-b01d-4537-9c46-2e7cc766a3c5
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FAC_RB_2_SOBREGIROS_TRN = m
+		mode: import
+		source =
+				let
+				    Origen = GoogleBigQuery.Database([UseStorageApi=false, BillingProject="crp-dev-dwh-semantica"]),
+				    #"crp-pro-cx-analitica" = Origen{[Name="crp-pro-cx-analitica"]}[Data],
+				    mus_pro_negfin_tablas_finales_Schema = #"crp-pro-cx-analitica"{[Name="mus_pro_negfin_tablas_finales",Kind="Schema"]}[Data],
+				    FAC_RB_2_SOBREGIROS_TRN_Table = mus_pro_negfin_tablas_finales_Schema{[Name="FAC_RB_2_SOBREGIROS_TRN",Kind="Table"]}[Data]
+				in
+				    FAC_RB_2_SOBREGIROS_TRN_Table
+

@@ -1,0 +1,135 @@
+table FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_V2_TRN_NEW
+	lineageTag: 8b5cdd01-2e7e-4e93-8f95-a135d26e82dc
+
+	column ANIOMES_OBS
+		dataType: double
+		lineageTag: 3817f6d0-55f6-4af0-9a99-3e9e37dc9c4d
+		summarizeBy: none
+		sourceColumn: ANIOMES_OBS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TIP_INF
+		dataType: int64
+		formatString: 0
+		lineageTag: e37d2000-24da-4ca3-b6f2-6ace3841d7fc
+		summarizeBy: none
+		sourceColumn: TIP_INF
+
+		annotation SummarizationSetBy = Automatic
+
+	column CTAS
+		dataType: int64
+		formatString: 0
+		lineageTag: e95c20be-bc41-4109-a2d8-ccdb3ab3eb7e
+		summarizeBy: sum
+		sourceColumn: CTAS
+
+		annotation SummarizationSetBy = Automatic
+
+	column CTA_TOTALERO_FLG
+		dataType: int64
+		formatString: 0
+		lineageTag: 4052d133-26d8-41c0-a18d-52d764983c6b
+		summarizeBy: sum
+		sourceColumn: CTA_TOTALERO_FLG
+
+		annotation SummarizationSetBy = Automatic
+
+	column CTA_TOTALERO_DESC
+		dataType: string
+		lineageTag: fe2bf86d-bb04-459b-9935-80b5fca0f46a
+		summarizeBy: none
+		sourceColumn: CTA_TOTALERO_DESC
+
+		annotation SummarizationSetBy = Automatic
+
+	column MACROSEGMENTO
+		dataType: double
+		lineageTag: 58ac3431-a668-48e8-ba66-d2ad7c8634ca
+		summarizeBy: sum
+		sourceColumn: MACROSEGMENTO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MACROSEGMENTO_DESC
+		dataType: string
+		lineageTag: 9f32ef34-0ce6-4e03-b4a0-4563bb2dfd34
+		summarizeBy: none
+		sourceColumn: MACROSEGMENTO_DESC
+
+		annotation SummarizationSetBy = Automatic
+
+	column RANG_MOBS
+		dataType: string
+		lineageTag: 3ea99821-3ae0-4bee-94f1-307d7ecd2c58
+		summarizeBy: none
+		sourceColumn: RANG_MOBS
+
+		annotation SummarizationSetBy = Automatic
+
+	column RANG_MOBS_DESC
+		dataType: string
+		lineageTag: 984d6516-027e-4687-9ae5-948023775d1f
+		summarizeBy: none
+		sourceColumn: RANG_MOBS_DESC
+
+		annotation SummarizationSetBy = Automatic
+
+	column SEGMENTO_RFM
+		dataType: string
+		lineageTag: a9fdc5c8-32df-4f92-a7a2-87a3a4bbeef9
+		summarizeBy: none
+		sourceColumn: SEGMENTO_RFM
+
+		annotation SummarizationSetBy = Automatic
+
+	column SDO
+		dataType: double
+		lineageTag: a0a69338-a58a-4796-b518-15452a6f2dce
+		summarizeBy: sum
+		sourceColumn: SDO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SDO_MM_2
+		dataType: double
+		lineageTag: 207f8848-e4ba-46f2-9a23-00cfc5008d5c
+		summarizeBy: sum
+		sourceColumn: SDO_MM_2
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column IMP_SOBREGIRO
+		dataType: double
+		lineageTag: fb9ec182-4564-476c-a38c-6c70c73ea7b5
+		summarizeBy: sum
+		sourceColumn: IMP_SOBREGIRO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_V2_TRN_NEW = m
+		mode: import
+		source =
+				let
+				    Origen = GoogleBigQuery.Database([UseStorageApi=false, BillingProject="crp-pro-dwh-semanticagold"]),
+				    #"crp-pro-cx-analitica" = Origen{[Name="crp-pro-cx-analitica"]}[Data],
+				    mus_pro_negfin_tablas_finales_Schema = #"crp-pro-cx-analitica"{[Name="mus_pro_negfin_tablas_finales",Kind="Schema"]}[Data],
+				    FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_V2_TRN_NEW_Table = mus_pro_negfin_tablas_finales_Schema{[Name="FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_V2_TRN_NEW",Kind="Table"]}[Data]
+				in
+				    FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_V2_TRN_NEW_Table
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

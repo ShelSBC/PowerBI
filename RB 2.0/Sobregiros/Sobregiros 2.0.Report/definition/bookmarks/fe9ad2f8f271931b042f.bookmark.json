@@ -1,0 +1,165 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.1.0/schema.json",
+  "displayName": "Saldos",
+  "name": "fe9ad2f8f271931b042f",
+  "options": {
+    "targetVisualNames": [],
+    "suppressData": true
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "ReportSection91476a4cea168a970aca",
+    "sections": {
+      "ReportSection91476a4cea168a970aca": {
+        "filters": {
+          "byExpr": [
+            {
+              "name": "Filterce8de3ea10c95710c20b",
+              "type": "Categorical",
+              "filter": {
+                "Version": 2,
+                "From": [
+                  {
+                    "Name": "v",
+                    "Entity": "VDIM_CALENDARIO",
+                    "Type": 0
+                  }
+                ],
+                "Where": [
+                  {
+                    "Condition": {
+                      "In": {
+                        "Expressions": [
+                          {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "v"
+                                }
+                              },
+                              "Property": "FLG_T0"
+                            }
+                          }
+                        ],
+                        "Values": [
+                          [
+                            {
+                              "Literal": {
+                                "Value": "'1'"
+                              }
+                            }
+                          ]
+                        ]
+                      }
+                    }
+                  }
+                ]
+              },
+              "expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VDIM_CALENDARIO"
+                    }
+                  },
+                  "Property": "FLG_T0"
+                }
+              },
+              "howCreated": 1
+            },
+            {
+              "name": "Filterdb89b8e25a568d907e15",
+              "type": "Categorical",
+              "filter": {
+                "Version": 2,
+                "From": [
+                  {
+                    "Name": "v",
+                    "Entity": "VFAC_CAUSAS_RECHAZO_DISP_TRN",
+                    "Type": 0
+                  }
+                ],
+                "Where": [
+                  {
+                    "Condition": {
+                      "Not": {
+                        "Expression": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "v"
+                                    }
+                                  },
+                                  "Property": "RESPUESTA"
+                                }
+                              }
+                            ],
+                            "Values": [
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "''"
+                                  }
+                                }
+                              ]
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VFAC_CAUSAS_RECHAZO_DISP_TRN"
+                    }
+                  },
+                  "Property": "RESPUESTA"
+                }
+              },
+              "howCreated": 1
+            }
+          ]
+        },
+        "visualContainers": {},
+        "visualContainerGroups": {
+          "51becf4f70098763417a": {
+            "isHidden": false
+          },
+          "75a0f2e248350507d5a0": {
+            "isHidden": true
+          },
+          "567b9688c6ab505a718a": {
+            "isHidden": false
+          },
+          "07cbbcce3be63ff71417": {
+            "isHidden": true
+          }
+        }
+      }
+    },
+    "objects": {
+      "merge": {
+        "outspacePane": [
+          {
+            "properties": {
+              "expanded": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

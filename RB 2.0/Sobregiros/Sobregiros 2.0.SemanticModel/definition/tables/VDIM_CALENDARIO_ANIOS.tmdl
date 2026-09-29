@@ -1,0 +1,28 @@
+/// Catalodo de años naturales
+table VDIM_CALENDARIO_ANIOS
+	lineageTag: d9266770-425b-4fef-b9a2-97955a605329
+
+	/// Año natural
+	column Fecha_YYYY
+		dataType: string
+		lineageTag: 56bb95bb-daf6-4a8e-9674-9a0e772f01b0
+		summarizeBy: none
+		sourceColumn: Fecha_YYYY
+
+		annotation SummarizationSetBy = Automatic
+
+	partition VDIM_CALENDARIO_ANIOS = m
+		mode: import
+		source =
+				let
+				    Origen = GoogleBigQuery.Database([UseStorageApi=false, BillingProject="crp-pro-dwh-semanticagold"]),
+				    #"crp-pro-cx-semantica" = Origen{[Name="crp-pro-cx-semantica"]}[Data],
+				    mus_pro_negfin_shared_views_Schema = #"crp-pro-cx-semantica"{[Name="mus_pro_negfin_shared_views",Kind="Schema"]}[Data],
+				    VDIM_CALENDARIO_ANIOS_View = mus_pro_negfin_shared_views_Schema{[Name="VDIM_CALENDARIO_ANIOS",Kind="View"]}[Data]
+				in
+				    VDIM_CALENDARIO_ANIOS_View
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegación
+

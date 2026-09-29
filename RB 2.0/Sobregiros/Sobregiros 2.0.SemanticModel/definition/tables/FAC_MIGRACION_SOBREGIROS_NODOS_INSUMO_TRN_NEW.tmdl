@@ -1,0 +1,183 @@
+table FAC_MIGRACION_SOBREGIROS_NODOS_INSUMO_TRN_NEW
+	lineageTag: 99474bfc-7239-4737-b3fe-7b757a56f892
+
+	column ANIOMES_ESTR
+		dataType: double
+		lineageTag: fececfcf-ac83-4d01-96bd-cb8c04d74b4e
+		summarizeBy: sum
+		sourceColumn: ANIOMES_ESTR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ANIO_ESTR
+		dataType: int64
+		formatString: 0
+		lineageTag: d7d3204b-2732-43c1-b7e4-e67415b4da7c
+		summarizeBy: sum
+		sourceColumn: ANIO_ESTR
+
+		annotation SummarizationSetBy = Automatic
+
+	column TIP_INF
+		dataType: int64
+		formatString: 0
+		lineageTag: 091825f5-bc16-4c81-b22b-b5f80c5d184f
+		summarizeBy: none
+		sourceColumn: TIP_INF
+
+		annotation SummarizationSetBy = Automatic
+
+	column NIVEL_3
+		dataType: string
+		lineageTag: 8c571ad3-a098-4e6f-9ccf-dd3c05b46239
+		summarizeBy: none
+		sourceColumn: NIVEL_3
+
+		annotation SummarizationSetBy = Automatic
+
+	column NIVEL_2
+		dataType: string
+		lineageTag: 4df924ec-3bd2-4204-b1ef-e1cfcac4696c
+		summarizeBy: none
+		sourceColumn: NIVEL_2
+
+		annotation SummarizationSetBy = Automatic
+
+	column CTAS
+		dataType: double
+		lineageTag: ab362558-72e1-4ca7-b1b8-495fd26cb964
+		summarizeBy: sum
+		sourceColumn: CTAS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CTAS_1K
+		dataType: double
+		lineageTag: d2921e27-5838-43a1-92e0-b7015b394f72
+		summarizeBy: sum
+		sourceColumn: CTAS_1K
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SDO
+		dataType: double
+		lineageTag: 6ec60c45-b01b-418d-8c1c-d53b82902165
+		summarizeBy: sum
+		sourceColumn: SDO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SDO_1000000
+		dataType: double
+		lineageTag: f6b39164-a4ff-4491-8b16-a227e9b64327
+		summarizeBy: sum
+		sourceColumn: SDO_1000000
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ID_NODO
+		dataType: int64
+		formatString: 0
+		lineageTag: b6299846-a308-4978-a101-8dadf62d1c63
+		summarizeBy: sum
+		sourceColumn: ID_NODO
+
+		annotation SummarizationSetBy = Automatic
+
+	column ID_NODO_ANTIGUEDAD
+		dataType: string
+		lineageTag: daeb4e90-1f83-4882-9ce9-16d2f3b2779e
+		summarizeBy: none
+		sourceColumn: ID_NODO_ANTIGUEDAD
+
+		annotation SummarizationSetBy = Automatic
+
+	column TIP_INF_DESC
+		dataType: string
+		lineageTag: f44fc297-fd54-4475-9c02-60d7a1f16958
+		summarizeBy: none
+		sourceColumn: TIP_INF_DESC
+
+		annotation SummarizationSetBy = Automatic
+
+	column RIESGO
+		dataType: string
+		lineageTag: 21bb4f97-1118-4664-a8e5-6e2f65b22ed1
+		summarizeBy: none
+		sourceColumn: RIESGO
+
+		annotation SummarizationSetBy = Automatic
+
+	column RIESGO_VACIO
+		dataType: string
+		lineageTag: 5563f4a7-6040-4bca-88df-872bd401494e
+		summarizeBy: none
+		sourceColumn: RIESGO_VACIO
+
+		annotation SummarizationSetBy = Automatic
+
+	column ANTIGUEDAD_AGRUPADA
+		dataType: string
+		lineageTag: 1f7a2113-e860-4cb9-ba10-0d25d26d21a2
+		summarizeBy: none
+		sourceColumn: ANTIGUEDAD_AGRUPADA
+
+		annotation SummarizationSetBy = Automatic
+
+	column ID_AGRUPADO
+		dataType: string
+		lineageTag: 36faf372-3fae-45c4-ae4b-8f7b5211708c
+		summarizeBy: none
+		sourceColumn: ID_AGRUPADO
+
+		annotation SummarizationSetBy = Automatic
+
+	column ID_TOTAL
+		dataType: string
+		lineageTag: 91669027-31fe-44dd-9017-cbc3bd4efcab
+		summarizeBy: none
+		sourceColumn: ID_TOTAL
+
+		annotation SummarizationSetBy = Automatic
+
+	column ID_VACIO
+		dataType: string
+		lineageTag: 70e5f9b4-04e6-45f9-a719-77b738696619
+		summarizeBy: none
+		sourceColumn: ID_VACIO
+
+		annotation SummarizationSetBy = Automatic
+
+	column RIESGO_2
+		dataType: string
+		lineageTag: 7eae3636-83e7-481c-ba4c-4944c89ac772
+		summarizeBy: none
+		sourceColumn: RIESGO_2
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FAC_MIGRACION_SOBREGIROS_NODOS_INSUMO_TRN_NEW = m
+		mode: import
+		source =
+				let
+				    Origen = GoogleBigQuery.Database([UseStorageApi=false, BillingProject="crp-pro-dwh-semanticagold"]),
+				    #"crp-pro-cx-analitica" = Origen{[Name="crp-pro-cx-analitica"]}[Data],
+				    mus_pro_negfin_tablas_finales_Schema = #"crp-pro-cx-analitica"{[Name="mus_pro_negfin_tablas_finales",Kind="Schema"]}[Data],
+				    FAC_MIGRACION_SOBREGIROS_NODOS_INSUMO_TRN_NEW_Table = mus_pro_negfin_tablas_finales_Schema{[Name="FAC_MIGRACION_SOBREGIROS_NODOS_INSUMO_TRN_NEW",Kind="Table"]}[Data]
+				in
+				    FAC_MIGRACION_SOBREGIROS_NODOS_INSUMO_TRN_NEW_Table
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

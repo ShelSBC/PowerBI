@@ -1,0 +1,442 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "73540fa0a17d88144bc4",
+  "position": {
+    "x": 151.11111111111111,
+    "y": 155.55555555555554,
+    "z": 2000,
+    "height": 564.44444444444446,
+    "width": 1128.8888888888889,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VDIM_CALENDARIO"
+                    }
+                  },
+                  "Property": "MES_ANIO_LETRA"
+                }
+              },
+              "queryRef": "VDIM_CALENDARIO.MES_ANIO_LETRA",
+              "nativeQueryRef": "Vintage",
+              "displayName": "Vintage"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FAC_INCREMENTOS_COD_MAESTRO_TRN"
+                        }
+                      },
+                      "Property": "CTAS"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(FAC_INCREMENTOS_COD_MAESTRO_TRN.CTAS)",
+              "nativeQueryRef": "Cuentas #M",
+              "displayName": "Cuentas #M"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FAC_INCREMENTOS_COD_MAESTRO_TRN"
+                        }
+                      },
+                      "Property": "SDO"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(FAC_INCREMENTOS_COD_MAESTRO_TRN.SDO)",
+              "nativeQueryRef": "Importe $1",
+              "displayName": "Importe $"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas"
+                    }
+                  },
+                  "Property": " CTA_SDO_ACT_FLG_30"
+                }
+              },
+              "queryRef": "Medidas. CTA_SDO_ACT_FLG_30",
+              "nativeQueryRef": "3 - 30+1",
+              "displayName": "3 - 30+"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas"
+                    }
+                  },
+                  "Property": "CTA_SDO_ACT_FLG_30_6"
+                }
+              },
+              "queryRef": "Medidas.CTA_SDO_ACT_FLG_30_6",
+              "nativeQueryRef": "6 - 30+1",
+              "displayName": "6 - 30+"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas"
+                    }
+                  },
+                  "Property": "CTA_SDO_ACT_FLG_30_9"
+                }
+              },
+              "queryRef": "Medidas.CTA_SDO_ACT_FLG_30_9",
+              "nativeQueryRef": "9 - 30+1",
+              "displayName": "9 - 30+"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas"
+                    }
+                  },
+                  "Property": "CTA_SDO_ACT_FLG_90_6"
+                }
+              },
+              "queryRef": "Medidas.CTA_SDO_ACT_FLG_90_6",
+              "nativeQueryRef": "6 - 90+",
+              "displayName": "6 - 90+"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas"
+                    }
+                  },
+                  "Property": "CTA_SDO_ACT_FLG_90_9"
+                }
+              },
+              "queryRef": "Medidas.CTA_SDO_ACT_FLG_90_9",
+              "nativeQueryRef": "9-90+",
+              "displayName": "9-90+"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas"
+                    }
+                  },
+                  "Property": "CTA_SDO_ACT_FLG_90_12"
+                }
+              },
+              "queryRef": "Medidas.CTA_SDO_ACT_FLG_90_12",
+              "nativeQueryRef": "12-90+",
+              "displayName": "12-90+"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas"
+                    }
+                  },
+                  "Property": " Y1_CASTIGOS"
+                }
+              },
+              "queryRef": "Medidas. Y1_CASTIGOS",
+              "nativeQueryRef": "Castigos Y1",
+              "displayName": "Castigos Y1"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas"
+                    }
+                  },
+                  "Property": " Y2_CASTIGOS"
+                }
+              },
+              "queryRef": "Medidas. Y2_CASTIGOS",
+              "nativeQueryRef": "Castigos Y2",
+              "displayName": "Castigos Y2"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas"
+                    }
+                  },
+                  "Property": " Y1_NIM"
+                }
+              },
+              "queryRef": "Medidas. Y1_NIM",
+              "nativeQueryRef": "NIM Y1",
+              "displayName": "NIM Y1"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas"
+                    }
+                  },
+                  "Property": " Y2_NIM"
+                }
+              },
+              "queryRef": "Medidas. Y2_NIM",
+              "nativeQueryRef": " NIM Y2",
+              "displayName": " NIM Y2"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "columnFormatting": [
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 3,
+                      "Percent": 0.6
+                    }
+                  }
+                }
+              }
+            },
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Medidas.CTA_SDO_ACT_FLG_90_9"
+          }
+        },
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 3,
+                      "Percent": 0.6
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Medidas. CTA_SDO_ACT_FLG_30"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 7,
+                      "Percent": 0.2
+                    }
+                  }
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "41.66745140416554D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Medidas.CTA_SDO_ACT_FLG_90_6"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "43.06860296082669D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Medidas.CTA_SDO_ACT_FLG_90_9"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "45.039815779656D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Medidas.CTA_SDO_ACT_FLG_90_12"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'30 +           90+          Castigos  Int + MSI  NIM'"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "Filter965c900551450e886879",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "VDIM_CALENDARIO"
+              }
+            },
+            "Property": "FLG_T0"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "v",
+              "Entity": "VDIM_CALENDARIO",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "v"
+                          }
+                        },
+                        "Property": "FLG_T0"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'1'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ]
+  },
+  "isHidden": true
+}

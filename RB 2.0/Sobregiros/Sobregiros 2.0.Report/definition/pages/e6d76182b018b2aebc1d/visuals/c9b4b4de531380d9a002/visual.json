@@ -1,0 +1,778 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "c9b4b4de531380d9a002",
+  "position": {
+    "x": 0,
+    "y": 160,
+    "z": 3000,
+    "height": 560,
+    "width": 1280,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "decompositionTreeVisual",
+    "query": {
+      "queryState": {
+        "Analyze": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                        }
+                      },
+                      "Property": "CUENTAS"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(VFAC_DISPOSICIONES_COD_MAESTRO_TRN.CUENTAS)",
+              "nativeQueryRef": "Suma de CUENTAS",
+              "displayName": "Cuentas"
+            }
+          ]
+        },
+        "ExplainBy": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                    }
+                  },
+                  "Property": "TIP_INF"
+                }
+              },
+              "queryRef": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN.TIP_INF",
+              "nativeQueryRef": "Producto",
+              "active": true,
+              "displayName": "Producto"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VDIM_NIV_RIESGO"
+                    }
+                  },
+                  "Property": "NIV_RIESGO"
+                }
+              },
+              "queryRef": "VDIM_NIV_RIESGO.NIV_RIESGO",
+              "nativeQueryRef": "Niv. Riesgo",
+              "active": true,
+              "displayName": "Niv. Riesgo"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VDIM_RANG_EDAD"
+                    }
+                  },
+                  "Property": "RANGO_EDAD"
+                }
+              },
+              "queryRef": "VDIM_RANG_EDAD.RANGO_EDAD",
+              "nativeQueryRef": "Edades",
+              "active": true,
+              "displayName": "Edades"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VDIM_RANG_LIM_CRD"
+                    }
+                  },
+                  "Property": "RANG_LIM_CRD"
+                }
+              },
+              "queryRef": "VDIM_RANG_LIM_CRD.RANG_LIM_CRD",
+              "nativeQueryRef": "Linea de crédito",
+              "active": true,
+              "displayName": "Linea de crédito"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VDIM_TOTALERO"
+                    }
+                  },
+                  "Property": "BAND_TOT"
+                }
+              },
+              "queryRef": "VDIM_TOTALERO.BAND_TOT",
+              "nativeQueryRef": "Tot/rev",
+              "active": true,
+              "displayName": "Tot/rev"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VDIM_PRODUCTO"
+                    }
+                  },
+                  "Property": "TIP_INF"
+                }
+              },
+              "queryRef": "VDIM_PRODUCTO.TIP_INF",
+              "nativeQueryRef": "Producto1",
+              "active": true,
+              "displayName": "Producto"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VDIM_RANG_MOB_PLAN"
+                    }
+                  },
+                  "Property": "RANG_MOB_PLAN"
+                }
+              },
+              "queryRef": "VDIM_RANG_MOB_PLAN.RANG_MOB_PLAN",
+              "nativeQueryRef": "RANG_MOB_PLAN",
+              "active": false
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VDIM_SEGMENTO_CTE"
+                    }
+                  },
+                  "Property": "SEGMENTO_CLIENTE"
+                }
+              },
+              "queryRef": "VDIM_SEGMENTO_CTE.SEGMENTO_CLIENTE",
+              "nativeQueryRef": "SEGMENTO_CLIENTE",
+              "active": false
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VDIM_SEGMENTO_RFM"
+                    }
+                  },
+                  "Property": "SEGMENTO_RFM"
+                }
+              },
+              "queryRef": "VDIM_SEGMENTO_RFM.SEGMENTO_RFM",
+              "nativeQueryRef": "Seg. RFM",
+              "active": false,
+              "displayName": "Seg. RFM"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                      }
+                    },
+                    "Property": "CUENTAS"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "expansionStates": [
+      {
+        "roles": [
+          "ExplainBy"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "VFAC_DISPOSICIONES_COD_MAESTRO_TRN.TIP_INF"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                    }
+                  },
+                  "Property": "TIP_INF"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "VDIM_NIV_RIESGO.NIV_RIESGO"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VDIM_NIV_RIESGO"
+                    }
+                  },
+                  "Property": "NIV_RIESGO"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "VDIM_RANG_EDAD.RANGO_EDAD"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VDIM_RANG_EDAD"
+                    }
+                  },
+                  "Property": "RANGO_EDAD"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "VDIM_RANG_LIM_CRD.RANG_LIM_CRD"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VDIM_RANG_LIM_CRD"
+                    }
+                  },
+                  "Property": "RANG_LIM_CRD"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "VDIM_TOTALERO.BAND_TOT"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VDIM_TOTALERO"
+                    }
+                  },
+                  "Property": "BAND_TOT"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "VDIM_PRODUCTO.TIP_INF"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VDIM_PRODUCTO"
+                    }
+                  },
+                  "Property": "TIP_INF"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "VDIM_RANG_MOB_PLAN.RANG_MOB_PLAN"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VDIM_RANG_MOB_PLAN"
+                    }
+                  },
+                  "Property": "RANG_MOB_PLAN"
+                }
+              }
+            ]
+          },
+          {
+            "queryRefs": [
+              "VDIM_SEGMENTO_CTE.SEGMENTO_CLIENTE"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VDIM_SEGMENTO_CTE"
+                    }
+                  },
+                  "Property": "SEGMENTO_CLIENTE"
+                }
+              }
+            ]
+          },
+          {
+            "queryRefs": [
+              "VDIM_SEGMENTO_RFM.SEGMENTO_RFM"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VDIM_SEGMENTO_RFM"
+                    }
+                  },
+                  "Property": "SEGMENTO_RFM"
+                }
+              }
+            ]
+          }
+        ],
+        "root": {
+          "children": [
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "110L"
+                  }
+                }
+              ],
+              "isToggled": true,
+              "children": [
+                {
+                  "identityValues": [
+                    {
+                      "Literal": {
+                        "Value": "'5.VERY LOW'"
+                      }
+                    }
+                  ],
+                  "isToggled": true,
+                  "children": [
+                    {
+                      "identityValues": [
+                        {
+                          "Literal": {
+                            "Value": "'30'"
+                          }
+                        }
+                      ],
+                      "isToggled": true,
+                      "children": [
+                        {
+                          "identityValues": [
+                            {
+                              "Literal": {
+                                "Value": "'50,000+'"
+                              }
+                            }
+                          ],
+                          "isToggled": true,
+                          "children": [
+                            {
+                              "identityValues": [
+                                {
+                                  "Literal": {
+                                    "Value": "'TOTALERO'"
+                                  }
+                                }
+                              ],
+                              "isToggled": true
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "objects": {
+      "tree": [
+        {
+          "properties": {
+            "effectiveBarsPerLevel": {
+              "expr": {
+                "Literal": {
+                  "Value": "9L"
+                }
+              }
+            },
+            "density": {
+              "expr": {
+                "Literal": {
+                  "Value": "'dense'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "categoryLabels": [
+        {
+          "properties": {
+            "categoryLabelFontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dataLabels": [
+        {
+          "properties": {
+            "dataLabelFontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "9D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "levelHeader": [
+        {
+          "properties": {
+            "levelTitleFontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "insights": [
+        {
+          "properties": {
+            "isAINode": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                          }
+                        },
+                        "Property": "TIP_INF"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "110L"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VDIM_NIV_RIESGO"
+                          }
+                        },
+                        "Property": "NIV_RIESGO"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'5.VERY LOW'"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VDIM_RANG_EDAD"
+                          }
+                        },
+                        "Property": "RANGO_EDAD"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'30'"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VDIM_RANG_LIM_CRD"
+                          }
+                        },
+                        "Property": "RANG_LIM_CRD"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'50,000+'"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VDIM_PRODUCTO"
+                          }
+                        },
+                        "Property": "TIP_INF"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "110L"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VDIM_SEGMENTO_RFM"
+                          }
+                        },
+                        "Property": "SEGMENTO_RFM"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'3. Regular'"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VDIM_RANG_MOB_PLAN"
+                          }
+                        },
+                        "Property": "RANG_MOB_PLAN"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'C. 72+ meses'"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VDIM_SEGMENTO_CTE"
+                          }
+                        },
+                        "Property": "SEGMENTO_CLIENTE"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'7.Dilisa+3 ó más Off-us'"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "VDIM_TOTALERO"
+                          }
+                        },
+                        "Property": "BAND_TOT"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'REVOLVENTE'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "padding": [
+        {
+          "properties": {
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
+            },
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            },
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            },
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "keepLayerOrder": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "isHidden": true
+}
