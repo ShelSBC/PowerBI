@@ -1,0 +1,346 @@
+/// Calculos generados para las visualizaciones
+table Medidas
+	lineageTag: 714d3f32-12b7-441e-9dd4-48d62e1fce9c
+
+	/// Titulo de 30 + 3 meses en libros 
+	measure TITULO_30_3_MOB =
+			"30 @ 3 MoB " & "("
+			    & CALCULATE (
+			        MAX ( VDIM_CALENDARIO[MES_ANIO_LETRA] ),
+			        FILTER (
+			            VDIM_CALENDARIO,
+			            VDIM_CALENDARIO[BANDERA_MOB3] = 1
+			        )
+			    ) & ")"
+		lineageTag: e559291c-04fa-4666-ae68-8734b2c2b40b
+
+	/// Titulo de 90 + 9 meses en libros 
+	measure TITULO_90_9_MOB =
+			"90 @ 9 MoB " & "("
+			    & CALCULATE (
+			        MAX ( VDIM_CALENDARIO[MES_ANIO_LETRA] ),
+			        FILTER (
+			            VDIM_CALENDARIO,
+			            VDIM_CALENDARIO[BANDERA_MOB9] = 1
+			        )
+			    ) & ")"
+		lineageTag: 74998807-03b9-41e1-8614-12bc8476081b
+
+	/// Color para dato mas actual
+	measure color_t0_num_p =
+			IF (
+			    MAX ( VDIM_CALENDARIO[T0_NUM_P] ) = 1,
+			    "black",
+			    "rgba(0, 0, 0, 0)"
+			)
+		lineageTag: b60bf6b6-d69c-4f64-8827-655dbb373718
+
+	/// Calculo de mapa de calor violeta
+	measure temadinamico_violeta =
+			VAR seleccion_ =
+			    SELECTEDVALUE ( VDIM_PRODUCTO[TIP_INF] )
+			RETURN
+			    IF (
+			        seleccion_ = 100,
+			        "#666666",
+			        IF (
+			            seleccion_ = 110,
+			            "#ff00ff",
+			            "#BF7EB4"
+			        )
+			    )
+		lineageTag: ecd56a50-60f9-4e99-86f7-7b0a1bba3d24
+
+	/// Color de mapa de calor
+	measure temadinamico_orange =
+			VAR seleccion_ =
+			    SELECTEDVALUE ( VDIM_PRODUCTO[TIP_INF] )
+			RETURN
+			    IF (
+			        seleccion_ = 100,
+			        "#666666",
+			        IF (
+			            seleccion_ = 110,
+			            "#ff00ff",
+			            "#FD6F21"
+			        )
+			    )
+		lineageTag: 3180e3cf-0a39-4dfe-b9a6-484d67b48579
+
+	/// Bandera nombres de titulos
+	measure Nombre_Tarjeta =
+			VAR NombreDinamico =
+			    SELECTEDVALUE (
+			        VDIM_PRODUCTO[TIP_INF],
+			        ""
+			    )
+			VAR NombreDinamico_ =
+			    SWITCH (
+			        TRUE (),
+			        NombreDinamico = 110, "Dilisa",
+			        NombreDinamico = 100, "LPC"
+			    )
+			VAR A_ = "Tarjeta " & NombreDinamico_
+			RETURN
+			    IF (
+			        NombreDinamico = "",
+			        "Todos los productos",
+			        A_
+			    )
+		lineageTag: ca3102c1-d149-4d5f-9fa7-dcf688d65d60
+
+	/// Color de meses en libros 30+
+	measure colorMob3 =
+			IF (
+			    MAX ( VDIM_CALENDARIO[BANDERA_MOB3] ) = 1,
+			    "black",
+			    "rgba(0, 0, 0, 0)"
+			)
+		lineageTag: d948c57b-fb8d-4d55-8670-28012d7cd3c5
+
+	/// Color de meses en libros 90+
+	measure colorMob9 =
+			IF (
+			    MAX ( VDIM_CALENDARIO[BANDERA_MOB9] ) = 1,
+			    "black",
+			    "rgba(0, 0, 0, 0)"
+			)
+		lineageTag: 15cc539a-5ea7-4ef9-87e5-ebe948a5c054
+
+	measure '00 Año Efectivo' =
+			
+			VAR AnioSeleccionado = SELECTEDVALUE ( VDIM_CALENDARIO[ANIO_YYYY] )
+			VAR AnioValido =
+			    NOT ISBLANK ( AnioSeleccionado ) &&
+			    COUNTROWS (
+			        FILTER (
+			            ALL ( VFAC_TG_UNIFICADA_V2 ),
+			            FORMAT ( INT ( VFAC_TG_UNIFICADA_V2[ANIOMES_ESTR] / 100 ), "0000" ) = AnioSeleccionado
+			        )
+			    ) > 0
+			RETURN
+			IF (
+			    HASONEVALUE ( VDIM_CALENDARIO[ANIO_YYYY] ) && AnioValido,
+			    AnioSeleccionado,
+			    CALCULATE (
+			        FORMAT ( INT ( MAX ( VFAC_TG_UNIFICADA_V2[ANIOMES_ESTR] ) / 100 ), "0000" ),
+			        REMOVEFILTERS ( VDIM_CALENDARIO )
+			    )
+			)
+		lineageTag: cd4225e9-82ef-4b52-b1b7-82e55a37a9e1
+
+	measure '00 Mes Efectivo' =
+			
+			VAR MesSeleccionado = SELECTEDVALUE ( VDIM_CALENDARIO[MES] )
+			VAR AnioEfectivo = [00 Año Efectivo]
+			VAR AnioMesBase = VALUE ( AnioEfectivo ) * 100
+			VAR MesValido =
+			    NOT ISBLANK ( MesSeleccionado ) &&
+			    COUNTROWS (
+			        FILTER (
+			            ALL ( VFAC_TG_UNIFICADA_V2 ),
+			            VFAC_TG_UNIFICADA_V2[ANIOMES_ESTR] = AnioMesBase + MesSeleccionado
+			        )
+			    ) > 0
+			RETURN
+			IF (
+			    HASONEVALUE ( VDIM_CALENDARIO[MES] ) && MesValido,
+			    MesSeleccionado,
+			    CALCULATE (
+			        MOD ( MAX ( VFAC_TG_UNIFICADA_V2[ANIOMES_ESTR] ), 100 ),
+			        REMOVEFILTERS ( VDIM_CALENDARIO ),
+			        FILTER (
+			            ALL ( VFAC_TG_UNIFICADA_V2 ),
+			            INT ( VFAC_TG_UNIFICADA_V2[ANIOMES_ESTR] / 100 ) = VALUE ( AnioEfectivo )
+			        )
+			    )
+			)
+		formatString: 0
+		lineageTag: cdf24731-8e47-4dde-affe-34b74b51988b
+
+	measure '01 Cuentas #k' =
+			
+			VAR AnioObjetivo = [00 Año Efectivo]
+			VAR MesObjetivo  = [00 Mes Efectivo]
+			VAR AnioMesObjetivo = AnioObjetivo & FORMAT ( MesObjetivo, "00" )
+			RETURN
+			CALCULATE (
+			    SUM ( VFAC_TG_UNIFICADA_V2[CTAS] ),
+			    REMOVEFILTERS ( VDIM_CALENDARIO ),
+			    VDIM_CALENDARIO[ANIO_MES] = AnioMesObjetivo
+			)
+		lineageTag: 06b28ef1-1894-43ad-ac63-500d2d8bfa0e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '01 Cuentas #k (Anterior)' =
+			
+			VAR AnioActual = [00 Año Efectivo]
+			VAR MesActual = [00 Mes Efectivo]
+			VAR AnioObjetivo = FORMAT ( VALUE ( AnioActual ) - 1, "0000" )
+			VAR AnioMesObjetivo = AnioObjetivo & FORMAT ( MesActual, "00" )
+			RETURN
+			COALESCE (
+			CALCULATE (
+			SUM ( VFAC_TG_UNIFICADA_V2[CTAS] ),
+			REMOVEFILTERS ( VDIM_CALENDARIO ),
+			VDIM_CALENDARIO[ANIO_MES] = AnioMesObjetivo
+			),
+			0
+			)
+		lineageTag: d6cc8aef-d68e-48e3-9f39-c80b1d5bfa90
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '02 Saldo $' =
+			
+			VAR AnioObjetivo = [00 Año Efectivo]
+			VAR MesObjetivo  = [00 Mes Efectivo]
+			VAR AnioMesObjetivo = AnioObjetivo & FORMAT ( MesObjetivo, "00" )
+			RETURN
+			CALCULATE (
+			    SUM ( VFAC_TG_UNIFICADA_V2[LC_M] ),
+			    REMOVEFILTERS ( VDIM_CALENDARIO ),
+			    VDIM_CALENDARIO[ANIO_MES] = AnioMesObjetivo
+			)
+		lineageTag: 62cd8232-8521-4bac-af7d-809a20900ad8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '02 Saldo $ (Anterior)' =
+			
+			VAR AnioActual = [00 Año Efectivo]
+			VAR MesActual = [00 Mes Efectivo]
+			VAR AnioObjetivo = FORMAT ( VALUE ( AnioActual ) - 1, "0000" )
+			VAR AnioMesObjetivo = AnioObjetivo & FORMAT ( MesActual, "00" )
+			RETURN
+			COALESCE (
+			CALCULATE (
+			SUM ( VFAC_TG_UNIFICADA_V2[LC_M] ),
+			REMOVEFILTERS ( VDIM_CALENDARIO ),
+			VDIM_CALENDARIO[ANIO_MES] = AnioMesObjetivo
+			),
+			0
+			)
+		lineageTag: 11325ad1-2aa2-43b3-8a38-f407e231596a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '03 Cuentas #k Acum.' =
+			
+			VAR AnioObjetivo = [00 Año Efectivo]
+			VAR MesObjetivo = [00 Mes Efectivo]
+			VAR AnioMesLimite = AnioObjetivo & FORMAT ( MesObjetivo, "00" )
+			RETURN
+			CALCULATE (
+			SUM ( VFAC_TG_UNIFICADA_V2[CTAS] ),
+			REMOVEFILTERS ( VDIM_CALENDARIO ),
+			VDIM_CALENDARIO[ANIO_YYYY] = AnioObjetivo,
+			VDIM_CALENDARIO[ANIO_MES] <= AnioMesLimite
+			)
+		lineageTag: 1f6332e1-04d2-40de-9e8b-4c5691c0f8fa
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '03 Cuentas #k Acum. (Anterior)' =
+			
+			VAR AnioActual = [00 Año Efectivo]
+			VAR MesActual = [00 Mes Efectivo]
+			VAR AnioObjetivo = FORMAT ( VALUE ( AnioActual ) - 1, "0000" )
+			VAR AnioMesLimite = AnioObjetivo & FORMAT ( MesActual, "00" )
+			RETURN
+			COALESCE (
+			CALCULATE (
+			SUM ( VFAC_TG_UNIFICADA_V2[CTAS] ),
+			REMOVEFILTERS ( VDIM_CALENDARIO ),
+			VDIM_CALENDARIO[ANIO_YYYY] = AnioObjetivo,
+			VDIM_CALENDARIO[ANIO_MES] <= AnioMesLimite
+			),
+			0
+			)
+		lineageTag: 98001901-b624-4b42-aeb6-70f5fabfd5d4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '• Etiqueta Periodo Actual' =
+			
+			VAR AnioObjetivo = [00 Año Efectivo]
+			VAR MesObjetivo = [00 Mes Efectivo]
+			VAR MesObjetivoTxt = FORMAT ( MesObjetivo, "00" )
+			VAR NombreMes =
+			CALCULATE (
+			SELECTEDVALUE ( VDIM_CALENDARIO[MES_LETRA] ),
+			REMOVEFILTERS ( VDIM_CALENDARIO ),
+			FILTER ( ALL ( VDIM_CALENDARIO ), FORMAT ( VDIM_CALENDARIO[MES], "00" ) = MesObjetivoTxt )
+			)
+			RETURN
+			NombreMes & "'" & RIGHT ( AnioObjetivo, 2 )
+		lineageTag: b4d1542f-b7a5-4ff8-894d-1c06461d963a
+
+	measure '• Etiqueta Periodo Anterior' =
+			
+			VAR AnioActual = [00 Año Efectivo]
+			VAR MesActual = [00 Mes Efectivo]
+			VAR AnioObjetivo = VALUE ( AnioActual ) - 1
+			VAR MesActualTxt = FORMAT ( MesActual, "00" )
+			VAR NombreMes =
+			CALCULATE (
+			SELECTEDVALUE ( VDIM_CALENDARIO[MES_LETRA] ),
+			REMOVEFILTERS ( VDIM_CALENDARIO ),
+			FILTER (
+			ALL ( VDIM_CALENDARIO ),
+			FORMAT ( VDIM_CALENDARIO[MES], "00" ) = MesActualTxt
+			)
+			)
+			RETURN
+			NombreMes & "'" & RIGHT ( FORMAT ( AnioObjetivo, "0000" ), 2 )
+		lineageTag: 47dd07c9-f6d7-4058-bb0f-5776b19f103c
+
+	measure '01 Cuentas G #k' =
+			
+			VAR AnioObjetivo = [00 Año Efectivo]
+			VAR MesObjetivo  = [00 Mes Efectivo]
+			VAR AnioMesObjetivo = AnioObjetivo & FORMAT ( MesObjetivo, "00" )
+			RETURN
+			CALCULATE (
+			    SUM ( VFAC_TG_UNIFICADA_V2[CUENTAS] ),
+			    REMOVEFILTERS ( VDIM_CALENDARIO ),
+			    VDIM_CALENDARIO[ANIO_MES] = AnioMesObjetivo
+			)
+		formatString: 0
+		lineageTag: 04621a00-7537-4058-b28c-1d4f0c9a6a14
+
+	measure '01 Cuentas G #k (Anterior)' =
+			
+			VAR AnioActual = [00 Año Efectivo]
+			VAR MesActual = [00 Mes Efectivo]
+			VAR AnioObjetivo = FORMAT ( VALUE ( AnioActual ) - 1, "0000" )
+			VAR AnioMesObjetivo = AnioObjetivo & FORMAT ( MesActual, "00" )
+			RETURN
+			COALESCE (
+			CALCULATE (
+			SUM ( VFAC_TG_UNIFICADA_V2[CUENTAS] ),
+			REMOVEFILTERS ( VDIM_CALENDARIO ),
+			VDIM_CALENDARIO[ANIO_MES] = AnioMesObjetivo
+			),
+			0
+			)
+		formatString: 0
+		lineageTag: 15f4fced-afa7-426a-bb2a-7e93e97dcff0
+
+	/// Columna blanca
+	column Column
+		formatString: 0
+		lineageTag: 6ff18ef5-af49-4c68-9f4f-7dfe07660db3
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Medidas = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = dbbbeae8ccb44038b766b49e2ff17ea5
+

@@ -1,0 +1,38 @@
+/// Catalogo de zonas 
+table VDIM_CVE_ZNA
+	lineageTag: de617434-0782-431c-9c92-533adcb2e1eb
+
+	/// Llave para conexccion a la bandera de zona
+	column LLAVE_CVE_ZNA
+		dataType: int64
+		formatString: 0
+		lineageTag: bef2da46-618f-49bf-9102-7b75db78388c
+		summarizeBy: sum
+		sourceColumn: LLAVE_CVE_ZNA
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Bandera de zona
+	column CVE_ZNA
+		dataType: string
+		lineageTag: 480fe19a-60fe-4ee1-be53-10f4d14cf82f
+		summarizeBy: none
+		sourceColumn: CVE_ZNA
+
+		annotation SummarizationSetBy = Automatic
+
+	partition VDIM_CVE_ZNA = m
+		mode: import
+		source =
+				let
+				    Origen = GoogleBigQuery.Database([UseStorageApi=false, BillingProject="crp-pro-cx-semantica"]),
+				    #"crp-pro-cx-semantica" = Origen{[Name="crp-pro-cx-semantica"]}[Data],
+				    mus_pro_negfin_shared_views_Schema = #"crp-pro-cx-semantica"{[Name="mus_pro_negfin_shared_views",Kind="Schema"]}[Data],
+				    VDIM_CVE_ZNA_Table = mus_pro_negfin_shared_views_Schema{[Name="VDIM_CVE_ZNA",Kind="Table"]}[Data]
+				in
+				    VDIM_CVE_ZNA_Table
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegación
+

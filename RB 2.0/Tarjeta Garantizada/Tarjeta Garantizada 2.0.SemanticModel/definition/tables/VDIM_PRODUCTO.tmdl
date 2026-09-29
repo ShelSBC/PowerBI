@@ -1,0 +1,38 @@
+/// Contiene el catalogo de tipo de producto 
+table VDIM_PRODUCTO
+	lineageTag: d61f37a3-401b-4d86-aa74-332cf552a8c8
+
+	/// Bandera tipo de producto
+	column TIP_INF
+		dataType: int64
+		formatString: 0
+		lineageTag: 3f0c57a8-175a-410a-94c1-20d568091729
+		summarizeBy: none
+		sourceColumn: TIP_INF
+
+		annotation SummarizationSetBy = Automatic
+
+	column LLAVE_TIP_PRODUCTO
+		dataType: int64
+		formatString: 0
+		lineageTag: 66aa5017-5df3-4138-b2fd-87f61b96147e
+		summarizeBy: none
+		sourceColumn: LLAVE_TIP_PRODUCTO
+
+		annotation SummarizationSetBy = Automatic
+
+	partition VDIM_PRODUCTO = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([UseStorageApi=false, BillingProject="crp-pro-cx-semantica"]),
+				    #"crp-pro-cx-semantica" = Source{[Name="crp-pro-cx-semantica"]}[Data],
+				    mus_pro_negfin_shared_views_Schema = #"crp-pro-cx-semantica"{[Name="mus_pro_negfin_shared_views",Kind="Schema"]}[Data],
+				    VDIM_PRODUCTO_Table = mus_pro_negfin_shared_views_Schema{[Name="VDIM_PRODUCTO",Kind="Table"]}[Data]
+				in
+				    VDIM_PRODUCTO_Table
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,320 @@
+table VFAC_TARJETA_GARANTIZADA_MIX_CD_ZNA_TRN
+	lineageTag: b2c0bf9d-f02b-4060-844b-dd09498a0514
+
+	measure LC/1M = DIVIDE(SUM(VFAC_TARJETA_GARANTIZADA_MIX_CD_ZNA_TRN[LC]),1000000,0)
+		lineageTag: 81d49671-dbbe-4e7d-9f14-7b5e204e4701
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ' 30+ %' =
+			
+			VAR A=SUM(VFAC_TARJETA_GARANTIZADA_MIX_CD_ZNA_TRN[ 30+ #])
+			
+			VAR B =CALCULATE(SUM(VFAC_TARJETA_GARANTIZADA_MIX_CD_ZNA_TRN[CTAS]),ALL(VFAC_TARJETA_GARANTIZADA_MIX_CD_ZNA_TRN[  NIV_MOR_DES]))
+			
+			VAR C= DIVIDE(A,B,0)
+			
+			RETURN C
+		lineageTag: f9f21f8e-0619-40d3-8d24-713ee3ac8d0a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ' 60+ %' =
+			
+			VAR A=SUM(VFAC_TARJETA_GARANTIZADA_MIX_CD_ZNA_TRN[ 90+ #])
+			
+			VAR B =CALCULATE(SUM(VFAC_TARJETA_GARANTIZADA_MIX_CD_ZNA_TRN[CTAS]),ALL(VFAC_TARJETA_GARANTIZADA_MIX_CD_ZNA_TRN[  NIV_MOR_DES]))
+			
+			VAR C= DIVIDE(A,B,0)
+			
+			RETURN C
+		lineageTag: 5cc9d6bb-a058-4483-9eba-59d333fdb45d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ' 90+ %' =
+			
+			VAR A=SUM(VFAC_TARJETA_GARANTIZADA_MIX_CD_ZNA_TRN[ 90+ #])
+			
+			VAR B =CALCULATE(SUM(VFAC_TARJETA_GARANTIZADA_MIX_CD_ZNA_TRN[CTAS]),ALL(VFAC_TARJETA_GARANTIZADA_MIX_CD_ZNA_TRN[  NIV_MOR_DES]))
+			
+			VAR C= DIVIDE(A,B,0)
+			
+			RETURN C
+		lineageTag: 7aeb20d0-7cbb-4205-bdf5-3c97d0707323
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TIP_INF
+		dataType: int64
+		formatString: 0
+		lineageTag: 297115ac-3cd5-4c9d-9d82-afe5690e20d0
+		summarizeBy: none
+		sourceColumn: TIP_INF
+
+		annotation SummarizationSetBy = Automatic
+
+	column ANIOMES_OBS
+		dataType: int64
+		formatString: 0
+		lineageTag: 297b2957-63fe-4333-a467-db98b61fb0e2
+		summarizeBy: none
+		sourceColumn: ANIOMES_OBS
+
+		annotation SummarizationSetBy = Automatic
+
+	column ANIOMES_ESTR
+		dataType: int64
+		formatString: 0
+		lineageTag: c7d095de-77f4-4ac7-8d2b-b90f11812c4c
+		summarizeBy: sum
+		sourceColumn: ANIOMES_ESTR
+
+		annotation SummarizationSetBy = Automatic
+
+	column ANTIG_ESTR
+		dataType: int64
+		formatString: 0
+		lineageTag: 691ec1e8-ec3f-4e77-abde-e9607ff39b4b
+		summarizeBy: sum
+		sourceColumn: ANTIG_ESTR
+
+		annotation SummarizationSetBy = Automatic
+
+	column NIV_MOR
+		dataType: string
+		lineageTag: 62ff2209-9553-4394-815b-92b939121b5a
+		summarizeBy: none
+		sourceColumn: NIV_MOR
+
+		annotation SummarizationSetBy = Automatic
+
+	column CTAS
+		dataType: double
+		lineageTag: ed473e1f-e153-41ba-93a5-19fbc130b2da
+		summarizeBy: sum
+		sourceColumn: CTAS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SDO
+		dataType: double
+		lineageTag: 159502aa-d33e-4acb-93af-c7201b42a34f
+		summarizeBy: sum
+		sourceColumn: SDO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LC
+		dataType: double
+		lineageTag: 03f8e379-fb98-4135-b21a-36ef9a9297f0
+		summarizeBy: sum
+		sourceColumn: LC
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '  ZONA_DESC' =
+			SWITCH(VFAC_TARJETA_GARANTIZADA_MIX_CD_ZNA_TRN[TDA_ZNA],
+			"1","1.Metro Sur",
+			"2","2.Metro Norte",
+			"3","3.Centro",
+			"4","4.Occidente",
+			"5","5.Golfo",
+			"6","6.Noreste",
+			"7","7.Bajío",
+			"8","8.Noroeste",
+			"9","9.Sureste","")
+		lineageTag: d8687a9e-efb8-4aae-aa54-2c51a9c9e7e0
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column '  NIV_MOR_DES' =
+			SWITCH(VFAC_TARJETA_GARANTIZADA_MIX_CD_ZNA_TRN[NIV_MOR],
+			"0.-CTAS_VIG"," Corriente",
+			"1.-1-29 DIAS","2 (1-29D)",
+			"2.-30_DIAS","3 (30-59)",
+			"3.-60_DIAS","4 (60-89)",
+			"4.-90_DIAS","5 (90-119)",
+			"5.-120_DIAS","6 (120-149)",
+			"6.-150_DIAS","7 (150-179)",
+			"7.-180_DIAS","8 (180-209)",
+			"8.-210_DIAS","9 (+210)","")
+		lineageTag: 74c4f05d-8648-4e5c-a0d7-7cf2a87a0c6e
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column '  NIV_MOR_DES_2' =
+			SWITCH(VFAC_TARJETA_GARANTIZADA_MIX_CD_ZNA_TRN[NIV_MOR],
+			"0.-CTAS_VIG"," ",
+			"1.-1-29 DIAS","X",
+			"2.-30_DIAS","1",
+			"3.-60_DIAS","2",
+			"4.-90_DIAS","3",
+			"5.-120_DIAS","4",
+			"6.-150_DIAS","5",
+			"7.-180_DIAS","6",
+			"8.-210_DIAS","7+","")
+		lineageTag: 2e534db0-5030-4113-9729-f7c99ed6f9ee
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column ' 30+ #' = ```
+			SWITCH(VFAC_TARJETA_GARANTIZADA_MIX_CD_ZNA_TRN[NIV_MOR]
+			,"2.-30_DIAS",VFAC_TARJETA_GARANTIZADA_MIX_CD_ZNA_TRN[CTAS]
+			,"3.-60_DIAS",VFAC_TARJETA_GARANTIZADA_MIX_CD_ZNA_TRN[CTAS]
+			,"4.-90_DIAS",VFAC_TARJETA_GARANTIZADA_MIX_CD_ZNA_TRN[CTAS]
+			,"5.-120_DIAS",VFAC_TARJETA_GARANTIZADA_MIX_CD_ZNA_TRN[CTAS]
+			,"6.-150_DIAS",VFAC_TARJETA_GARANTIZADA_MIX_CD_ZNA_TRN[CTAS]
+			,"7.-180_DIAS",VFAC_TARJETA_GARANTIZADA_MIX_CD_ZNA_TRN[CTAS]
+			,"8.-210_DIAS",VFAC_TARJETA_GARANTIZADA_MIX_CD_ZNA_TRN[CTAS],0
+			)
+			
+			```
+		lineageTag: 4f7d5737-9e43-40fb-bf93-70dd8996efb2
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ' 60+ #' =
+			SWITCH(VFAC_TARJETA_GARANTIZADA_MIX_CD_ZNA_TRN[NIV_MOR]
+			,"3.-60_DIAS",VFAC_TARJETA_GARANTIZADA_MIX_CD_ZNA_TRN[CTAS]
+			,"4.-90_DIAS",VFAC_TARJETA_GARANTIZADA_MIX_CD_ZNA_TRN[CTAS]
+			,"5.-120_DIAS",VFAC_TARJETA_GARANTIZADA_MIX_CD_ZNA_TRN[CTAS]
+			,"6.-150_DIAS",VFAC_TARJETA_GARANTIZADA_MIX_CD_ZNA_TRN[CTAS]
+			,"7.-180_DIAS",VFAC_TARJETA_GARANTIZADA_MIX_CD_ZNA_TRN[CTAS]
+			,"8.-210_DIAS",VFAC_TARJETA_GARANTIZADA_MIX_CD_ZNA_TRN[CTAS],0
+			)
+		lineageTag: 34b0c17a-a05d-456b-bb70-1b1e86fd28c2
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ' 90+ #' =
+			SWITCH(VFAC_TARJETA_GARANTIZADA_MIX_CD_ZNA_TRN[NIV_MOR]
+			,"4.-90_DIAS",VFAC_TARJETA_GARANTIZADA_MIX_CD_ZNA_TRN[CTAS]
+			,"5.-120_DIAS",VFAC_TARJETA_GARANTIZADA_MIX_CD_ZNA_TRN[CTAS]
+			,"6.-150_DIAS",VFAC_TARJETA_GARANTIZADA_MIX_CD_ZNA_TRN[CTAS]
+			,"7.-180_DIAS",VFAC_TARJETA_GARANTIZADA_MIX_CD_ZNA_TRN[CTAS]
+			,"8.-210_DIAS",VFAC_TARJETA_GARANTIZADA_MIX_CD_ZNA_TRN[CTAS],0
+			)
+		lineageTag: d8614bab-916b-445c-97e9-4c637358a4df
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '  BANDERA_1ANIO' =
+			
+			VAR ANIOMES =
+			DATE(
+			    LEFT(CONVERT(VFAC_TARJETA_GARANTIZADA_MIX_CD_ZNA_TRN[ANIOMES_OBS],STRING),4),
+			    RIGHT(CONVERT(VFAC_TARJETA_GARANTIZADA_MIX_CD_ZNA_TRN[ANIOMES_OBS],STRING),2),1)
+			
+			VAR INICIO= DATE(YEAR(TODAY())-1,MONTH(TODAY())-1,1)
+			VAR FIN= DATE(YEAR(TODAY()),MONTH(TODAY())-1,1)
+			
+			VAR ACUMULADO=IF(ANIOMES>=INICIO && ANIOMES<=FIN,1,0)
+			
+			RETURN ACUMULADO
+		formatString: 0
+		lineageTag: 501cdedb-ca72-4acb-8786-d81a8fe2773a
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column '  BANDERA_2ANIOS' =
+			
+			VAR ANIOMES =
+			DATE(
+			    LEFT(CONVERT(VFAC_TARJETA_GARANTIZADA_MIX_CD_ZNA_TRN[ANIOMES_ESTR],STRING),4),
+			    RIGHT(CONVERT(VFAC_TARJETA_GARANTIZADA_MIX_CD_ZNA_TRN[ANIOMES_ESTR],STRING),2),1)
+			
+			VAR INICIO= DATE(YEAR(TODAY())-2,MONTH(TODAY())-1,1)
+			VAR FIN= DATE(YEAR(TODAY()),MONTH(TODAY())-1,1)
+			
+			VAR ACUMULADO=IF(ANIOMES>=INICIO && ANIOMES<=FIN,1,0)
+			
+			RETURN ACUMULADO
+		formatString: 0
+		lineageTag: 0bb7d822-5a3c-4e60-8e44-d70aad4b66c3
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column BAN_GRAD
+		dataType: string
+		lineageTag: aa066abe-96a5-44d2-ae3b-796ba5256234
+		summarizeBy: none
+		sourceColumn: BAN_GRAD
+
+		annotation SummarizationSetBy = Automatic
+
+	column ZONA
+		dataType: string
+		lineageTag: bb70f02b-8824-4693-b18e-93fbc83764f8
+		summarizeBy: none
+		sourceColumn: ZONA
+
+		annotation SummarizationSetBy = Automatic
+
+	column RANG_LC
+		dataType: string
+		lineageTag: fea55639-bf91-413c-a70c-17bfabb77b3c
+		summarizeBy: none
+		sourceColumn: RANG_LC
+
+		annotation SummarizationSetBy = Automatic
+
+	column RANGO_EDAD
+		dataType: string
+		lineageTag: 45cae35d-878d-48f2-ba4c-429e2a044855
+		summarizeBy: none
+		sourceColumn: RANGO_EDAD
+
+		annotation SummarizationSetBy = Automatic
+
+	column CANAL
+		dataType: string
+		lineageTag: 58174b08-f2a9-4f7c-ae75-6560e7929595
+		summarizeBy: none
+		sourceColumn: CANAL
+
+		annotation SummarizationSetBy = Automatic
+
+	column TDA_ZNA
+		dataType: string
+		lineageTag: 49883db5-7894-430c-a368-ba596723972a
+		summarizeBy: none
+		sourceColumn: TDA_ZNA
+
+		annotation SummarizationSetBy = Automatic
+
+	partition VFAC_TARJETA_GARANTIZADA_MIX_CD_ZNA_TRN = m
+		mode: import
+		source =
+				let
+				    Origen = GoogleBigQuery.Database([UseStorageApi=false, BillingProject="crp-pro-cx-semantica"]),
+				    #"crp-pro-cx-semantica" = Origen{[Name="crp-pro-cx-semantica"]}[Data],
+				    mus_pro_negfin_shared_views_Schema = #"crp-pro-cx-semantica"{[Name="mus_pro_negfin_shared_views",Kind="Schema"]}[Data],
+				    VFAC_TARJETA_GARANTIZADA_MIX_CD_ZNA_TRN_View = mus_pro_negfin_shared_views_Schema{[Name="VFAC_TARJETA_GARANTIZADA_MIX_CD_ZNA_TRN",Kind="View"]}[Data]
+				in
+				    VFAC_TARJETA_GARANTIZADA_MIX_CD_ZNA_TRN_View
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

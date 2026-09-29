@@ -1,0 +1,38 @@
+/// Contiene un catalogo de totalero y revolvente
+table VDIM_TOTALERO
+	lineageTag: f9561858-1ca3-4c87-b90e-25b50fdc022c
+
+	/// Llave de bandera totalero y revolvente
+	column LLAVE_CTA_TOTALERO_FLG
+		dataType: int64
+		formatString: 0
+		lineageTag: 6e6fe1b1-8e75-4699-b14a-dcefb2e2c99e
+		summarizeBy: sum
+		sourceColumn: LLAVE_CTA_TOTALERO_FLG
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Bandera de totalero y revolvente
+	column BAND_TOT
+		dataType: string
+		lineageTag: 8a8c1265-518e-45ef-ba45-7c3e18618871
+		summarizeBy: none
+		sourceColumn: BAND_TOT
+
+		annotation SummarizationSetBy = Automatic
+
+	partition VDIM_TOTALERO = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([UseStorageApi=false, BillingProject="crp-pro-cx-semantica"]),
+				    #"crp-pro-cx-semantica" = Source{[Name="crp-pro-cx-semantica"]}[Data],
+				    mus_pro_negfin_shared_views_Schema = #"crp-pro-cx-semantica"{[Name="mus_pro_negfin_shared_views",Kind="Schema"]}[Data],
+				    VDIM_TOTALERO_Table = mus_pro_negfin_shared_views_Schema{[Name="VDIM_TOTALERO",Kind="Table"]}[Data]
+				in
+				    VDIM_TOTALERO_Table
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegación
+

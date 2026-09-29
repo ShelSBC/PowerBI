@@ -1,0 +1,225 @@
+table VFAC_TARJETA_GARANTIZADA_INSCRITOS_TG_TRN
+	lineageTag: 0dba2f8f-aa21-4b7d-bc43-0e4a20805150
+
+	measure ' LC/1M' = DIVIDE(SUM(VFAC_TARJETA_GARANTIZADA_INSCRITOS_TG_TRN[LC]),1000000,0)
+		lineageTag: e7751760-5fc2-4473-8da3-46b10ec6e8b1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure CTAS/1K = DIVIDE(SUM(VFAC_TARJETA_GARANTIZADA_INSCRITOS_TG_TRN[ctas]),1000,0)
+		lineageTag: d02c7870-c5ce-488f-87a3-6267cb7e63e3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure GARANTIA_PROMEDIO = DIVIDE([ LC/1M],[CTAS/1K],0)
+		lineageTag: 637bb2db-05c8-4fba-b4e7-ce9346d7a521
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ' PROMEDIO_MENSUAL' = DIVIDE(SUM(VFAC_TARJETA_GARANTIZADA_INSCRITOS_TG_TRN[LC]),SUM(VFAC_TARJETA_GARANTIZADA_INSCRITOS_TG_TRN[ctas]),0)
+		lineageTag: c4e552e6-4a75-4df9-8d3c-0f7eeec571c6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TIP_INF
+		dataType: int64
+		formatString: 0
+		lineageTag: 882d750e-7b0a-407e-837d-6c9e32f28cd7
+		summarizeBy: none
+		sourceColumn: TIP_INF
+
+		annotation SummarizationSetBy = Automatic
+
+	column ANIOMES_ESTR
+		dataType: int64
+		formatString: 0
+		lineageTag: bdb7999c-55af-4e95-b984-354be5b756d5
+		summarizeBy: none
+		sourceColumn: ANIOMES_ESTR
+
+		annotation SummarizationSetBy = Automatic
+
+	column ANIO_ESTR
+		dataType: int64
+		formatString: 0
+		lineageTag: 5e3c61b1-649b-4e2f-a923-0607bcc58ac5
+		summarizeBy: sum
+		sourceColumn: ANIO_ESTR
+
+		annotation SummarizationSetBy = Automatic
+
+	column MES_ESTR
+		dataType: int64
+		formatString: 0
+		lineageTag: e07cf807-d998-44aa-bb36-1e21ef0ccefd
+		summarizeBy: sum
+		sourceColumn: MES_ESTR
+
+		annotation SummarizationSetBy = Automatic
+
+	column RANG_LC
+		dataType: string
+		lineageTag: 083ac191-838a-429a-b1af-e72389fe1264
+		summarizeBy: none
+		sourceColumn: RANG_LC
+
+		annotation SummarizationSetBy = Automatic
+
+	column RANGO_EDAD
+		dataType: string
+		lineageTag: 20b140dd-0148-43ff-a37e-5cc74cd6584a
+		summarizeBy: none
+		sourceColumn: RANGO_EDAD
+
+		annotation SummarizationSetBy = Automatic
+
+	column LC
+		dataType: double
+		lineageTag: 164841bf-730b-46ee-9494-e3ab5d576592
+		summarizeBy: sum
+		sourceColumn: LC
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LIMITE_ACUM = ```
+			
+			VAR ANIOMES =
+			DATE(
+			    LEFT(CONVERT(VFAC_TARJETA_GARANTIZADA_INSCRITOS_TG_TRN[ANIOMES_ESTR],STRING),4),
+			    RIGHT(CONVERT(VFAC_TARJETA_GARANTIZADA_INSCRITOS_TG_TRN[ANIOMES_ESTR],STRING),2),1)
+			
+			VAR INICIO = DATE(YEAR(TODAY())-1,MONTH(TODAY())-1,1)
+			VAR FIN = DATE(YEAR(TODAY()),MONTH(TODAY())-1,1)
+			
+			VAR BANDERA =
+			    IF(ANIOMES <= INICIO && YEAR(ANIOMES) = YEAR(INICIO),"ACUM_RI",
+			    IF(ANIOMES <= FIN && YEAR(ANIOMES) = YEAR(FIN),"ACUM_RS","")
+			
+			    ) 
+			RETURN BANDERA
+			```
+		lineageTag: 2a70c5a5-5cff-4089-9191-580dbd49ca2c
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column BAN_GRAD
+		dataType: string
+		lineageTag: 2a6acc85-ec4c-4d78-ad48-4272d853802d
+		summarizeBy: none
+		sourceColumn: BAN_GRAD
+
+		annotation SummarizationSetBy = Automatic
+
+	column LC_M
+		dataType: double
+		lineageTag: 3b67677a-d0c9-43fb-bad6-8260267486d5
+		summarizeBy: sum
+		sourceColumn: LC_M
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ANTIG_ESTR
+		dataType: int64
+		formatString: 0
+		lineageTag: b591c681-f81a-4020-89a7-3b2f7e889713
+		summarizeBy: sum
+		sourceColumn: ANTIG_ESTR
+
+		annotation SummarizationSetBy = Automatic
+
+	column NIV_MOR
+		dataType: string
+		lineageTag: 236e02ea-4c99-465f-98d4-cc656f292bc1
+		summarizeBy: none
+		sourceColumn: NIV_MOR
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLG_DEPOSITO
+		dataType: int64
+		formatString: 0
+		lineageTag: 117c5de0-566f-47e8-8a67-4840f47f9ae9
+		summarizeBy: sum
+		sourceColumn: FLG_DEPOSITO
+
+		annotation SummarizationSetBy = Automatic
+
+	column ZONA
+		dataType: string
+		lineageTag: cfa8cf82-d2bb-4f75-9c40-d05b49079887
+		summarizeBy: none
+		sourceColumn: ZONA
+
+		annotation SummarizationSetBy = Automatic
+
+	column NOM
+		dataType: string
+		lineageTag: 2c8ffd6c-ebc7-4e3b-9143-9c30900296c5
+		summarizeBy: none
+		sourceColumn: NOM
+
+		annotation SummarizationSetBy = Automatic
+
+	column APE_PAT
+		dataType: string
+		lineageTag: d8d00dff-f6e9-4447-b21b-f982fef4bbdb
+		summarizeBy: none
+		sourceColumn: APE_PAT
+
+		annotation SummarizationSetBy = Automatic
+
+	column APE_MAT
+		dataType: string
+		lineageTag: fdc930fb-aee6-4d17-ad8a-bed168dd347f
+		summarizeBy: none
+		sourceColumn: APE_MAT
+
+		annotation SummarizationSetBy = Automatic
+
+	column CANAL
+		dataType: string
+		lineageTag: d938596a-ed24-4da0-9bda-c8a723c21a20
+		summarizeBy: none
+		sourceColumn: CANAL
+
+		annotation SummarizationSetBy = Automatic
+
+	column CTAS
+		dataType: int64
+		formatString: 0
+		lineageTag: adc595f1-7d68-4e1d-9d76-a0174f2527ab
+		summarizeBy: sum
+		sourceColumn: CTAS
+
+		annotation SummarizationSetBy = Automatic
+
+	column CTAS_1K
+		dataType: double
+		lineageTag: 810520b7-a4b5-44f8-be05-9319b67f3627
+		summarizeBy: sum
+		sourceColumn: CTAS_1K
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition VFAC_TARJETA_GARANTIZADA_INSCRITOS_TG_TRN = m
+		mode: import
+		source =
+				let
+				    Origen = GoogleBigQuery.Database([UseStorageApi=false, BillingProject="crp-pro-cx-semantica"]),
+				    #"crp-pro-cx-semantica" = Origen{[Name="crp-pro-cx-semantica"]}[Data],
+				    mus_pro_negfin_shared_views_Schema = #"crp-pro-cx-semantica"{[Name="mus_pro_negfin_shared_views",Kind="Schema"]}[Data],
+				    VFAC_TARJETA_GARANTIZADA_INSCRITOS_TG_TRN_View = mus_pro_negfin_shared_views_Schema{[Name="VFAC_TARJETA_GARANTIZADA_INSCRITOS_TG_TRN",Kind="View"]}[Data]
+				in
+				    VFAC_TARJETA_GARANTIZADA_INSCRITOS_TG_TRN_View
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

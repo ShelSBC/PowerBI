@@ -1,0 +1,78 @@
+table VFAC_TARJETA_GARANTIZADA_CANAL_TRN
+	lineageTag: ce630bae-4291-4f38-b9ec-eb8f180de0df
+
+	measure LC_MILLON = DIVIDE(SUM(VFAC_TARJETA_GARANTIZADA_CANAL_TRN[LC]),1000000,0)
+		lineageTag: 04779fce-9983-4576-8bca-d273146b2921
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ANIOMES_ESTR
+		dataType: int64
+		formatString: 0
+		lineageTag: d9a44900-3abf-494d-b93f-fc280bdcdede
+		summarizeBy: none
+		sourceColumn: ANIOMES_ESTR
+
+		annotation SummarizationSetBy = Automatic
+
+	column CANAL
+		dataType: string
+		lineageTag: d341486e-0b86-45ca-be6e-de6d9fe8cd6a
+		summarizeBy: none
+		sourceColumn: CANAL
+
+		annotation SummarizationSetBy = Automatic
+
+	column CTAS
+		dataType: double
+		lineageTag: 39e8194e-8a3e-44db-96d7-c68604733d49
+		summarizeBy: sum
+		sourceColumn: CTAS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LC
+		dataType: double
+		lineageTag: 4d050a98-99f8-4d25-bff7-4e0eec9c7b78
+		summarizeBy: sum
+		sourceColumn: LC
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LC_M
+		dataType: double
+		lineageTag: 6d243d1e-1145-4420-a299-5b0a905899d4
+		summarizeBy: sum
+		sourceColumn: LC_M
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LLAVE_BI
+		dataType: string
+		lineageTag: 1950bae1-78e6-4a5d-8285-c271a4667583
+		summarizeBy: none
+		sourceColumn: LLAVE_BI
+
+		annotation SummarizationSetBy = Automatic
+
+	partition VFAC_TARJETA_GARANTIZADA_CANAL_TRN = m
+		mode: import
+		source =
+				let
+				    Origen = GoogleBigQuery.Database([UseStorageApi=false, BillingProject="crp-pro-cx-semantica"]),
+				    #"crp-pro-cx-semantica" = Origen{[Name="crp-pro-cx-semantica"]}[Data],
+				    mus_pro_negfin_shared_views_Schema = #"crp-pro-cx-semantica"{[Name="mus_pro_negfin_shared_views",Kind="Schema"]}[Data],
+				    VFAC_TARJETA_GARANTIZADA_CANAL_TRN_View = mus_pro_negfin_shared_views_Schema{[Name="VFAC_TARJETA_GARANTIZADA_CANAL_TRN",Kind="View"]}[Data]
+				in
+				    VFAC_TARJETA_GARANTIZADA_CANAL_TRN_View
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

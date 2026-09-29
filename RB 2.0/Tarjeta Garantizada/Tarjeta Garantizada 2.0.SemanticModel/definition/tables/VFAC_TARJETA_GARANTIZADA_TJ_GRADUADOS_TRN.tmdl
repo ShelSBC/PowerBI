@@ -1,0 +1,147 @@
+table VFAC_TARJETA_GARANTIZADA_TJ_GRADUADOS_TRN
+	lineageTag: 14e1029e-3647-48c4-94dd-7f2eb04ad950
+
+	measure ' LIM_CR/1M' = DIVIDE(SUM(VFAC_TARJETA_GARANTIZADA_TJ_GRADUADOS_TRN[LIM_CRD]),1000000,0)
+		lineageTag: 442d9ec1-ebbf-480d-81cc-54c1a2f9ac7e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ' LINEA_PROMEDIO' = DIVIDE([ LIM_CR/1M],SUM(VFAC_TARJETA_GARANTIZADA_TJ_GRADUADOS_TRN[CUENTAS]),0)*1000
+		lineageTag: 1f55965a-a251-4992-aa7e-ac703102331a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ' LINEA_PROMEDIO_2' = DIVIDE(SUM(VFAC_TARJETA_GARANTIZADA_TJ_GRADUADOS_TRN[LIM_CRD]),SUM(VFAC_TARJETA_GARANTIZADA_TJ_GRADUADOS_TRN[CUENTAS]),0)
+		lineageTag: 0523ef43-50e9-4c99-987c-a49ac7998aeb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ANIOMES_ESTR
+		dataType: int64
+		formatString: 0
+		lineageTag: 344e18ef-9381-4787-adf5-50b8f89f6c37
+		summarizeBy: none
+		sourceColumn: ANIOMES_ESTR
+
+		annotation SummarizationSetBy = Automatic
+
+	column BAN_GRAD
+		dataType: string
+		lineageTag: a2c64cde-4307-4d27-9dda-99c6823110bb
+		summarizeBy: none
+		sourceColumn: BAN_GRAD
+
+		annotation SummarizationSetBy = Automatic
+
+	column CUENTAS
+		dataType: int64
+		lineageTag: 9df2fdf0-fbbe-4a73-87d1-fc4bf89796bc
+		summarizeBy: sum
+		sourceColumn: CUENTAS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LIM_CRD
+		dataType: double
+		lineageTag: a00f45c6-046c-448b-801c-78085bf8e619
+		summarizeBy: sum
+		sourceColumn: LIM_CRD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LIM_CRD_2
+		dataType: double
+		lineageTag: e7cdabc5-7e35-4ac4-b53b-0c41becf5a4f
+		summarizeBy: sum
+		sourceColumn: LIM_CRD_2
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FLG_30
+		dataType: int64
+		formatString: 0
+		lineageTag: 24b7756b-fc17-443c-aa75-95a065e7d476
+		summarizeBy: sum
+		sourceColumn: FLG_30
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLG_60
+		dataType: int64
+		formatString: 0
+		lineageTag: d4450b22-9a8f-4a10-bab8-2b8839ac7231
+		summarizeBy: sum
+		sourceColumn: FLG_60
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLG_90
+		dataType: int64
+		formatString: 0
+		lineageTag: b2732933-c4f4-43d8-8d10-027ff6e62777
+		summarizeBy: sum
+		sourceColumn: FLG_90
+
+		annotation SummarizationSetBy = Automatic
+
+	column NIV_MOR
+		dataType: string
+		lineageTag: ff8f9108-0d51-48fc-8af8-73414efebd7f
+		summarizeBy: none
+		sourceColumn: NIV_MOR
+
+		annotation SummarizationSetBy = Automatic
+
+	column ZONA
+		dataType: string
+		lineageTag: dc58e710-97c7-4609-9205-f5edb703f1d8
+		summarizeBy: none
+		sourceColumn: ZONA
+
+		annotation SummarizationSetBy = Automatic
+
+	column RANG_LC
+		dataType: string
+		lineageTag: 301f97fa-6cf6-4857-91f6-bc06a63cdeda
+		summarizeBy: none
+		sourceColumn: RANG_LC
+
+		annotation SummarizationSetBy = Automatic
+
+	column RANGO_EDAD
+		dataType: string
+		lineageTag: 00b9f0dc-64d7-456b-ab80-254939978dd8
+		summarizeBy: none
+		sourceColumn: RANGO_EDAD
+
+		annotation SummarizationSetBy = Automatic
+
+	column CANAL
+		dataType: string
+		lineageTag: df934888-73fd-4c74-aa8d-874c35358dac
+		summarizeBy: none
+		sourceColumn: CANAL
+
+		annotation SummarizationSetBy = Automatic
+
+	partition VFAC_TARJETA_GARANTIZADA_TJ_GRADUADOS_TRN = m
+		mode: import
+		source =
+				let
+				    Origen = GoogleBigQuery.Database([UseStorageApi=false, BillingProject="crp-pro-cx-semantica"]),
+				    #"crp-pro-cx-semantica" = Origen{[Name="crp-pro-cx-semantica"]}[Data],
+				    mus_pro_negfin_shared_views_Schema = #"crp-pro-cx-semantica"{[Name="mus_pro_negfin_shared_views",Kind="Schema"]}[Data],
+				    VFAC_TARJETA_GARANTIZADA_TJ_GRADUADOS_TRN_View = mus_pro_negfin_shared_views_Schema{[Name="VFAC_TARJETA_GARANTIZADA_TJ_GRADUADOS_TRN",Kind="View"]}[Data]
+				in
+				    VFAC_TARJETA_GARANTIZADA_TJ_GRADUADOS_TRN_View
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+
