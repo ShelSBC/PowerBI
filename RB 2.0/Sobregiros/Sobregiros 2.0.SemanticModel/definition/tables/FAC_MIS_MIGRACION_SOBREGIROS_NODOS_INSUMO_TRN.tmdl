@@ -1,0 +1,151 @@
+table FAC_MIS_MIGRACION_SOBREGIROS_NODOS_INSUMO_TRN
+	lineageTag: 662c0759-df51-4d98-a62d-7f8a97b74ee1
+
+	column FECHA_OBS
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 527bb039-c54e-4456-a324-f839d2fec1ef
+		summarizeBy: none
+		sourceColumn: FECHA_OBS
+
+		variation Variación
+			isDefault
+			relationship: 76bcbfd3-7894-45e6-8003-263763951017
+			defaultHierarchy: LocalDateTable_2f76a588-9102-4951-b6f0-af00c1651f92.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ANIOMES_OBS
+		dataType: int64
+		formatString: 0
+		lineageTag: 667aa7b6-ea91-4f3c-9364-5f381f39f685
+		summarizeBy: sum
+		sourceColumn: ANIOMES_OBS
+
+		annotation SummarizationSetBy = Automatic
+
+	column ANIOMES_ESTR
+		dataType: int64
+		formatString: 0
+		lineageTag: 3ba9f0f4-cac2-49a5-90f4-36c0643fbf0f
+		summarizeBy: sum
+		sourceColumn: ANIOMES_ESTR
+
+		annotation SummarizationSetBy = Automatic
+
+	column ANIO_ESTR
+		dataType: int64
+		formatString: 0
+		lineageTag: c35107aa-8ee0-4c14-84f8-ea7a2ad6bcb4
+		summarizeBy: sum
+		sourceColumn: ANIO_ESTR
+
+		annotation SummarizationSetBy = Automatic
+
+	column TIP_INF
+		dataType: int64
+		formatString: 0
+		lineageTag: 07948f2d-09d6-450f-abd4-fdf3545e1d29
+		summarizeBy: none
+		sourceColumn: TIP_INF
+
+		annotation SummarizationSetBy = Automatic
+
+	column RANG_NIV_MOR
+		dataType: string
+		lineageTag: 83f09cdd-3a55-4eac-8707-ce887ebbc579
+		summarizeBy: none
+		sourceColumn: RANG_NIV_MOR
+
+		annotation SummarizationSetBy = Automatic
+
+	column NIV_RIESGO
+		dataType: string
+		lineageTag: 179b211e-c9d6-492a-b3c1-ceebd1137aea
+		summarizeBy: none
+		sourceColumn: NIV_RIESGO
+
+		annotation SummarizationSetBy = Automatic
+
+	column RANG_LIM_CRD
+		dataType: string
+		lineageTag: 14bb2755-a052-4318-ace3-a1250a525d2d
+		summarizeBy: none
+		sourceColumn: RANG_LIM_CRD
+
+		annotation SummarizationSetBy = Automatic
+
+	column CVE_ZNA
+		dataType: int64
+		formatString: 0
+		lineageTag: 728ac3c8-7d01-44fd-8884-9abf29e72a78
+		summarizeBy: sum
+		sourceColumn: CVE_ZNA
+
+		annotation SummarizationSetBy = Automatic
+
+	column NIVEL_3
+		dataType: string
+		lineageTag: 87a6b756-8bef-47e4-ba1e-70638fcd1744
+		summarizeBy: none
+		sourceColumn: NIVEL_3
+
+		annotation SummarizationSetBy = Automatic
+
+	column NIVEL_2
+		dataType: string
+		lineageTag: 6eec9c6e-e7f4-4c2d-9e67-bda2ae0b68f6
+		summarizeBy: none
+		sourceColumn: NIVEL_2
+
+		annotation SummarizationSetBy = Automatic
+
+	column CTAS
+		dataType: int64
+		formatString: 0
+		lineageTag: 728d4e95-62c7-4599-9099-d72103d90b9c
+		summarizeBy: sum
+		sourceColumn: CTAS
+
+		annotation SummarizationSetBy = Automatic
+
+	column SDO
+		dataType: double
+		lineageTag: a6d960c5-c282-4cee-ab24-19916486c79e
+		summarizeBy: sum
+		sourceColumn: SDO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ID_NODO
+		dataType: int64
+		formatString: 0
+		lineageTag: d1c612c0-708f-4ebc-b127-3d9682f736ca
+		summarizeBy: sum
+		sourceColumn: ID_NODO
+
+		annotation SummarizationSetBy = Automatic
+
+	column ID_NODO_ANTIGUEDAD
+		dataType: string
+		lineageTag: 2ac37127-c190-45a1-9797-dc2d8c7cacb4
+		summarizeBy: none
+		sourceColumn: ID_NODO_ANTIGUEDAD
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FAC_MIS_MIGRACION_SOBREGIROS_NODOS_INSUMO_TRN = m
+		mode: import
+		source =
+				let
+				    Origen = GoogleBigQuery.Database([UseStorageApi=false, BillingProject="crp-dev-dwh-semantica"]),
+				    #"crp-pre-dominio-negfin" = Origen{[Name="crp-pre-dominio-negfin"]}[Data],
+				    mus_pre_mis_wrk_tbls_Schema = #"crp-pre-dominio-negfin"{[Name="mus_pre_mis_wrk_tbls",Kind="Schema"]}[Data],
+				    FAC_MIS_MIGRACION_SOBREGIROS_NODOS_INSUMO_TRN_Table = mus_pre_mis_wrk_tbls_Schema{[Name="FAC_MIS_MIGRACION_SOBREGIROS_NODOS_INSUMO_TRN",Kind="Table"]}[Data]
+				in
+				    FAC_MIS_MIGRACION_SOBREGIROS_NODOS_INSUMO_TRN_Table
+

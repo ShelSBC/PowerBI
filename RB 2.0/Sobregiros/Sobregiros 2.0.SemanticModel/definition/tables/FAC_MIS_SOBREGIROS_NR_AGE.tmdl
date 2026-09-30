@@ -1,0 +1,171 @@
+table FAC_MIS_SOBREGIROS_NR_AGE
+	lineageTag: f6ef49b6-0426-489a-8c09-b354b6164c54
+
+	column FECHA_OBS
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: bf690509-83c2-43cd-a70c-dcce631b5abf
+		summarizeBy: none
+		sourceColumn: FECHA_OBS
+
+		variation Variación
+			isDefault
+			relationship: bf81a084-c781-439c-9564-3459df58592e
+			defaultHierarchy: LocalDateTable_0e42bda6-e983-43da-8f02-457825bb72f4.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ANIOMES_OBS
+		dataType: int64
+		formatString: 0
+		lineageTag: 69717d8f-bac9-40bd-a3c1-1ac05a2ae277
+		summarizeBy: sum
+		sourceColumn: ANIOMES_OBS
+
+		annotation SummarizationSetBy = Automatic
+
+	column ANIOMES_ESTR
+		dataType: int64
+		formatString: 0
+		lineageTag: ea266e93-8ee7-4961-88c9-980cc5536773
+		summarizeBy: sum
+		sourceColumn: ANIOMES_ESTR
+
+		annotation SummarizationSetBy = Automatic
+
+	column ANTIG_ESTR
+		dataType: int64
+		formatString: 0
+		lineageTag: 1cba0022-2be1-4311-aca1-c860de219c51
+		summarizeBy: sum
+		sourceColumn: ANTIG_ESTR
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLG_DIG
+		dataType: string
+		lineageTag: 65e6edf7-021e-42b4-9e11-50ae948ddae8
+		summarizeBy: none
+		sourceColumn: FLG_DIG
+
+		annotation SummarizationSetBy = Automatic
+
+	column TIP_INF
+		dataType: int64
+		formatString: 0
+		lineageTag: 5265762c-5dae-49be-b206-25e764feb057
+		summarizeBy: none
+		sourceColumn: TIP_INF
+
+		annotation SummarizationSetBy = Automatic
+
+	column CTAS
+		dataType: int64
+		formatString: 0
+		lineageTag: 804a4677-bd06-4284-b862-9839498b756f
+		summarizeBy: sum
+		sourceColumn: CTAS
+
+		annotation SummarizationSetBy = Automatic
+
+	column SDO
+		dataType: double
+		lineageTag: c5f4451c-47c8-4264-8d9f-33d0eac4f645
+		summarizeBy: sum
+		sourceColumn: SDO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column IMP_SOBREGIRO
+		dataType: double
+		lineageTag: 591c7318-2821-4966-a73e-982f60f03f4e
+		summarizeBy: sum
+		sourceColumn: IMP_SOBREGIRO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column NIV_RIESGO
+		dataType: string
+		lineageTag: 664720a7-e2be-4b35-a3e9-d95d3a795658
+		summarizeBy: none
+		sourceColumn: NIV_RIESGO
+
+		annotation SummarizationSetBy = Automatic
+
+	column SEGMENTO_CLIENTE
+		dataType: string
+		lineageTag: 7999a9e3-4713-446d-9b30-f6199f4a0642
+		summarizeBy: none
+		sourceColumn: SEGMENTO_CLIENTE
+
+		annotation SummarizationSetBy = Automatic
+
+	column RANG_LIM_CRD
+		dataType: string
+		lineageTag: 95e594f7-f5c1-4991-9d78-7c8a600816de
+		summarizeBy: none
+		sourceColumn: RANG_LIM_CRD
+
+		annotation SummarizationSetBy = Automatic
+
+	column MACROSEGMENTO
+		dataType: double
+		lineageTag: 789651f0-4ea8-464a-8676-7d9af814b4be
+		summarizeBy: sum
+		sourceColumn: MACROSEGMENTO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CTA_TOTALERO_FLG
+		dataType: int64
+		formatString: 0
+		lineageTag: 79fecb22-9357-42f9-95da-41305e2762ca
+		summarizeBy: sum
+		sourceColumn: CTA_TOTALERO_FLG
+
+		annotation SummarizationSetBy = Automatic
+
+	column RANG_MOBS
+		dataType: string
+		lineageTag: 22331632-d835-4bd4-ab40-de7c1b174722
+		summarizeBy: none
+		sourceColumn: RANG_MOBS
+
+		annotation SummarizationSetBy = Automatic
+
+	column RANG_NIV_MOR
+		dataType: string
+		lineageTag: a7b49a79-1e60-44f8-bfaa-eaabd5824f10
+		summarizeBy: none
+		sourceColumn: RANG_NIV_MOR
+
+		annotation SummarizationSetBy = Automatic
+
+	column CVE_ZNA
+		dataType: int64
+		formatString: 0
+		lineageTag: ed0cf6d0-4ace-4a7d-b452-cab0c21d661c
+		summarizeBy: sum
+		sourceColumn: CVE_ZNA
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FAC_MIS_SOBREGIROS_NR_AGE = m
+		mode: import
+		source =
+				let
+				    Origen = GoogleBigQuery.Database([UseStorageApi=false, BillingProject="crp-dev-dwh-semantica"]),
+				    #"crp-pre-dominio-negfin" = Origen{[Name="crp-pre-dominio-negfin"]}[Data],
+				    mus_pre_mis_wrk_tbls_Schema = #"crp-pre-dominio-negfin"{[Name="mus_pre_mis_wrk_tbls",Kind="Schema"]}[Data],
+				    FAC_MIS_SOBREGIROS_NR_AGE_Table = mus_pre_mis_wrk_tbls_Schema{[Name="FAC_MIS_SOBREGIROS_NR_AGE",Kind="Table"]}[Data]
+				in
+				    FAC_MIS_SOBREGIROS_NR_AGE_Table
+

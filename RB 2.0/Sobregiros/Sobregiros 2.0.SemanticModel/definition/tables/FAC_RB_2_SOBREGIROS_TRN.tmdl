@@ -323,14 +323,34 @@ table FAC_RB_2_SOBREGIROS_TRN
 
 		annotation SummarizationSetBy = Automatic
 
+	column FECHA_OBS
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 777a6b9a-6679-4ea6-a3d4-61e591f03ec6
+		summarizeBy: none
+		sourceColumn: FECHA_OBS
+
+		variation Variación
+			isDefault
+			relationship: 1900f86f-00a9-4f9d-9bf4-4cb4cc85c29f
+			defaultHierarchy: LocalDateTable_1d4ae562-1f50-49f2-927d-1839746f4df5.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
 	partition FAC_RB_2_SOBREGIROS_TRN = m
 		mode: import
 		source =
 				let
 				    Origen = GoogleBigQuery.Database([UseStorageApi=false, BillingProject="crp-dev-dwh-semantica"]),
-				    #"crp-pro-cx-analitica" = Origen{[Name="crp-pro-cx-analitica"]}[Data],
-				    mus_pro_negfin_tablas_finales_Schema = #"crp-pro-cx-analitica"{[Name="mus_pro_negfin_tablas_finales",Kind="Schema"]}[Data],
-				    FAC_RB_2_SOBREGIROS_TRN_Table = mus_pro_negfin_tablas_finales_Schema{[Name="FAC_RB_2_SOBREGIROS_TRN",Kind="Table"]}[Data]
+				    #"crp-pre-dominio-negfin" = Origen{[Name="crp-pre-dominio-negfin"]}[Data],
+				    mus_pre_mis_wrk_tbls_Schema = #"crp-pre-dominio-negfin"{[Name="mus_pre_mis_wrk_tbls",Kind="Schema"]}[Data],
+				    FAC_RB_2_SOBREGIROS_TRN_Table = mus_pre_mis_wrk_tbls_Schema{[Name="FAC_RB_2_SOBREGIROS_TRN",Kind="Table"]}[Data]
 				in
 				    FAC_RB_2_SOBREGIROS_TRN_Table
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
 
