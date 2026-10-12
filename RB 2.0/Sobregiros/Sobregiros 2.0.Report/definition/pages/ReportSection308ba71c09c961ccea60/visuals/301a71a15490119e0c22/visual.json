@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "301a71a15490119e0c22",
   "position": {
-    "x": 0,
-    "y": 0,
-    "z": 3000,
-    "height": 191.5071507150715,
-    "width": 682.948294829483,
-    "tabOrder": 2000
+    "x": 155.33396048918158,
+    "y": 185.43744120413925,
+    "z": 6000,
+    "height": 503.33019755409219,
+    "width": 646.62276575729072,
+    "tabOrder": 3000
   },
   "visual": {
     "visualType": "pivotTable",
@@ -55,14 +55,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW"
+                      "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
                     }
                   },
-                  "Property": "FLG_DIG_DESC"
+                  "Property": "00 FLG_Dig&NDig_DESC"
                 }
               },
-              "queryRef": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW.FLG_DIG_DESC",
-              "nativeQueryRef": "FLG_DIG_DESC",
+              "queryRef": "FAC_SOBREGIROS_INSUMO_SOB_TRN.00 FLG_Dig&NDig_DESC",
+              "nativeQueryRef": "00 FLG_Dig&NDig_DESC",
               "active": false
             }
           ]
@@ -78,10 +78,10 @@
                         "Column": {
                           "Expression": {
                             "SourceRef": {
-                              "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW"
+                              "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
                             }
                           },
-                          "Property": "CTAS"
+                          "Property": "CTAS_K"
                         }
                       },
                       "Function": 0
@@ -95,10 +95,10 @@
                             "Column": {
                               "Expression": {
                                 "SourceRef": {
-                                  "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW"
+                                  "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
                                 }
                               },
-                              "Property": "CTAS"
+                              "Property": "CTAS_K"
                             }
                           },
                           "Function": 0
@@ -116,8 +116,8 @@
                   "Operator": 3
                 }
               },
-              "queryRef": "Sum(FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW.CTAS)",
-              "nativeQueryRef": "%TC Suma de CTAS"
+              "queryRef": "Sum(FAC_SOBREGIROS_INSUMO_SOB_TRN.CTAS_K)",
+              "nativeQueryRef": "%TC Suma de CTAS_K"
             }
           ]
         }
@@ -2273,6 +2273,20 @@
           "selector": {
             "metadata": "Sum(VFAC_DISPOSICIONES_COD_MAESTRO_TRN.IMP)"
           }
+        },
+        {
+          "properties": {
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "1L"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(FAC_SOBREGIROS_INSUMO_SOB_TRN.CTAS_K)"
+          }
         }
       ]
     },
@@ -2357,7 +2371,6 @@
     },
     "drillFilterOtherVisuals": true
   },
-  "parentGroupName": "92f550c9dadc4a1a7606",
   "filterConfig": {
     "filters": [
       {

@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "21adf7f64c170c7c4b06",
   "position": {
-    "x": 612.14953271028037,
-    "y": 120.85701570347764,
-    "z": 2000,
-    "height": 400,
-    "width": 499.99999999999994,
-    "tabOrder": 36000
+    "x": 810.38570084666037,
+    "y": 305.85136406396992,
+    "z": 8000,
+    "height": 399.77422389463783,
+    "width": 461.18532455315147,
+    "tabOrder": 19000
   },
   "visual": {
     "visualType": "hundredPercentStackedColumnChart",
@@ -39,14 +39,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW"
+                      "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
                     }
                   },
-                  "Property": "NIV_RIESGO_DESC"
+                  "Property": "NIV_RIESGO"
                 }
               },
-              "queryRef": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW.NIV_RIESGO_DESC",
-              "nativeQueryRef": "NIV_RIESGO_DESC"
+              "queryRef": "FAC_SOBREGIROS_INSUMO_SOB_TRN.NIV_RIESGO",
+              "nativeQueryRef": "NIV_RIESGO"
             }
           ]
         },
@@ -54,22 +54,47 @@
           "projections": [
             {
               "field": {
-                "Aggregation": {
-                  "Expression": {
-                    "Column": {
+                "Arithmetic": {
+                  "Left": {
+                    "Aggregation": {
                       "Expression": {
-                        "SourceRef": {
-                          "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW"
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
+                            }
+                          },
+                          "Property": "IMP_SOBREGIRO_M"
                         }
                       },
-                      "Property": "SALDO_TOTAL"
+                      "Function": 0
                     }
                   },
-                  "Function": 0
+                  "Right": {
+                    "ScopedEval": {
+                      "Expression": {
+                        "Aggregation": {
+                          "Expression": {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
+                                }
+                              },
+                              "Property": "IMP_SOBREGIRO_M"
+                            }
+                          },
+                          "Function": 0
+                        }
+                      },
+                      "Scope": []
+                    }
+                  },
+                  "Operator": 3
                 }
               },
-              "queryRef": "Sum(FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW.SALDO_TOTAL)",
-              "nativeQueryRef": "Suma de SALDO_TOTAL"
+              "queryRef": "Sum(FAC_SOBREGIROS_INSUMO_SOB_TRN.IMP_SOBREGIRO_M)",
+              "nativeQueryRef": "%TG Suma de IMP_SOBREGIRO_M"
             }
           ]
         }
@@ -1242,6 +1267,48 @@
               }
             ]
           }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 5,
+                      "Percent": -0.25
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
+                          }
+                        },
+                        "Property": "NIV_RIESGO"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'4.LOW'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
         }
       ],
       "labels": [
@@ -1356,7 +1423,6 @@
     },
     "drillFilterOtherVisuals": true
   },
-  "parentGroupName": "ecae3280d3856d62893b",
   "filterConfig": {
     "filters": [
       {
@@ -1380,5 +1446,6 @@
         "howCreated": "User"
       }
     ]
-  }
+  },
+  "isHidden": true
 }

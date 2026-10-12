@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "37d47cb5eaca57a13889",
   "position": {
-    "x": 137.56581420446966,
-    "y": 8.0461018251271241,
+    "x": 136.67948202175486,
+    "y": 11.718013532279063,
     "z": 3000,
-    "height": 231.58645276292336,
-    "width": 658.25311942959,
-    "tabOrder": 6000
+    "height": 227.58231420507997,
+    "width": 599.66133584195677,
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "pivotTable",
@@ -47,7 +47,7 @@
               },
               "queryRef": "VDIM_CALENDARIO.ANIO_YYYY",
               "nativeQueryRef": "Cuentas #K1",
-              "active": false,
+              "active": true,
               "displayName": "Cuentas #K"
             },
             {
@@ -55,15 +55,15 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "FAC_MIGRACION_SOBREGIROS_INSUMO_SOBREGIROS_DILISA_TRN_NEW"
+                      "Entity": "FAC_RB_2_SOBREGIROS_TRN"
                     }
                   },
-                  "Property": "FLG_WEB_DESC"
+                  "Property": "00 FLG_WEB_DESC"
                 }
               },
-              "queryRef": "FAC_MIGRACION_SOBREGIROS_INSUMO_SOBREGIROS_DILISA_TRN_NEW.FLG_WEB_DESC",
+              "queryRef": "FAC_RB_2_SOBREGIROS_TRN.00 FLG_WEB_DESC",
               "nativeQueryRef": "Cuentas #K",
-              "active": true,
+              "active": false,
               "displayName": "Cuentas #K"
             }
           ]
@@ -77,17 +77,17 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "FAC_MIGRACION_SOBREGIROS_INSUMO_SOBREGIROS_DILISA_TRN_NEW"
+                          "Entity": "FAC_RB_2_SOBREGIROS_TRN"
                         }
                       },
-                      "Property": "IMP_SOBREGIRO_1000000"
+                      "Property": "IMP_SOBREGIRO_M"
                     }
                   },
                   "Function": 0
                 }
               },
-              "queryRef": "Sum(FAC_MIGRACION_SOBREGIROS_INSUMO_SOBREGIROS_DILISA_TRN_NEW.IMP_SOBREGIRO_1000000)",
-              "nativeQueryRef": "Suma de IMP_SOBREGIRO_1000000"
+              "queryRef": "Sum(FAC_RB_2_SOBREGIROS_TRN.IMP_SOBREGIRO_M)",
+              "nativeQueryRef": "Suma de IMP_SOBREGIRO_M"
             }
           ]
         }
@@ -2393,7 +2393,8 @@
             "Property": "FLG_WEB_DESC"
           }
         },
-        "type": "Categorical"
+        "type": "Categorical",
+        "howCreated": "User"
       },
       {
         "name": "c4efc7df77fc6fc9f099",

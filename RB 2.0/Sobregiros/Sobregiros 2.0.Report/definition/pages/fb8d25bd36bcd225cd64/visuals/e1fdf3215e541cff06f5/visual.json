@@ -23,11 +23,11 @@
                       "Entity": "VDIM_CALENDARIO"
                     }
                   },
-                  "Property": "MES_ANIO_LETRA"
+                  "Property": "MES_LETRA"
                 }
               },
-              "queryRef": "VDIM_CALENDARIO.MES_ANIO_LETRA",
-              "nativeQueryRef": "MES_ANIO_LETRA",
+              "queryRef": "VDIM_CALENDARIO.MES_LETRA",
+              "nativeQueryRef": "MES_LETRA",
               "active": true
             }
           ]
@@ -39,14 +39,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_V2_TRN_NEW"
+                      "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
                     }
                   },
-                  "Property": "MACROSEGMENTO_DESC"
+                  "Property": "00 MACROSEGMENTO_DESC"
                 }
               },
-              "queryRef": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_V2_TRN_NEW.MACROSEGMENTO_DESC",
-              "nativeQueryRef": "MACROSEGMENTO_DESC"
+              "queryRef": "FAC_SOBREGIROS_INSUMO_SOB_TRN.00 MACROSEGMENTO_DESC",
+              "nativeQueryRef": "00 MACROSEGMENTO_DESC"
             }
           ]
         },
@@ -59,17 +59,17 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_V2_TRN_NEW"
+                          "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
                         }
                       },
-                      "Property": "SDO_MM_2"
+                      "Property": "IMP_SOBREGIRO_M"
                     }
                   },
                   "Function": 0
                 }
               },
-              "queryRef": "Sum(FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_V2_TRN_NEW.SDO_MM_2)",
-              "nativeQueryRef": "Suma de SDO_MM_2"
+              "queryRef": "Sum(FAC_SOBREGIROS_INSUMO_SOB_TRN.IMP_SOBREGIRO_M)",
+              "nativeQueryRef": "Suma de IMP_SOBREGIRO_M"
             }
           ]
         }
@@ -696,6 +696,48 @@
               }
             ]
           }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 5,
+                      "Percent": -0.25
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
+                          }
+                        },
+                        "Property": "00 MACROSEGMENTO_DESC"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'5'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
         }
       ],
       "labels": [
@@ -791,39 +833,6 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "80e8e3294f4a67f33787",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_V2_TRN_NEW"
-              }
-            },
-            "Property": "MACROSEGMENTO_DESC"
-          }
-        },
-        "type": "Categorical",
-        "objects": {
-          "general": [
-            {
-              "properties": {
-                "isInvertedSelectionMode": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "true"
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        }
-      }
-    ]
   },
   "isHidden": true
 }

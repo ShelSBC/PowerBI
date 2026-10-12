@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "73deac57ceb891b2e8f6",
   "position": {
-    "x": 157.14285714285714,
-    "y": 187.14285714285717,
+    "x": 157.31843575418995,
+    "y": 187.35195530726256,
     "z": 25000,
-    "height": 500.00000000000006,
-    "width": 610,
+    "height": 499.12849162011173,
+    "width": 624.98324022346367,
     "tabOrder": 23000
   },
   "visual": {
@@ -55,16 +55,15 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_V2_TRN_NEW"
+                      "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
                     }
                   },
-                  "Property": "MACROSEGMENTO_DESC"
+                  "Property": "00 MACROSEGMENTO_DESC"
                 }
               },
-              "queryRef": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_V2_TRN_NEW.MACROSEGMENTO_DESC",
-              "nativeQueryRef": "Cuentas #K",
-              "active": false,
-              "displayName": "Cuentas #K"
+              "queryRef": "FAC_SOBREGIROS_INSUMO_SOB_TRN.00 MACROSEGMENTO_DESC",
+              "nativeQueryRef": "00 MACROSEGMENTO_DESC",
+              "active": false
             }
           ]
         },
@@ -77,20 +76,37 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_V2_TRN_NEW"
+                          "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
                         }
                       },
-                      "Property": "CTAS"
+                      "Property": "CTAS_K"
                     }
                   },
                   "Function": 0
                 }
               },
-              "queryRef": "Sum(FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_V2_TRN_NEW.CTAS)",
-              "nativeQueryRef": "Suma de CTAS"
+              "queryRef": "Sum(FAC_SOBREGIROS_INSUMO_SOB_TRN.CTAS_K)",
+              "nativeQueryRef": "Suma de CTAS_K"
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "VFAC_MIX_DISPOSICIONES_MAC_DIG_TRN"
+                  }
+                },
+                "Property": "  POTENCIAL/PREMIUM"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
       }
     },
     "objects": {
@@ -2325,15 +2341,7 @@
           }
         },
         {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "45.285721577134105D"
-                }
-              }
-            }
-          },
+          "properties": {},
           "selector": {
             "data": [
               {
@@ -2362,15 +2370,7 @@
           }
         },
         {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "45.999987240069586D"
-                }
-              }
-            }
-          },
+          "properties": {},
           "selector": {
             "data": [
               {
@@ -2614,51 +2614,9 @@
       {
         "name": "Filter3d793eb191432f90f839",
         "type": "Exclude",
-        "filter": {
-          "Version": 2,
-          "From": [
-            {
-              "Name": "f",
-              "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_V2_TRN_NEW",
-              "Type": 0
-            }
-          ],
-          "Where": [
-            {
-              "Condition": {
-                "Not": {
-                  "Expression": {
-                    "In": {
-                      "Expressions": [
-                        {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Source": "f"
-                              }
-                            },
-                            "Property": "MACROSEGMENTO_DESC"
-                          }
-                        }
-                      ],
-                      "Values": [
-                        [
-                          {
-                            "Literal": {
-                              "Value": "null"
-                            }
-                          }
-                        ]
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        },
         "howCreated": "Exclude"
       }
     ]
-  }
+  },
+  "isHidden": true
 }

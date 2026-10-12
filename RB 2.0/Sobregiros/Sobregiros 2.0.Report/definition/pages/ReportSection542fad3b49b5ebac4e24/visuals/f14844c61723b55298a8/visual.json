@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "f14844c61723b55298a8",
   "position": {
-    "x": 0,
-    "y": 0,
-    "z": 0,
-    "height": 500,
-    "width": 609.8901098901099,
-    "tabOrder": 3000
+    "x": 157.25333520450658,
+    "y": 181.69012674497657,
+    "z": 1000,
+    "height": 502.12605832549389,
+    "width": 626.15239887111954,
+    "tabOrder": 7000
   },
   "visual": {
     "visualType": "pivotTable",
@@ -55,16 +55,15 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW"
+                      "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
                     }
                   },
-                  "Property": "NIV_RIESGO_DESC"
+                  "Property": "NIV_RIESGO"
                 }
               },
-              "queryRef": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW.NIV_RIESGO_DESC",
-              "nativeQueryRef": "Cuentas #k",
-              "active": false,
-              "displayName": "Cuentas #k"
+              "queryRef": "FAC_SOBREGIROS_INSUMO_SOB_TRN.NIV_RIESGO",
+              "nativeQueryRef": "NIV_RIESGO",
+              "active": false
             }
           ]
         },
@@ -77,22 +76,58 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW"
+                          "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
                         }
                       },
-                      "Property": "CTAS"
+                      "Property": "CTAS_K"
                     }
                   },
                   "Function": 0
                 }
               },
-              "queryRef": "Sum(FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW.CTAS)",
-              "nativeQueryRef": "Suma de CTAS"
+              "queryRef": "Sum(FAC_SOBREGIROS_INSUMO_SOB_TRN.CTAS_K)",
+              "nativeQueryRef": "CTAS_K"
             }
           ]
         }
       }
     },
+    "expansionStates": [
+      {
+        "roles": [
+          "Rows"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "VDIM_CALENDARIO.ANIO_YYYY"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VDIM_CALENDARIO"
+                    }
+                  },
+                  "Property": "ANIO_YYYY"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "FAC_SOBREGIROS_INSUMO_SOB_TRN.NIV_RIESGO"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          }
+        ],
+        "root": {}
+      }
+    ],
     "objects": {
       "values": [
         {
@@ -3166,15 +3201,7 @@
           }
         },
         {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "44.060716003308364D"
-                }
-              }
-            }
-          },
+          "properties": {},
           "selector": {
             "data": [
               {
@@ -3203,15 +3230,7 @@
           }
         },
         {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "45.08163107201686D"
-                }
-              }
-            }
-          },
+          "properties": {},
           "selector": {
             "data": [
               {
@@ -3339,6 +3358,20 @@
           "selector": {
             "metadata": "Sum(VFAC_DISPOSICIONES_COD_MAESTRO_TRN.IMP)"
           }
+        },
+        {
+          "properties": {
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "1L"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(FAC_SOBREGIROS_INSUMO_SOB_TRN.CTAS_K)"
+          }
         }
       ]
     },
@@ -3429,7 +3462,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "parentGroupName": "bbf89e94a2a0ad4e7e3a",
-  "isHidden": true
+  }
 }

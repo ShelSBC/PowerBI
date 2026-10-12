@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "9ddeac96e3dd5c42aad6",
   "position": {
-    "x": 3.6683765325713837,
-    "y": 0,
+    "x": 0,
+    "y": 1.1125223557288595,
     "z": 2000,
-    "height": 306.30350194552528,
-    "width": 689.80544747081717,
+    "height": 301.03480714957669,
+    "width": 693.58419567262467,
     "tabOrder": -1
   },
   "visual": {
@@ -55,16 +55,15 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "FAC_NEGFIN_SOBREGIROS_NR_AGE_NEW"
+                      "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
                     }
                   },
-                  "Property": "FLG_TOTALERO"
+                  "Property": "00 FLG_Tot&Rev_DESC"
                 }
               },
-              "queryRef": "FAC_NEGFIN_SOBREGIROS_NR_AGE_NEW.FLG_TOTALERO",
-              "nativeQueryRef": "Saldo",
-              "active": false,
-              "displayName": "Saldo"
+              "queryRef": "FAC_SOBREGIROS_INSUMO_SOB_TRN.00 FLG_Tot&Rev_DESC",
+              "nativeQueryRef": "00 FLG_Tot&Rev_DESC",
+              "active": false
             }
           ]
         },
@@ -77,17 +76,17 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "FAC_NEGFIN_SOBREGIROS_NR_AGE_NEW"
+                          "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
                         }
                       },
-                      "Property": "SDO_10000"
+                      "Property": "IMP_SOBREGIRO_M"
                     }
                   },
                   "Function": 0
                 }
               },
-              "queryRef": "Sum(FAC_NEGFIN_SOBREGIROS_NR_AGE_NEW.SDO_10000)",
-              "nativeQueryRef": "Suma de SDO_10000"
+              "queryRef": "Sum(FAC_SOBREGIROS_INSUMO_SOB_TRN.IMP_SOBREGIRO_M)",
+              "nativeQueryRef": "Suma de IMP_SOBREGIRO_M"
             }
           ]
         }
@@ -2135,22 +2134,6 @@
                 }
               }
             }
-          }
-        }
-      ],
-      "columnFormatting": [
-        {
-          "properties": {
-            "labelPrecision": {
-              "expr": {
-                "Literal": {
-                  "Value": "1L"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Sum(FAC_NEGFIN_SOBREGIROS_NR_AGE_NEW.SDO_10000)"
           }
         }
       ]

@@ -3,196 +3,15 @@
   "displayName": "%$ RFM",
   "name": "845577ceb733e0d79f7d",
   "options": {
-    "targetVisualNames": [
-      "528dfb275e81d1c31187"
-    ]
+    "targetVisualNames": []
   },
   "explorationState": {
     "version": "1.3",
     "activeSection": "ReportSectionad4879fc8fb2edd27e47",
-    "filters": {
-      "byExpr": [
-        {
-          "name": "Filter9a51214af45aba2ebab3",
-          "type": "Categorical",
-          "expression": {
-            "Column": {
-              "Expression": {
-                "SourceRef": {
-                  "Entity": "VDIM_PRODUCTO"
-                }
-              },
-              "Property": "TIP_INF"
-            }
-          },
-          "howCreated": 1
-        }
-      ]
-    },
     "sections": {
       "ReportSectionad4879fc8fb2edd27e47": {
-        "filters": {
-          "byExpr": [
-            {
-              "name": "Filterd1ddbb0f8254a2fd4334",
-              "type": "Categorical",
-              "filter": {
-                "Version": 2,
-                "From": [
-                  {
-                    "Name": "v",
-                    "Entity": "VDIM_CALENDARIO",
-                    "Type": 0
-                  }
-                ],
-                "Where": [
-                  {
-                    "Condition": {
-                      "In": {
-                        "Expressions": [
-                          {
-                            "Column": {
-                              "Expression": {
-                                "SourceRef": {
-                                  "Source": "v"
-                                }
-                              },
-                              "Property": "FLG_T0"
-                            }
-                          }
-                        ],
-                        "Values": [
-                          [
-                            {
-                              "Literal": {
-                                "Value": "'1'"
-                              }
-                            }
-                          ]
-                        ]
-                      }
-                    }
-                  }
-                ]
-              },
-              "expression": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "VDIM_CALENDARIO"
-                    }
-                  },
-                  "Property": "FLG_T0"
-                }
-              },
-              "howCreated": 1
-            }
-          ]
-        },
         "visualContainers": {
-          "c8e82dbe02147af0cd0f": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "fcb7f697eeb56007898d",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "VDIM_CALENDARIO"
-                        }
-                      },
-                      "Property": "MES_ANIO_LETRA"
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "3303b7d9b06950d5b3c3",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW"
-                        }
-                      },
-                      "Property": "RFM_CREDITO"
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "77353b9075db23047c0e",
-                  "type": "Advanced",
-                  "expression": {
-                    "Arithmetic": {
-                      "Left": {
-                        "Aggregation": {
-                          "Expression": {
-                            "Column": {
-                              "Expression": {
-                                "SourceRef": {
-                                  "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW"
-                                }
-                              },
-                              "Property": "IMP_SOBREGIRO"
-                            }
-                          },
-                          "Function": 0
-                        }
-                      },
-                      "Right": {
-                        "ScopedEval": {
-                          "Expression": {
-                            "Aggregation": {
-                              "Expression": {
-                                "Column": {
-                                  "Expression": {
-                                    "SourceRef": {
-                                      "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW"
-                                    }
-                                  },
-                                  "Property": "IMP_SOBREGIRO"
-                                }
-                              },
-                              "Function": 0
-                            }
-                          },
-                          "Scope": []
-                        }
-                      },
-                      "Operator": 3
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "hundredPercentStackedColumnChart",
-              "objects": {},
-              "activeProjections": {
-                "Category": [
-                  {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "VDIM_CALENDARIO"
-                        }
-                      },
-                      "Property": "MES_ANIO_LETRA"
-                    }
-                  }
-                ]
-              },
-              "display": {
-                "mode": "hidden"
-              }
-            }
-          },
-          "893be60e87751bbbaa8e": {
+          "086674cf0441bac250cc": {
             "singleVisual": {
               "visualType": "actionButton",
               "objects": {},
@@ -201,113 +20,7 @@
               }
             }
           },
-          "f23ebe73bf5a829a5cc9": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "61bf91e1b6c9cc2ae094",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "VDIM_CALENDARIO"
-                        }
-                      },
-                      "Property": "MES_ANIO_LETRA"
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "1ee0ad5725bbed46e01e",
-                  "type": "Advanced",
-                  "expression": {
-                    "Aggregation": {
-                      "Expression": {
-                        "Column": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW"
-                            }
-                          },
-                          "Property": "CTAS"
-                        }
-                      },
-                      "Function": 0
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "b22c6e308071ba10b900",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW"
-                        }
-                      },
-                      "Property": "RFM_CREDITO"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "columnChart",
-              "objects": {},
-              "orderBy": [
-                {
-                  "Direction": 2,
-                  "Expression": {
-                    "Aggregation": {
-                      "Expression": {
-                        "Column": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
-                            }
-                          },
-                          "Property": "CUENTAS"
-                        }
-                      },
-                      "Function": 0
-                    }
-                  }
-                }
-              ],
-              "activeProjections": {
-                "Category": [
-                  {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "VDIM_CALENDARIO"
-                        }
-                      },
-                      "Property": "MES_ANIO_LETRA"
-                    }
-                  }
-                ]
-              },
-              "display": {
-                "mode": "hidden"
-              }
-            }
-          },
-          "8497f4ec759d82855405": {
-            "singleVisual": {
-              "visualType": "actionButton",
-              "objects": {},
-              "display": {
-                "mode": "hidden"
-              }
-            }
-          },
-          "53fbabc9d64478ff8f54": {
+          "09cc89c2c1ba9a431072": {
             "filters": {
               "byExpr": [
                 {
@@ -412,37 +125,7 @@
                   "howCreated": 1
                 },
                 {
-                  "name": "0faf82574d275e08b610",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW"
-                        }
-                      },
-                      "Property": "RFM_CREDITO"
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "57d33e9d62b0206101e7",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "VDIM_CALENDARIO"
-                        }
-                      },
-                      "Property": "ANIO_YYYY"
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "d59f1b6e3b352380b0b0",
+                  "name": "7672a2ec9ebd3fb6a3d4",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -457,7 +140,37 @@
                   "howCreated": 0
                 },
                 {
-                  "name": "0e34c7ad30ae80b0d366",
+                  "name": "2dc931ab8f66b871b2f0",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "VDIM_CALENDARIO"
+                        }
+                      },
+                      "Property": "ANIO_YYYY"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "2f6f0c6b9c2d3fdad347",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
+                        }
+                      },
+                      "Property": "SEGMENTO_RFM"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "735abc11f4806b9f9b56",
                   "type": "Advanced",
                   "expression": {
                     "Arithmetic": {
@@ -467,10 +180,10 @@
                             "Column": {
                               "Expression": {
                                 "SourceRef": {
-                                  "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW"
+                                  "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
                                 }
                               },
-                              "Property": "IMP_SOBREGIRO"
+                              "Property": "IMP_SOBREGIRO_M"
                             }
                           },
                           "Function": 0
@@ -484,10 +197,10 @@
                                 "Column": {
                                   "Expression": {
                                     "SourceRef": {
-                                      "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW"
+                                      "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
                                     }
                                   },
-                                  "Property": "IMP_SOBREGIRO"
+                                  "Property": "IMP_SOBREGIRO_M"
                                 }
                               },
                               "Function": 0
@@ -512,34 +225,7 @@
             "singleVisual": {
               "visualType": "pivotTable",
               "objects": {},
-              "orderBy": [
-                {
-                  "Direction": 1,
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
-                        }
-                      },
-                      "Property": "RANG_LIM_CRD"
-                    }
-                  }
-                }
-              ],
               "activeProjections": {
-                "Rows": [
-                  {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "VDIM_CALENDARIO"
-                        }
-                      },
-                      "Property": "ANIO_YYYY"
-                    }
-                  }
-                ],
                 "Columns": [
                   {
                     "Column": {
@@ -551,14 +237,23 @@
                       "Property": "MES_LETRA"
                     }
                   }
+                ],
+                "Rows": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "VDIM_CALENDARIO"
+                        }
+                      },
+                      "Property": "ANIO_YYYY"
+                    }
+                  }
                 ]
-              },
-              "display": {
-                "mode": "hidden"
               }
             }
           },
-          "aade0d3ef0fa423b7860": {
+          "0c3aada03f8cb50c90a8": {
             "filters": {
               "byExpr": [
                 {
@@ -627,22 +322,7 @@
                   "howCreated": 1
                 },
                 {
-                  "name": "300b41b4bc0030b007c5",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW"
-                        }
-                      },
-                      "Property": "RFM_CREDITO"
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "4bc5c4a0a446d69d26d2",
+                  "name": "554d7bf1b3ee0f99106a",
                   "type": "Advanced",
                   "expression": {
                     "Aggregation": {
@@ -650,13 +330,419 @@
                         "Column": {
                           "Expression": {
                             "SourceRef": {
-                              "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW"
+                              "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
                             }
                           },
-                          "Property": "CTAS"
+                          "Property": "IMP_SOBREGIRO_M"
                         }
                       },
                       "Function": 0
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "d24dc8c840d4f9f834e6",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
+                        }
+                      },
+                      "Property": "SEGMENTO_RFM"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "pivotTable",
+              "objects": {},
+              "activeProjections": {
+                "Columns": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "VDIM_CALENDARIO"
+                        }
+                      },
+                      "Property": "MES_LETRA"
+                    }
+                  }
+                ],
+                "Rows": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "VDIM_CALENDARIO"
+                        }
+                      },
+                      "Property": "ANIO_YYYY"
+                    }
+                  }
+                ]
+              },
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "528dfb275e81d1c31187": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "9e0b0e241c91be438e1c",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "VDIM_CALENDARIO"
+                        }
+                      },
+                      "Property": "MES_LETRA"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "d38a7d975a19c638df3f",
+                  "type": "Advanced",
+                  "expression": {
+                    "Arithmetic": {
+                      "Left": {
+                        "Aggregation": {
+                          "Expression": {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
+                                }
+                              },
+                              "Property": "IMP_SOBREGIRO_M"
+                            }
+                          },
+                          "Function": 0
+                        }
+                      },
+                      "Right": {
+                        "ScopedEval": {
+                          "Expression": {
+                            "Aggregation": {
+                              "Expression": {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
+                                    }
+                                  },
+                                  "Property": "IMP_SOBREGIRO_M"
+                                }
+                              },
+                              "Function": 0
+                            }
+                          },
+                          "Scope": []
+                        }
+                      },
+                      "Operator": 3
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "7e8beb4f535f95f1c924",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
+                        }
+                      },
+                      "Property": "SEGMENTO_RFM"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "hundredPercentStackedColumnChart",
+              "objects": {},
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "VDIM_CALENDARIO"
+                        }
+                      },
+                      "Property": "MES_LETRA"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "5303d56ac023e6f9b201": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "afd896b2526d0b8acb70": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "fae115bbd5b4fb7ff79d",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
+                        }
+                      },
+                      "Property": "SEGMENTO_RFM"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "9ed0875cd9e292375faa",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
+                            }
+                          },
+                          "Property": "IMP_SOBREGIRO_M"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "9489bb28bef2fc68b91b",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "VDIM_CALENDARIO"
+                        }
+                      },
+                      "Property": "MES_LETRA"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "columnChart",
+              "objects": {},
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "VDIM_CALENDARIO"
+                        }
+                      },
+                      "Property": "MES_LETRA"
+                    }
+                  }
+                ]
+              },
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "035173cc554ed40c5811": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "176db15fc285bcf00fe9": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "2da66a6c1fad4b755dab": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "4d9e995801397b65c5a3": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "5859863f26db0b5be296": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "6021a4dddbdfa97668cf": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "7c9188100799110f3a38": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "901976ae1dbf24bd3255": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "a782836dcf693e96c97a": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "bf98e58b42b089195c8b": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "f2a0cd766587078ff0ab": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "017f0b0911b8db9b1008": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "Filter2835017b7675dda709a0",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                            }
+                          },
+                          "Property": "CUENTAS"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "Filter4f12ed7d6a853aeca725",
+                  "type": "Advanced",
+                  "expression": {
+                    "Arithmetic": {
+                      "Left": {
+                        "Aggregation": {
+                          "Expression": {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                                }
+                              },
+                              "Property": "CUENTAS"
+                            }
+                          },
+                          "Function": 0
+                        }
+                      },
+                      "Right": {
+                        "ScopedEval": {
+                          "Expression": {
+                            "Aggregation": {
+                              "Expression": {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                                    }
+                                  },
+                                  "Property": "CUENTAS"
+                                }
+                              },
+                              "Function": 0
+                            }
+                          },
+                          "Scope": [
+                            {
+                              "RoleRef": {
+                                "Role": "Columns"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      "Operator": 3
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "Filter4fa981f1cbbe14c7ead7",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                        }
+                      },
+                      "Property": "RANG_LIM_CRD"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "Filter5f2af1840a83fdb8ccfb",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "VDIM_CALENDARIO"
+                        }
+                      },
+                      "Property": "MES_ANIO_LETRA"
                     }
                   },
                   "howCreated": 0
@@ -682,18 +768,6 @@
                 }
               ],
               "activeProjections": {
-                "Rows": [
-                  {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "VDIM_CALENDARIO"
-                        }
-                      },
-                      "Property": "ANIO_YYYY"
-                    }
-                  }
-                ],
                 "Columns": [
                   {
                     "Column": {
@@ -702,7 +776,19 @@
                           "Entity": "VDIM_CALENDARIO"
                         }
                       },
-                      "Property": "MES_LETRA"
+                      "Property": "MES_ANIO_LETRA"
+                    }
+                  }
+                ],
+                "Rows": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW"
+                        }
+                      },
+                      "Property": "RFM_CREDITO"
                     }
                   }
                 ]
@@ -716,83 +802,6 @@
             "singleVisual": {
               "visualType": "actionButton",
               "objects": {},
-              "display": {
-                "mode": "hidden"
-              }
-            }
-          },
-          "d76544d0e4862d3d2ab2": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "64aeaed9bb1b5d5547de",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "VDIM_CALENDARIO"
-                        }
-                      },
-                      "Property": "MES_ANIO_LETRA"
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "add0dbe072cdde0c4243",
-                  "type": "Advanced",
-                  "expression": {
-                    "Aggregation": {
-                      "Expression": {
-                        "Column": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW"
-                            }
-                          },
-                          "Property": "CTAS"
-                        }
-                      },
-                      "Function": 0
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "48c9753642a2764d4db5",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW"
-                        }
-                      },
-                      "Property": "RFM_CREDITO"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "columnChart",
-              "objects": {},
-              "activeProjections": {
-                "Category": [
-                  {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "VDIM_CALENDARIO"
-                        }
-                      },
-                      "Property": "MES_ANIO_LETRA"
-                    }
-                  }
-                ]
-              },
               "display": {
                 "mode": "hidden"
               }
@@ -909,26 +918,6 @@
                     }
                   },
                   "howCreated": 0
-                },
-                {
-                  "name": "21337ffbe8d7c07a54d0",
-                  "type": "Advanced",
-                  "expression": {
-                    "Aggregation": {
-                      "Expression": {
-                        "Column": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Entity": "FAC_INCREMENTOS_COD_MAESTRO_TRN"
-                            }
-                          },
-                          "Property": "SDO"
-                        }
-                      },
-                      "Function": 0
-                    }
-                  },
-                  "howCreated": 0
                 }
               ]
             },
@@ -936,18 +925,6 @@
               "visualType": "pivotTable",
               "objects": {},
               "activeProjections": {
-                "Rows": [
-                  {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "VDIM_CALENDARIO"
-                        }
-                      },
-                      "Property": "ANIO_YYYY"
-                    }
-                  }
-                ],
                 "Columns": [
                   {
                     "Column": {
@@ -959,6 +936,18 @@
                       "Property": "MES_LETRA"
                     }
                   }
+                ],
+                "Rows": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "VDIM_CALENDARIO"
+                        }
+                      },
+                      "Property": "ANIO_YYYY"
+                    }
+                  }
                 ]
               },
               "display": {
@@ -966,97 +955,11 @@
               }
             }
           },
-          "017f0b0911b8db9b1008": {
+          "d76544d0e4862d3d2ab2": {
             "filters": {
               "byExpr": [
                 {
-                  "name": "Filter2835017b7675dda709a0",
-                  "type": "Advanced",
-                  "expression": {
-                    "Aggregation": {
-                      "Expression": {
-                        "Column": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
-                            }
-                          },
-                          "Property": "CUENTAS"
-                        }
-                      },
-                      "Function": 0
-                    }
-                  },
-                  "howCreated": 1
-                },
-                {
-                  "name": "Filter4f12ed7d6a853aeca725",
-                  "type": "Advanced",
-                  "expression": {
-                    "Arithmetic": {
-                      "Left": {
-                        "Aggregation": {
-                          "Expression": {
-                            "Column": {
-                              "Expression": {
-                                "SourceRef": {
-                                  "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
-                                }
-                              },
-                              "Property": "CUENTAS"
-                            }
-                          },
-                          "Function": 0
-                        }
-                      },
-                      "Right": {
-                        "ScopedEval": {
-                          "Expression": {
-                            "Aggregation": {
-                              "Expression": {
-                                "Column": {
-                                  "Expression": {
-                                    "SourceRef": {
-                                      "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
-                                    }
-                                  },
-                                  "Property": "CUENTAS"
-                                }
-                              },
-                              "Function": 0
-                            }
-                          },
-                          "Scope": [
-                            {
-                              "RoleRef": {
-                                "Role": "Columns"
-                              }
-                            }
-                          ]
-                        }
-                      },
-                      "Operator": 3
-                    }
-                  },
-                  "howCreated": 1
-                },
-                {
-                  "name": "Filter4fa981f1cbbe14c7ead7",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
-                        }
-                      },
-                      "Property": "RANG_LIM_CRD"
-                    }
-                  },
-                  "howCreated": 1
-                },
-                {
-                  "name": "Filter5f2af1840a83fdb8ccfb",
+                  "name": "3a707e570c129cfcd3ae",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -1069,76 +972,14 @@
                     }
                   },
                   "howCreated": 0
-                },
-                {
-                  "name": "b2e37a9da5a6ba10a480",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW"
-                        }
-                      },
-                      "Property": "RFM_CREDITO"
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "c662efba7053b2cadc65",
-                  "type": "Advanced",
-                  "expression": {
-                    "Aggregation": {
-                      "Expression": {
-                        "Column": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW"
-                            }
-                          },
-                          "Property": "IMP_SOBREGIRO_1000000"
-                        }
-                      },
-                      "Function": 0
-                    }
-                  },
-                  "howCreated": 0
                 }
               ]
             },
             "singleVisual": {
-              "visualType": "pivotTable",
+              "visualType": "columnChart",
               "objects": {},
-              "orderBy": [
-                {
-                  "Direction": 1,
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
-                        }
-                      },
-                      "Property": "RANG_LIM_CRD"
-                    }
-                  }
-                }
-              ],
               "activeProjections": {
-                "Rows": [
-                  {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW"
-                        }
-                      },
-                      "Property": "RFM_CREDITO"
-                    }
-                  }
-                ],
-                "Columns": [
+                "Category": [
                   {
                     "Column": {
                       "Expression": {
@@ -1195,7 +1036,7 @@
                   "howCreated": 1
                 },
                 {
-                  "name": "8208245be32e242b5d13",
+                  "name": "c61b988274bf1f41de69",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -1210,7 +1051,7 @@
                   "howCreated": 0
                 },
                 {
-                  "name": "4516dfae0a63b4eaa8e3",
+                  "name": "868e4d507ea46cb2c498",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -1220,26 +1061,6 @@
                         }
                       },
                       "Property": "ANIO_YYYY"
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "26f3c60b6c11503c3ca0",
-                  "type": "Advanced",
-                  "expression": {
-                    "Aggregation": {
-                      "Expression": {
-                        "Column": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Entity": "FAC_INCREMENTOS_COD_MAESTRO_TRN"
-                            }
-                          },
-                          "Property": "SDO"
-                        }
-                      },
-                      "Function": 0
                     }
                   },
                   "howCreated": 0
@@ -1288,79 +1109,7 @@
               }
             }
           },
-          "f2da3b6ec93f85243215": {
-            "singleVisual": {
-              "visualType": "shape",
-              "objects": {}
-            }
-          },
-          "5859863f26db0b5be296": {
-            "singleVisual": {
-              "visualType": "textbox",
-              "objects": {}
-            }
-          },
-          "4d9e995801397b65c5a3": {
-            "singleVisual": {
-              "visualType": "actionButton",
-              "objects": {}
-            }
-          },
-          "035173cc554ed40c5811": {
-            "singleVisual": {
-              "visualType": "actionButton",
-              "objects": {}
-            }
-          },
-          "176db15fc285bcf00fe9": {
-            "singleVisual": {
-              "visualType": "actionButton",
-              "objects": {}
-            }
-          },
-          "6021a4dddbdfa97668cf": {
-            "singleVisual": {
-              "visualType": "actionButton",
-              "objects": {}
-            }
-          },
-          "2da66a6c1fad4b755dab": {
-            "singleVisual": {
-              "visualType": "actionButton",
-              "objects": {}
-            }
-          },
-          "bf98e58b42b089195c8b": {
-            "singleVisual": {
-              "visualType": "actionButton",
-              "objects": {}
-            }
-          },
-          "a782836dcf693e96c97a": {
-            "singleVisual": {
-              "visualType": "actionButton",
-              "objects": {}
-            }
-          },
-          "f2a0cd766587078ff0ab": {
-            "singleVisual": {
-              "visualType": "actionButton",
-              "objects": {}
-            }
-          },
-          "901976ae1dbf24bd3255": {
-            "singleVisual": {
-              "visualType": "actionButton",
-              "objects": {}
-            }
-          },
-          "7c9188100799110f3a38": {
-            "singleVisual": {
-              "visualType": "shape",
-              "objects": {}
-            }
-          },
-          "c71e24db9494c92c9700": {
+          "8e996564626bb57054ed": {
             "singleVisual": {
               "visualType": "actionButton",
               "objects": {},
@@ -1369,7 +1118,7 @@
               }
             }
           },
-          "8e996564626bb57054ed": {
+          "c71e24db9494c92c9700": {
             "singleVisual": {
               "visualType": "actionButton",
               "objects": {},
@@ -1390,510 +1139,15 @@
               "objects": {}
             }
           },
-          "7a0bb9e5e0ba6ae20e12": {
-            "singleVisual": {
-              "visualType": "actionButton",
-              "objects": {}
-            }
-          },
           "2f2b7315e980435b3cbc": {
             "singleVisual": {
               "visualType": "actionButton",
               "objects": {}
             }
           },
-          "3493e0dff7caa427e413": {
+          "7a0bb9e5e0ba6ae20e12": {
             "singleVisual": {
               "visualType": "actionButton",
-              "objects": {}
-            }
-          },
-          "04e6fa16801c26a190ab": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "74bee3da860475a0005b",
-                  "type": "Advanced",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "VDIM_PRODUCTO"
-                        }
-                      },
-                      "Property": "TIP_INF"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "slicer",
-              "objects": {
-                "merge": {
-                  "data": [
-                    {
-                      "properties": {
-                        "mode": {
-                          "expr": {
-                            "Literal": {
-                              "Value": "'Basic'"
-                            }
-                          }
-                        }
-                      }
-                    }
-                  ]
-                }
-              },
-              "activeProjections": {
-                "Values": [
-                  {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "VDIM_PRODUCTO"
-                        }
-                      },
-                      "Property": "TIP_INF"
-                    }
-                  }
-                ]
-              }
-            }
-          },
-          "683733cd00036ce9b177": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "9cb69b00100636073533",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "VDIM_CALENDARIO"
-                        }
-                      },
-                      "Property": "ANIO_YYYY"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "slicer",
-              "objects": {
-                "merge": {
-                  "data": [
-                    {
-                      "properties": {
-                        "mode": {
-                          "expr": {
-                            "Literal": {
-                              "Value": "'Dropdown'"
-                            }
-                          }
-                        }
-                      }
-                    }
-                  ]
-                }
-              },
-              "activeProjections": {
-                "Values": [
-                  {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "VDIM_CALENDARIO"
-                        }
-                      },
-                      "Property": "ANIO_YYYY"
-                    }
-                  }
-                ]
-              }
-            }
-          },
-          "354d843eb1bc0cc99da4": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "95ac58e5382970c19e00",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "VDIM_CALENDARIO"
-                        }
-                      },
-                      "Property": "MES_LETRA"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "slicer",
-              "objects": {
-                "merge": {
-                  "data": [
-                    {
-                      "properties": {
-                        "mode": {
-                          "expr": {
-                            "Literal": {
-                              "Value": "'Dropdown'"
-                            }
-                          }
-                        }
-                      }
-                    }
-                  ]
-                }
-              },
-              "activeProjections": {
-                "Values": [
-                  {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "VDIM_CALENDARIO"
-                        }
-                      },
-                      "Property": "MES_LETRA"
-                    }
-                  }
-                ]
-              }
-            }
-          },
-          "096fbef5e87080a70d47": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "cdca0c0c98d2269ab3dc",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "VDIM_RANG_LIM_CRD"
-                        }
-                      },
-                      "Property": "RANG_LIM_CRD"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "slicer",
-              "objects": {
-                "merge": {
-                  "data": [
-                    {
-                      "properties": {
-                        "mode": {
-                          "expr": {
-                            "Literal": {
-                              "Value": "'Dropdown'"
-                            }
-                          }
-                        }
-                      }
-                    }
-                  ]
-                }
-              },
-              "activeProjections": {
-                "Values": [
-                  {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "VDIM_RANG_LIM_CRD"
-                        }
-                      },
-                      "Property": "RANG_LIM_CRD"
-                    }
-                  }
-                ]
-              }
-            }
-          },
-          "293bc4a72cd800082872": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "cd7f71bb505530e06c56",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "VDIM_RANG_EDAD"
-                        }
-                      },
-                      "Property": "RANGO_EDAD"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "slicer",
-              "objects": {
-                "merge": {
-                  "data": [
-                    {
-                      "properties": {
-                        "mode": {
-                          "expr": {
-                            "Literal": {
-                              "Value": "'Dropdown'"
-                            }
-                          }
-                        }
-                      }
-                    }
-                  ]
-                }
-              },
-              "activeProjections": {
-                "Values": [
-                  {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "VDIM_RANG_EDAD"
-                        }
-                      },
-                      "Property": "RANGO_EDAD"
-                    }
-                  }
-                ]
-              }
-            }
-          },
-          "7874b701507ebada144b": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "913b966e33320cad3c0c",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "VDIM_SEGMENTO_CTE"
-                        }
-                      },
-                      "Property": "SEGMENTO_CLIENTE"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "slicer",
-              "objects": {
-                "merge": {
-                  "data": [
-                    {
-                      "properties": {
-                        "mode": {
-                          "expr": {
-                            "Literal": {
-                              "Value": "'Dropdown'"
-                            }
-                          }
-                        }
-                      }
-                    }
-                  ]
-                }
-              },
-              "activeProjections": {
-                "Values": [
-                  {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "VDIM_SEGMENTO_CTE"
-                        }
-                      },
-                      "Property": "SEGMENTO_CLIENTE"
-                    }
-                  }
-                ]
-              }
-            }
-          },
-          "6ace99750455e3624a27": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "8987800c00d716b3d261",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "VDIM_SEGMENTO_RFM"
-                        }
-                      },
-                      "Property": "SEGMENTO_RFM"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "slicer",
-              "objects": {
-                "merge": {
-                  "data": [
-                    {
-                      "properties": {
-                        "mode": {
-                          "expr": {
-                            "Literal": {
-                              "Value": "'Dropdown'"
-                            }
-                          }
-                        }
-                      }
-                    }
-                  ]
-                }
-              },
-              "activeProjections": {
-                "Values": [
-                  {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "VDIM_SEGMENTO_RFM"
-                        }
-                      },
-                      "Property": "SEGMENTO_RFM"
-                    }
-                  }
-                ]
-              }
-            }
-          },
-          "5ecef3a226004008a332": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "18f67769b31738520c8a",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "FAC_INCREMENTOS_COD_MAESTRO_TRN"
-                        }
-                      },
-                      "Property": "BAND_TOT"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "slicer",
-              "objects": {
-                "merge": {
-                  "data": [
-                    {
-                      "properties": {
-                        "mode": {
-                          "expr": {
-                            "Literal": {
-                              "Value": "'Dropdown'"
-                            }
-                          }
-                        }
-                      }
-                    }
-                  ]
-                }
-              },
-              "activeProjections": {
-                "Values": [
-                  {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "FAC_INCREMENTOS_COD_MAESTRO_TRN"
-                        }
-                      },
-                      "Property": "BAND_TOT"
-                    }
-                  }
-                ]
-              }
-            }
-          },
-          "0ac8c31203a2757000ba": {
-            "singleVisual": {
-              "visualType": "shape",
-              "objects": {}
-            }
-          },
-          "c5bc6f95f52a2e4ccf3c": {
-            "singleVisual": {
-              "visualType": "image",
-              "objects": {}
-            }
-          },
-          "f63063db8cc1fad0a0e1": {
-            "singleVisual": {
-              "visualType": "textbox",
-              "objects": {}
-            }
-          },
-          "affb530d75a30843bae9": {
-            "singleVisual": {
-              "visualType": "image",
-              "objects": {}
-            }
-          },
-          "f1a199a5753caa35ea11": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "184e420527e71e71e23e",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Medidas"
-                        }
-                      },
-                      "Property": "Nombre_Tarjeta"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "cardVisual",
               "objects": {}
             }
           },
@@ -1901,7 +1155,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "d58fff34cd5055bb4bca",
+                  "name": "db91ca9843fe602be117",
                   "type": "Advanced",
                   "expression": {
                     "Aggregation": {
@@ -1927,11 +1181,54 @@
               "objects": {}
             }
           },
+          "affb530d75a30843bae9": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "c5bc6f95f52a2e4ccf3c": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "f1a199a5753caa35ea11": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "49bcaa2d31c528e359c1",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas"
+                        }
+                      },
+                      "Property": "Nombre_Tarjeta"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {}
+            }
+          },
+          "f63063db8cc1fad0a0e1": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
           "f6833d8f265d30c8363a": {
             "filters": {
               "byExpr": [
                 {
-                  "name": "3653db6b09c5de0c55d1",
+                  "name": "e712c6f4eaf1127629f8",
                   "type": "Advanced",
                   "expression": {
                     "Aggregation": {
@@ -1963,80 +1260,20 @@
               "objects": {}
             }
           },
-          "528dfb275e81d1c31187": {
+          "04e6fa16801c26a190ab": {
             "filters": {
               "byExpr": [
                 {
-                  "name": "c9052ea5443eca6b59b0",
+                  "name": "494a4303144de9ebe798",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "VDIM_CALENDARIO"
+                          "Entity": "VDIM_TIPO_TARJETA"
                         }
                       },
-                      "Property": "MES_ANIO_LETRA"
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "b5b96959140e88c78da5",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW"
-                        }
-                      },
-                      "Property": "RFM_CREDITO"
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "812aed3a125b9c95502d",
-                  "type": "Advanced",
-                  "expression": {
-                    "Arithmetic": {
-                      "Left": {
-                        "Aggregation": {
-                          "Expression": {
-                            "Column": {
-                              "Expression": {
-                                "SourceRef": {
-                                  "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW"
-                                }
-                              },
-                              "Property": "IMP_SOBREGIRO_1000000"
-                            }
-                          },
-                          "Function": 0
-                        }
-                      },
-                      "Right": {
-                        "ScopedEval": {
-                          "Expression": {
-                            "Aggregation": {
-                              "Expression": {
-                                "Column": {
-                                  "Expression": {
-                                    "SourceRef": {
-                                      "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW"
-                                    }
-                                  },
-                                  "Property": "IMP_SOBREGIRO_1000000"
-                                }
-                              },
-                              "Function": 0
-                            }
-                          },
-                          "Scope": []
-                        }
-                      },
-                      "Operator": 3
+                      "Property": "PRODUCTO"
                     }
                   },
                   "howCreated": 0
@@ -2044,120 +1281,438 @@
               ]
             },
             "singleVisual": {
-              "visualType": "hundredPercentStackedColumnChart",
-              "objects": {},
-              "activeProjections": {
-                "Category": [
-                  {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "VDIM_CALENDARIO"
-                        }
-                      },
-                      "Property": "MES_ANIO_LETRA"
-                    }
-                  }
-                ]
-              }
-            }
-          },
-          "086674cf0441bac250cc": {
-            "singleVisual": {
-              "visualType": "actionButton",
-              "objects": {},
-              "display": {
-                "mode": "hidden"
-              }
-            }
-          },
-          "afd896b2526d0b8acb70": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "a83d82ec0d9006b97142",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "VDIM_CALENDARIO"
-                        }
-                      },
-                      "Property": "MES_ANIO_LETRA"
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "babb55a8b72ac0452d00",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW"
-                        }
-                      },
-                      "Property": "RFM_CREDITO"
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "eef451a0056c6583c760",
-                  "type": "Advanced",
-                  "expression": {
-                    "Aggregation": {
-                      "Expression": {
-                        "Column": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW"
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
                             }
-                          },
-                          "Property": "IMP_SOBREGIRO_1000000"
+                          }
                         }
-                      },
-                      "Function": 0
+                      }
                     }
-                  },
-                  "howCreated": 0
+                  ]
                 }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "columnChart",
-              "objects": {},
-              "activeProjections": {
-                "Category": [
-                  {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "VDIM_CALENDARIO"
-                        }
-                      },
-                      "Property": "MES_ANIO_LETRA"
-                    }
-                  }
-                ]
               },
-              "display": {
-                "mode": "hidden"
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "VDIM_TIPO_TARJETA"
+                        }
+                      },
+                      "Property": "PRODUCTO"
+                    }
+                  }
+                ]
               }
             }
           },
-          "5303d56ac023e6f9b201": {
+          "096fbef5e87080a70d47": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "b039d34cfbedd920d885",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "VDIM_RANG_LIM_CRD"
+                        }
+                      },
+                      "Property": "RANG_LIM_CRD"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "VDIM_RANG_LIM_CRD"
+                        }
+                      },
+                      "Property": "RANG_LIM_CRD"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "0ac8c31203a2757000ba": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "293bc4a72cd800082872": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "21ef4959cf445c2b67a4",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "VDIM_RANG_EDAD"
+                        }
+                      },
+                      "Property": "RANGO_EDAD"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "VDIM_RANG_EDAD"
+                        }
+                      },
+                      "Property": "RANGO_EDAD"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "3493e0dff7caa427e413": {
             "singleVisual": {
               "visualType": "actionButton",
-              "objects": {},
-              "display": {
-                "mode": "hidden"
+              "objects": {}
+            }
+          },
+          "354d843eb1bc0cc99da4": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "596f79e1d0a64e9a9f12",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "VDIM_CALENDARIO"
+                        }
+                      },
+                      "Property": "MES_LETRA"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "VDIM_CALENDARIO"
+                        }
+                      },
+                      "Property": "MES_LETRA"
+                    }
+                  }
+                ]
               }
             }
           },
-          "09cc89c2c1ba9a431072": {
+          "5ecef3a226004008a332": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "dd84e421515ec9e7c2ee",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "VDIM_TOTALERO"
+                        }
+                      },
+                      "Property": "BAND_TOT"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "VDIM_TOTALERO"
+                        }
+                      },
+                      "Property": "BAND_TOT"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "683733cd00036ce9b177": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "8622dae2132f24195e38",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "VDIM_CALENDARIO"
+                        }
+                      },
+                      "Property": "ANIO_YYYY"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "VDIM_CALENDARIO"
+                        }
+                      },
+                      "Property": "ANIO_YYYY"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "6ace99750455e3624a27": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "9a40b50095266cfb2572",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "VDIM_SEGMENTO_RFM"
+                        }
+                      },
+                      "Property": "SEGMENTO_RFM"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "VDIM_SEGMENTO_RFM"
+                        }
+                      },
+                      "Property": "SEGMENTO_RFM"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "7874b701507ebada144b": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "ece6a709f4a41ac11095",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "VDIM_SEGMENTO_CLIENTE"
+                        }
+                      },
+                      "Property": "SEGMENTO_CLIENTE"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "VDIM_SEGMENTO_CLIENTE"
+                        }
+                      },
+                      "Property": "SEGMENTO_CLIENTE"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "53fbabc9d64478ff8f54": {
             "filters": {
               "byExpr": [
                 {
@@ -2262,22 +1817,52 @@
                   "howCreated": 1
                 },
                 {
-                  "name": "bb619c4d1269c2e0c579",
+                  "name": "00bdf020320dd4a83ebc",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW"
+                          "Entity": "VDIM_CALENDARIO"
                         }
                       },
-                      "Property": "RFM_CREDITO"
+                      "Property": "MES_LETRA"
                     }
                   },
                   "howCreated": 0
                 },
                 {
-                  "name": "634273b05b662bb765eb",
+                  "name": "3f808d32702e0f2092d3",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "VDIM_CALENDARIO"
+                        }
+                      },
+                      "Property": "ANIO_YYYY"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "166f2351307fd77d412b",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
+                        }
+                      },
+                      "Property": "SEGMENTO_RFM"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "4e50b4e56a5495160c78",
                   "type": "Advanced",
                   "expression": {
                     "Arithmetic": {
@@ -2287,10 +1872,10 @@
                             "Column": {
                               "Expression": {
                                 "SourceRef": {
-                                  "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW"
+                                  "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
                                 }
                               },
-                              "Property": "IMP_SOBREGIRO_1000000"
+                              "Property": "CTAS_K"
                             }
                           },
                           "Function": 0
@@ -2304,10 +1889,10 @@
                                 "Column": {
                                   "Expression": {
                                     "SourceRef": {
-                                      "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW"
+                                      "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
                                     }
                                   },
-                                  "Property": "IMP_SOBREGIRO_1000000"
+                                  "Property": "CTAS_K"
                                 }
                               },
                               "Function": 0
@@ -2326,55 +1911,28 @@
                     }
                   },
                   "howCreated": 0
-                },
-                {
-                  "name": "bc5c5db4aa3d69307a98",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "VDIM_CALENDARIO"
-                        }
-                      },
-                      "Property": "MES_LETRA"
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "9024318bcbd1306ea015",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "VDIM_CALENDARIO"
-                        }
-                      },
-                      "Property": "ANIO_YYYY"
-                    }
-                  },
-                  "howCreated": 0
                 }
               ]
             },
             "singleVisual": {
               "visualType": "pivotTable",
               "objects": {},
-              "activeProjections": {
-                "Rows": [
-                  {
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "VDIM_CALENDARIO"
+                          "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
                         }
                       },
-                      "Property": "ANIO_YYYY"
+                      "Property": "RANG_LIM_CRD"
                     }
                   }
-                ],
+                }
+              ],
+              "activeProjections": {
                 "Columns": [
                   {
                     "Column": {
@@ -2386,11 +1944,44 @@
                       "Property": "MES_LETRA"
                     }
                   }
+                ],
+                "Rows": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "VDIM_CALENDARIO"
+                        }
+                      },
+                      "Property": "ANIO_YYYY"
+                    }
+                  }
                 ]
+              },
+              "display": {
+                "mode": "hidden"
               }
             }
           },
-          "0c3aada03f8cb50c90a8": {
+          "8497f4ec759d82855405": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "893be60e87751bbbaa8e": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "aade0d3ef0fa423b7860": {
             "filters": {
               "byExpr": [
                 {
@@ -2459,22 +2050,7 @@
                   "howCreated": 1
                 },
                 {
-                  "name": "3a23d652699dd7924c5b",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW"
-                        }
-                      },
-                      "Property": "RFM_CREDITO"
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "8045e2b8dd90dc471ba2",
+                  "name": "3b18170d42bbb1cbb8d4",
                   "type": "Advanced",
                   "expression": {
                     "Aggregation": {
@@ -2482,13 +2058,28 @@
                         "Column": {
                           "Expression": {
                             "SourceRef": {
-                              "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW"
+                              "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
                             }
                           },
-                          "Property": "IMP_SOBREGIRO_1000000"
+                          "Property": "CTAS_K"
                         }
                       },
                       "Function": 0
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "f1904fae48199d33b568",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
+                        }
+                      },
+                      "Property": "SEGMENTO_RFM"
                     }
                   },
                   "howCreated": 0
@@ -2498,6 +2089,21 @@
             "singleVisual": {
               "visualType": "pivotTable",
               "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                        }
+                      },
+                      "Property": "RANG_LIM_CRD"
+                    }
+                  }
+                }
+              ],
               "activeProjections": {
                 "Columns": [
                   {
@@ -2528,16 +2134,221 @@
                 "mode": "hidden"
               }
             }
+          },
+          "c8e82dbe02147af0cd0f": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "e6d36fbdea78327c9358",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
+                        }
+                      },
+                      "Property": "SEGMENTO_RFM"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "269dfee74618e7f8f16c",
+                  "type": "Advanced",
+                  "expression": {
+                    "Arithmetic": {
+                      "Left": {
+                        "Aggregation": {
+                          "Expression": {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
+                                }
+                              },
+                              "Property": "CTAS_K"
+                            }
+                          },
+                          "Function": 0
+                        }
+                      },
+                      "Right": {
+                        "ScopedEval": {
+                          "Expression": {
+                            "Aggregation": {
+                              "Expression": {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
+                                    }
+                                  },
+                                  "Property": "CTAS_K"
+                                }
+                              },
+                              "Function": 0
+                            }
+                          },
+                          "Scope": []
+                        }
+                      },
+                      "Operator": 3
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "1d1ccf788b253117703b",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "VDIM_CALENDARIO"
+                        }
+                      },
+                      "Property": "MES_LETRA"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "hundredPercentStackedColumnChart",
+              "objects": {},
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "VDIM_CALENDARIO"
+                        }
+                      },
+                      "Property": "MES_LETRA"
+                    }
+                  }
+                ]
+              },
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "f23ebe73bf5a829a5cc9": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "674d1a81f4ed36dbff85",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
+                        }
+                      },
+                      "Property": "SEGMENTO_RFM"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "e132686659f042c9acbc",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
+                            }
+                          },
+                          "Property": "CTAS_K"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "1453160e24db5d52b469",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "VDIM_CALENDARIO"
+                        }
+                      },
+                      "Property": "MES_LETRA"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "columnChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "VFAC_DISPOSICIONES_COD_MAESTRO_TRN"
+                            }
+                          },
+                          "Property": "CUENTAS"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "VDIM_CALENDARIO"
+                        }
+                      },
+                      "Property": "MES_LETRA"
+                    }
+                  }
+                ]
+              },
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "f2da3b6ec93f85243215": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
           }
         },
         "visualContainerGroups": {
-          "e99b5f40dfbd24424c61": {
+          "3c02ed0de3f89ea0c64e": {
             "isHidden": false
           },
           "7a90cd1e9ee787c80397": {
             "isHidden": false
           },
-          "3c02ed0de3f89ea0c64e": {
+          "e99b5f40dfbd24424c61": {
             "isHidden": false
           }
         }

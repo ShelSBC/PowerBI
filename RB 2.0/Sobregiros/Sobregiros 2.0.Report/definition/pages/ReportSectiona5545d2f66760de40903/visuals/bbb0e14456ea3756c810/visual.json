@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "bbb0e14456ea3756c810",
   "position": {
-    "x": 617.96083651070933,
-    "y": 107.3152808537137,
+    "x": 678.04835344234766,
+    "y": 112.98119346871712,
     "z": 0,
-    "height": 400,
-    "width": 499.99999999999994,
+    "height": 393.75352775164629,
+    "width": 439.51081843838193,
     "tabOrder": 1000
   },
   "visual": {
@@ -23,11 +23,11 @@
                       "Entity": "VDIM_CALENDARIO"
                     }
                   },
-                  "Property": "MES_ANIO_LETRA"
+                  "Property": "MES_LETRA"
                 }
               },
-              "queryRef": "VDIM_CALENDARIO.MES_ANIO_LETRA",
-              "nativeQueryRef": "MES_ANIO_LETRA",
+              "queryRef": "VDIM_CALENDARIO.MES_LETRA",
+              "nativeQueryRef": "MES_LETRA",
               "active": true
             }
           ]
@@ -39,14 +39,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW"
+                      "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
                     }
                   },
-                  "Property": "SEGMENTO_CLIENTE_DESC"
+                  "Property": "SEGMENTO_CLIENTE"
                 }
               },
-              "queryRef": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW.SEGMENTO_CLIENTE_DESC",
-              "nativeQueryRef": "SEGMENTO_CLIENTE_DESC"
+              "queryRef": "FAC_SOBREGIROS_INSUMO_SOB_TRN.SEGMENTO_CLIENTE",
+              "nativeQueryRef": "SEGMENTO_CLIENTE"
             }
           ]
         },
@@ -59,17 +59,17 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW"
+                          "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
                         }
                       },
-                      "Property": "IMP_SOBREGIRO_1000000"
+                      "Property": "IMP_SOBREGIRO_M"
                     }
                   },
                   "Function": 0
                 }
               },
-              "queryRef": "Sum(FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW.IMP_SOBREGIRO_1000000)",
-              "nativeQueryRef": "Suma de IMP_SOBREGIRO_1000000"
+              "queryRef": "Sum(FAC_SOBREGIROS_INSUMO_SOB_TRN.IMP_SOBREGIRO_M)",
+              "nativeQueryRef": "Suma de IMP_SOBREGIRO_M"
             }
           ]
         }
@@ -1141,121 +1141,5 @@
     "drillFilterOtherVisuals": true
   },
   "parentGroupName": "dbd1cee37499de785b85",
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "8f76d6186c1afe782d56",
-        "type": "Exclude",
-        "filter": {
-          "Version": 2,
-          "From": [
-            {
-              "Name": "f",
-              "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW",
-              "Type": 0
-            },
-            {
-              "Name": "v",
-              "Entity": "VDIM_CALENDARIO",
-              "Type": 0
-            }
-          ],
-          "Where": [
-            {
-              "Condition": {
-                "Not": {
-                  "Expression": {
-                    "Or": {
-                      "Left": {
-                        "In": {
-                          "Expressions": [
-                            {
-                              "Column": {
-                                "Expression": {
-                                  "SourceRef": {
-                                    "Source": "f"
-                                  }
-                                },
-                                "Property": "SEGMENTO_CLIENTE_DESC"
-                              }
-                            },
-                            {
-                              "Column": {
-                                "Expression": {
-                                  "SourceRef": {
-                                    "Source": "v"
-                                  }
-                                },
-                                "Property": "ANIO_YYYY"
-                              }
-                            }
-                          ],
-                          "Values": [
-                            [
-                              {
-                                "Literal": {
-                                  "Value": "null"
-                                }
-                              },
-                              {
-                                "Literal": {
-                                  "Value": "'2024'"
-                                }
-                              }
-                            ]
-                          ]
-                        }
-                      },
-                      "Right": {
-                        "In": {
-                          "Expressions": [
-                            {
-                              "Column": {
-                                "Expression": {
-                                  "SourceRef": {
-                                    "Source": "f"
-                                  }
-                                },
-                                "Property": "SEGMENTO_CLIENTE_DESC"
-                              }
-                            },
-                            {
-                              "Column": {
-                                "Expression": {
-                                  "SourceRef": {
-                                    "Source": "f"
-                                  }
-                                },
-                                "Property": "SEGMENTO_CLIENTE_DESC"
-                              }
-                            }
-                          ],
-                          "Values": [
-                            [
-                              {
-                                "Literal": {
-                                  "Value": "null"
-                                }
-                              },
-                              {
-                                "Literal": {
-                                  "Value": "null"
-                                }
-                              }
-                            ]
-                          ]
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        },
-        "howCreated": "Exclude"
-      }
-    ]
-  },
   "isHidden": true
 }

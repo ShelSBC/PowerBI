@@ -2,8 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "764426f05c0539a23ea2",
   "position": {
-    "x": 0.99199079471299823,
-    "y": 1.1446047631304179,
+    "x": 0,
+    "y": 0.26365225271874992,
     "z": 3000,
     "height": 499.29961089494162,
     "width": 635.01945525291831,
@@ -55,14 +55,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "FAC_NEGFIN_SOBREGIROS_NR_AGE_NEW"
+                      "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
                     }
                   },
-                  "Property": "RANG_MOBS_DESC"
+                  "Property": "RANG_MOBS"
                 }
               },
-              "queryRef": "FAC_NEGFIN_SOBREGIROS_NR_AGE_NEW.RANG_MOBS_DESC",
-              "nativeQueryRef": "RANG_MOBS_DESC",
+              "queryRef": "FAC_SOBREGIROS_INSUMO_SOB_TRN.RANG_MOBS",
+              "nativeQueryRef": "RANG_MOBS",
               "active": true
             }
           ]
@@ -78,10 +78,10 @@
                         "Column": {
                           "Expression": {
                             "SourceRef": {
-                              "Entity": "FAC_NEGFIN_SOBREGIROS_NR_AGE_NEW"
+                              "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
                             }
                           },
-                          "Property": "IMP_SOBREGIRO_10000"
+                          "Property": "IMP_SOBREGIRO_M"
                         }
                       },
                       "Function": 0
@@ -95,10 +95,10 @@
                             "Column": {
                               "Expression": {
                                 "SourceRef": {
-                                  "Entity": "FAC_NEGFIN_SOBREGIROS_NR_AGE_NEW"
+                                  "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
                                 }
                               },
-                              "Property": "IMP_SOBREGIRO_10000"
+                              "Property": "IMP_SOBREGIRO_M"
                             }
                           },
                           "Function": 0
@@ -116,8 +116,8 @@
                   "Operator": 3
                 }
               },
-              "queryRef": "Sum(FAC_NEGFIN_SOBREGIROS_NR_AGE_NEW.IMP_SOBREGIRO_10000)",
-              "nativeQueryRef": "%TC Suma de IMP_SOBREGIRO_10000"
+              "queryRef": "Sum(FAC_SOBREGIROS_INSUMO_SOB_TRN.IMP_SOBREGIRO_M)",
+              "nativeQueryRef": "%TC Suma de IMP_SOBREGIRO_M"
             }
           ]
         }
@@ -149,7 +149,7 @@
           },
           {
             "queryRefs": [
-              "FAC_NEGFIN_SOBREGIROS_NR_AGE_NEW.RANG_MOBS_DESC"
+              "FAC_SOBREGIROS_INSUMO_SOB_TRN.RANG_MOBS"
             ],
             "isCollapsed": true,
             "isPinned": true
@@ -202,6 +202,16 @@
                 {
                   "Literal": {
                     "Value": "'2021'"
+                  }
+                }
+              ],
+              "isToggled": true
+            },
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "'2026'"
                   }
                 }
               ],
@@ -2416,7 +2426,7 @@
             }
           },
           "selector": {
-            "metadata": "Sum(FAC_NEGFIN_SOBREGIROS_NR_AGE_NEW.IMP_SOBREGIRO_10000)"
+            "metadata": "Sum(FAC_SOBREGIROS_INSUMO_SOB_TRN.IMP_SOBREGIRO_M)"
           }
         }
       ]

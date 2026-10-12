@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "72536952e93703be227a",
   "position": {
-    "x": 137.56581420446966,
-    "y": 8.0461018251271241,
+    "x": 132.30199931745855,
+    "y": 3.9064227763269757,
     "z": 4000,
-    "height": 208.77005347593581,
-    "width": 673.083778966132,
+    "height": 208.80446927374302,
+    "width": 687.91061452513964,
     "tabOrder": 4000
   },
   "visual": {
@@ -47,7 +47,7 @@
               },
               "queryRef": "VDIM_CALENDARIO.ANIO_YYYY",
               "nativeQueryRef": "Cuentas #K1",
-              "active": false,
+              "active": true,
               "displayName": "Cuentas #K"
             },
             {
@@ -55,15 +55,15 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "FAC_MIGRACION_SOBREGIROS_INSUMO_SOBREGIROS_DILISA_TRN_NEW"
+                      "Entity": "FAC_RB_2_SOBREGIROS_TRN"
                     }
                   },
-                  "Property": "FLG_WEB_DESC"
+                  "Property": "00 FLG_WEB_DESC"
                 }
               },
-              "queryRef": "FAC_MIGRACION_SOBREGIROS_INSUMO_SOBREGIROS_DILISA_TRN_NEW.FLG_WEB_DESC",
+              "queryRef": "FAC_RB_2_SOBREGIROS_TRN.00 FLG_WEB_DESC",
               "nativeQueryRef": "Cuentas #K",
-              "active": true,
+              "active": false,
               "displayName": "Cuentas #K"
             }
           ]
@@ -79,10 +79,10 @@
                         "Column": {
                           "Expression": {
                             "SourceRef": {
-                              "Entity": "FAC_MIGRACION_SOBREGIROS_INSUMO_SOBREGIROS_DILISA_TRN_NEW"
+                              "Entity": "FAC_RB_2_SOBREGIROS_TRN"
                             }
                           },
-                          "Property": "CTAS_MIL"
+                          "Property": "CTAS_K"
                         }
                       },
                       "Function": 0
@@ -96,10 +96,10 @@
                             "Column": {
                               "Expression": {
                                 "SourceRef": {
-                                  "Entity": "FAC_MIGRACION_SOBREGIROS_INSUMO_SOBREGIROS_DILISA_TRN_NEW"
+                                  "Entity": "FAC_RB_2_SOBREGIROS_TRN"
                                 }
                               },
-                              "Property": "CTAS_MIL"
+                              "Property": "CTAS_K"
                             }
                           },
                           "Function": 0
@@ -117,8 +117,8 @@
                   "Operator": 3
                 }
               },
-              "queryRef": "Sum(FAC_MIGRACION_SOBREGIROS_INSUMO_SOBREGIROS_DILISA_TRN_NEW.CTAS_MIL)",
-              "nativeQueryRef": "%TC Suma de CTAS_MIL"
+              "queryRef": "Sum(FAC_RB_2_SOBREGIROS_TRN.CTAS_K)",
+              "nativeQueryRef": "%TC Suma de CTAS_K"
             }
           ]
         }
@@ -2424,7 +2424,8 @@
             "Property": "FLG_WEB_DESC"
           }
         },
-        "type": "Categorical"
+        "type": "Categorical",
+        "howCreated": "User"
       },
       {
         "name": "c4efc7df77fc6fc9f099",
@@ -2444,7 +2445,28 @@
             "Function": 0
           }
         },
-        "type": "Advanced"
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "08061e33f944ba2f8cc3",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FAC_RB_2_SOBREGIROS_TRN"
+                  }
+                },
+                "Property": "CTAS_K"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
       }
     ],
     "filterSortOrder": "Custom"

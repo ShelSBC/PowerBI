@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "f01f711b022e35949ce0",
   "position": {
-    "x": 613.08411214953264,
-    "y": 108.70748299319727,
-    "z": 3000,
-    "height": 400,
-    "width": 499.99999999999994,
-    "tabOrder": 32000
+    "x": 818.81467544684858,
+    "y": 339.56726246472249,
+    "z": 11000,
+    "height": 356.4252116650988,
+    "width": 453.96048918156163,
+    "tabOrder": 21000
   },
   "visual": {
     "visualType": "columnChart",
@@ -23,11 +23,11 @@
                       "Entity": "VDIM_CALENDARIO"
                     }
                   },
-                  "Property": "MES_ANIO_LETRA"
+                  "Property": "MES_LETRA"
                 }
               },
-              "queryRef": "VDIM_CALENDARIO.MES_ANIO_LETRA",
-              "nativeQueryRef": "MES_ANIO_LETRA",
+              "queryRef": "VDIM_CALENDARIO.MES_LETRA",
+              "nativeQueryRef": "MES_LETRA",
               "active": true
             }
           ]
@@ -39,14 +39,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW"
+                      "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
                     }
                   },
-                  "Property": "NIV_RIESGO_DESC"
+                  "Property": "NIV_RIESGO"
                 }
               },
-              "queryRef": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW.NIV_RIESGO_DESC",
-              "nativeQueryRef": "NIV_RIESGO_DESC"
+              "queryRef": "FAC_SOBREGIROS_INSUMO_SOB_TRN.NIV_RIESGO",
+              "nativeQueryRef": "NIV_RIESGO"
             }
           ]
         },
@@ -59,17 +59,17 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW"
+                          "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
                         }
                       },
-                      "Property": "SALDO_TOTAL"
+                      "Property": "IMP_SOBREGIRO_M"
                     }
                   },
                   "Function": 0
                 }
               },
-              "queryRef": "Sum(FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW.SALDO_TOTAL)",
-              "nativeQueryRef": "Suma de SALDO_TOTAL"
+              "queryRef": "Sum(FAC_SOBREGIROS_INSUMO_SOB_TRN.IMP_SOBREGIRO_M)",
+              "nativeQueryRef": "Suma de IMP_SOBREGIRO_M"
             }
           ]
         }
@@ -1249,6 +1249,48 @@
               }
             ]
           }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 5,
+                      "Percent": -0.25
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
+                          }
+                        },
+                        "Property": "NIV_RIESGO"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'4.LOW'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
         }
       ],
       "labels": [
@@ -1369,6 +1411,5 @@
     },
     "drillFilterOtherVisuals": true
   },
-  "parentGroupName": "ecae3280d3856d62893b",
   "isHidden": true
 }

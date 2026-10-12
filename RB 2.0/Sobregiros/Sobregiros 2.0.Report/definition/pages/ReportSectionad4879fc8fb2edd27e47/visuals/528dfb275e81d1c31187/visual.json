@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "528dfb275e81d1c31187",
   "position": {
-    "x": 715.46485260770976,
-    "y": 96.568226197125639,
+    "x": 737.35061846184942,
+    "y": 143.47888066277778,
     "z": 6000,
-    "height": 400.54421768707482,
-    "width": 499.22902494331066,
+    "height": 354.01693320790218,
+    "width": 478.04327375352779,
     "tabOrder": 0
   },
   "visual": {
@@ -39,14 +39,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW"
+                      "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
                     }
                   },
-                  "Property": "RFM_CREDITO"
+                  "Property": "SEGMENTO_RFM"
                 }
               },
-              "queryRef": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW.RFM_CREDITO",
-              "nativeQueryRef": "RFM_CREDITO"
+              "queryRef": "FAC_SOBREGIROS_INSUMO_SOB_TRN.SEGMENTO_RFM",
+              "nativeQueryRef": "SEGMENTO_RFM"
             }
           ]
         },
@@ -61,10 +61,10 @@
                         "Column": {
                           "Expression": {
                             "SourceRef": {
-                              "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW"
+                              "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
                             }
                           },
-                          "Property": "IMP_SOBREGIRO_1000000"
+                          "Property": "IMP_SOBREGIRO_M"
                         }
                       },
                       "Function": 0
@@ -78,10 +78,10 @@
                             "Column": {
                               "Expression": {
                                 "SourceRef": {
-                                  "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW"
+                                  "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
                                 }
                               },
-                              "Property": "IMP_SOBREGIRO_1000000"
+                              "Property": "IMP_SOBREGIRO_M"
                             }
                           },
                           "Function": 0
@@ -93,8 +93,8 @@
                   "Operator": 3
                 }
               },
-              "queryRef": "Sum(FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW.IMP_SOBREGIRO_1000000)",
-              "nativeQueryRef": "%TG Suma de IMP_SOBREGIRO_1000000"
+              "queryRef": "Sum(FAC_SOBREGIROS_INSUMO_SOB_TRN.IMP_SOBREGIRO_M)",
+              "nativeQueryRef": "%TG Suma de IMP_SOBREGIRO_M"
             }
           ]
         }
@@ -868,5 +868,6 @@
     },
     "drillFilterOtherVisuals": true
   },
-  "parentGroupName": "3c02ed0de3f89ea0c64e"
+  "parentGroupName": "3c02ed0de3f89ea0c64e",
+  "isHidden": true
 }

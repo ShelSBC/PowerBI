@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "d4374dfa626661eac120",
   "position": {
-    "x": 0,
+    "x": 2.1731122481019143,
     "y": 0,
     "z": 1000,
-    "height": 402.17898832684824,
-    "width": 654.9416342412452,
+    "height": 400.97836312323614,
+    "width": 692.38005644402631,
     "tabOrder": 1000
   },
   "visual": {
@@ -55,14 +55,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_V2_TRN_NEW"
+                      "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
                     }
                   },
-                  "Property": "RANG_MOBS_DESC"
+                  "Property": "RANG_MOBS"
                 }
               },
-              "queryRef": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_V2_TRN_NEW.RANG_MOBS_DESC",
-              "nativeQueryRef": "RANG_MOBS_DESC",
+              "queryRef": "FAC_SOBREGIROS_INSUMO_SOB_TRN.RANG_MOBS",
+              "nativeQueryRef": "RANG_MOBS",
               "active": true
             }
           ]
@@ -76,17 +76,17 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "FAC_NEGFIN_SOBREGIROS_NR_AGE_NEW"
+                          "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
                         }
                       },
-                      "Property": "IMP_SOBREGIRO_10000"
+                      "Property": "IMP_SOBREGIRO_M"
                     }
                   },
                   "Function": 0
                 }
               },
-              "queryRef": "Sum(FAC_NEGFIN_SOBREGIROS_NR_AGE_NEW.IMP_SOBREGIRO_10000)",
-              "nativeQueryRef": "Suma de IMP_SOBREGIRO_10000"
+              "queryRef": "Sum(FAC_SOBREGIROS_INSUMO_SOB_TRN.IMP_SOBREGIRO_M)",
+              "nativeQueryRef": "Suma de IMP_SOBREGIRO_M"
             }
           ]
         }
@@ -118,7 +118,7 @@
           },
           {
             "queryRefs": [
-              "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_V2_TRN_NEW.RANG_MOBS_DESC"
+              "FAC_SOBREGIROS_INSUMO_SOB_TRN.RANG_MOBS"
             ],
             "isCollapsed": true,
             "isPinned": true
@@ -171,6 +171,16 @@
                 {
                   "Literal": {
                     "Value": "'2023'"
+                  }
+                }
+              ],
+              "isToggled": true
+            },
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "'2026'"
                   }
                 }
               ],
@@ -2814,22 +2824,6 @@
                 }
               }
             }
-          }
-        }
-      ],
-      "columnFormatting": [
-        {
-          "properties": {
-            "labelPrecision": {
-              "expr": {
-                "Literal": {
-                  "Value": "1L"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "Sum(FAC_NEGFIN_SOBREGIROS_NR_AGE_NEW.IMP_SOBREGIRO_10000)"
           }
         }
       ]

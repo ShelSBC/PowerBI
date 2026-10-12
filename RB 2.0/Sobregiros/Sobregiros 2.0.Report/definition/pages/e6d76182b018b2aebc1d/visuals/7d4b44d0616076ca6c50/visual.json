@@ -3,7 +3,7 @@
   "name": "7d4b44d0616076ca6c50",
   "position": {
     "x": 358.57142857142861,
-    "y": 9.5550000000000015,
+    "y": 10,
     "z": 2000,
     "height": 71.205,
     "width": 130,
@@ -69,6 +69,47 @@
                 "Literal": {
                   "Value": "2D"
                 }
+              }
+            },
+            "filter": {
+              "filter": {
+                "Version": 2,
+                "From": [
+                  {
+                    "Name": "v",
+                    "Entity": "VDIM_CALENDARIO",
+                    "Type": 0
+                  }
+                ],
+                "Where": [
+                  {
+                    "Condition": {
+                      "In": {
+                        "Expressions": [
+                          {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "v"
+                                }
+                              },
+                              "Property": "MES_LETRA"
+                            }
+                          }
+                        ],
+                        "Values": [
+                          [
+                            {
+                              "Literal": {
+                                "Value": "'Mar'"
+                              }
+                            }
+                          ]
+                        ]
+                      }
+                    }
+                  }
+                ]
               }
             }
           }

@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "bbed28dd9576e32de007",
   "position": {
-    "x": 620.00677576710416,
-    "y": 91.664306617577637,
+    "x": 651.43932267168384,
+    "y": 126.43461900282222,
     "z": 2000,
-    "height": 400,
-    "width": 499.99999999999994,
+    "height": 372.07902163687675,
+    "width": 461.18532455315147,
     "tabOrder": 3000
   },
   "visual": {
@@ -23,11 +23,11 @@
                       "Entity": "VDIM_CALENDARIO"
                     }
                   },
-                  "Property": "MES_ANIO_LETRA"
+                  "Property": "MES_LETRA"
                 }
               },
-              "queryRef": "VDIM_CALENDARIO.MES_ANIO_LETRA",
-              "nativeQueryRef": "MES_ANIO_LETRA",
+              "queryRef": "VDIM_CALENDARIO.MES_LETRA",
+              "nativeQueryRef": "MES_LETRA",
               "active": true
             }
           ]
@@ -39,14 +39,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_V2_TRN_NEW"
+                      "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
                     }
                   },
-                  "Property": "RANG_MOBS_DESC"
+                  "Property": "RANG_MOBS"
                 }
               },
-              "queryRef": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_V2_TRN_NEW.RANG_MOBS_DESC",
-              "nativeQueryRef": "RANG_MOBS_DESC"
+              "queryRef": "FAC_SOBREGIROS_INSUMO_SOB_TRN.RANG_MOBS",
+              "nativeQueryRef": "RANG_MOBS"
             }
           ]
         },
@@ -59,17 +59,17 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_V2_TRN_NEW"
+                          "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
                         }
                       },
-                      "Property": "CTAS"
+                      "Property": "CTAS_K"
                     }
                   },
                   "Function": 0
                 }
               },
-              "queryRef": "Sum(FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_V2_TRN_NEW.CTAS)",
-              "nativeQueryRef": "Suma de CTAS"
+              "queryRef": "Sum(FAC_SOBREGIROS_INSUMO_SOB_TRN.CTAS_K)",
+              "nativeQueryRef": "Suma de CTAS_K"
             }
           ]
         }
@@ -1118,81 +1118,5 @@
     "drillFilterOtherVisuals": true
   },
   "parentGroupName": "7cae1f15746a61229dae",
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "53d56be06808e138fa82",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_V2_TRN_NEW"
-              }
-            },
-            "Property": "RANG_MOBS_DESC"
-          }
-        },
-        "type": "Categorical",
-        "filter": {
-          "Version": 2,
-          "From": [
-            {
-              "Name": "f",
-              "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_V2_TRN_NEW",
-              "Type": 0
-            }
-          ],
-          "Where": [
-            {
-              "Condition": {
-                "Not": {
-                  "Expression": {
-                    "In": {
-                      "Expressions": [
-                        {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Source": "f"
-                              }
-                            },
-                            "Property": "RANG_MOBS_DESC"
-                          }
-                        }
-                      ],
-                      "Values": [
-                        [
-                          {
-                            "Literal": {
-                              "Value": "null"
-                            }
-                          }
-                        ]
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        },
-        "objects": {
-          "general": [
-            {
-              "properties": {
-                "isInvertedSelectionMode": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "true"
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        }
-      }
-    ]
-  },
   "isHidden": true
 }

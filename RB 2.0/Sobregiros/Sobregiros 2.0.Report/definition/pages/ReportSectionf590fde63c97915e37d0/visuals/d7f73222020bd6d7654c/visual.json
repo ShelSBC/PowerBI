@@ -2,15 +2,15 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "d7f73222020bd6d7654c",
   "position": {
-    "x": 624.02852049910871,
-    "y": 133.40736110771232,
+    "x": 623.1217849604709,
+    "y": 129.08612538879012,
     "z": 1000,
     "height": 400.427807486631,
     "width": 495.11586452762924,
     "tabOrder": 1000
   },
   "visual": {
-    "visualType": "columnChart",
+    "visualType": "hundredPercentStackedColumnChart",
     "query": {
       "queryState": {
         "Category": {
@@ -39,14 +39,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "FAC_NEGFIN_SOBREGIROS_NR_AGE_NEW"
+                      "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
                     }
                   },
-                  "Property": "FLG_TOTALERO"
+                  "Property": "00 FLG_Tot&Rev_DESC"
                 }
               },
-              "queryRef": "FAC_NEGFIN_SOBREGIROS_NR_AGE_NEW.FLG_TOTALERO",
-              "nativeQueryRef": "FLG_TOTALERO"
+              "queryRef": "FAC_SOBREGIROS_INSUMO_SOB_TRN.00 FLG_Tot&Rev_DESC",
+              "nativeQueryRef": "00 FLG_Tot&Rev_DESC"
             }
           ]
         },
@@ -61,10 +61,10 @@
                         "Column": {
                           "Expression": {
                             "SourceRef": {
-                              "Entity": "FAC_NEGFIN_SOBREGIROS_NR_AGE_NEW"
+                              "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
                             }
                           },
-                          "Property": "SDO_10000"
+                          "Property": "IMP_SOBREGIRO_M"
                         }
                       },
                       "Function": 0
@@ -78,10 +78,10 @@
                             "Column": {
                               "Expression": {
                                 "SourceRef": {
-                                  "Entity": "FAC_NEGFIN_SOBREGIROS_NR_AGE_NEW"
+                                  "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
                                 }
                               },
-                              "Property": "SDO_10000"
+                              "Property": "IMP_SOBREGIRO_M"
                             }
                           },
                           "Function": 0
@@ -93,8 +93,8 @@
                   "Operator": 3
                 }
               },
-              "queryRef": "Sum(FAC_NEGFIN_SOBREGIROS_NR_AGE_NEW.SDO_10000)",
-              "nativeQueryRef": "%TG Suma de SDO_10000"
+              "queryRef": "Sum(FAC_SOBREGIROS_INSUMO_SOB_TRN.IMP_SOBREGIRO_M)",
+              "nativeQueryRef": "%TG Suma de IMP_SOBREGIRO_M"
             }
           ]
         }
@@ -1019,5 +1019,6 @@
     },
     "drillFilterOtherVisuals": true
   },
-  "parentGroupName": "3888668f610a2956929d"
+  "parentGroupName": "3888668f610a2956929d",
+  "isHidden": true
 }
