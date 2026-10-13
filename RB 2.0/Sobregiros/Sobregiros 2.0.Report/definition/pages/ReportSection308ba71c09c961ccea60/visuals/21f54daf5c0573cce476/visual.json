@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
   "name": "21f54daf5c0573cce476",
   "position": {
-    "x": 4.2285627612408314,
-    "y": 5.6287354341740636,
-    "z": 1000,
-    "height": 250.64906490649062,
-    "width": 630.84708470847079,
-    "tabOrder": 3000
+    "x": 158.65396798094929,
+    "y": 200.61647532318946,
+    "z": 3000,
+    "height": 476.83913452492948,
+    "width": 667.0931326434619,
+    "tabOrder": 4000
   },
   "visual": {
     "visualType": "pivotTable",
@@ -55,16 +55,15 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW"
+                      "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
                     }
                   },
-                  "Property": "FLG_DIG_DESC"
+                  "Property": "00 FLG_Dig&NDig_DESC"
                 }
               },
-              "queryRef": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW.FLG_DIG_DESC",
-              "nativeQueryRef": "Cuentas #M",
-              "active": false,
-              "displayName": "Cuentas #M"
+              "queryRef": "FAC_SOBREGIROS_INSUMO_SOB_TRN.00 FLG_Dig&NDig_DESC",
+              "nativeQueryRef": "00 FLG_Dig&NDig_DESC",
+              "active": false
             }
           ]
         },
@@ -77,22 +76,58 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW"
+                          "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
                         }
                       },
-                      "Property": "CTAS"
+                      "Property": "CTAS_K"
                     }
                   },
                   "Function": 0
                 }
               },
-              "queryRef": "Sum(FAC_MIGRACION_SOBREGIROS_V2_INSUMO_SOB_TRN_NEW.CTAS)",
-              "nativeQueryRef": "Suma de CTAS"
+              "queryRef": "Sum(FAC_SOBREGIROS_INSUMO_SOB_TRN.CTAS_K)",
+              "nativeQueryRef": "Suma de CTAS_K"
             }
           ]
         }
       }
     },
+    "expansionStates": [
+      {
+        "roles": [
+          "Rows"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "VDIM_CALENDARIO.ANIO_YYYY"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VDIM_CALENDARIO"
+                    }
+                  },
+                  "Property": "ANIO_YYYY"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "FAC_SOBREGIROS_INSUMO_SOB_TRN.00 FLG_Dig&NDig_DESC"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          }
+        ],
+        "root": {}
+      }
+    ],
     "objects": {
       "values": [
         {
@@ -3407,15 +3442,7 @@
           }
         },
         {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "42.86915908654555D"
-                }
-              }
-            }
-          },
+          "properties": {},
           "selector": {
             "data": [
               {
@@ -3626,7 +3653,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "parentGroupName": "92f550c9dadc4a1a7606",
-  "isHidden": true
+  }
 }

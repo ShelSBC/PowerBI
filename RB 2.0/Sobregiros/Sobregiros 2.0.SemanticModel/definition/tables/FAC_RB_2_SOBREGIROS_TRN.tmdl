@@ -339,6 +339,19 @@ table FAC_RB_2_SOBREGIROS_TRN
 
 		annotation UnderlyingDateTimeDataType = Date
 
+	column '00 FLG_WEB_DESC' =
+			
+			SWITCH(
+			    FAC_RB_2_SOBREGIROS_TRN[FLG_WEB],
+			    1, "WEB",
+			    0, "NO WEB",
+			    "SIN CLASIFICAR"
+			)
+		lineageTag: 71b74fd9-118a-4cf9-852f-9a2b32fa1e38
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
 	partition FAC_RB_2_SOBREGIROS_TRN = m
 		mode: import
 		source =

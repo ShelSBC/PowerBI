@@ -2,7 +2,7 @@
 table Medidas
 	lineageTag: 714d3f32-12b7-441e-9dd4-48d62e1fce9c
 
-	/// Titulo de 30 + 3 meses en libros 
+	/// Titulo de 30 + 3 meses en libros
 	measure TITULO_30_3_MOB =
 			"30 @ 3 MoB " & "("
 			    & CALCULATE (
@@ -14,7 +14,7 @@ table Medidas
 			    ) & ")"
 		lineageTag: e559291c-04fa-4666-ae68-8734b2c2b40b
 
-	/// Titulo de 90 + 9 meses en libros 
+	/// Titulo de 90 + 9 meses en libros
 	measure TITULO_90_9_MOB =
 			"90 @ 9 MoB " & "("
 			    & CALCULATE (
@@ -106,26 +106,6 @@ table Medidas
 			    "rgba(0, 0, 0, 0)"
 			)
 		lineageTag: 15cc539a-5ea7-4ef9-87e5-ebe948a5c054
-
-	measure '1 PROMEDIOS $/#' =
-			if (ISBLANK(DIVIDE(SUM(FAC_MIGRACION_SOBREGIROS_INSUMO_SOBREGIROS_DILISA_TRN_NEW[IMP_SOBREGIRO_1000000])
-			,SUM(FAC_MIGRACION_SOBREGIROS_INSUMO_SOBREGIROS_DILISA_TRN_NEW[CTAS_MIL])/1000)),0
-			,DIVIDE(SUM(FAC_MIGRACION_SOBREGIROS_INSUMO_SOBREGIROS_DILISA_TRN_NEW[IMP_SOBREGIRO_1000000])
-			,SUM(FAC_MIGRACION_SOBREGIROS_INSUMO_SOBREGIROS_DILISA_TRN_NEW[CTAS_MIL])/1000))
-		formatString: #,0.0
-		lineageTag: 4e0627c8-92b7-4f1f-a455-0ad02c0a5237
-
-	measure IMP/CTAS = ```
-			
-			DIVIDE(
-			    SUM(FAC_MIGRACION_SOBREGIROS_INSUMO_SOBREGIROS_DILISA_TRN_NEW[IMP_SOBREGIRO_1000000]),
-			    SUM(FAC_MIGRACION_SOBREGIROS_INSUMO_SOBREGIROS_DILISA_TRN_NEW[CTAS])
-			) * 1000
-			
-			```
-		lineageTag: fb5e8728-4764-4c69-a624-dbc84467c98e
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure '00 Año Efectivo' = ```
 			
