@@ -1,0 +1,36 @@
+table dim_tramos_cartera
+	lineageTag: fa23ee06-0bd2-4119-9096-46f9b802b522
+
+	column Orden
+		dataType: int64
+		formatString: 0
+		lineageTag: 5ff278c0-4517-4a3e-bb6c-0962fcf79ec4
+		summarizeBy: sum
+		sourceColumn: Orden
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Rubro
+		dataType: string
+		lineageTag: daeeb6cb-b968-429a-aed0-b8fe053e0b81
+		summarizeBy: none
+		sourceColumn: Rubro
+		sortByColumn: Orden
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_tramos_cartera = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("Rc8xCoMwGMXxq3wEChFNSaLRZAzqVhGslIo4dHDoUkF6kZ6pF+tLHLr+/vDgzTNTLGP1tu/P9fVeiUuhmoQt2cw0giauhHZNQvdoOSwnnkthAqqIBbAgXkphA+qIBmiIO+ypoHnUElpiU4OLwEXkClyBDbgKbCJbsAVbKbQMXEZ2YEc81UrCqjSiktCxH/2Faj+M7eAPDvduj/1MJ+raK/Fu6457Sv+L/3564tM2IS0/", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Orden = _t, Rubro = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Orden", Int64.Type}, {"Rubro", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

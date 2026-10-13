@@ -1,0 +1,857 @@
+table Medidas
+	lineageTag: bb764df4-cfab-4d56-b653-5b382c43c3bc
+
+	measure ROLL_VIG_1_29 = ```
+			
+			-- 1. Obtenemos los valores y los tratamos como número
+			VAR MesActualNum = VALUE(SELECTEDVALUE('VDIM_CALENDARIO'[MES])) 
+			VAR AnioActualNum = VALUE(SELECTEDVALUE('VDIM_CALENDARIO'[ANIO_YYYY]))
+			
+			-- 2. Calculamos el mes y año anterior
+			VAR MesAnteriorNum = IF(MesActualNum = 1, 12, MesActualNum - 1)
+			VAR AnioAnteriorNum = IF(MesActualNum = 1, AnioActualNum - 1, AnioActualNum)
+			
+			-- 3. AJUSTE CLAVE: Usamos "00" para que el mes sea "01" en lugar de "1"
+			VAR MesAnteriorTexto = FORMAT(MesAnteriorNum, "00")
+			VAR AnioAnteriorTexto = FORMAT(AnioAnteriorNum, "0")
+			
+			VAR SALDOACTUAL = SUM('FAC_COB_ROLL_RATES'[SDO_VIG_1_29])
+			
+			VAR SALDOMESANTERIORVIG =
+			    CALCULATE(
+			        SUM('FAC_COB_ROLL_RATES'[SDO_VIG_0_1]),
+			        ALL('VDIM_CALENDARIO'), 
+			        'VDIM_CALENDARIO'[ANIO_YYYY] = AnioAnteriorTexto,
+			        'VDIM_CALENDARIO'[MES] = MesAnteriorTexto
+			    )
+			
+			RETURN
+			DIVIDE(SALDOACTUAL, SALDOMESANTERIORVIG, 0)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: ROLL OVER
+		lineageTag: d27f1923-99ff-4050-8247-17d642217a07
+
+	measure ROLL_VIG_30_59 = ```
+			
+			-- 1. Obtenemos los valores y los tratamos como número
+			VAR MesActualNum = VALUE(SELECTEDVALUE('VDIM_CALENDARIO'[MES])) 
+			VAR AnioActualNum = VALUE(SELECTEDVALUE('VDIM_CALENDARIO'[ANIO_YYYY]))
+			
+			-- 2. Calculamos el mes y año anterior
+			VAR MesAnteriorNum = IF(MesActualNum = 1, 12, MesActualNum - 1)
+			VAR AnioAnteriorNum = IF(MesActualNum = 1, AnioActualNum - 1, AnioActualNum)
+			
+			-- 3. AJUSTE CLAVE: Usamos "00" para que el mes sea "01" en lugar de "1"
+			VAR MesAnteriorTexto = FORMAT(MesAnteriorNum, "00")
+			VAR AnioAnteriorTexto = FORMAT(AnioAnteriorNum, "0")
+			
+			VAR SALDOACTUAL = SUM('FAC_COB_ROLL_RATES'[SDO_VIG_30_59])
+			
+			VAR SALDOMESANTERIORVIG =
+			    CALCULATE(
+			        SUM('FAC_COB_ROLL_RATES'[SDO_VIG_1_29]),
+			        ALL('VDIM_CALENDARIO'), 
+			        'VDIM_CALENDARIO'[ANIO_YYYY] = AnioAnteriorTexto,
+			        'VDIM_CALENDARIO'[MES] = MesAnteriorTexto
+			    )
+			
+			RETURN
+			DIVIDE(SALDOACTUAL, SALDOMESANTERIORVIG, 0)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: ROLL OVER
+		lineageTag: ad0c4014-6bc8-49ca-9e95-aece9a0a8939
+
+	measure ROLL_VIG_60_89 = ```
+			
+			-- 1. Obtenemos los valores y los tratamos como número
+			VAR MesActualNum = VALUE(SELECTEDVALUE('VDIM_CALENDARIO'[MES])) 
+			VAR AnioActualNum = VALUE(SELECTEDVALUE('VDIM_CALENDARIO'[ANIO_YYYY]))
+			
+			-- 2. Calculamos el mes y año anterior
+			VAR MesAnteriorNum = IF(MesActualNum = 1, 12, MesActualNum - 1)
+			VAR AnioAnteriorNum = IF(MesActualNum = 1, AnioActualNum - 1, AnioActualNum)
+			
+			-- 3. AJUSTE CLAVE: Usamos "00" para que el mes sea "01" en lugar de "1"
+			VAR MesAnteriorTexto = FORMAT(MesAnteriorNum, "00")
+			VAR AnioAnteriorTexto = FORMAT(AnioAnteriorNum, "0")
+			
+			VAR SALDOACTUAL = SUM('FAC_COB_ROLL_RATES'[SDO_VIG_60_89])
+			
+			VAR SALDOMESANTERIORVIG =
+			    CALCULATE(
+			        SUM('FAC_COB_ROLL_RATES'[SDO_VIG_30_59]),
+			        ALL('VDIM_CALENDARIO'), 
+			        'VDIM_CALENDARIO'[ANIO_YYYY] = AnioAnteriorTexto,
+			        'VDIM_CALENDARIO'[MES] = MesAnteriorTexto
+			    )
+			
+			RETURN
+			DIVIDE(SALDOACTUAL, SALDOMESANTERIORVIG, 0)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: ROLL OVER
+		lineageTag: b8123bb0-c9d3-4b51-9126-b0d611e1a34c
+
+	measure ROLL_VIG_90_109 = ```
+			
+			-- 1. Obtenemos los valores y los tratamos como número
+			VAR MesActualNum = VALUE(SELECTEDVALUE('VDIM_CALENDARIO'[MES])) 
+			VAR AnioActualNum = VALUE(SELECTEDVALUE('VDIM_CALENDARIO'[ANIO_YYYY]))
+			
+			-- 2. Calculamos el mes y año anterior
+			VAR MesAnteriorNum = IF(MesActualNum = 1, 12, MesActualNum - 1)
+			VAR AnioAnteriorNum = IF(MesActualNum = 1, AnioActualNum - 1, AnioActualNum)
+			
+			-- 3. AJUSTE CLAVE: Usamos "00" para que el mes sea "01" en lugar de "1"
+			VAR MesAnteriorTexto = FORMAT(MesAnteriorNum, "00")
+			VAR AnioAnteriorTexto = FORMAT(AnioAnteriorNum, "0")
+			
+			VAR SALDOACTUAL = SUM('FAC_COB_ROLL_RATES'[SDO_VIG_90_110])
+			
+			VAR SALDOMESANTERIORVIG =
+			    CALCULATE(
+			        SUM('FAC_COB_ROLL_RATES'[SDO_VIG_60_89]),
+			        ALL('VDIM_CALENDARIO'), 
+			        'VDIM_CALENDARIO'[ANIO_YYYY] = AnioAnteriorTexto,
+			        'VDIM_CALENDARIO'[MES] = MesAnteriorTexto
+			    )
+			
+			RETURN
+			DIVIDE(SALDOACTUAL, SALDOMESANTERIORVIG, 0)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: ROLL OVER
+		lineageTag: 514fd459-92a2-4cfd-aaac-1a62eafd126b
+
+	measure ROLL_VIG_120_149 = ```
+			
+			-- 1. Obtenemos los valores y los tratamos como número
+			VAR MesActualNum = VALUE(SELECTEDVALUE('VDIM_CALENDARIO'[MES])) 
+			VAR AnioActualNum = VALUE(SELECTEDVALUE('VDIM_CALENDARIO'[ANIO_YYYY]))
+			
+			-- 2. Calculamos el mes y año anterior
+			VAR MesAnteriorNum = IF(MesActualNum = 1, 12, MesActualNum - 1)
+			VAR AnioAnteriorNum = IF(MesActualNum = 1, AnioActualNum - 1, AnioActualNum)
+			
+			-- 3. AJUSTE CLAVE: Usamos "00" para que el mes sea "01" en lugar de "1"
+			VAR MesAnteriorTexto = FORMAT(MesAnteriorNum, "00")
+			VAR AnioAnteriorTexto = FORMAT(AnioAnteriorNum, "0")
+			
+			VAR SALDOACTUAL = SUM('FAC_COB_ROLL_RATES'[SDO_VIG_120_149])
+			VAR SALDOMESANTERIORVIG =
+			    CALCULATE(
+			        SUM('FAC_COB_ROLL_RATES'[SDO_VIG_90_110]),
+			        ALL('VDIM_CALENDARIO'), 
+			        'VDIM_CALENDARIO'[ANIO_YYYY] = AnioAnteriorTexto,
+			        'VDIM_CALENDARIO'[MES] = MesAnteriorTexto
+			    )
+			
+			RETURN
+			DIVIDE(SALDOACTUAL, SALDOMESANTERIORVIG, 0)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: ROLL OVER
+		lineageTag: d23e9e7d-b037-4d0c-bac4-055bcbc9ecd9
+
+	measure ROLL_VIG_150_179 = ```
+			
+			-- 1. Obtenemos los valores y los tratamos como número
+			VAR MesActualNum = VALUE(SELECTEDVALUE('VDIM_CALENDARIO'[MES])) 
+			VAR AnioActualNum = VALUE(SELECTEDVALUE('VDIM_CALENDARIO'[ANIO_YYYY]))
+			
+			-- 2. Calculamos el mes y año anterior
+			VAR MesAnteriorNum = IF(MesActualNum = 1, 12, MesActualNum - 1)
+			VAR AnioAnteriorNum = IF(MesActualNum = 1, AnioActualNum - 1, AnioActualNum)
+			
+			-- 3. AJUSTE CLAVE: Usamos "00" para que el mes sea "01" en lugar de "1"
+			VAR MesAnteriorTexto = FORMAT(MesAnteriorNum, "00")
+			VAR AnioAnteriorTexto = FORMAT(AnioAnteriorNum, "0")
+			
+			VAR SALDOACTUAL = SUM('FAC_COB_ROLL_RATES'[SDO_VIG_150_179])
+			VAR SALDOMESANTERIORVIG =
+			    CALCULATE(
+			        SUM('FAC_COB_ROLL_RATES'[SDO_VIG_120_149]),
+			        ALL('VDIM_CALENDARIO'), 
+			        'VDIM_CALENDARIO'[ANIO_YYYY] = AnioAnteriorTexto,
+			        'VDIM_CALENDARIO'[MES] = MesAnteriorTexto
+			    )
+			
+			RETURN
+			DIVIDE(SALDOACTUAL, SALDOMESANTERIORVIG, 0)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: ROLL OVER
+		lineageTag: 130f2212-077b-46f3-a8a1-b832181a4a8d
+
+	measure ROLL_VIG_180_209 = ```
+			
+			-- 1. Obtenemos los valores y los tratamos como número
+			VAR MesActualNum = VALUE(SELECTEDVALUE('VDIM_CALENDARIO'[MES])) 
+			VAR AnioActualNum = VALUE(SELECTEDVALUE('VDIM_CALENDARIO'[ANIO_YYYY]))
+			
+			-- 2. Calculamos el mes y año anterior
+			VAR MesAnteriorNum = IF(MesActualNum = 1, 12, MesActualNum - 1)
+			VAR AnioAnteriorNum = IF(MesActualNum = 1, AnioActualNum - 1, AnioActualNum)
+			
+			-- 3. AJUSTE CLAVE: Usamos "00" para que el mes sea "01" en lugar de "1"
+			VAR MesAnteriorTexto = FORMAT(MesAnteriorNum, "00")
+			VAR AnioAnteriorTexto = FORMAT(AnioAnteriorNum, "0")
+			
+			VAR SALDOACTUAL = SUM('FAC_COB_ROLL_RATES'[SDO_VIG_180_209])
+			VAR SALDOMESANTERIORVIG =
+			    CALCULATE(
+			        SUM('FAC_COB_ROLL_RATES'[SDO_VIG_150_179]),
+			        ALL('VDIM_CALENDARIO'), 
+			        'VDIM_CALENDARIO'[ANIO_YYYY] = AnioAnteriorTexto,
+			        'VDIM_CALENDARIO'[MES] = MesAnteriorTexto
+			    )
+			
+			RETURN
+			DIVIDE(SALDOACTUAL, SALDOMESANTERIORVIG, 0)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: ROLL OVER
+		lineageTag: 3e5fd580-4956-408d-8809-19688bc2e46b
+
+	measure ROLL_VIG_210 = ```
+			
+			-- 1. Obtenemos los valores y los tratamos como número
+			VAR MesActualNum = VALUE(SELECTEDVALUE('VDIM_CALENDARIO'[MES])) 
+			VAR AnioActualNum = VALUE(SELECTEDVALUE('VDIM_CALENDARIO'[ANIO_YYYY]))
+			
+			-- 2. Calculamos el mes y año anterior
+			VAR MesAnteriorNum = IF(MesActualNum = 1, 12, MesActualNum - 1)
+			VAR AnioAnteriorNum = IF(MesActualNum = 1, AnioActualNum - 1, AnioActualNum)
+			
+			-- 3. AJUSTE CLAVE: Usamos "00" para que el mes sea "01" en lugar de "1"
+			VAR MesAnteriorTexto = FORMAT(MesAnteriorNum, "00")
+			VAR AnioAnteriorTexto = FORMAT(AnioAnteriorNum, "0")
+			
+			VAR SALDOACTUAL = SUM('FAC_COB_ROLL_RATES'[SDO_VIG_210])
+			VAR SALDOMESANTERIORVIG =
+			    CALCULATE(
+			        SUM('FAC_COB_ROLL_RATES'[SDO_VIG_180_209]),
+			        ALL('VDIM_CALENDARIO'), 
+			        'VDIM_CALENDARIO'[ANIO_YYYY] = AnioAnteriorTexto,
+			        'VDIM_CALENDARIO'[MES] = MesAnteriorTexto
+			    )
+			
+			RETURN
+			DIVIDE(SALDOACTUAL, SALDOMESANTERIORVIG, 0)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: ROLL OVER
+		lineageTag: 7bbae7e6-749f-4712-a092-d842e03db674
+
+	measure Suma_Saldos_Tempranos = ```
+			
+			    SUM('FAC_COB_ROLL_RATES'[SDO_VIG_0_1]) + 
+			    SUM('FAC_COB_ROLL_RATES'[SDO_VIG_1_29]) + 
+			    SUM('FAC_COB_ROLL_RATES'[SDO_vig_30_59]) + 
+			    SUM('FAC_COB_ROLL_RATES'[SDO_VIG_60_89])
+			```
+		displayFolder: ROLL OVER
+		lineageTag: 625e4806-839a-4e11-9254-1ef4a09467dd
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Suma_Saldos_Tardios = ```
+			
+			    SUM('FAC_COB_ROLL_RATES'[SDO_VIG_90_110]) + 
+			    SUM('FAC_COB_ROLL_RATES'[SDO_VIG_120_149]) + 
+			    SUM('FAC_COB_ROLL_RATES'[SDO_VIG_150_179]) + 
+			    SUM('FAC_COB_ROLL_RATES'[SDO_VIG_180_209]) +
+			    SUM('FAC_COB_ROLL_RATES'[SDO_VIG_210])
+			```
+		displayFolder: ROLL OVER
+		lineageTag: fdfeede5-f0e5-4b6d-abb0-57d0e3711bd8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure CRECIMIENTO_CARTERA_TOT = ```
+			
+			VAR SaldoActual = SUM('FAC_COB_ROLL_RATES'[sdo_cartera_tot])
+			VAR MesActualNum = VALUE(SELECTEDVALUE('VDIM_CALENDARIO'[MES]))
+			VAR AnioActualNum = VALUE(SELECTEDVALUE('VDIM_CALENDARIO'[ANIO_YYYY]))
+			VAR MesAnteriorNum = IF(MesActualNum = 1, 12, MesActualNum - 1)
+			VAR AnioAnteriorNum = IF(MesActualNum = 1, AnioActualNum - 1, AnioActualNum)
+			
+			VAR MesAnteriorTexto = FORMAT(MesAnteriorNum, "00")
+			VAR AnioAnteriorTexto = FORMAT(AnioAnteriorNum, "0")
+			VAR SaldoMesAnterior = 
+			    CALCULATE(
+			        SUM('FAC_COB_ROLL_RATES'[SDO_CARTERA_TOT]),
+			        ALL('VDIM_CALENDARIO'),
+			        'VDIM_CALENDARIO'[MES] = MesAnteriorTexto, 
+			        'VDIM_CALENDARIO'[ANIO_YYYY] = AnioAnteriorTexto
+			    )
+			
+			RETURN
+			IF(
+			    SaldoMesAnterior = 0, 
+			    0, 
+			    DIVIDE(SaldoActual, SaldoMesAnterior) - 1
+			)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: ROLL OVER
+		lineageTag: 7df0953e-5692-4794-9ed4-55799e50c60e
+
+	measure CRECIMIENTO_CARTERA_CORR = ```
+			
+			VAR SaldoActual = SUM('FAC_COB_ROLL_RATES'[SDO_VIG_0_1])
+			VAR MesActualNum = VALUE(SELECTEDVALUE('VDIM_CALENDARIO'[MES]))
+			VAR AnioActualNum = VALUE(SELECTEDVALUE('VDIM_CALENDARIO'[ANIO_YYYY]))
+			VAR MesAnteriorNum = IF(MesActualNum = 1, 12, MesActualNum - 1)
+			VAR AnioAnteriorNum = IF(MesActualNum = 1, AnioActualNum - 1, AnioActualNum)
+			
+			VAR MesAnteriorTexto = FORMAT(MesAnteriorNum, "00")
+			VAR AnioAnteriorTexto = FORMAT(AnioAnteriorNum, "0")
+			VAR SaldoMesAnterior = 
+			    CALCULATE(
+			        SUM('FAC_COB_ROLL_RATES'[SDO_VIG_0_1]),
+			        ALL('VDIM_CALENDARIO'),
+			        'VDIM_CALENDARIO'[MES] = MesAnteriorTexto, 
+			        'VDIM_CALENDARIO'[ANIO_YYYY] = AnioAnteriorTexto
+			    )
+			
+			RETURN
+			IF(
+			    SaldoMesAnterior = 0, 
+			    0, 
+			    DIVIDE(SaldoActual, SaldoMesAnterior) - 1
+			)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: ROLL OVER
+		lineageTag: b3c2bccc-e6f9-4070-b9d9-b8a301157c84
+
+	measure CRECIMIENTO_CARTERA_VEN = ```
+			
+			VAR SaldoActual = SUM('FAC_COB_ROLL_RATES'[SDO_CARTERA_VENCIDA])
+			VAR MesActualNum = VALUE(SELECTEDVALUE('VDIM_CALENDARIO'[MES]))
+			VAR AnioActualNum = VALUE(SELECTEDVALUE('VDIM_CALENDARIO'[ANIO_YYYY]))
+			VAR MesAnteriorNum = IF(MesActualNum = 1, 12, MesActualNum - 1)
+			VAR AnioAnteriorNum = IF(MesActualNum = 1, AnioActualNum - 1, AnioActualNum)
+			
+			VAR MesAnteriorTexto = FORMAT(MesAnteriorNum, "00")
+			VAR AnioAnteriorTexto = FORMAT(AnioAnteriorNum, "0")
+			VAR SaldoMesAnterior = 
+			    CALCULATE(
+			        SUM('FAC_COB_ROLL_RATES'[SDO_CARTERA_VENCIDA]),
+			        ALL('VDIM_CALENDARIO'),
+			        'VDIM_CALENDARIO'[MES] = MesAnteriorTexto, 
+			        'VDIM_CALENDARIO'[ANIO_YYYY] = AnioAnteriorTexto
+			    )
+			
+			RETURN
+			IF(
+			    SaldoMesAnterior = 0, 
+			    0, 
+			    DIVIDE(SaldoActual, SaldoMesAnterior) - 1
+			)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: ROLL OVER
+		lineageTag: 27c1b062-e83e-4434-8921-038866e51a29
+
+	measure Variacion_Vig_0_1 = ```
+			
+			-- 1. Capturamos el Mes y Año de la gráfica
+			VAR MesActual = MAX('FAC_COB_ROLL_RATES'[MES])
+			VAR AnioActual = MAX('FAC_COB_ROLL_RATES'[ANIO])
+			
+			-- 2. Calculamos el valor del mes actual
+			VAR ValorActual = SUM('FAC_COB_ROLL_RATES'[SDO_VIG_0_1])
+			
+			-- 3. Buscamos el valor del mes anterior usando una tabla filtrada
+			VAR ValorAnterior = 
+			    CALCULATE(
+			        SUM('FAC_COB_ROLL_RATES'[SDO_VIG_0_1]),
+			        FILTER(
+			            ALLSELECTED('FAC_COB_ROLL_RATES'),
+			            'FAC_COB_ROLL_RATES'[MES] = IF(MesActual = 1, 12, MesActual - 1) &&
+			            'FAC_COB_ROLL_RATES'[ANIO] = IF(MesActual = 1, AnioActual - 1, AnioActual)
+			        )
+			    )
+			
+			-- 4. Cálculo final
+			RETURN 
+			    IF(
+			        ISBLANK(ValorActual) || ISBLANK(ValorAnterior) || ValorAnterior = 0, 
+			        0, 
+			        DIVIDE(ValorActual - ValorAnterior, ValorAnterior)
+			    )
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: ROLL OVER
+		lineageTag: cb84f87c-5d9a-4818-8fe5-678d5351e844
+
+	measure Variacion_Vig_1-29 = ```
+			
+			-- 1. Capturamos el Mes y Año de la gráfica
+			VAR MesActual = MAX('FAC_COB_ROLL_RATES'[MES])
+			VAR AnioActual = MAX('FAC_COB_ROLL_RATES'[ANIO])
+			
+			-- 2. Calculamos el valor del mes actual
+			VAR ValorActual = SUM('FAC_COB_ROLL_RATES'[SDO_VIG_1_29])
+			
+			-- 3. Buscamos el valor del mes anterior usando una tabla filtrada
+			VAR ValorAnterior = 
+			    CALCULATE(
+			        SUM('FAC_COB_ROLL_RATES'[SDO_VIG_1_29]),
+			        FILTER(
+			            ALLSELECTED('FAC_COB_ROLL_RATES'),
+			            'FAC_COB_ROLL_RATES'[MES] = IF(MesActual = 1, 12, MesActual - 1) &&
+			            'FAC_COB_ROLL_RATES'[ANIO] = IF(MesActual = 1, AnioActual - 1, AnioActual)
+			        )
+			    )
+			
+			-- 4. Cálculo final
+			RETURN 
+			    IF(
+			        ISBLANK(ValorActual) || ISBLANK(ValorAnterior) || ValorAnterior = 0, 
+			        0, 
+			        DIVIDE(ValorActual - ValorAnterior, ValorAnterior)
+			    )
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: ROLL OVER
+		lineageTag: 71d31a8a-7426-43f9-b34d-dbaca715270e
+
+	measure Variacion_Vig_30_59 = ```
+			
+			-- 1. Capturamos el Mes y Año de la gráfica
+			VAR MesActual = MAX('FAC_COB_ROLL_RATES'[MES])
+			VAR AnioActual = MAX('FAC_COB_ROLL_RATES'[ANIO])
+			
+			-- 2. Calculamos el valor del mes actual
+			VAR ValorActual = SUM('FAC_COB_ROLL_RATES'[SDO_VIG_30_59])
+			
+			-- 3. Buscamos el valor del mes anterior usando una tabla filtrada
+			VAR ValorAnterior = 
+			    CALCULATE(
+			        SUM('FAC_COB_ROLL_RATES'[SDO_VIG_30_59]),
+			        FILTER(
+			            ALLSELECTED('FAC_COB_ROLL_RATES'),
+			            'FAC_COB_ROLL_RATES'[MES] = IF(MesActual = 1, 12, MesActual - 1) &&
+			            'FAC_COB_ROLL_RATES'[ANIO] = IF(MesActual = 1, AnioActual - 1, AnioActual)
+			        )
+			    )
+			
+			-- 4. Cálculo final
+			RETURN 
+			    IF(
+			        ISBLANK(ValorActual) || ISBLANK(ValorAnterior) || ValorAnterior = 0, 
+			        0, 
+			        DIVIDE(ValorActual - ValorAnterior, ValorAnterior)
+			    )
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: ROLL OVER
+		lineageTag: 73016ee9-7220-4170-8bee-71572461c073
+
+	measure Variacion_Vig_60-89 = ```
+			
+			-- 1. Capturamos el Mes y Año de la gráfica
+			VAR MesActual = MAX('FAC_COB_ROLL_RATES'[MES])
+			VAR AnioActual = MAX('FAC_COB_ROLL_RATES'[ANIO])
+			
+			-- 2. Calculamos el valor del mes actual
+			VAR ValorActual = SUM('FAC_COB_ROLL_RATES'[SDO_VIG_60_89])
+			
+			-- 3. Buscamos el valor del mes anterior usando una tabla filtrada
+			VAR ValorAnterior = 
+			    CALCULATE(
+			        SUM('FAC_COB_ROLL_RATES'[SDO_VIG_60_89]),
+			        FILTER(
+			            ALLSELECTED('FAC_COB_ROLL_RATES'),
+			            'FAC_COB_ROLL_RATES'[MES] = IF(MesActual = 1, 12, MesActual - 1) &&
+			            'FAC_COB_ROLL_RATES'[ANIO] = IF(MesActual = 1, AnioActual - 1, AnioActual)
+			        )
+			    )
+			
+			-- 4. Cálculo final
+			RETURN 
+			    IF(
+			        ISBLANK(ValorActual) || ISBLANK(ValorAnterior) || ValorAnterior = 0, 
+			        0, 
+			        DIVIDE(ValorActual - ValorAnterior, ValorAnterior)
+			    )
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: ROLL OVER
+		lineageTag: 174cfa69-7b29-40d2-80d3-0b9cb5678ee6
+
+	measure Variacion_Vig_90 = ```
+			
+			-- 1. Capturamos el Mes y Año de la gráfica
+			VAR MesActual = MAX('FAC_COB_ROLL_RATES'[MES])
+			VAR AnioActual = MAX('FAC_COB_ROLL_RATES'[ANIO])
+			
+			-- 2. Calculamos el valor del mes actual
+			VAR ValorActual = SUM('FAC_COB_ROLL_RATES'[SDO_VIG_90_110])
+			
+			-- 3. Buscamos el valor del mes anterior usando una tabla filtrada
+			VAR ValorAnterior = 
+			    CALCULATE(
+			        SUM('FAC_COB_ROLL_RATES'[SDO_VIG_90_110]),
+			        FILTER(
+			            ALLSELECTED('FAC_COB_ROLL_RATES'),
+			            'FAC_COB_ROLL_RATES'[MES] = IF(MesActual = 1, 12, MesActual - 1) &&
+			            'FAC_COB_ROLL_RATES'[ANIO] = IF(MesActual = 1, AnioActual - 1, AnioActual)
+			        )
+			    )
+			
+			-- 4. Cálculo final
+			RETURN 
+			    IF(
+			        ISBLANK(ValorActual) || ISBLANK(ValorAnterior) || ValorAnterior = 0, 
+			        0, 
+			        DIVIDE(ValorActual - ValorAnterior, ValorAnterior)
+			    )
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: ROLL OVER
+		lineageTag: 61225fae-1182-4f20-8278-1a510d3b3c32
+
+	measure Variacion_Vig_120 = ```
+			
+			-- 1. Capturamos el Mes y Año de la gráfica
+			VAR MesActual = MAX('FAC_COB_ROLL_RATES'[MES])
+			VAR AnioActual = MAX('FAC_COB_ROLL_RATES'[ANIO])
+			
+			-- 2. Calculamos el valor del mes actual
+			VAR ValorActual = SUM('FAC_COB_ROLL_RATES'[SDO_VIG_120_149])
+			
+			-- 3. Buscamos el valor del mes anterior usando una tabla filtrada
+			VAR ValorAnterior = 
+			    CALCULATE(
+			        SUM('FAC_COB_ROLL_RATES'[SDO_VIG_120_149]),
+			        FILTER(
+			            ALLSELECTED('FAC_COB_ROLL_RATES'),
+			            'FAC_COB_ROLL_RATES'[MES] = IF(MesActual = 1, 12, MesActual - 1) &&
+			            'FAC_COB_ROLL_RATES'[ANIO] = IF(MesActual = 1, AnioActual - 1, AnioActual)
+			        )
+			    )
+			
+			-- 4. Cálculo final
+			RETURN 
+			    IF(
+			        ISBLANK(ValorActual) || ISBLANK(ValorAnterior) || ValorAnterior = 0, 
+			        0, 
+			        DIVIDE(ValorActual - ValorAnterior, ValorAnterior)
+			    )
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: ROLL OVER
+		lineageTag: 5f85da99-3453-4b8a-a7ed-4a50750ddd2b
+
+	measure Variacion_Vig_150 = ```
+			
+			-- 1. Capturamos el Mes y Año de la gráfica
+			VAR MesActual = MAX('FAC_COB_ROLL_RATES'[MES])
+			VAR AnioActual = MAX('FAC_COB_ROLL_RATES'[ANIO])
+			
+			-- 2. Calculamos el valor del mes actual
+			VAR ValorActual = SUM('FAC_COB_ROLL_RATES'[SDO_VIG_150_179])
+			
+			-- 3. Buscamos el valor del mes anterior usando una tabla filtrada
+			VAR ValorAnterior = 
+			    CALCULATE(
+			        SUM('FAC_COB_ROLL_RATES'[SDO_VIG_150_179]),
+			        FILTER(
+			            ALLSELECTED('FAC_COB_ROLL_RATES'),
+			            'FAC_COB_ROLL_RATES'[MES] = IF(MesActual = 1, 12, MesActual - 1) &&
+			            'FAC_COB_ROLL_RATES'[ANIO] = IF(MesActual = 1, AnioActual - 1, AnioActual)
+			        )
+			    )
+			
+			-- 4. Cálculo final
+			RETURN 
+			    IF(
+			        ISBLANK(ValorActual) || ISBLANK(ValorAnterior) || ValorAnterior = 0, 
+			        0, 
+			        DIVIDE(ValorActual - ValorAnterior, ValorAnterior)
+			    )
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: ROLL OVER
+		lineageTag: f768dc8f-4596-4985-8f5f-371d78692e08
+
+	measure Variacion_Vig_180 = ```
+			
+			-- 1. Capturamos el Mes y Año de la gráfica
+			VAR MesActual = MAX('FAC_COB_ROLL_RATES'[MES])
+			VAR AnioActual = MAX('FAC_COB_ROLL_RATES'[ANIO])
+			
+			-- 2. Calculamos el valor del mes actual
+			VAR ValorActual = SUM('FAC_COB_ROLL_RATES'[SDO_VIG_180_209])
+			
+			-- 3. Buscamos el valor del mes anterior usando una tabla filtrada
+			VAR ValorAnterior = 
+			    CALCULATE(
+			        SUM('FAC_COB_ROLL_RATES'[SDO_VIG_180_209]),
+			        FILTER(
+			            ALLSELECTED('FAC_COB_ROLL_RATES'),
+			            'FAC_COB_ROLL_RATES'[MES] = IF(MesActual = 1, 12, MesActual - 1) &&
+			            'FAC_COB_ROLL_RATES'[ANIO] = IF(MesActual = 1, AnioActual - 1, AnioActual)
+			        )
+			    )
+			
+			-- 4. Cálculo final
+			RETURN 
+			    IF(
+			        ISBLANK(ValorActual) || ISBLANK(ValorAnterior) || ValorAnterior = 0, 
+			        0, 
+			        DIVIDE(ValorActual - ValorAnterior, ValorAnterior)
+			    )
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: ROLL OVER
+		lineageTag: dd2dc3a8-1fd6-4f80-9c10-49b68af19887
+
+	measure Variacion_Vig_210 = ```
+			
+			-- 1. Capturamos el Mes y Año de la gráfica
+			VAR MesActual = MAX('FAC_COB_ROLL_RATES'[MES])
+			VAR AnioActual = MAX('FAC_COB_ROLL_RATES'[ANIO])
+			
+			-- 2. Calculamos el valor del mes actual
+			VAR ValorActual = SUM('FAC_COB_ROLL_RATES'[SDO_VIG_210])
+			
+			-- 3. Buscamos el valor del mes anterior usando una tabla filtrada
+			VAR ValorAnterior = 
+			    CALCULATE(
+			        SUM('FAC_COB_ROLL_RATES'[SDO_VIG_210]),
+			        FILTER(
+			            ALLSELECTED('FAC_COB_ROLL_RATES'),
+			            'FAC_COB_ROLL_RATES'[MES] = IF(MesActual = 1, 12, MesActual - 1) &&
+			            'FAC_COB_ROLL_RATES'[ANIO] = IF(MesActual = 1, AnioActual - 1, AnioActual)
+			        )
+			    )
+			
+			-- 4. Cálculo final
+			RETURN 
+			    IF(
+			        ISBLANK(ValorActual) || ISBLANK(ValorAnterior) || ValorAnterior = 0, 
+			        0, 
+			        DIVIDE(ValorActual - ValorAnterior, ValorAnterior)
+			    )
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: ROLL OVER
+		lineageTag: 45e62bc2-f355-460e-beba-83211212865e
+
+	measure 'Indice Cartera Vencida' = ```
+			
+			DIVIDE(
+			    SUM('FAC_COB_ROLL_RATES'[SDO_CARTERA_VENCIDA]), 
+			    SUM('FAC_COB_ROLL_RATES'[SDO_CARTERA_TOT]), 
+			    0
+			)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: ROLL OVER
+		lineageTag: c426e59a-3ce9-4f7c-bcfc-61b04a1d23c3
+
+	measure 'ICV Bruto' = ```
+			
+			DIVIDE(
+			    SUM('FAC_COB_ROLL_RATES'[SDO_CARTERA_VENCIDA]) + SUM('FAC_COB_ROLL_RATES'[SDO_CASTIGO]), 
+			    SUM('FAC_COB_ROLL_RATES'[SDO_CARTERA_TOT]), 
+			    0
+			)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: ROLL OVER
+		lineageTag: de4cd861-f509-48f5-814f-3dcd4d8cf997
+
+	measure 'Factor Castigo Final' = ```
+			
+			-- 1. Obtenemos los valores seleccionados y los tratamos como número
+			VAR MesActualNum = VALUE(SELECTEDVALUE('VDIM_CALENDARIO'[MES])) 
+			VAR AnioActualNum = VALUE(SELECTEDVALUE('VDIM_CALENDARIO'[ANIO_YYYY]))
+			
+			-- 2. Calculamos el mes y año anterior numéricamente
+			VAR MesAnteriorNum = IF(MesActualNum = 1, 12, MesActualNum - 1)
+			VAR AnioAnteriorNum = IF(MesActualNum = 1, AnioActualNum - 1, AnioActualNum)
+			
+			-- 3. Convertimos a texto con formato "00" para que coincida con tu dimensión (Ej: "01", "02")
+			VAR MesAnteriorTexto = FORMAT(MesAnteriorNum, "00")
+			VAR AnioAnteriorTexto = FORMAT(AnioAnteriorNum, "0")
+			
+			-- 4. Sumamos los Castigos del mes actual
+			VAR CastigoActual = SUM('FAC_COB_ROLL_RATES'[SDO_CASTIGO]) 
+			
+			-- 5. Calculamos la base del mes anterior (Suma de los dos cubos de saldo)
+			VAR SaldoMesAnteriorBase = 
+			    CALCULATE(
+			        SUM('FAC_COB_ROLL_RATES'[SDO_VIG_180_209]) + SUM('FAC_COB_ROLL_RATES'[SDO_VIG_210]),
+			        ALL('VDIM_CALENDARIO'), 
+			        'VDIM_CALENDARIO'[ANIO_YYYY] = AnioAnteriorTexto,
+			        'VDIM_CALENDARIO'[MES] = MesAnteriorTexto
+			    )
+			
+			-- 6. Resultado final
+			RETURN
+			DIVIDE(CastigoActual, SaldoMesAnteriorBase, 0)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: ROLL OVER
+		lineageTag: b61cd7fa-fe14-47ef-b74f-6fe3f77c2017
+
+	measure 'Factor Quitas' = ```
+			
+			VAR MesActualTexto = FORMAT(VALUE(SELECTEDVALUE('VDIM_CALENDARIO'[MES])), "00")
+			VAR AnioActualTexto = FORMAT(VALUE(SELECTEDVALUE('VDIM_CALENDARIO'[ANIO_YYYY])), "0")
+			VAR QuitasActuales = SUM('FAC_COB_ROLL_RATES'[SDO_QUITA])
+			VAR SumaSaldosRango = 
+			    CALCULATE(
+			        SUM('FAC_COB_ROLL_RATES'[SDO_VIG_90_110]) + 
+			        SUM('FAC_COB_ROLL_RATES'[SDO_VIG_120_149]) + 
+			        SUM('FAC_COB_ROLL_RATES'[SDO_VIG_150_179]) + 
+			        SUM('FAC_COB_ROLL_RATES'[SDO_VIG_180_209]) + 
+			        SUM('FAC_COB_ROLL_RATES'[SDO_VIG_210]),
+			        'VDIM_CALENDARIO'[MES] = MesActualTexto,
+			        'VDIM_CALENDARIO'[ANIO_YYYY] = AnioActualTexto
+			    )
+			RETURN 
+			DIVIDE(QuitasActuales,SumaSaldosRango,0)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: ROLL OVER
+		lineageTag: 01412847-9714-4a46-abae-29988f6001e3
+
+	measure 'Factor Recuperacion' = ```
+			
+			VAR MesFijo = SELECTEDVALUE('VDIM_CALENDARIO'[MES])
+			VAR AnioFijo = SELECTEDVALUE('VDIM_CALENDARIO'[ANIO_YYYY])
+			VAR Numerador = SUM('FAC_COB_ROLL_RATES'[SUMA_PAGOS])
+			VAR Denominador = 
+			    CALCULATE(
+			        SUM('FAC_COB_ROLL_RATES'[SDO_CASTIGO]),
+			        ALL('VDIM_CALENDARIO'),
+			        VAR MesN = VALUE(MesFijo)
+			        VAR AnioN = VALUE(AnioFijo)
+			        VAR F_Fin = EDATE(DATE(AnioN, MesN, 1), -1)
+			        VAR F_Ini = EDATE(F_Fin, -11)
+			        RETURN
+			            FILTER(
+			                ALL('VDIM_CALENDARIO'[MES], 'VDIM_CALENDARIO'[ANIO_YYYY]),
+			                VAR FechaFila = DATE(VALUE('VDIM_CALENDARIO'[ANIO_YYYY]), VALUE('VDIM_CALENDARIO'[MES]), 1)
+			                RETURN FechaFila >= F_Ini && FechaFila <= F_Fin
+			            )
+			    )
+			RETURN 
+			DIVIDE(Numerador, Denominador, 0)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: ROLL OVER
+		lineageTag: 5aacf3ad-7044-4a2a-be74-53aa17b9a4ac
+
+	measure Denominador_Castigos_12M =
+			
+			VAR MesSel = VALUE(SELECTEDVALUE('VDIM_CALENDARIO'[MES]))
+			VAR AnioSel = VALUE(SELECTEDVALUE('VDIM_CALENDARIO'[ANIO_YYYY]))
+			
+			-- Rango: 12 meses atrás sin contar el actual
+			VAR FechaFin = EDATE(DATE(AnioSel, MesSel, 1), -1)
+			VAR FechaInicio = EDATE(FechaFin, -11)
+			
+			RETURN
+			CALCULATE(
+			    SUM('FAC_COB_ROLL_RATES'[SDO_CASTIGO]),
+			    REMOVEFILTERS('VDIM_CALENDARIO'),
+			    KEEPFILTERS(
+			        VAR FilaFecha = DATE(VALUE('VDIM_CALENDARIO'[ANIO_YYYY]), VALUE('VDIM_CALENDARIO'[MES]), 1)
+			        RETURN FilaFecha >= FechaInicio && FilaFecha <= FechaFin
+			    )
+			)
+		displayFolder: ROLL OVER
+		lineageTag: cc88baeb-d6ea-465f-95d6-0f7d76011844
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'D CV NETA' = ```
+			
+			-- 1. Identificar el Mes y Año seleccionado
+			VAR MesSeleccionado = VALUE(SELECTEDVALUE('VDIM_CALENDARIO'[MES]))
+			VAR AnioSeleccionado = VALUE(SELECTEDVALUE('VDIM_CALENDARIO'[ANIO_YYYY]))
+			
+			-- 2. Calcular la Cartera Vencida del MES ACTUAL
+			VAR CV_Actual = SUM('FAC_COB_ROLL_RATES'[SDO_CARTERA_VENCIDA])
+			
+			-- 3. Calcular la Cartera Vencida del MES ANTERIOR
+			VAR FechaMesAnterior = EDATE(DATE(AnioSeleccionado, MesSeleccionado, 1), -1)
+			VAR MesAnteriorTexto = FORMAT(MONTH(FechaMesAnterior), "00")
+			VAR AnioAnteriorTexto = FORMAT(YEAR(FechaMesAnterior), "0")
+			
+			VAR CV_Anterior = 
+			    CALCULATE(
+			        SUM('FAC_COB_ROLL_RATES'[SDO_CARTERA_VENCIDA]),
+			        ALL('VDIM_CALENDARIO'),
+			        'VDIM_CALENDARIO'[MES] = MesAnteriorTexto,
+			        'VDIM_CALENDARIO'[ANIO_YYYY] = AnioAnteriorTexto
+			    )
+			
+			-- 4. Resultado: Resta de Actual - Anterior
+			RETURN
+			IF(
+			    ISBLANK(CV_Actual), 
+			    BLANK(), 
+			    CV_Actual - CV_Anterior
+			)
+			```
+		displayFolder: ROLL OVER
+		lineageTag: 2e5e27b5-04d6-4213-b496-33c1ac50bafc
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Cartera Promedio 12M' = ```
+			
+			-- 1. Identificar el mes "ancla" desde el filtro
+			VAR MesSeleccionado = VALUE(SELECTEDVALUE('VDIM_CALENDARIO'[MES]))
+			VAR AnioSeleccionado = VALUE(SELECTEDVALUE('VDIM_CALENDARIO'[ANIO_YYYY]))
+			
+			-- 2. Definir el rango: desde hace 12 meses hasta el mes anterior al seleccionado
+			-- Ejemplo: Si seleccionas Abril 2025, el rango es Mayo 2024 - Marzo 2025
+			VAR FechaFinRango = EDATE(DATE(AnioSeleccionado, MesSeleccionado, 1), -1)
+			VAR FechaInicioRango = EDATE(FechaFinRango, -11)
+			
+			-- 3. Calcular la suma de la cartera en ese periodo de 12 meses
+			VAR SumaCartera12M = 
+			    CALCULATE(
+			        SUM('FAC_COB_ROLL_RATES'[SDO_CARTERA_TOT]), -- Cambia por el nombre exacto de tu columna
+			        ALL('VDIM_CALENDARIO'),
+			        KEEPFILTERS(
+			            VAR FilaFecha = DATE(VALUE('VDIM_CALENDARIO'[ANIO_YYYY]), VALUE('VDIM_CALENDARIO'[MES]), 1)
+			            RETURN FilaFecha >= FechaInicioRango && FilaFecha <= FechaFinRango
+			        )
+			    )
+			
+			-- 4. Dividir entre 12 para obtener el promedio mensual
+			RETURN
+			DIVIDE(SumaCartera12M, 12, 0)
+			```
+		displayFolder: ROLL OVER
+		lineageTag: 8cba32bd-9eda-4daf-bd31-ec8d492a1940
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Medidas = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

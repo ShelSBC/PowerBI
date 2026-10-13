@@ -1,0 +1,187 @@
+table roll_over_medidas
+	lineageTag: 7492383d-e74b-4427-a49e-2d63fc90e971
+
+	measure M_Corriente = SUM ( FAC_COBR_ROLL_OVER_REESTRUCTURAS[SDO_VIG_0_1] )
+		lineageTag: 95182ab1-59fc-48c8-9937-fdfc81f49363
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure M_1_29 = SUM ( FAC_COBR_ROLL_OVER_REESTRUCTURAS[SDO_VIG_1_29] )
+		lineageTag: 05d68865-0f31-472c-b77b-2baceea32d19
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure M_30_59 = SUM ( FAC_COBR_ROLL_OVER_REESTRUCTURAS[SDO_VIG_30_59] )
+		lineageTag: 3cf84276-8c15-4f2d-b54a-2aa6b995e4ad
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure M_60_89 = SUM ( FAC_COBR_ROLL_OVER_REESTRUCTURAS[SDO_VIG_60_89] )
+		lineageTag: 6622c227-cb35-436b-9710-11fe26a48728
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure M_90_119 = SUM ( FAC_COBR_ROLL_OVER_REESTRUCTURAS[SDO_VIG_90_110] )
+		lineageTag: ee6b8ad9-ca4a-403b-9c4f-263ba50b24ec
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure M_120_149 = SUM ( FAC_COBR_ROLL_OVER_REESTRUCTURAS[SDO_VIG_120_149] )
+		lineageTag: 1778d13e-03d1-4671-ae2c-3c296821ec5b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure M_150_179 = SUM ( FAC_COBR_ROLL_OVER_REESTRUCTURAS[SDO_VIG_150_179] )
+		lineageTag: 7fc2cc78-be9b-4351-a6b6-165772248b54
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure M_180_209 = SUM ( FAC_COBR_ROLL_OVER_REESTRUCTURAS[SDO_VIG_180_209] )
+		lineageTag: 09efcdf3-313c-49dd-99f5-7ecadeba3130
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure M_210_Mas = SUM ( FAC_COBR_ROLL_OVER_REESTRUCTURAS[SDO_VIG_210] )
+		lineageTag: 9e63870d-a208-428a-a51b-5fa35b554d66
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure M_Total_Cartera =
+			
+			[M_Corriente] + [M_1_29] + [M_30_59] + [M_60_89] + [M_90_119] + [M_120_149] + [M_150_179] + [M_180_209] + [M_210_Mas]
+		lineageTag: 7ba63c4e-20d1-4ac5-8bd2-f28bd8a46939
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure M_Total_Cartera_Mes_Anterior =
+			
+			CALCULATE (
+			    [M_Total_Cartera],
+			    DATEADD ( VDIM_CALENDARIO[FECHA_COMPLETA], -1, MONTH )
+			)
+		lineageTag: 77e9ce41-dd9d-431e-b9c1-bd06dea23e30
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure M_Var_Pct_Mes = ```
+			
+			VAR FechaColumna = MAX(VDIM_CALENDARIO[FECHA_COMPLETA])
+			VAR FechaMesAnterior = EOMONTH(FechaColumna, -1)
+			
+			-- 1. Saldo actual de la celda (respeta la fila de la matriz/tramo)
+			VAR SaldoActual = [M_Total_Cartera]
+			
+			-- 2. Saldo del mes anterior manteniendo intacta la fila del renglón (Rubro/Orden)
+			VAR SaldoAnterior = 
+			    CALCULATE(
+			        [M_Total_Cartera],
+			        ALL(VDIM_CALENDARIO),
+			        VDIM_CALENDARIO[FECHA_COMPLETA] = FechaMesAnterior
+			    )
+			
+			RETURN
+			    IF(
+			        ISBLANK(SaldoActual) || ISBLANK(SaldoAnterior) || SaldoAnterior = 0,
+			        BLANK(),
+			        DIVIDE(SaldoActual - SaldoAnterior, SaldoAnterior)
+			    )
+			```
+		lineageTag: 922d0928-a218-49f7-88f4-99296014cc64
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure M_Total_Cartera_Anio_Anterior =
+			
+			CALCULATE (
+			    [M_Total_Cartera],
+			    SAMEPERIODLASTYEAR ( VDIM_CALENDARIO[FECHA_COMPLETA] )
+			)
+		lineageTag: c4e9d796-cebd-4540-bdaf-f18b50de5d49
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure M_Var_Pct_Anio = ```
+			
+			VAR FechaColumna = MAX(VDIM_CALENDARIO[FECHA_COMPLETA])
+			VAR FechaAnioAnterior = EDATE(FechaColumna, -12)
+			
+			VAR SaldoActual = [M_Total_Cartera]
+			
+			VAR SaldoAnterior = 
+			    CALCULATE(
+			        [M_Total_Cartera],
+			        ALL(VDIM_CALENDARIO),
+			        VDIM_CALENDARIO[FECHA_COMPLETA] = FechaAnioAnterior
+			    )
+			
+			RETURN
+			    IF(
+			        ISBLANK(SaldoActual) || ISBLANK(SaldoAnterior) || SaldoAnterior = 0,
+			        BLANK(),
+			        DIVIDE(SaldoActual - SaldoAnterior, SaldoAnterior)
+			    )
+			```
+		lineageTag: 6cd3b9f0-7de8-4bf5-a12c-b42c3c0e8c14
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Valor_Resumen = ```
+			
+			// 1. Capturar el corte seleccionado en los Slicers flotantes
+			VAR _FechaSeleccionada = MAX ( VDIM_CALENDARIO_SLICER[FECHA_COMPLETA] )
+			
+			// 2. Calcular la fecha inicial de la ventana (12 meses atrás)
+			VAR _FechaInicio = EDATE ( _FechaSeleccionada, -12 )
+			
+			// 3. Evaluar la columna actual que la Matriz está dibujando (Calendario Relacionado)
+			VAR _FechaColumnaMatriz = MAX ( VDIM_CALENDARIO[FECHA_COMPLETA] )
+			
+			// 4. Evaluar la fila (Rubro)
+			VAR _Orden = SELECTEDVALUE ( dim_tramos_cartera[Orden] )
+			
+			RETURN
+			    // Verificar si la columna de la matriz cae exactamente dentro de la ventana de 13 meses
+			    IF (
+			        _FechaColumnaMatriz >= _FechaInicio && _FechaColumnaMatriz <= _FechaSeleccionada,
+			        
+			        // Ejecución normal de la lógica de medidas base
+			        SWITCH (
+			            _Orden,
+			            1, [M_Corriente],
+			            2, [M_1_29],
+			            3, [M_30_59],
+			            4, [M_60_89],
+			            5, [M_90_119],
+			            6, [M_120_149],
+			            7, [M_150_179],
+			            8, [M_180_209],
+			            9, [M_210_Mas],
+			            10, [M_Total_Cartera],
+			            11, [M_Var_Pct_Mes],
+			            12, [M_Var_Pct_Anio],
+			            BLANK ()
+			        ),
+			        BLANK ()
+			    )
+			```
+		lineageTag: 4b90fd26-cd6b-42d3-b503-4c219f4bb2f0
+
+		formatStringDefinition =
+				IF (
+				    SELECTEDVALUE ( dim_Tramos_Cartera[Orden] ) IN { 11, 12 },
+				    "+0.0%;-0.0%;0.0%",
+				    "$#,##0"
+				)
+
+	partition roll_over_medidas = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

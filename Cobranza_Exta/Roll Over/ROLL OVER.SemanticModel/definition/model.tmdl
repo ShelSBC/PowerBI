@@ -1,0 +1,33 @@
+model Model
+	culture: es-ES
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: es-MX
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["VDIM_TIPO_TARJETA","VDIM_CALENDARIO","VFAC_NEGFIN_COB_PBI","FAC_COB_ROLL_RATES","Medidas","FAC_COBR_ROLL_OVER_REESTRUCTURAS","roll_over_medidas","dim_tramos_cartera"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table VDIM_TIPO_TARJETA
+ref table DateTableTemplate_d7139f22-e2c4-4e03-996c-37521135a349
+ref table VDIM_CALENDARIO
+ref table LocalDateTable_c9e77179-1518-4d88-a188-76e73df9762c
+ref table LocalDateTable_31134063-0863-4b89-b407-e2de8c7793ac
+ref table VFAC_NEGFIN_COB_PBI
+ref table LocalDateTable_01319473-6f73-4a4b-b8ca-a3eb9f4783f7
+ref table FAC_COB_ROLL_RATES
+ref table Medidas
+ref table FAC_COBR_ROLL_OVER_REESTRUCTURAS
+ref table roll_over_medidas
+ref table dim_tramos_cartera
+ref table VDIM_CALENDARIO_SLICER
+ref table LocalDateTable_cce5d4d1-a5f4-4053-bb42-5994ae0b062c
+ref table LocalDateTable_e2c296f6-d4a4-4b51-99dd-8e1d53cf4780
+ref table 'Selector Vista Matriz'
+
+ref cultureInfo es-ES
+

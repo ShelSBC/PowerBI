@@ -1,0 +1,289 @@
+table VDIM_CALENDARIO_SLICER
+	lineageTag: e74980a2-4acb-4b8d-9620-bbc95db67011
+
+	column ANIO_MES
+		lineageTag: efab67c9-5dfa-4de5-8ad6-aa3bcdfc7b61
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: VDIM_CALENDARIO[ANIO_MES]
+
+		annotation SummarizationSetBy = Automatic
+
+	column MES
+		lineageTag: fd13ca12-367d-44f5-997b-1be87301c03d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: VDIM_CALENDARIO[MES]
+
+		annotation SummarizationSetBy = Automatic
+
+	column ANIO_YYYY
+		lineageTag: a464e953-8e11-431e-880d-a43c03d7b659
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: VDIM_CALENDARIO[ANIO_YYYY]
+
+		annotation SummarizationSetBy = Automatic
+
+	column MES_ANIO_LETRA
+		lineageTag: 7e1e41ec-393b-4ff7-aff9-6724c68035fd
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: VDIM_CALENDARIO[MES_ANIO_LETRA]
+
+		annotation SummarizationSetBy = Automatic
+
+	column MES_LETRA
+		lineageTag: d88df944-c116-418f-a643-c70352f0aefb
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: VDIM_CALENDARIO[MES_LETRA]
+
+		annotation SummarizationSetBy = Automatic
+
+	column FECHA_COMPLETA
+		formatString: General Date
+		lineageTag: cd57a44a-c4ce-4172-9706-898f579ea0af
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: VDIM_CALENDARIO[FECHA_COMPLETA]
+
+		variation Variation
+			isDefault
+			relationship: dd376974-0e02-4b09-9e45-c8c07f4094a4
+			defaultHierarchy: LocalDateTable_cce5d4d1-a5f4-4053-bb42-5994ae0b062c.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column FCH_SEM
+		formatString: General Date
+		lineageTag: 8cbb92f4-6540-4afe-aa77-2bbe5831b854
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: VDIM_CALENDARIO[FCH_SEM]
+
+		variation Variation
+			isDefault
+			relationship: 505bd998-09d2-4275-88b2-9e18745c7e7b
+			defaultHierarchy: LocalDateTable_e2c296f6-d4a4-4b51-99dd-8e1d53cf4780.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLAG
+		lineageTag: 099bb7ed-77d1-4efd-bf28-f2ec78538b83
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: VDIM_CALENDARIO[FLAG]
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLAG_1
+		lineageTag: c8df24e2-fa18-4068-b39f-d04aa56ed86e
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: VDIM_CALENDARIO[FLAG_1]
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLAG_P
+		lineageTag: 0dd1a3ca-7801-4d3e-b60e-331f43326f63
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: VDIM_CALENDARIO[FLAG_P]
+
+		annotation SummarizationSetBy = Automatic
+
+	column T0
+		lineageTag: 7f4fb752-bbff-4303-9896-3d3a9f1ed7f3
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: VDIM_CALENDARIO[T0]
+
+		annotation SummarizationSetBy = Automatic
+
+	column T1_NUM_P
+		formatString: 0
+		lineageTag: 1994e196-6486-43a0-b2cd-b4e824b1def7
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: VDIM_CALENDARIO[T1_NUM_P]
+
+		annotation SummarizationSetBy = Automatic
+
+	column T0_NUM_P
+		formatString: 0
+		lineageTag: de128613-51f1-4ed8-82c9-54c1e357d7af
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: VDIM_CALENDARIO[T0_NUM_P]
+
+		annotation SummarizationSetBy = Automatic
+
+	column T1
+		lineageTag: 4ee9d4ae-9895-4ff6-b8b1-bd98db044579
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: VDIM_CALENDARIO[T1]
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLG_T0
+		lineageTag: d29730d0-5362-4d94-ba9c-7abd405d87f6
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: VDIM_CALENDARIO[FLG_T0]
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLG_T0_1Y
+		lineageTag: 125537c6-3fd1-4f98-a515-d41f87c4cb87
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: VDIM_CALENDARIO[FLG_T0_1Y]
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLG_T1
+		lineageTag: 50d81630-0eeb-4149-b06e-fb1f7b8ea26c
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: VDIM_CALENDARIO[FLG_T1]
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLG_T1_1Y
+		lineageTag: e3f92012-a151-4860-bfa4-2a0bc92a637f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: VDIM_CALENDARIO[FLG_T1_1Y]
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLG_UM_T0
+		lineageTag: db790e54-e462-405e-aca8-c98e3f8284a6
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: VDIM_CALENDARIO[FLG_UM_T0]
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLG_UM_T1
+		lineageTag: c9805f78-b32a-4300-81ec-d36b793adeb3
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: VDIM_CALENDARIO[FLG_UM_T1]
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLG_T0_ACUM
+		lineageTag: 5bb912e4-7f42-4ca7-a6e2-702093c240ab
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: VDIM_CALENDARIO[FLG_T0_ACUM]
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLG_DIC
+		lineageTag: 15a6d573-c184-4399-b99f-c375aa890be3
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: VDIM_CALENDARIO[FLG_DIC]
+
+		annotation SummarizationSetBy = Automatic
+
+	column BANDERA_MOB3_vt
+		formatString: 0
+		lineageTag: ddf464e1-f408-4d18-a180-400fdef15a0a
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: VDIM_CALENDARIO[BANDERA_MOB3_vt]
+
+		annotation SummarizationSetBy = Automatic
+
+	column BANDERA_MOB9_VT
+		formatString: 0
+		lineageTag: f1590425-8f19-4348-8cec-d72c79d4e8d2
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: VDIM_CALENDARIO[BANDERA_MOB9_VT]
+
+		annotation SummarizationSetBy = Automatic
+
+	column BANDERA_MOB3
+		formatString: 0
+		lineageTag: 78e31067-9b26-4163-a45c-85a620c9eb8e
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: VDIM_CALENDARIO[BANDERA_MOB3]
+
+		annotation SummarizationSetBy = Automatic
+
+	column BANDERA_MOB9
+		formatString: 0
+		lineageTag: c81bb689-dcc8-4bd9-a199-85e72ba104fa
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: VDIM_CALENDARIO[BANDERA_MOB9]
+
+		annotation SummarizationSetBy = Automatic
+
+	column BANDERA_MOBS_VT
+		formatString: 0
+		lineageTag: d458fe64-0f09-4c45-9607-9a69a6a725af
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: VDIM_CALENDARIO[BANDERA_MOBS_VT]
+
+		annotation SummarizationSetBy = Automatic
+
+	column BANDERA_Y1
+		formatString: 0
+		lineageTag: 4af94ec5-fa22-4ffb-a941-bf4f3bc4ac59
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: VDIM_CALENDARIO[BANDERA_Y1]
+
+		annotation SummarizationSetBy = Automatic
+
+	column BANDERA_YTD_ACT
+		formatString: 0
+		lineageTag: 5ecd7695-a87f-460a-a1d9-53ed6a6e5eea
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: VDIM_CALENDARIO[BANDERA_YTD_ACT]
+
+		annotation SummarizationSetBy = Automatic
+
+	column BANDERA_YTD_1ANT
+		formatString: 0
+		lineageTag: aa9cf865-30dd-4100-b06a-2a740e51086f
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: VDIM_CALENDARIO[BANDERA_YTD_1ANT]
+
+		annotation SummarizationSetBy = Automatic
+
+	column BANDERA_Y2
+		formatString: 0
+		lineageTag: af5747f6-b255-40d5-85d3-312386f0e661
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: VDIM_CALENDARIO[BANDERA_Y2]
+
+		annotation SummarizationSetBy = Automatic
+
+	column FLG_T0_3Y
+		formatString: 0
+		lineageTag: 58352be2-4f90-481b-97a5-ca4444a38f48
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: VDIM_CALENDARIO[FLG_T0_3Y]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition VDIM_CALENDARIO_SLICER = calculated
+		mode: import
+		source = VDIM_CALENDARIO
+
+	annotation PBI_Id = a9f1cceaaa614121b381a7db1d430d91
+

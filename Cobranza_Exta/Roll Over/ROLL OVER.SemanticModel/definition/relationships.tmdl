@@ -1,0 +1,43 @@
+relationship e94d6314-4af0-4591-86a5-364b69c81d98
+	joinOnDateBehavior: datePartOnly
+	fromColumn: VDIM_CALENDARIO.FECHA_COMPLETA
+	toColumn: LocalDateTable_c9e77179-1518-4d88-a188-76e73df9762c.Date
+
+relationship 0c232e52-ed58-43a6-ac3f-cfa767178b5e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: VDIM_CALENDARIO.FCH_SEM
+	toColumn: LocalDateTable_31134063-0863-4b89-b407-e2de8c7793ac.Date
+
+relationship 2bebd3bf-8961-4b7c-9112-e03aef79d053
+	joinOnDateBehavior: datePartOnly
+	fromColumn: VFAC_NEGFIN_COB_PBI.FCH_CARGA
+	toColumn: LocalDateTable_01319473-6f73-4a4b-b8ca-a3eb9f4783f7.Date
+
+relationship 6d015dec-af38-962e-b928-4ae91d0bc375
+	fromColumn: FAC_COB_ROLL_RATES.TIP_INF
+	toColumn: VDIM_TIPO_TARJETA.TIP_INF
+
+relationship ecb0291a-c861-acb3-51dd-4ae72ecc8438
+	fromColumn: FAC_COB_ROLL_RATES.ANIONMES
+	toColumn: VDIM_CALENDARIO.ANIO_MES
+
+relationship 98ddfadc-61c7-d169-d95b-69ed776d7651
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: FAC_COB_ROLL_RATES.TDA_CVE
+	toColumn: VFAC_NEGFIN_COB_PBI.NO_TIENDA
+
+relationship 76a9c531-d8b2-2a44-9da1-2fee3c9eb7fc
+	fromColumn: FAC_COBR_ROLL_OVER_REESTRUCTURAS.ANIONMES
+	toColumn: VDIM_CALENDARIO.ANIO_MES
+
+relationship dd376974-0e02-4b09-9e45-c8c07f4094a4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: VDIM_CALENDARIO_SLICER.FECHA_COMPLETA
+	toColumn: LocalDateTable_cce5d4d1-a5f4-4053-bb42-5994ae0b062c.Date
+
+relationship 505bd998-09d2-4275-88b2-9e18745c7e7b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: VDIM_CALENDARIO_SLICER.FCH_SEM
+	toColumn: LocalDateTable_e2c296f6-d4a4-4b51-99dd-8e1d53cf4780.Date
+

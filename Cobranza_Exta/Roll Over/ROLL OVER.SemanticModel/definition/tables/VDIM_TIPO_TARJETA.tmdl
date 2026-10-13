@@ -1,0 +1,75 @@
+/// Tipo de tarjeta
+table VDIM_TIPO_TARJETA
+	lineageTag: 81152100-be37-4cf7-a6fc-f6eb6362844d
+
+	/// Organización
+	column TIP_INF
+		dataType: string
+		lineageTag: 342e8b8a-e4a1-4884-83ec-017a7662ca8e
+		summarizeBy: none
+		sourceColumn: TIP_INF
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Descripción de la organización
+	column PRODUCTO
+		dataType: string
+		lineageTag: e7d753b4-37c3-4a25-923e-479991322e23
+		summarizeBy: none
+		sourceColumn: PRODUCTO
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Color de acuerdo a la organización
+	column COLOR
+		dataType: string
+		lineageTag: 5ab15c55-8d56-45ef-848c-8490a0f3bccf
+		summarizeBy: none
+		sourceColumn: COLOR
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Agrupación de la organización
+	column ORGANIZACION = ```
+			IF(VDIM_TIPO_TARJETA[TIP_INF] IN {"100","110"},"LIVERPOOL", 
+			        IF(VDIM_TIPO_TARJETA[TIP_INF] IN {"200","210","220","230"},"SUBURBIA"))
+			```
+		lineageTag: 1b892eab-7334-44cc-a058-26aee83aa765
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Descripción
+	/// 
+	column PRODUCTO_DESC = ```
+			IF(VDIM_TIPO_TARJETA[TIP_INF] = "100" ,"LPC", 
+			         IF(VDIM_TIPO_TARJETA[TIP_INF] = "110" ,"DILISA", 
+			        IF(VDIM_TIPO_TARJETA[TIP_INF] = "200" ,"SUBURBIA VISA",
+			        IF(VDIM_TIPO_TARJETA[TIP_INF] = "210","SUBURBIA DEPARTAMENTAL",
+			         IF(VDIM_TIPO_TARJETA[TIP_INF] IN {"220","230"},"MINI PAGOS (CC)","")))))
+			```
+		lineageTag: 59183b3c-722f-44c9-bb3f-f3deefcacb86
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Organización
+	column ORG
+		dataType: string
+		lineageTag: f8cdacf3-a470-47ec-ac85-fb46178e3e3d
+		summarizeBy: none
+		sourceColumn: ORG
+
+		annotation SummarizationSetBy = Automatic
+
+	partition VDIM_TIPO_TARJETA = m
+		mode: import
+		source =
+				let
+				    Origen = GoogleBigQuery.Database(),
+				    #"crp-pro-cx-semantica" = Origen{[Name="crp-pro-cx-semantica"]}[Data],
+				    mus_pro_negfin_shared_views_Schema = #"crp-pro-cx-semantica"{[Name="mus_pro_negfin_shared_views",Kind="Schema"]}[Data],
+				    VDIM_TIPO_TARJETA_View = mus_pro_negfin_shared_views_Schema{[Name="VDIM_TIPO_TARJETA",Kind="View"]}[Data]
+				in
+				    VDIM_TIPO_TARJETA_View
+

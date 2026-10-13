@@ -1,0 +1,49 @@
+table 'Selector Vista Matriz'
+	lineageTag: aa0dfc29-2b9d-41f6-aa1c-938b7ac4531e
+
+	column 'Selector Vista Matriz'
+		lineageTag: 76c6d942-de39-4fe7-ab48-7c36c101e3de
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Selector Vista Matriz Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Selector Vista Matriz Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Selector Vista Matriz Fields'
+		isHidden
+		lineageTag: 0de645dc-1d7d-4fa4-aa2b-efb9a5077bcd
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Selector Vista Matriz Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Selector Vista Matriz Order'
+		isHidden
+		formatString: 0
+		lineageTag: 686ad7bb-9913-4947-9ffb-f74d975317d9
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Selector Vista Matriz' = calculated
+		mode: import
+		source =
+				{
+				    ("Saldo ($)", NAMEOF('roll_over_medidas'[Valor_Resumen]), 0),
+				    ("Var. MoM (%)", NAMEOF('roll_over_medidas'[M_Var_Pct_Mes]), 1),
+				    ("Var. YoY (%)", NAMEOF('roll_over_medidas'[M_Var_Pct_Anio]), 2)
+				}
+
+	annotation PBI_Id = a6a1b3e29a67484782f5e574b67c5ebc
+

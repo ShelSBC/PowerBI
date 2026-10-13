@@ -1,0 +1,102 @@
+table VFAC_NEGFIN_COB_PBI
+	lineageTag: 0a0e2607-9781-44ae-ba98-0ee3dcb9cfc1
+
+	column MES
+		dataType: double
+		lineageTag: 4eb688c4-3199-44b7-a94c-9d23e2919311
+		summarizeBy: sum
+		sourceColumn: MES
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ANIO
+		dataType: double
+		lineageTag: eb80a9fc-002b-4d94-af21-07b7bf9cba35
+		summarizeBy: sum
+		sourceColumn: ANIO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TIP_INF
+		dataType: double
+		lineageTag: 48e2d0a8-97d7-4b2f-b15a-d43a0cfb2e5f
+		summarizeBy: sum
+		sourceColumn: TIP_INF
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FCH_CARGA
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 8bfe5195-a0ed-414f-9a98-33a9eef9d9c3
+		summarizeBy: none
+		sourceColumn: FCH_CARGA
+
+		variation Variation
+			isDefault
+			relationship: 2bebd3bf-8961-4b7c-9112-e03aef79d053
+			defaultHierarchy: LocalDateTable_01319473-6f73-4a4b-b8ca-a3eb9f4783f7.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ANIOMES
+		dataType: double
+		lineageTag: aa4cc423-45ec-47ed-a426-dae22367c9ee
+		summarizeBy: sum
+		sourceColumn: ANIOMES
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ZONA
+		dataType: string
+		lineageTag: 68040785-706a-4ccc-9e83-50979832b960
+		summarizeBy: none
+		sourceColumn: ZONA
+
+		annotation SummarizationSetBy = Automatic
+
+	column NO_TIENDA
+		dataType: string
+		lineageTag: bd40442b-05ec-4a65-9ce8-0de9a559e4c7
+		summarizeBy: none
+		sourceColumn: NO_TIENDA
+
+		annotation SummarizationSetBy = Automatic
+
+	column DETALLE
+		dataType: string
+		lineageTag: b30fde62-97aa-4366-bd8a-ac0aee594290
+		summarizeBy: none
+		sourceColumn: DETALLE
+
+		annotation SummarizationSetBy = Automatic
+
+	column TIPO
+		dataType: string
+		lineageTag: 5cef5e48-5a6d-40ac-906f-571380cf4838
+		summarizeBy: none
+		sourceColumn: TIPO
+
+		annotation SummarizationSetBy = Automatic
+
+	partition VFAC_NEGFIN_COB_PBI = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([BillingProject="crp-pro-dwh-semanticagold"]),
+				    #"crp-pro-dwh-semanticagold" = Source{[Name="crp-pro-dwh-semanticagold"]}[Data],
+				    MUS_PRO_DWH_VIEWS_ODS_Schema = #"crp-pro-dwh-semanticagold"{[Name="MUS_PRO_DWH_VIEWS_ODS",Kind="Schema"]}[Data],
+				    VFAC_NEGFIN_COB_PBI_View = MUS_PRO_DWH_VIEWS_ODS_Schema{[Name="VFAC_NEGFIN_COB_PBI",Kind="View"]}[Data]
+				in
+				    VFAC_NEGFIN_COB_PBI_View
+
