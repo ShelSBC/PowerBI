@@ -86,13 +86,12 @@ table FAC_RB_2_SOBREGIROS_TRN
 
 	column ANIOMES_OBS
 		dataType: double
+		formatString: 0
 		lineageTag: 5f8fb05e-6f47-4ecf-95f5-a08d6e2a16eb
 		summarizeBy: none
 		sourceColumn: ANIOMES_OBS
 
 		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column ANIOMES_ESTR
 		dataType: double
@@ -348,6 +347,12 @@ table FAC_RB_2_SOBREGIROS_TRN
 			    "SIN CLASIFICAR"
 			)
 		lineageTag: 71b74fd9-118a-4cf9-852f-9a2b32fa1e38
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column MES_OBS = RIGHT('FAC_RB_2_SOBREGIROS_TRN'[ANIOMES_OBS], 2)
+		lineageTag: 0f327709-21ef-4ee7-8bd4-849265876814
 		summarizeBy: none
 
 		annotation SummarizationSetBy = Automatic

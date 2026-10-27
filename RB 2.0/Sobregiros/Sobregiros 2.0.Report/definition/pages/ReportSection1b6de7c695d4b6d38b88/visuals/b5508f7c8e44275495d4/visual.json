@@ -92,6 +92,42 @@
         }
       }
     },
+    "expansionStates": [
+      {
+        "roles": [
+          "Rows"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "VDIM_CALENDARIO.ANIO_YYYY"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "VDIM_CALENDARIO"
+                    }
+                  },
+                  "Property": "ANIO_YYYY"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "FAC_SOBREGIROS_INSUMO_SOB_TRN.RANG_LIM_CRD"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          }
+        ],
+        "root": {}
+      }
+    ],
     "objects": {
       "values": [
         {
@@ -3079,6 +3115,67 @@
             }
           ]
         }
+      },
+      {
+        "name": "29fd4b047e9c949a6887",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "VDIM_CALENDARIO"
+              }
+            },
+            "Property": "MES_LETRA"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "da4184fd49c11770487c",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "VDIM_CALENDARIO"
+              }
+            },
+            "Property": "ANIO_YYYY"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "9543e21f2c2015ef2583",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
+              }
+            },
+            "Property": "RANG_LIM_CRD"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "2fa4dda54d807cc1e19b",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FAC_SOBREGIROS_INSUMO_SOB_TRN"
+                  }
+                },
+                "Property": "CTAS_K"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }

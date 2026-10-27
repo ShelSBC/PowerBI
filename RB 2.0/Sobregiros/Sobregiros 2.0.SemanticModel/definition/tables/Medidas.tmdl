@@ -115,7 +115,7 @@ table Medidas
 			    COUNTROWS ( 
 			        FILTER ( 
 			            ALL ( FAC_RB_2_SOBREGIROS_TRN ), 
-			            FAC_RB_2_SOBREGIROS_TRN[ANIO_ESTR] = AnioSeleccionado 
+			            FAC_RB_2_SOBREGIROS_TRN[ANIO_OBS] = AnioSeleccionado 
 			        ) 
 			    ) > 0 
 			RETURN 
@@ -123,7 +123,7 @@ table Medidas
 			        HASONEVALUE ( VDIM_CALENDARIO[ANIO_YYYY] ) && AnioValido, 
 			        AnioSeleccionado, 
 			        CALCULATE ( 
-			            MAX ( FAC_RB_2_SOBREGIROS_TRN[ANIO_ESTR] ), 
+			            MAX ( FAC_RB_2_SOBREGIROS_TRN[ANIO_OBS] ), 
 			            REMOVEFILTERS ( VDIM_CALENDARIO ) 
 			        ) 
 			    )
@@ -140,8 +140,8 @@ table Medidas
 			    COUNTROWS ( 
 			        FILTER ( 
 			            ALL ( FAC_RB_2_SOBREGIROS_TRN ), 
-			            FAC_RB_2_SOBREGIROS_TRN[MES_ESTR] = MesSeleccionado 
-			            && FAC_RB_2_SOBREGIROS_TRN[ANIO_ESTR] = AnioEfectivo 
+			            FAC_RB_2_SOBREGIROS_TRN[MES_OBS] = MesSeleccionado 
+			            && FAC_RB_2_SOBREGIROS_TRN[ANIO_OBS] = AnioEfectivo 
 			        ) 
 			    ) > 0 
 			
@@ -150,11 +150,11 @@ table Medidas
 			        HASONEVALUE ( VDIM_CALENDARIO[MES] ) && MesValido, 
 			        MesSeleccionado, 
 			        CALCULATE ( 
-			            MAX ( FAC_RB_2_SOBREGIROS_TRN[MES_ESTR] ), 
+			            MAX ( FAC_RB_2_SOBREGIROS_TRN[MES_OBS] ), 
 			            REMOVEFILTERS ( VDIM_CALENDARIO ), 
 			            FILTER ( 
 			                ALL ( FAC_RB_2_SOBREGIROS_TRN ), 
-			                FAC_RB_2_SOBREGIROS_TRN[ANIO_ESTR] = AnioEfectivo 
+			                FAC_RB_2_SOBREGIROS_TRN[ANIO_OBS] = AnioEfectivo 
 			            ) 
 			        ) 
 			    )
